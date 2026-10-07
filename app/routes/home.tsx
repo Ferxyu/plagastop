@@ -71,10 +71,6 @@ export default function Home() {
       <section className={`${styles.hero} on-dark`} aria-labelledby="hero-title">
         <div className={styles.heroBg}>
           <Photo id="sede-concepcion" sizes="100vw" priority />
-          <p className={styles.heroChip}>
-            <span className={styles.chipDot} aria-hidden />
-            Nuestra sede en Concepción · Desde 1985
-          </p>
         </div>
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
@@ -85,20 +81,6 @@ export default function Home() {
               Prevención, control y tratamientos autorizados por el SAG para industrias, bodegas, empresas de
               alimentos y puertos, desde Ñuble hasta Los Lagos.
             </p>
-            <div className={styles.heroActions}>
-              <ButtonLink to="/cotizar" size="lg" arrow onClick={() => track('cta_click', { location: 'hero' })}>
-                Solicitar cotización
-              </ButtonLink>
-              <ButtonLink
-                to={telHref(salesArea.phone)}
-                size="lg"
-                variant="inverse"
-                icon={<Phone size={18} strokeWidth={2} aria-hidden />}
-                onClick={() => track('tel_click', { location: 'hero' })}
-              >
-                Hablar con un especialista
-              </ButtonLink>
-            </div>
           </div>
         </div>
       </section>
