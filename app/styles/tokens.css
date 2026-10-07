@@ -1,0 +1,60 @@
+:root {
+  /* Color: base clara + bandas grafito/tinta; el lima del logo como energía de marca */
+  --ps-ink: #0a0b0b;
+  --ps-graphite: #1c1f22;
+  --ps-graphite-2: #262a2e;
+  --ps-graphite-3: #3a4046;
+  --ps-steel: #5b636b;
+  --ps-mist: #b4bac0;
+  --ps-line: #e4e7ea;
+  --ps-line-strong: #cfd4d9;
+  --ps-paper: #f3f4f5;
+  --ps-white: #ffffff;
+  --ps-lime: #cce70b;
+  --ps-lime-press: #b9d300;
+  --ps-lime-soft: #f4f9d8;
+  --ps-error: #c2361f;
+
+  /* Tipografía: Sora para titulares (geométrica, amplia como el wordmark), Figtree para lectura */
+  --font-display: 'Sora Variable', 'Sora', system-ui, sans-serif;
+  --font: 'Figtree Variable', 'Figtree', system-ui, sans-serif;
+
+  --text-sm: 0.875rem;
+  --text-base: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-h3: clamp(1.125rem, 1.04rem + 0.35vw, 1.3125rem);
+  --text-h2: clamp(1.875rem, 1.4rem + 1.9vw, 3rem);
+  --text-h1: clamp(2.125rem, 1.5rem + 2.6vw, 3.5rem);
+  --text-display: clamp(2.375rem, 1.6rem + 3.3vw, 4.5rem);
+
+  /* Espaciado: base 4 */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --section-y: clamp(72px, 4.5rem + 4vw, 136px);
+
+  --gutter: clamp(20px, 4.5vw, 64px);
+  --maxw: 1280px;
+  --header-h: 80px;
+
+  /* Forma: cálida y redondeada */
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 28px;
+  --pill: 999px;
+
+  --shadow-card: 0 24px 48px -28px rgb(10 11 11 / 0.35), 0 2px 8px rgb(10 11 11 / 0.05);
+  --shadow-float: 0 18px 44px -18px rgb(10 11 11 / 0.32), 0 2px 6px rgb(10 11 11 / 0.06);
+
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur: 260ms;
+  --dur-slow: 700ms;
+}

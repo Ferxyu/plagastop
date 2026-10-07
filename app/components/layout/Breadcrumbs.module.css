@@ -1,0 +1,44 @@
+.nav ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--ps-steel);
+}
+
+:global(.on-dark) .nav ol {
+  color: rgb(255 255 255 / 0.7);
+}
+
+.nav li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.nav li + li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ps-lime);
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nav [aria-current] {
+  color: var(--ps-ink);
+  font-weight: 600;
+}
+
+:global(.on-dark) .nav [aria-current] {
+  color: var(--ps-lime);
+}

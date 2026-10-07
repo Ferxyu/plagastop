@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-07T00:00:00Z",
+  "title": "Design System: Plagastop",
+  "extensions": {
+    "colorMeta": {
+      "lime": { "role": "primary", "displayName": "Lima Plagastop", "canonical": "#cce70b", "tonalRamp": ["#2f3600", "#4a5500", "#677600", "#849800", "#b9d300", "#cce70b", "#e3f47a", "#f4f9d8"] },
+      "lime-press": { "role": "primary", "displayName": "Lima Presionado", "canonical": "#b9d300", "tonalRamp": ["#2f3600", "#4a5500", "#677600", "#849800", "#b9d300", "#cce70b", "#e3f47a", "#f4f9d8"] },
+      "lime-soft": { "role": "primary", "displayName": "Lima Suave", "canonical": "#f4f9d8", "tonalRamp": ["#2f3600", "#4a5500", "#677600", "#849800", "#b9d300", "#cce70b", "#e3f47a", "#f4f9d8"] },
+      "ink": { "role": "neutral", "displayName": "Tinta", "canonical": "#0a0b0b", "tonalRamp": ["#0a0b0b", "#1c1f22", "#262a2e", "#3a4046", "#5b636b", "#b4bac0", "#e4e7ea", "#f3f4f5"] },
+      "graphite": { "role": "neutral", "displayName": "Grafito", "canonical": "#1c1f22", "tonalRamp": ["#0a0b0b", "#1c1f22", "#262a2e", "#3a4046", "#5b636b", "#b4bac0", "#e4e7ea", "#f3f4f5"] },
+      "graphite-2": { "role": "neutral", "displayName": "Grafito 2", "canonical": "#262a2e", "tonalRamp": ["#0a0b0b", "#1c1f22", "#262a2e", "#3a4046", "#5b636b", "#b4bac0", "#e4e7ea", "#f3f4f5"] },
+      "graphite-3": { "role": "neutral", "displayName": "Grafito 3", "canonical": "#3a4046", "tonalRamp": ["#0a0b0b", "#1c1f22", "#262a2e", "#3a4046", "#5b636b", "#b4bac0", "#e4e7ea", "#f3f4f5"] },
+      "steel": { "role": "neutral", "displayName": "Acero", "canonical": "#5b636b", "tonalRamp": ["#0a0b0b", "#1c1f22", "#262a2e", "#3a4046", "#5b636b", "#b4bac0", "#e4e7ea", "#f3f4f5"] },
+      "mist": { "role": "neutral", "displayName": "Niebla", "canonical": "#b4bac0", "tonalRamp": ["#0a0b0b", "#1c1f22", "#262a2e", "#3a4046", "#5b636b", "#b4bac0", "#e4e7ea", "#f3f4f5"] },
+      "line": { "role": "neutral", "displayName": "Línea", "canonical": "#e4e7ea", "tonalRamp": ["#0a0b0b", "#1c1f22", "#3a4046", "#5b636b", "#b4bac0", "#cfd4d9", "#e4e7ea", "#f3f4f5"] },
+      "line-strong": { "role": "neutral", "displayName": "Línea Fuerte", "canonical": "#cfd4d9", "tonalRamp": ["#0a0b0b", "#1c1f22", "#3a4046", "#5b636b", "#b4bac0", "#cfd4d9", "#e4e7ea", "#f3f4f5"] },
+      "paper": { "role": "neutral", "displayName": "Papel", "canonical": "#f3f4f5", "tonalRamp": ["#0a0b0b", "#1c1f22", "#3a4046", "#5b636b", "#b4bac0", "#cfd4d9", "#e4e7ea", "#f3f4f5"] },
+      "white": { "role": "neutral", "displayName": "Blanco", "canonical": "#ffffff", "tonalRamp": ["#0a0b0b", "#1c1f22", "#3a4046", "#5b636b", "#b4bac0", "#e4e7ea", "#f3f4f5", "#ffffff"] },
+      "error": { "role": "error", "displayName": "Error", "canonical": "#c2361f", "tonalRamp": ["#3d0f08", "#631a0e", "#8c2514", "#c2361f", "#dc5a43", "#ec8e7c", "#f6c3b9", "#fdf4f2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Solo el H1 del hero de la Home." },
+      "headline": { "displayName": "Headline", "purpose": "H1 de páginas interiores y titular de la banda de cierre." },
+      "headline-section": { "displayName": "Headline de sección", "purpose": "H2 de sección, entre 14ch y 20ch de ancho máximo." },
+      "title": { "displayName": "Title", "purpose": "H3, nombres de tarjeta, regiones de cobertura y preguntas." },
+      "numeral": { "displayName": "Numeral", "purpose": "Estadísticas con contador, años de trayectoria y códigos de credencial; cifras tabulares." },
+      "lead": { "displayName": "Lead", "purpose": "Bajada en acero (niebla sobre oscuro), máximo 60ch." },
+      "body": { "displayName": "Body", "purpose": "Texto corrido en Figtree; prosa hasta 70ch." },
+      "label": { "displayName": "Etiqueta interactiva", "purpose": "Botones, navegación, chips y enlaces de texto en Sora 600." }
+    },
+    "shadows": [
+      { "name": "shadow-card", "value": "0 24px 48px -28px rgb(10 11 11 / 0.35), 0 2px 8px rgb(10 11 11 / 0.05)", "purpose": "Hover de tarjetas de servicio y pasos (con translateY(-6px)) y panel del formulario de contacto." },
+      { "name": "shadow-float", "value": "0 18px 44px -18px rgb(10 11 11 / 0.32), 0 2px 6px rgb(10 11 11 / 0.06)", "purpose": "Lo que flota sobre el contenido: barra de cotización rápida, mega menú, rótulo del hero, insignia de foto y barra de acciones móvil." },
+      { "name": "lime-glow", "value": "0 12px 24px -14px rgb(130 150 0 / 0.9)", "purpose": "Solo el hover del botón primario." },
+      { "name": "ring-rest", "value": "0 0 0 1px #e4e7ea", "purpose": "Anillo de tarjetas, pasos, preguntas y áreas de contacto en reposo (grafito 3 sobre oscuro)." },
+      { "name": "section-cutout", "value": "0 0 0 8px <color de la sección>", "purpose": "Recorte sólido de insertos sobre foto: 6px disco de servicio, 8px insignia y segunda foto, 10px círculo del collage." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.2, 0, 0, 1)", "purpose": "Transiciones de color, borde, sombra y opacidad." },
+      { "name": "ease-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Desplazamientos: elevación de botones y tarjetas, flechas, zoom de fotos, aparición." },
+      { "name": "dur-fast", "value": "160ms", "purpose": "Color y borde de botones, campos, chips y navegación." },
+      { "name": "dur", "value": "260ms", "purpose": "Elevación de tarjetas, flechas, giro de discos, mega menú." },
+      { "name": "dur-slow", "value": "700ms", "purpose": "Aparición al hacer scroll: sube 28px con retraso escalonado (--reveal-delay)." },
+      { "name": "photo-zoom", "value": "900ms ease-expo, scale(1.06–1.07)", "purpose": "Zoom de foto en hover de tarjetas de servicio y mosaico." },
+      { "name": "badge-spin", "value": "22s linear infinite", "purpose": "Texto circular de la insignia giratoria; solo sin prefers-reduced-motion." },
+      { "name": "cursor-dot", "value": "12px, scale(2.2) sobre interactivos", "purpose": "Punto lima que sigue al puntero en dispositivos de puntero fino." }
+    ],
+    "breakpoints": [
+      { "name": "two-col", "value": "640px" },
+      { "name": "header-phone", "value": "720px" },
+      { "name": "header-split", "value": "960px" },
+      { "name": "mobile-bar-off", "value": "960px" },
+      { "name": "layout", "value": "1000px" },
+      { "name": "four-col", "value": "1100px" },
+      { "name": "nav-full", "value": "1120px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón primario (cotizar)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Píldora lima con texto tinta; la acción de cotizar. Se eleva 2px y empuja la flecha en hover.",
+      "html": "<button class=\"ds-btn-primary\">Solicitar cotización <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 32px; border: 1.5px solid var(--ps-lime, #cce70b); border-radius: 999px; background: var(--ps-lime, #cce70b); color: var(--ps-ink, #0a0b0b); font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-weight: 600; font-size: 0.9375rem; letter-spacing: -0.005em; line-height: 1.2; cursor: pointer; transition: background-color 160ms cubic-bezier(0.2,0,0,1), border-color 160ms cubic-bezier(0.2,0,0,1), transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms cubic-bezier(0.2,0,0,1); } .ds-btn-primary svg { transition: transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: var(--ps-lime-press, #b9d300); border-color: var(--ps-lime-press, #b9d300); transform: translateY(-2px); box-shadow: 0 12px 24px -14px rgb(130 150 0 / 0.9); } .ds-btn-primary:hover svg { transform: translateX(4px); } .ds-btn-primary:active { transform: translateY(0); } .ds-btn-primary:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Botón secundario",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Píldora tinta con texto blanco.",
+      "html": "<button class=\"ds-btn-secondary\">Ver servicios</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 32px; border: 1.5px solid var(--ps-ink, #0a0b0b); border-radius: 999px; background: var(--ps-ink, #0a0b0b); color: var(--ps-white, #fff); font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-weight: 600; font-size: 0.9375rem; letter-spacing: -0.005em; cursor: pointer; transition: background-color 160ms cubic-bezier(0.2,0,0,1), border-color 160ms cubic-bezier(0.2,0,0,1), transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-secondary:hover { background: var(--ps-graphite-3, #3a4046); border-color: var(--ps-graphite-3, #3a4046); transform: translateY(-2px); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Botón outline",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Píldora con borde tinta; se rellena de tinta en hover.",
+      "html": "<button class=\"ds-btn-outline\">Llamar al Área Comercial</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 32px; border: 1.5px solid var(--ps-ink, #0a0b0b); border-radius: 999px; background: transparent; color: var(--ps-ink, #0a0b0b); font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-weight: 600; font-size: 0.9375rem; cursor: pointer; transition: background-color 160ms cubic-bezier(0.2,0,0,1), color 160ms cubic-bezier(0.2,0,0,1), transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-outline:hover { background: var(--ps-ink, #0a0b0b); color: var(--ps-white, #fff); transform: translateY(-2px); } .ds-btn-outline:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Enlace de texto",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Sora 600 con subrayado lima de 2px y flecha en disco lima de 26px.",
+      "html": "<a href=\"#\" class=\"ds-text-link\"><span>Conoce la empresa</span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--ps-ink, #0a0b0b); font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-weight: 600; font-size: 0.9375rem; text-decoration: none; } .ds-text-link span { text-decoration: underline; text-decoration-color: var(--ps-lime, #cce70b); text-decoration-thickness: 2px; text-underline-offset: 0.3em; } .ds-text-link svg { flex: none; width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: var(--ps-lime, #cce70b); color: var(--ps-ink, #0a0b0b); transition: transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-text-link:hover svg { transform: translateX(4px); } .ds-text-link:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Campo select",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Campo de 52px y 16px de radio; foco con borde y anillo tinta.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Tu instalación</span><span class=\"ds-select-wrap\"><select class=\"ds-input\"><option>Selecciona</option><option>Planta de alimentos</option></select><svg class=\"ds-chevron\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></span></label>",
+      "css": ".ds-field { display: grid; gap: 8px; font-family: var(--font, 'Figtree Variable', 'Figtree', system-ui, sans-serif); color: var(--ps-ink, #0a0b0b); } .ds-field-label { font-size: 0.9375rem; font-weight: 600; } .ds-select-wrap { position: relative; } .ds-input { appearance: none; width: 100%; min-height: 52px; padding: 0 64px 0 16px; border: 1px solid var(--ps-line-strong, #cfd4d9); border-radius: 16px; background: var(--ps-white, #fff); font: inherit; font-size: 1rem; color: inherit; cursor: pointer; transition: border-color 160ms cubic-bezier(0.2,0,0,1), box-shadow 160ms cubic-bezier(0.2,0,0,1); } .ds-input:hover { border-color: var(--ps-steel, #5b636b); } .ds-input:focus { outline: none; border-color: var(--ps-ink, #0a0b0b); box-shadow: 0 0 0 1px var(--ps-ink, #0a0b0b); } .ds-chevron { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; }"
+    },
+    {
+      "name": "Ítem de navegación",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Píldoras de 42px; hover en papel, actual en lima suave con anillo lima presionado.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-item\" aria-current=\"page\">Servicios</a><a href=\"#\" class=\"ds-nav-item\">Industrias</a><a href=\"#\" class=\"ds-nav-item\">Empresa</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 4px; } .ds-nav-item { display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 999px; font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-size: 0.9375rem; font-weight: 500; color: var(--ps-ink, #0a0b0b); text-decoration: none; transition: background-color 160ms cubic-bezier(0.2,0,0,1); } .ds-nav-item:hover { background: var(--ps-paper, #f3f4f5); } .ds-nav-item[aria-current] { background: var(--ps-lime-soft, #f4f9d8); box-shadow: inset 0 0 0 1px var(--ps-lime-press, #b9d300); } .ds-nav-item:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Chip de enlace",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Píldora papel hacia un servicio o industria relacionada; se rellena de lima en hover.",
+      "html": "<ul class=\"ds-chips\"><li><a href=\"#\" class=\"ds-chip\">Puertos y navieras</a></li><li><a href=\"#\" class=\"ds-chip\">Agroindustria</a></li></ul>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; } .ds-chip { display: inline-flex; align-items: center; min-height: 44px; padding: 0 24px; border-radius: 999px; background: var(--ps-paper, #f3f4f5); color: var(--ps-ink, #0a0b0b); font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: background-color 160ms cubic-bezier(0.2,0,0,1); } .ds-chip:hover { background: var(--ps-lime, #cce70b); } .ds-chip:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Tarjeta de servicio",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Foto real 4:3, disco lima con ícono montado sobre el borde con recorte blanco; plana en reposo, se levanta en hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"></div><div class=\"ds-card-body\"><span class=\"ds-card-icon\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"5\" r=\"2.5\"/><circle cx=\"5.5\" cy=\"18\" r=\"2.5\"/><circle cx=\"18.5\" cy=\"18\" r=\"2.5\"/><path d=\"M12 7.5v5M12 12.5l-5 3.5M12 12.5l5 3.5\"/></svg></span><h3 class=\"ds-card-title\"><a href=\"#\">Manejo Integrado de Plagas</a></h3><p class=\"ds-card-summary\">Programa preventivo con monitoreo, registros y auditoría.</p><span class=\"ds-card-more\">Ver servicio <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></span></div></article>",
+      "css": ".ds-card { position: relative; display: flex; flex-direction: column; max-width: 300px; background: var(--ps-white, #fff); border-radius: 28px; box-shadow: 0 1px 0 var(--ps-line, #e4e7ea), 0 0 0 1px var(--ps-line, #e4e7ea); font-family: var(--font, 'Figtree Variable', 'Figtree', system-ui, sans-serif); color: var(--ps-ink, #0a0b0b); transition: box-shadow 260ms cubic-bezier(0.2,0,0,1), transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -28px rgb(10 11 11 / 0.35), 0 2px 8px rgb(10 11 11 / 0.05); } .ds-card-media { aspect-ratio: 4 / 3; border-radius: 28px 28px 0 0; background: linear-gradient(135deg, #3a4046, #1c1f22); } .ds-card-body { display: flex; flex-direction: column; gap: 8px; padding: 24px; } .ds-card-icon { position: relative; margin: -52px 0 8px; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--ps-lime, #cce70b); color: var(--ps-ink, #0a0b0b); box-shadow: 0 0 0 6px var(--ps-white, #fff); } .ds-card-title { margin: 0; font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-size: 1.1875rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; } .ds-card-title a { color: inherit; text-decoration: none; } .ds-card-title a::after { content: ''; position: absolute; inset: 0; border-radius: 28px; } .ds-card-summary { margin: 0; color: var(--ps-steel, #5b636b); font-size: 0.9375rem; line-height: 1.55; } .ds-card-more { display: inline-flex; align-items: center; gap: 8px; padding-top: 12px; font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-size: 0.875rem; font-weight: 600; } .ds-card-more svg { transition: transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-card:hover .ds-card-more svg { transform: translateX(4px); } .ds-card:has(a:focus-visible) { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; } .ds-card a:focus-visible { outline: none; }"
+    },
+    {
+      "name": "Línea de cobertura",
+      "kind": "custom",
+      "refersTo": "coverage-line",
+      "description": "Paradas unidas por un trazo lima de 3px; la sede rellena de lima con halo suave y rótulo píldora tinta.",
+      "html": "<ol class=\"ds-line\"><li class=\"ds-stop\" data-base><span class=\"ds-dot\"></span><div><p class=\"ds-region\">Biobío <span class=\"ds-base\">Base</span></p><p class=\"ds-scope\">Concepción, Talcahuano, Coronel</p></div></li><li class=\"ds-stop\"><span class=\"ds-dot\"></span><div><p class=\"ds-region\">Ñuble</p><p class=\"ds-scope\">Chillán y alrededores</p></div></li><li class=\"ds-stop\"><span class=\"ds-dot\"></span><div><p class=\"ds-region\">Los Lagos</p><p class=\"ds-scope\">Puerto Montt</p></div></li></ol>",
+      "css": ".ds-line { position: relative; list-style: none; margin: 0; padding: 0; display: grid; gap: 32px; font-family: var(--font, 'Figtree Variable', 'Figtree', system-ui, sans-serif); color: var(--ps-ink, #0a0b0b); } .ds-line::before { content: ''; position: absolute; left: 15px; top: 16px; bottom: 16px; width: 3px; border-radius: 3px; background: var(--ps-lime, #cce70b); } .ds-stop { position: relative; display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 24px; } .ds-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--ps-white, #fff); border: 3px solid var(--ps-ink, #0a0b0b); box-sizing: border-box; } .ds-stop[data-base] .ds-dot { background: var(--ps-lime, #cce70b); box-shadow: 0 0 0 6px var(--ps-lime-soft, #f4f9d8); } .ds-region { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-weight: 700; font-size: 1.25rem; line-height: 1.25; } .ds-base { padding: 4px 12px; border-radius: 999px; background: var(--ps-ink, #0a0b0b); color: var(--ps-lime, #cce70b); font-family: var(--font, 'Figtree Variable', 'Figtree', system-ui, sans-serif); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; } .ds-scope { margin: 4px 0 0; color: var(--ps-steel, #5b636b); }"
+    },
+    {
+      "name": "Pregunta frecuente",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "Acordeón de 16px con índice y disco que gira 45° y se vuelve lima al abrir.",
+      "html": "<details class=\"ds-faq\" open><summary class=\"ds-faq-q\"><span class=\"ds-faq-index\">01</span><span>¿Qué documentación entregan para auditorías?</span><span class=\"ds-faq-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></span></summary><p class=\"ds-faq-a\">Informes de visita, registros de monitoreo y certificados vigentes.</p></details>",
+      "css": ".ds-faq { border-radius: 16px; background: var(--ps-white, #fff); box-shadow: 0 0 0 1px var(--ps-line, #e4e7ea); font-family: var(--font, 'Figtree Variable', 'Figtree', system-ui, sans-serif); color: var(--ps-ink, #0a0b0b); } .ds-faq-q { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 12px; min-height: 68px; padding: 12px 24px; font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-weight: 600; font-size: 1.0625rem; line-height: 1.35; list-style: none; cursor: pointer; } .ds-faq-q::-webkit-details-marker { display: none; } .ds-faq-index { color: var(--ps-steel, #5b636b); } .ds-faq-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--ps-paper, #f3f4f5); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), background-color 260ms cubic-bezier(0.2,0,0,1); } .ds-faq[open] .ds-faq-icon { transform: rotate(45deg); background: var(--ps-lime, #cce70b); } .ds-faq-q:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; border-radius: 16px; } .ds-faq-a { margin: 0; padding: 0 24px 24px 60px; color: var(--ps-steel, #5b636b); max-width: 70ch; }"
+    },
+    {
+      "name": "Área de contacto",
+      "kind": "custom",
+      "refersTo": "contact-area",
+      "description": "Fila del directorio por área: nombre y propósito a la izquierda, canales a la derecha; hover con anillo tinta.",
+      "html": "<ul class=\"ds-dir\"><li class=\"ds-area\"><div><p class=\"ds-area-name\">Área Comercial</p><p class=\"ds-area-purpose\">Cotizaciones y nuevos servicios</p></div><div class=\"ds-area-channels\"><a href=\"#\">+56 41 000 0000</a><a href=\"#\">comercial@plagastop.cl</a></div></li></ul>",
+      "css": ".ds-dir { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-family: var(--font, 'Figtree Variable', 'Figtree', system-ui, sans-serif); color: var(--ps-ink, #0a0b0b); } .ds-area { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 32px; padding: 16px 24px; border-radius: 16px; background: var(--ps-white, #fff); box-shadow: 0 0 0 1px var(--ps-line, #e4e7ea); transition: box-shadow 260ms cubic-bezier(0.2,0,0,1); } .ds-area:hover { box-shadow: 0 0 0 1.5px var(--ps-ink, #0a0b0b); } .ds-area-name { margin: 0; font-family: var(--font-display, 'Sora Variable', 'Sora', system-ui, sans-serif); font-weight: 600; } .ds-area-purpose { margin: 0; font-size: 0.875rem; color: var(--ps-steel, #5b636b); } .ds-area-channels { display: grid; gap: 4px; justify-items: end; } .ds-area-channels a { min-height: 32px; display: inline-flex; align-items: center; font-weight: 600; color: inherit; text-decoration: none; } .ds-area-channels a:hover { text-decoration: underline; text-decoration-color: var(--ps-lime, #cce70b); text-decoration-thickness: 2px; } .ds-area-channels a:focus-visible { outline: 2px solid var(--ps-ink, #0a0b0b); outline-offset: 3px; border-radius: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La Cuadrilla en Terreno",
+    "overview": "Plagastop se muestra a través de su propia gente y sus propios lugares: técnicos en barcos, silos, bodegas y la sede de Concepción, fotografiados de verdad. Esa fotografía carga la confianza; el sistema la envuelve en un ritmo de sitio de servicios cálido y cercano (referencia fijada por el usuario: adhuntltd.com), traducido a industria B2B con la paleta del logo: tinta y grafito con el lima de la marca como energía.\n\nLa página respira en bandas a todo el ancho que alternan blanco, papel gris claro y grafito o tinta, con una sola banda lima de cierre. Todo lo que se toca es redondo: botones píldora, fotos y tarjetas de 28px, discos lima para íconos y checks, insertos circulares de foto recortados con un anillo del color de la sección. El movimiento es parte del mundo: apariciones escalonadas al hacer scroll, contadores que suben, una insignia giratoria y un punto lima que sigue al cursor.\n\nEl mundo reemplaza por completo la dirección anterior (\"Plano de control\", rechazada por el usuario): nada de Archivo expandido, cajetines, plantas de instalación dibujadas como plano técnico ni esquinas de 4px. Tampoco usa imágenes de stock, imágenes de plagas ni pruebas inventadas.",
+    "keyCharacteristics": [
+      "Fotografía real de cuadrillas y sedes Plagastop como protagonista, siempre en marcos de 28px o círculos.",
+      "Bandas completas: blanco y papel alternados con grafito y tinta; una banda lima al cierre.",
+      "Lima como relleno con texto tinta (píldoras, discos de ícono, checks, marcador); como texto solo sobre oscuro.",
+      "Sora para titulares y toda etiqueta interactiva; Figtree para lectura.",
+      "Tarjetas planas en reposo con anillo de 1px; se levantan con sombra suave al pasar el cursor.",
+      "Movimiento firma: aparición hacia arriba escalonada, contadores, insignia giratoria y punto lima del cursor."
+    ],
+    "rules": [
+      { "name": "The Lima Es Relleno Rule", "body": "El lima se usa como relleno con texto o ícono tinta. Nunca es texto sobre blanco o papel. Sobre tinta o grafito sí puede ser texto: el marcador en oscuro, el número de pregunta, el teléfono, el rótulo \"base\" de cobertura y los enlaces del panel de cotizar.", "section": "colors" },
+      { "name": "The Bandas Completas Rule", "body": "Grafito y tinta son fondos de sección a todo el ancho o de paneles cerrados (footer, panel de cotizar, tarjeta de llamada); se alternan con blanco y papel. La banda lima es una sola por página: el cierre.", "section": "colors" },
+      { "name": "The Marcador Rule", "body": "Cada titular de sección marca una sola frase clave con `mark`: un trazo lima de resaltador entre el 58% y el 92% de la altura de la línea, detrás del texto tinta. Sobre oscuro el marcador se vuelve texto lima sin fondo; dentro de la banda lima se invierte a caja tinta con texto lima y esquinas de 6px.", "section": "typography" },
+      { "name": "The Sora Actúa Rule", "body": "Sora lleva titulares y todo lo que se puede tocar (botones, navegación, chips, nombres de tarjeta, enlaces de texto). Figtree lleva lo que se lee.", "section": "typography" },
+      { "name": "The Sombra Al Levantar Rule", "body": "Ninguna tarjeta tiene sombra en reposo. La sombra aparece como respuesta (hover) o porque el elemento realmente flota sobre otro contenido.", "section": "elevation" },
+      { "name": "The Recorte de Sección Rule", "body": "Un inserto que se monta sobre una foto lleva un anillo sólido del color del fondo de su sección (blanco o grafito), no una sombra.", "section": "elevation" },
+      { "name": "The Píldora Actúa Rule", "body": "Si se presiona para actuar, es píldora. Las esquinas de 16px son para lo que contiene entrada o lectura (campos, preguntas, áreas de contacto); 28px para lo que contiene foto o agrupa contenido.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do usar fotografía real de Plagastop (cuadrillas, barcos, silos, bodegas, la sede) en marcos de 28px o círculos.",
+      "Do usar el lima como relleno con texto tinta: botón de cotizar, discos de ícono, checks y el marcador detrás de una frase por titular.",
+      "Do alternar bandas blanco, papel y grafito/tinta a todo el ancho, con una sola banda lima de cierre.",
+      "Do hacer píldora toda acción (999px) y dejar 16px para campos y filas de lectura.",
+      "Do dejar las tarjetas planas con anillo de 1px en reposo y levantarlas 6px con la sombra de tarjeta en hover.",
+      "Do recortar los insertos sobre foto con un anillo sólido del color de la sección (6 a 10px).",
+      "Do dibujar los íconos con trazo de 1.5 en grilla de 24, mostrando el objeto de control, dentro de discos lima.",
+      "Do respetar `prefers-reduced-motion` en apariciones, insignia, contadores y scroll."
+    ],
+    "donts": [
+      "Don't escribir texto lima sobre blanco o papel.",
+      "Don't poner sombra en tarjetas en reposo; la sombra flotante es solo para lo que realmente flota.",
+      "Don't usar degradados de color decorativos; los únicos degradados son velos de tinta para leer sobre foto y el trazo del marcador.",
+      "Don't usar imágenes de stock, imágenes de plagas ni íconos de insectos.",
+      "Don't volver al lenguaje del \"Plano de control\" rechazado: Archivo con eje de ancho, cajetines, plantas de instalación dibujadas como plano técnico y esquinas de 4px. (La línea de cobertura y el progreso del formulario, con puntos unidos por un trazo lima, sí son del mundo actual.)",
+      "Don't poner antetítulos o rótulos en mayúsculas sobre los titulares; las mayúsculas quedan para el texto circular de la insignia giratoria.",
+      "Don't marcar más de una frase por titular con el marcador."
+    ]
+  }
+}

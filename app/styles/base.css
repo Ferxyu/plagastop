@@ -1,0 +1,225 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + var(--s-4));
+  scrollbar-color: var(--ps-mist) var(--ps-paper);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background: var(--ps-white);
+  color: var(--ps-ink);
+  font-family: var(--font);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  caret-color: var(--ps-ink);
+}
+
+::selection {
+  background: var(--ps-lime);
+  color: var(--ps-ink);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-h1);
+  line-height: 1.06;
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+
+h3 {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+/* Marcador lima detrás de palabras clave. Sobre fondo oscuro, el lima va como texto. */
+mark {
+  background: linear-gradient(transparent 58%, var(--ps-lime) 58%, var(--ps-lime) 92%, transparent 92%);
+  color: inherit;
+  padding: 0 0.06em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.on-dark mark {
+  background: none;
+  color: var(--ps-lime);
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ps-ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--ps-lime);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ps-paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ps-mist);
+  border: 2px solid var(--ps-paper);
+  border-radius: 6px;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: calc(var(--maxw) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--paper {
+  background: var(--ps-paper);
+}
+
+.section--dark {
+  background: var(--ps-graphite);
+  color: var(--ps-white);
+}
+
+.section--ink {
+  background: var(--ps-ink);
+  color: var(--ps-white);
+}
+
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.6;
+  color: var(--ps-steel);
+  max-width: 60ch;
+}
+
+.on-dark .lead {
+  color: var(--ps-mist);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--s-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--s-3) var(--s-4);
+  background: var(--ps-ink);
+  color: var(--ps-white);
+  font-weight: 600;
+  border-radius: var(--pill);
+}
+
+.skip-link:focus {
+  top: var(--s-3);
+}
+
+/* Apariciones al hacer scroll: solo se ocultan elementos bajo el pliegue, una vez hidratado */
+[data-reveal][data-reveal-state='pending'] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+[data-reveal][data-reveal-state='shown'] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal][data-reveal-state='pending'] {
+    opacity: 1;
+    transform: none;
+  }
+}

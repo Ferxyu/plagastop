@@ -1,0 +1,110 @@
+.steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--s-5);
+}
+
+@media (min-width: 720px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.step {
+  display: grid;
+  align-content: start;
+  gap: var(--s-3);
+  padding: var(--s-6) var(--s-5) var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--ps-white);
+  box-shadow: 0 0 0 1px var(--ps-line);
+  transition:
+    transform var(--dur) var(--ease-expo),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
+}
+
+.number {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--s-3);
+  border-radius: 50%;
+  background: var(--ps-lime-soft);
+  border: 1.5px dashed var(--ps-lime-press);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color var(--dur) var(--ease-out);
+}
+
+.step:hover .number {
+  background: var(--ps-lime);
+  border-style: solid;
+}
+
+.step p {
+  color: var(--ps-steel);
+  font-size: 0.9375rem;
+}
+
+.call {
+  display: grid;
+  align-content: center;
+  gap: var(--s-2);
+  padding: var(--s-6) var(--s-5);
+  border-radius: var(--radius-lg);
+  background: var(--ps-graphite);
+  color: var(--ps-white);
+}
+
+.callTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.2;
+}
+
+.callText {
+  color: var(--ps-mist);
+  font-size: 0.9375rem;
+}
+
+.callPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1875rem;
+  color: var(--ps-lime);
+  text-decoration: none;
+}
+
+.callIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ps-lime);
+  color: var(--ps-ink);
+}
+
+.callPhone:hover .callIcon {
+  transform: rotate(-12deg);
+  transition: transform var(--dur) var(--ease-expo);
+}
