@@ -45,15 +45,15 @@ export default function Company() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="sede-concepcion"
+        image="sede-fachada"
         title="Cuatro décadas controlando plagas en el sur de Chile"
         lead={`Plagastop nació en Concepción en ${company.foundingYear}, fundada por ${company.founder}. Desde nuestra sede en el ${company.address.area} protegemos industrias, bodegas, empresas de alimentos y puertos.`}
       />
 
       <section className="section">
         <div className={`container ${styles.twoCol}`}>
-          <div className={styles.media} data-reveal>
-            <Photo id="equipo-en-nave" sizes="(min-width: 1000px) 45vw, 100vw" />
+          <div className={styles.media} data-reveal data-reveal-style="clip">
+            <Photo id="equipo-en-nave" sizes="(min-width: 1000px) 45vw, 100vw" parallax={0.08} />
           </div>
           <div className={styles.stack} data-reveal={1}>
             <h2>
@@ -76,7 +76,7 @@ export default function Company() {
           <h2 data-reveal>
             Nuestra <mark>trayectoria</mark>
           </h2>
-          <ol className={styles.timeline}>
+          <ol className={styles.timeline} data-draw>
             {milestones.map((m, i) => (
               <li key={m.year} data-reveal={i % 3}>
                 <div>
@@ -90,7 +90,7 @@ export default function Company() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--sage">
         <div className="container">
           <SectionHeader title="Lo que guía nuestro trabajo" />
           <ul className={styles.reasons}>

@@ -18,48 +18,48 @@ colors:
   error: "#c2361f"
 typography:
   display:
-    fontFamily: "'Sora Variable', 'Sora', system-ui, sans-serif"
+    fontFamily: "'Philosopher', 'Philosopher', system-ui, sans-serif"
     fontSize: "clamp(2.375rem, 1.6rem + 3.3vw, 4.5rem)"
     fontWeight: 700
     lineHeight: 1.04
     letterSpacing: "-0.035em"
   headline:
-    fontFamily: "'Sora Variable', 'Sora', system-ui, sans-serif"
+    fontFamily: "'Philosopher', 'Philosopher', system-ui, sans-serif"
     fontSize: "clamp(2.125rem, 1.5rem + 2.6vw, 3.5rem)"
     fontWeight: 700
     lineHeight: 1.06
     letterSpacing: "-0.025em"
   headline-section:
-    fontFamily: "'Sora Variable', 'Sora', system-ui, sans-serif"
+    fontFamily: "'Philosopher', 'Philosopher', system-ui, sans-serif"
     fontSize: "clamp(1.875rem, 1.4rem + 1.9vw, 3rem)"
     fontWeight: 700
     lineHeight: 1.12
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "'Sora Variable', 'Sora', system-ui, sans-serif"
+    fontFamily: "'Philosopher', 'Philosopher', system-ui, sans-serif"
     fontSize: "clamp(1.125rem, 1.04rem + 0.35vw, 1.3125rem)"
     fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "-0.015em"
   numeral:
-    fontFamily: "'Sora Variable', 'Sora', system-ui, sans-serif"
+    fontFamily: "'Philosopher', 'Philosopher', system-ui, sans-serif"
     fontSize: "clamp(2rem, 1.6rem + 1.4vw, 2.75rem)"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "-0.03em"
     fontFeature: "'tnum'"
   lead:
-    fontFamily: "'Figtree Variable', 'Figtree', system-ui, sans-serif"
+    fontFamily: "'IBM Plex Sans Condensed', 'IBM Plex Sans Condensed', system-ui, sans-serif"
     fontSize: "clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)"
     fontWeight: 400
     lineHeight: 1.6
   body:
-    fontFamily: "'Figtree Variable', 'Figtree', system-ui, sans-serif"
+    fontFamily: "'IBM Plex Sans Condensed', 'IBM Plex Sans Condensed', system-ui, sans-serif"
     fontSize: "clamp(1rem, 0.97rem + 0.15vw, 1.0625rem)"
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "'Sora Variable', 'Sora', system-ui, sans-serif"
+    fontFamily: "'Philosopher', 'Philosopher', system-ui, sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 600
     lineHeight: 1.2
@@ -204,7 +204,7 @@ El mundo reemplaza por completo la dirección anterior ("Plano de control", rech
 - Fotografía real de cuadrillas y sedes Plagastop como protagonista, siempre en marcos de 28px o círculos.
 - Bandas completas: blanco y papel alternados con grafito y tinta; una banda lima al cierre.
 - Lima como relleno con texto tinta (píldoras, discos de ícono, checks, marcador); como texto solo sobre oscuro.
-- Sora para titulares y toda etiqueta interactiva; Figtree para lectura.
+- Philosopher para titulares y toda etiqueta interactiva; IBM Plex Sans Condensed para lectura.
 - Tarjetas planas en reposo con anillo de 1px; se levantan con sombra suave al pasar el cursor.
 - Movimiento firma: aparición hacia arriba escalonada, contadores, insignia giratoria y punto lima del cursor.
 
@@ -236,10 +236,10 @@ Una base clara y neutra con bandas grafito y tinta, y un único acento de alta e
 
 ## Typography
 
-**Display Font:** Sora Variable (con Sora, system-ui, sans-serif)
-**Body Font:** Figtree Variable (con Figtree, system-ui, sans-serif)
+**Display Font:** Philosopher (con Philosopher, system-ui, sans-serif)
+**Body Font:** IBM Plex Sans Condensed (con IBM Plex Sans Condensed, system-ui, sans-serif)
 
-**Character:** Sora es geométrica y amplia como el wordmark, y da a titulares y botones un tono firme pero cercano; Figtree es cálida y legible para la lectura larga.
+**Character:** Philosopher es geométrica y amplia como el wordmark, y da a titulares y botones un tono firme pero cercano; IBM Plex Sans Condensed es cálida y legible para la lectura larga.
 
 ### Hierarchy
 - **Display** (700, clamp 2.375–4.5rem, 1.04): solo el H1 del hero de la Home.
@@ -249,12 +249,12 @@ Una base clara y neutra con bandas grafito y tinta, y un único acento de alta e
 - **Numeral** (700, clamp 2–2.75rem, 1, cifras tabulares): estadísticas con contador, años de trayectoria y códigos de credencial.
 - **Lead** (400, clamp 1.0625–1.25rem, 1.6): bajada en acero (niebla sobre oscuro), máximo 60ch.
 - **Body** (400, clamp 1–1.0625rem, 1.65): texto corrido; prosa hasta 70ch.
-- **Label** (Sora 600, 0.9375rem, -0.005em): botones, navegación, chips, enlaces de texto y "Ver servicio".
+- **Label** (Philosopher 600, 0.9375rem, -0.005em): botones, navegación, chips, enlaces de texto y "Ver servicio".
 
 ### Named Rules
 **The Marcador Rule.** Cada titular de sección marca una sola frase clave con `mark`: un trazo lima de resaltador entre el 58% y el 92% de la altura de la línea, detrás del texto tinta. Sobre oscuro el marcador se vuelve texto lima sin fondo; dentro de la banda lima se invierte a caja tinta con texto lima y esquinas de 6px.
 
-**The Sora Actúa Rule.** Sora lleva titulares y todo lo que se puede tocar (botones, navegación, chips, nombres de tarjeta, enlaces de texto). Figtree lleva lo que se lee.
+**The Philosopher Actúa Rule.** Philosopher lleva titulares y todo lo que se puede tocar (botones, navegación, chips, nombres de tarjeta, enlaces de texto). IBM Plex Sans Condensed lleva lo que se lee.
 
 ## Layout
 
@@ -289,16 +289,16 @@ Forma cálida y redondeada. Píldora (999px) para toda acción: botones, chips, 
 
 ### Buttons
 Firmes y táctiles: píldoras que se elevan 2px al pasar el cursor y empujan su flecha 4px.
-- **Shape:** píldora (999px), 50px de alto (58px en la variante grande), borde de 1.5px, Sora 600.
+- **Shape:** píldora (999px), 50px de alto (58px en la variante grande), borde de 1.5px, Philosopher 600.
 - **Primary:** lima con texto tinta; la acción de cotizar. Hover a lima presionado con brillo lima.
 - **Secondary:** tinta con texto blanco; hover a grafito 3.
 - **Outline:** borde tinta transparente; se rellena de tinta en hover.
 - **Inverse:** sobre oscuro, borde blanco al 60%; se rellena de blanco con texto tinta en hover.
 - **Focus:** contorno tinta de 2px con offset de 3px (lima sobre oscuro).
-- **Enlace de texto:** Sora 600 con subrayado lima de 2px y la flecha dentro de un disco lima de 26px.
+- **Enlace de texto:** Philosopher 600 con subrayado lima de 2px y la flecha dentro de un disco lima de 26px.
 
 ### Chips
-- **Style:** píldoras de 44px en papel (blanco sobre secciones papel), Sora 600; enlazan servicios e industrias relacionados.
+- **Style:** píldoras de 44px en papel (blanco sobre secciones papel), Philosopher 600; enlazan servicios e industrias relacionados.
 - **State:** hover rellena de lima.
 
 ### Cards / Containers
@@ -318,19 +318,19 @@ Firmes y táctiles: píldoras que se elevan 2px al pasar el cursor y empujan su 
 - **Progreso:** dos nodos de 28px unidos por un trazo de 40px que se vuelve lima al avanzar.
 
 ### Navigation
-- **Header:** blanco, fijo, divisor línea; ítems píldora de 42px en Sora 500 0.9375rem; hover en papel; página actual en lima suave con anillo interior lima presionado. Teléfono con disco tinta y auricular lima.
+- **Header:** blanco, fijo, divisor línea; ítems píldora de 42px en Philosopher 500 0.9375rem; hover en papel; página actual en lima suave con anillo interior lima presionado. Teléfono con disco tinta y auricular lima.
 - **Mega menú:** panel blanco con esquinas inferiores de 28px y sombra flotante; servicios con discos lima suave que se encienden lima en hover; subrayado lima de 2px en los nombres.
-- **Móvil:** cajón a pantalla completa con filas de 60px en Sora 600 1.25rem y botón de menú circular de 44px.
+- **Móvil:** cajón a pantalla completa con filas de 60px en Philosopher 600 1.25rem y botón de menú circular de 44px.
 - **Footer:** grafito con franja de contacto (discos lima de 48px) en panel grafito 2 de 28px; enlaces blancos con subrayado lima en hover.
 
 ### Barra de cotización rápida
 Panel blanco de 28px con sombra flotante montado sobre el borde inferior del hero: título, instalación + necesidad y botón primario en una sola fila desde 1100px.
 
 ### Línea de cobertura y trayectoria
-Lista vertical unida por un trazo lima de 3px; cada parada es un punto de 34px con borde tinta de 3px; la sede (o el primer hito) va relleno de lima con halo lima suave. La región va en Sora 700 a tamaño Title, con rótulo píldora tinta y texto lima para la base.
+Lista vertical unida por un trazo lima de 3px; cada parada es un punto de 34px con borde tinta de 3px; la sede (o el primer hito) va relleno de lima con halo lima suave. La región va en Philosopher 700 a tamaño Title, con rótulo píldora tinta y texto lima para la base.
 
 ### Directorio de contacto por área
-Filas de 16px de radio con anillo de línea: nombre del área en Sora 600 y propósito en acero a la izquierda; teléfonos y correos a la derecha desde 720px. Hover con anillo tinta de 1.5px (lima sobre oscuro).
+Filas de 16px de radio con anillo de línea: nombre del área en Philosopher 600 y propósito en acero a la izquierda; teléfonos y correos a la derecha desde 720px. Hover con anillo tinta de 1.5px (lima sobre oscuro).
 
 ### Preguntas frecuentes
 Acordeones de 16px de radio con índice numérico (acero, lima sobre oscuro) y un disco de 36px con "+" que gira 45° y se vuelve lima al abrir.
@@ -365,3 +365,50 @@ La única banda lima de la página: foto real de 28px con anillo de tinta al 8%,
 - **Don't** volver al lenguaje del "Plano de control" rechazado: Archivo con eje de ancho, cajetines, plantas de instalación dibujadas como plano técnico y esquinas de 4px. (La línea de cobertura y el progreso del formulario, con puntos unidos por un trazo lima, sí son del mundo actual.)
 - **Don't** poner antetítulos o rótulos en mayúsculas sobre los titulares; las mayúsculas quedan para el texto circular de la insignia giratoria.
 - **Don't** marcar más de una frase por titular con el marcador.
+
+### Actualización de movimiento (octubre 2026)
+
+- **Tipografía:** Philosopher (extendida y redondeada, en diálogo con el wordmark) para titulares, botones y cifras; IBM Plex Sans Condensed para lectura y etiquetas de interfaz (navegación, preguntas, enlaces de texto).
+- **Entrada del hero:** la foto se asienta con un zoom lento y las palabras del titular suben desde una máscara; el texto y la barra de cotización entran en cascada.
+- **Titulares de sección:** palabras enmascaradas que suben al aparecer (`SplitWords` / `SplitTitle`); el marcador lima se dibuja de izquierda a derecha.
+- **Cortina:** las fotos con `data-reveal-style="clip"` se descubren de abajo hacia arriba con la imagen asentándose.
+- **Parallax:** `Photo parallax={n}` desplaza la imagen dentro de su marco (positivo = más lento). En móvil el hero no usa parallax.
+- **Galería "En terreno":** en escritorio la sección queda fijada y las fotos avanzan en horizontal con el scroll, con barra de progreso lima; en móvil es un carrusel.
+- Todo el movimiento se desactiva con `prefers-reduced-motion`.
+
+### Actualización de tipografía y paleta (octubre 2026)
+
+- **Tipografía:** Philosopher (400/700) para titulares, botones y cifras; IBM Plex Sans Condensed (400–700) para texto corrido, menú y etiquetas.
+- **Paleta ampliada:**
+  - Carbón `#292D2C`: bandas oscuras y footer.
+  - Gris salvia `#8C9691`: matices secundarios (no como texto sobre claro: contraste insuficiente).
+  - Hueso `#F0F1EC`: fondos alternos claros.
+  - **Salvia `#9BAF9B`**: tarjetas, fondos, discos de íconos y la banda de cierre.
+  - **Cobre `#C58C62`**: detalles, líneas e infografías (línea de cobertura, línea de tiempo, separadores del breadcrumb, progreso de la galería, numeración). Nunca como texto sobre fondo claro.
+  - **Lima `#CCE70B`**: solo botones, cifras e información destacada (marcador en titulares, sello SAG, teléfonos destacados). Excepción aprobada: el punto que sigue al cursor.
+
+### Fondos de color y más movimiento (octubre 2026)
+
+- **Fondos:** la base del sitio es hueso `#F0F1EC` (ya no blanco). Las secciones alternan salvia clara (`.section--paper`, `#E2E9E1`), salvia (`.section--sage`, `#9BAF9B`) y carbón (`.section--dark`). Las tarjetas van en blanco encima. Sobre salvia, el texto secundario usa `--ps-graphite-2` para mantener contraste.
+- **Cintas en movimiento:** eliminadas a pedido del cliente.
+- **Barra de progreso de lectura** en cobre, fija arriba.
+- **Líneas que se dibujan con el scroll** (`data-draw`): línea de cobertura y líneas de tiempo.
+- **Botones magnéticos** (`data-magnetic`) y **tarjetas con inclinación 3D** (`data-tilt`), solo con mouse.
+- **Preguntas frecuentes** que se despliegan suavemente; **insignias que flotan** (`.float-soft`).
+- **Fotos por contenido:** cada servicio e industria tiene `photo` (cabecera) y `photo2` (cuerpo) elegidas a mano según su tema.
+- **Marquesina cinética:** eliminada a pedido del cliente.
+- **Declaración que se enciende** (`StatementReveal`): texto de gran formato en la banda carbón; las palabras pasan de tenues a blancas una a una con el scroll; las palabras entre corchetes se destacan en lima.
+- **Hero por capas:** el fondo va más lento que el scroll, el texto sube más rápido y se desvanece (`data-scroll-fade`).
+
+### Paleta azul y nueva Home (octubre 2026)
+
+> Esta sección reemplaza las paletas anteriores (grafito/lima, salvia/cobre).
+
+- **Azul marino `#102B46`**: bandas oscuras, hero, cifras, footer, tarjetas oscuras.
+- **Azul océano `#247BA0`**: íconos, líneas, numeración, barras de infografía, bloque detrás del collage.
+- **Celeste `#62C5E8`**: acentos sobre oscuro (íconos, checks, partículas 3D, barras).
+- **Gris hielo `#DCEAF0`** (y `#EEF5F8` más claro): fondos secundarios.
+- **Lima `#CCE70B`**: botones principales, cifras, palabras destacadas.
+- Los nombres de variables antiguas (`--ps-sage`, `--ps-copper`) quedan como alias de los nuevos roles.
+
+Home (de arriba abajo): hero con la fachada (sin objeto 3D ni texto animado por palabras) → nosotros → cifras con barras → servicios fijados y apilados (sticky) → banda de fondo con parallax y declaración que se enciende → tarjetas 3D tilt → lista compacta de industrias en dos columnas → galería horizontal fijada → pasos → cierre con degradado animado → preguntas (encabezado fijo) → cobertura → contacto.

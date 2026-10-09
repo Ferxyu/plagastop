@@ -8,7 +8,7 @@ import { ButtonLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
 import styles from './ClosingCta.module.css'
 
-/** Banda lima de cierre: foto real del equipo en terreno y la acción principal. */
+/** Banda de cierre con degradado animado: foto real del equipo en terreno y la acción principal. */
 export function ClosingCta({
   title = (
     <>
@@ -18,7 +18,7 @@ export function ClosingCta({
   text = 'Cuéntanos qué tipo de instalación tienes. Te visitamos, evaluamos en terreno y te proponemos un plan a la medida.',
   quoteHref = '/cotizar',
   location = 'closing',
-  image = 'traslado-equipos-a-bordo',
+  image = 'galpon-tecnico',
 }: {
   title?: ReactNode
   text?: string
@@ -27,10 +27,10 @@ export function ClosingCta({
   image?: PhotoId
 }) {
   return (
-    <section className={`section ${styles.band}`} aria-labelledby={`${location}-title`}>
+    <section className={`section on-dark ${styles.band}`} aria-labelledby={`${location}-title`}>
       <div className={`container ${styles.grid}`}>
-        <div className={styles.media} data-reveal>
-          <Photo id={image} sizes="(min-width: 1000px) 40vw, 100vw" />
+        <div className={styles.media} data-reveal data-reveal-style="clip">
+          <Photo id={image} sizes="(min-width: 1000px) 40vw, 100vw" parallax={0.08} />
         </div>
         <div className={styles.copy} data-reveal={1}>
           <h2 id={`${location}-title`}>{title}</h2>
@@ -50,7 +50,6 @@ export function ClosingCta({
             <ButtonLink
               to={quoteHref}
               size="lg"
-              variant="secondary"
               arrow
               onClick={() => track('cta_click', { location })}
             >
@@ -58,7 +57,7 @@ export function ClosingCta({
             </ButtonLink>
             <ButtonLink
               to={telHref(salesArea.phone)}
-              variant="outline"
+              variant="inverse"
               size="lg"
               icon={<Phone size={18} strokeWidth={2} aria-hidden />}
               onClick={() => track('tel_click', { location })}

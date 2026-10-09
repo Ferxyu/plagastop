@@ -1,0 +1,174 @@
+.layout {
+  display: grid;
+  gap: var(--s-7);
+}
+
+.stack {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--s-5);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--ps-white);
+  box-shadow: 0 0 0 1px var(--ps-line), var(--shadow-card);
+}
+
+/* Las tarjetas alternan blanco, gris hielo y azul marino */
+.card:nth-child(3n + 2) {
+  background: var(--ps-ice);
+}
+
+.card:nth-child(3n) {
+  background: var(--ps-navy);
+  color: var(--ps-white);
+}
+
+.media {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 900ms var(--ease-expo);
+}
+
+.card:hover .media img {
+  scale: 1.07;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5) var(--s-6) var(--s-6);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ps-ocean);
+  color: var(--ps-white);
+}
+
+.card:nth-child(3n) .icon {
+  background: var(--ps-sky);
+  color: var(--ps-navy);
+}
+
+.num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 2rem + 2vw, 3.75rem);
+  line-height: 1;
+  color: var(--ps-ocean);
+  opacity: 0.35;
+}
+
+.card:nth-child(3n) .num {
+  color: var(--ps-sky);
+  opacity: 0.6;
+}
+
+.title {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2.125rem);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.card:has(.link:focus-visible) {
+  outline: 3px solid var(--ps-ocean);
+  outline-offset: 3px;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.summary {
+  max-width: 46ch;
+  color: var(--ps-steel);
+}
+
+.card:nth-child(3n) .summary {
+  color: var(--ps-mist);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-2);
+  font-weight: 600;
+}
+
+.more svg {
+  transition: transform var(--dur) var(--ease-expo);
+}
+
+.card:hover .more svg {
+  transform: translateX(5px);
+}
+
+@media (min-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s-9);
+    align-items: start;
+  }
+
+  /* Encabezado fijo mientras pasan las tarjetas */
+  .aside {
+    position: sticky;
+    top: calc(var(--header-h) + var(--s-8));
+  }
+
+  .stack {
+    gap: var(--s-7);
+  }
+
+  /* Tarjetas apiladas: cada una se fija 18px más abajo que la anterior */
+  .card {
+    position: sticky;
+    top: calc(var(--header-h) + var(--s-6) + var(--i) * 18px);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    min-height: 340px;
+  }
+
+  .media {
+    aspect-ratio: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    position: relative !important;
+    top: auto !important;
+  }
+}

@@ -14,7 +14,7 @@
   bottom: 16px;
   width: 3px;
   border-radius: 3px;
-  background: var(--ps-lime);
+  background: var(--ps-copper);
 }
 
 .stop {
@@ -34,8 +34,8 @@
 }
 
 .stop[data-base] .dot {
-  background: var(--ps-lime);
-  box-shadow: 0 0 0 6px var(--ps-lime-soft);
+  background: var(--ps-copper);
+  box-shadow: 0 0 0 6px var(--ps-copper-soft);
 }
 
 .region {
@@ -70,4 +70,10 @@
   max-width: 52ch;
   font-size: 0.9375rem;
   line-height: 1.7;
+}
+
+/* La línea de cobre se dibuja con el scroll */
+.line[data-draw-active='true']::before {
+  transform-origin: top;
+  scale: 1 var(--draw, 0);
 }

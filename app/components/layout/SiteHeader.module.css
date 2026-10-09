@@ -11,6 +11,28 @@
   align-items: center;
   gap: var(--s-6);
   height: var(--header-h);
+  transition: height var(--dur) var(--ease-out);
+}
+
+.header {
+  transition: box-shadow var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+
+.header[data-scrolled='true'] {
+  border-bottom-color: transparent;
+  box-shadow: 0 10px 30px -18px rgb(10 11 11 / 0.35);
+}
+
+.header[data-scrolled='true'] .bar {
+  height: 66px;
+}
+
+.logo img {
+  transition: height var(--dur) var(--ease-out);
+}
+
+.header[data-scrolled='true'] .logo img {
+  height: 36px;
 }
 
 .logo {
@@ -44,7 +66,7 @@
   border: 0;
   border-radius: var(--pill);
   background: none;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.9375rem;
   font-weight: 500;
   text-decoration: none;
@@ -58,8 +80,8 @@
 
 .navItem:global(.active),
 .navItem[data-current] {
-  background: var(--ps-lime-soft);
-  box-shadow: inset 0 0 0 1px var(--ps-lime-press);
+  background: var(--ps-sage-soft);
+  box-shadow: inset 0 0 0 1px var(--ps-sage);
 }
 
 .navItem svg {
@@ -81,7 +103,7 @@
   display: none;
   align-items: center;
   gap: var(--s-2);
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
   font-size: 0.9375rem;
   text-decoration: none;
@@ -94,7 +116,7 @@
   padding: 9px;
   border-radius: 50%;
   background: var(--ps-ink);
-  color: var(--ps-lime);
+  color: var(--ps-sage);
 }
 
 .actions .cta {
@@ -184,13 +206,13 @@
 
 .megaLink strong {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
 }
 
 .megaLink:hover strong {
   text-decoration: underline;
-  text-decoration-color: var(--ps-lime);
+  text-decoration-color: var(--ps-copper);
   text-decoration-thickness: 2px;
 }
 
@@ -209,12 +231,12 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--ps-lime-soft);
+  background: var(--ps-sage-soft);
 }
 
 .megaLink:hover .megaIcon,
 .megaLink:focus-visible .megaIcon {
-  background: var(--ps-lime);
+  background: var(--ps-sage);
 }
 
 .megaIndustries {
@@ -230,13 +252,13 @@
   padding: var(--s-4) 0;
   border-bottom: 1px solid var(--ps-line);
   font-weight: 600;
-  font-family: var(--font-display);
+  font-family: var(--font);
   text-decoration: none;
 }
 
 .megaIndustry:hover {
   text-decoration: underline;
-  text-decoration-color: var(--ps-lime);
+  text-decoration-color: var(--ps-copper);
   text-decoration-thickness: 2px;
 }
 
@@ -252,9 +274,9 @@
 
 .megaAsideTitle {
   color: var(--ps-ink);
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 1.0625rem;
   line-height: 1.3;
 }
@@ -291,9 +313,9 @@
   min-height: 60px;
   border-bottom: 1px solid var(--ps-line);
   font-size: 1.25rem;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
-  font-family: var(--font-display);
+  font-family: var(--font);
   text-decoration: none;
   list-style: none;
   cursor: pointer;

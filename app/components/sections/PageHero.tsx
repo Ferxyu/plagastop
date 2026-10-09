@@ -22,7 +22,7 @@ export function PageHero({
     <section className={`${styles.hero} on-dark`} data-has-image={image ? true : undefined}>
       {image && (
         <div className={styles.bg} aria-hidden>
-          <Photo id={image} sizes="100vw" priority />
+          <Photo id={image} sizes="100vw" priority parallax={-0.2} />
         </div>
       )}
       <div className={`container ${styles.copy}`}>

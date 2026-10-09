@@ -27,7 +27,7 @@ export default function Contact() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="sede-concepcion"
+        image="sede-fachada"
         title="Contacto"
         lead="Llama o escribe directamente al área que necesitas. Para cotizar un servicio, usa el formulario de cotización: es más rápido."
         actions={
@@ -65,7 +65,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="section section--paper">
+      <section className="section section--sage">
         <div className={`container ${styles.split}`}>
           <h2>Zonas de cobertura</h2>
           <CoverageLine />

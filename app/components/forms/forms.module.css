@@ -231,7 +231,7 @@
 
 .steps li[data-done]::before,
 .steps li[aria-current]::before {
-  background: var(--ps-lime);
+  background: var(--ps-copper);
 }
 
 .stepDot {

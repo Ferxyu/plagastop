@@ -29,6 +29,8 @@ export interface Service {
   shortName: string
   icon: ServiceIconName
   photo: PhotoId
+  /** Foto del cuerpo de la página: distinta a la de la cabecera y del mismo servicio. */
+  photo2: PhotoId
   /** Una línea: qué resuelve. */
   summary: string
   /** H1 de la página de servicio. */
@@ -54,6 +56,7 @@ export const services: Service[] = [
     shortName: 'Manejo Integrado de Plagas',
     icon: 'mip',
     photo: 'estacion-control-interior',
+    photo2: 'galpon-tecnico',
     featured: true,
     summary:
       'Programa preventivo y periódico para mantener toda la instalación bajo control, con sanitización incluida.',
@@ -97,6 +100,7 @@ export const services: Service[] = [
     shortName: 'Control de roedores',
     icon: 'rodent',
     photo: 'control-roedores-captura',
+    photo2: 'estacion-control-interior',
     summary:
       'Monitoreo y control de roedores en perímetros, andenes, bodegas y zonas de proceso.',
     headline: 'Control de roedores para instalaciones industriales y comerciales',
@@ -133,6 +137,7 @@ export const services: Service[] = [
     shortName: 'Control de insectos',
     icon: 'insect',
     photo: 'desinsectacion-local-comercial',
+    photo2: 'nube-termonebulizacion',
     summary:
       'Control de insectos rastreros y voladores en cocinas, zonas de proceso y áreas comunes.',
     headline: 'Control de insectos para empresas de alimentos y comercio',
@@ -166,6 +171,7 @@ export const services: Service[] = [
     shortName: 'Sanitización',
     icon: 'sanitize',
     photo: 'sanitizacion-banos',
+    photo2: 'sanitizacion-barco',
     summary:
       'Control de microorganismos en superficies y ambientes de trabajo, como servicio puntual o periódico.',
     headline: 'Sanitización de instalaciones para empresas',
@@ -199,6 +205,7 @@ export const services: Service[] = [
     shortName: 'Granos almacenados',
     icon: 'grain',
     photo: 'silos-graneles',
+    photo2: 'termonebulizacion-silo',
     summary:
       'Programas para granos almacenados con laboratorio móvil, para proteger el valor del producto.',
     headline: 'Fumigación y programas para granos almacenados',
@@ -227,6 +234,7 @@ export const services: Service[] = [
     shortName: 'Tratamientos fitosanitarios SAG',
     icon: 'export',
     photo: 'aspersion-nave-polilla-gitana',
+    photo2: 'fumigacion-contenedores',
     summary:
       'Tratamientos oficiales para exportación e importación, autorizados por el SAG.',
     headline: 'Tratamientos fitosanitarios oficiales para exportación e importación',
@@ -256,6 +264,7 @@ export const services: Service[] = [
     shortName: 'Medición Gas Free',
     icon: 'gas',
     photo: 'gas-free-contenedor',
+    photo2: 'medidor-fumisense',
     summary:
       'Medición de gases residuales en contenedores y naves antes de su apertura o descarga.',
     headline: 'Medición de gases residuales Gas Free en contenedores y naves',
@@ -284,6 +293,7 @@ export const services: Service[] = [
     shortName: 'Puertos y buques',
     icon: 'port',
     photo: 'tratamiento-buque',
+    photo2: 'pasillo-nave',
     summary:
       'Control de plagas en instalaciones portuarias y naves, coordinado con la operación.',
     headline: 'Control de plagas en instalaciones portuarias y buques',
@@ -312,6 +322,7 @@ export const services: Service[] = [
     shortName: 'Residencial',
     icon: 'home',
     photo: 'desinsectacion-exterior-casa',
+    photo2: 'desinfeccion-superficies',
     secondary: true,
     summary: 'Control de plagas para casas, departamentos y condominios.',
     headline: 'Control de plagas residencial',

@@ -23,7 +23,7 @@ export default function Industries() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="tratamiento-buque"
+        image="patio-contenedores"
         title="Control de plagas para cada industria"
         lead="Cada tipo de instalación tiene sus propios riesgos. Elige tu rubro y revisa cómo trabajamos en él."
       />

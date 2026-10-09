@@ -8,9 +8,9 @@
   border: 1.5px solid transparent;
   border-radius: var(--pill);
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  letter-spacing: -0.005em;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0;
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
@@ -37,8 +37,8 @@
 
 .lg {
   min-height: 58px;
-  padding: 0 var(--s-7);
-  font-size: 1rem;
+  padding: 0 var(--s-6);
+  font-size: 1.0625rem;
 }
 
 .block {
@@ -120,7 +120,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
   font-size: 0.9375rem;
   text-decoration: none;
@@ -128,7 +128,7 @@
 
 .textLink span {
   text-decoration: underline;
-  text-decoration-color: var(--ps-lime);
+  text-decoration-color: var(--ps-copper);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.3em;
 }

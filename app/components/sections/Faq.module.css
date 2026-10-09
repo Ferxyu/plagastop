@@ -22,7 +22,7 @@
   gap: var(--s-3);
   min-height: 68px;
   padding: var(--s-3) var(--s-5);
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
   font-size: 1.0625rem;
   line-height: 1.35;
@@ -39,7 +39,7 @@
 }
 
 :global(.on-dark) .index {
-  color: var(--ps-lime);
+  color: var(--ps-copper);
 }
 
 .icon {
@@ -60,7 +60,7 @@
 
 .item[open] .icon {
   transform: rotate(45deg);
-  background: var(--ps-lime);
+  background: var(--ps-sage);
   color: var(--ps-ink);
 }
 

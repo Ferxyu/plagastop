@@ -1,0 +1,65 @@
+.list {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--ps-line-strong);
+}
+
+@media (min-width: 900px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--s-8);
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-2) var(--s-4);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--ps-line-strong);
+  text-decoration: none;
+}
+
+.index {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--ps-ocean);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  line-height: 1.25;
+}
+
+.facility {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.875rem;
+  color: var(--ps-steel);
+}
+
+.go {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ps-navy);
+  transition: background-color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+
+.row:hover .name {
+  color: var(--ps-ocean);
+}
+
+.row:hover .go {
+  background: var(--ps-lime);
+  border-color: var(--ps-lime);
+}

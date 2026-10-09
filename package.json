@@ -11,8 +11,8 @@
     "preview": "vite preview --outDir build/client"
   },
   "dependencies": {
-    "@fontsource-variable/figtree": "^5.3.0",
-    "@fontsource-variable/sora": "^5.3.0",
+    "@fontsource/ibm-plex-sans-condensed": "^5.3.0",
+    "@fontsource/philosopher": "^5.3.0",
     "@react-router/node": "^8.4.0",
     "isbot": "^5.2.2",
     "lucide-react": "^1.52.0",

@@ -18,6 +18,29 @@ export interface PhotoMeta {
 }
 
 const meta = {
+  'desinfeccion-superficies': { alt: 'Técnico desinfectando superficies con amonio cuaternario', ratio: 3 / 4 },
+  'sanitizacion-barco': { alt: 'Sanitización con bomba de espalda a bordo de un barco', ratio: 3 / 4 },
+  'astillas-bodega-barco': { alt: 'Aspersión sobre astillas de pino en la bodega de un barco', ratio: 3 / 4 },
+  'sede-fachada': {
+    alt: 'Fachada de la sede de Plagastop en Concepción, con su techo verde',
+    ratio: 16 / 9,
+    focus: '40% 40%',
+  },
+  'termonebulizacion-bodega': { alt: 'Termonebulización en una bodega industrial vacía', ratio: 3 / 4 },
+  'tratamiento-bodega-nave': { alt: 'Técnico aplicando tratamiento en la bodega de una nave', ratio: 3 / 4 },
+  'galpon-cinta-transportadora': { alt: 'Tratamiento en la cinta transportadora de un galpón de graneles', ratio: 3 / 4 },
+  'fumigacion-bajo-cobertor': { alt: 'Técnico prepara una fumigación bajo cobertor en una bodega de sacos', ratio: 3 / 4 },
+  'termonebulizacion-silo': { alt: 'Técnico termonebulizando el interior de un silo', ratio: 3 / 4 },
+  'bodega-n4': { alt: 'Bodega industrial con su portón cerrado durante un tratamiento', ratio: 3 / 4 },
+  'graneles-bajo-cobertor': { alt: 'Graneles cubiertos con cobertor para fumigación', ratio: 3 / 4 },
+  'patio-contenedores': { alt: 'Fila de contenedores abiertos en un patio de tratamiento', ratio: 4 / 3 },
+  'fumigacion-contenedores': { alt: 'Contenedores conectados a equipos de fumigación', ratio: 16 / 9 },
+  'nube-termonebulizacion': { alt: 'Nube de termonebulización avanzando por una bodega de graneles', ratio: 3 / 4 },
+  'pasillo-nave': { alt: 'Técnico de Plagastop recorriendo el pasillo de cubierta de una nave', ratio: 3 / 4 },
+  'silo-motobomba': { alt: 'Aspersión con motobomba en el exterior de un silo', ratio: 3 / 4 },
+  'medidor-fumisense': { alt: 'Medición de gas con un detector FumiSense junto a un contenedor', ratio: 3 / 4 },
+  'pallets-bajo-cobertor': { alt: 'Pallets de mercadería bajo cobertor en una bodega', ratio: 3 / 4 },
+  'galpon-tecnico': { alt: 'Técnico de Plagastop trabajando dentro de un galpón de graneles', ratio: 3 / 4 },
   'sede-concepcion': {
     alt: 'Sede de Plagastop en el Parque Industrial Ejército, Concepción',
     ratio: 2365 / 1330,
@@ -82,26 +105,6 @@ export type PhotoId = keyof typeof meta
 export interface Photo extends PhotoMeta {
   src: string
   srcSet: string
-}
-
-/** Fotos de trabajo en terreno para acompañar páginas interiores sin repetir la del hero. */
-const fieldPool: PhotoId[] = [
-  'medicion-fosfina-graneles',
-  'termonebulizacion-estructuras',
-  'monitoreo-fosfina-barco',
-  'detector-gas-residual',
-  'fumigacion-placas-degesch',
-  'equipo-en-nave',
-  'aspersion-exterior-silo',
-  'bodega-preventiva',
-  'traslado-equipos-a-bordo',
-]
-
-/** Elige, de forma estable por página, una foto distinta a la del hero. */
-export function secondaryPhoto(exclude: PhotoId, seed: string): PhotoId {
-  const pool = fieldPool.filter((p) => p !== exclude)
-  const hash = [...seed].reduce((acc, ch) => (acc * 31 + ch.charCodeAt(0)) >>> 0, 7)
-  return pool[hash % pool.length]
 }
 
 export function photo(id: PhotoId): Photo {

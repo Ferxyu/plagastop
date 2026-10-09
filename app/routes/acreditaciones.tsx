@@ -54,10 +54,10 @@ export default function Credentials() {
         </div>
       </section>
 
-      <section className="section section--paper">
+      <section className="section section--sage">
         <div className={`container ${styles.split}`}>
           <h2>Certificaciones de gestión</h2>
-          <ol className={styles.timeline}>
+          <ol className={styles.timeline} data-draw>
             {certifications.map((m) => (
               <li key={m.year}>
                 <div>

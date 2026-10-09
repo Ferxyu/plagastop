@@ -26,7 +26,7 @@
   border-radius: var(--pill);
   background: var(--ps-lime);
   color: var(--ps-ink);
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
   text-decoration: none;
 }

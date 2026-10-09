@@ -40,13 +40,13 @@ export function ButtonLink({
   const className = classes(props)
   if (/^(tel:|mailto:|https?:)/.test(to)) {
     return (
-      <a href={to} className={className} onClick={onClick}>
+      <a href={to} className={className} onClick={onClick} data-magnetic>
         <Inner {...props} />
       </a>
     )
   }
   return (
-    <Link to={to} className={className} onClick={onClick} prefetch="intent">
+    <Link to={to} className={className} onClick={onClick} prefetch="intent" data-magnetic>
       <Inner {...props} />
     </Link>
   )
@@ -68,6 +68,7 @@ export function Button({
     <button
       {...rest}
       className={classes(common)}
+      data-magnetic
       aria-busy={loading || undefined}
       disabled={rest.disabled || loading}
     >

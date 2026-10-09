@@ -42,8 +42,8 @@
   height: 56px;
   margin-bottom: var(--s-3);
   border-radius: 50%;
-  background: var(--ps-lime-soft);
-  border: 1.5px dashed var(--ps-lime-press);
+  background: var(--ps-copper-soft);
+  border: 1.5px dashed var(--ps-copper);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
@@ -51,7 +51,7 @@
 }
 
 .step:hover .number {
-  background: var(--ps-lime);
+  background: var(--ps-sage);
   border-style: solid;
 }
 

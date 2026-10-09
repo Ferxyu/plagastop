@@ -34,7 +34,7 @@ body {
 }
 
 ::selection {
-  background: var(--ps-lime);
+  background: var(--ps-sage);
   color: var(--ps-ink);
 }
 
@@ -62,8 +62,8 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
@@ -78,9 +78,9 @@ h2 {
 
 h3 {
   font-size: var(--text-h3);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
 }
 
 p {
@@ -95,7 +95,7 @@ a {
 
 /* Marcador lima detrás de palabras clave. Sobre fondo oscuro, el lima va como texto. */
 mark {
-  background: linear-gradient(transparent 58%, var(--ps-lime) 58%, var(--ps-lime) 92%, transparent 92%);
+  background: linear-gradient(transparent 58%, var(--ps-lime) 58%, var(--ps-lime) 92%, transparent 92%) no-repeat 0 0 / 100% 100%;
   color: inherit;
   padding: 0 0.06em;
   -webkit-box-decoration-break: clone;
@@ -145,9 +145,26 @@ mark {
   padding-block: var(--section-y);
 }
 
+/* Fondos de sección: blanco (base), hielo claro, gris hielo y azul marino. */
 .section--paper {
-  background: var(--ps-paper);
+  background: var(--ps-ice-soft);
 }
+
+.section--sage {
+  background: var(--ps-ice);
+}
+
+.section--sage .lead,
+.section--sage p {
+  color: var(--ps-graphite-2);
+}
+
+/* Azul océano: banda de dinamismo con texto blanco */
+.section--ocean {
+  background: var(--ps-ocean);
+  color: var(--ps-white);
+}
+
 
 .section--dark {
   background: var(--ps-graphite);
@@ -202,24 +219,148 @@ mark {
   top: var(--s-3);
 }
 
-/* Apariciones al hacer scroll: solo se ocultan elementos bajo el pliegue, una vez hidratado */
+/* ---------- Movimiento ----------
+   Todo se activa solo cuando el motor (useReveal) marca un elemento como pending tras hidratar,
+   o con animaciones de carga en el hero. Con movimiento reducido el contenido queda estático. */
+
 [data-reveal][data-reveal-state='pending'] {
   opacity: 0;
-  transform: translateY(28px);
+  translate: 0 36px;
 }
 
 [data-reveal][data-reveal-state='shown'] {
-  opacity: 1;
-  transform: none;
   transition:
     opacity var(--dur-slow) var(--ease-out),
-    transform var(--dur-slow) var(--ease-expo);
+    translate 900ms var(--ease-expo),
+    clip-path 1100ms var(--ease-expo),
+    scale 1100ms var(--ease-expo);
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Cortina: la imagen se descubre de abajo hacia arriba */
+[data-reveal-style='clip'][data-reveal-state='pending'] {
+  opacity: 1;
+  translate: none;
+  clip-path: inset(100% 0 0 0 round var(--radius-lg));
+}
+
+[data-reveal-style='clip'][data-reveal-state='shown'] {
+  clip-path: inset(0 0 0 0 round var(--radius-lg));
+}
+
+[data-reveal-style='clip'][data-reveal-state='pending'] img {
+  scale: 1.25;
+}
+
+[data-reveal-style='clip'][data-reveal-state='shown'] img {
+  transition: scale 1400ms var(--ease-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal-style='scale'][data-reveal-state='pending'] {
+  translate: none;
+  scale: 0.92;
+}
+
+/* El marcador lima se dibuja de izquierda a derecha al aparecer su bloque */
+[data-reveal-state='pending'] mark {
+  background-size: 0% 100%;
+}
+
+[data-reveal-state='shown'] mark {
+  transition: background-size 900ms var(--ease-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 350ms);
+}
+
+/* Palabras que suben desde una máscara (componente SplitWords) */
+.split-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.split-w > span {
+  display: inline-block;
+}
+
+[data-reveal-state='pending'] .split-w > span {
+  translate: 0 105%;
+}
+
+[data-reveal-state='shown'] .split-w > span {
+  transition: translate 900ms var(--ease-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--i) * 45ms);
+}
+
+/* Imagen con parallax: se agranda para que el desplazamiento no deje bordes */
+img[data-parallax] {
+  scale: 1.18;
+  will-change: translate;
 }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal][data-reveal-state='pending'] {
     opacity: 1;
-    transform: none;
+    translate: none;
+    clip-path: none;
+    scale: none;
+  }
+
+  img[data-parallax] {
+    scale: none;
+  }
+}
+
+/* Barra de progreso de lectura (cobre: detalle) */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 3px;
+  background: var(--ps-copper);
+  transform-origin: left;
+  scale: var(--scroll, 0) 1;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+}
+
+/* Preguntas frecuentes: se despliegan con suavidad */
+:root {
+  interpolate-size: allow-keywords;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 450ms var(--ease-expo),
+      content-visibility 450ms allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+}
+
+/* Flotación suave para insignias */
+@media (prefers-reduced-motion: no-preference) {
+  .float-soft {
+    animation: float-soft 5s ease-in-out infinite;
+  }
+}
+
+@keyframes float-soft {
+  50% {
+    translate: 0 -10px;
   }
 }

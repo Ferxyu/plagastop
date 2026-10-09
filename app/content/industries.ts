@@ -18,6 +18,8 @@ export interface Industry {
   risks: string[]
   services: string[]
   photo: PhotoId
+  /** Foto del cuerpo de la página: distinta a la de la cabecera y del mismo rubro. */
+  photo2: PhotoId
   seo: { title: string; description: string }
 }
 
@@ -42,6 +44,7 @@ export const industries: Industry[] = [
       'sanitizacion',
     ],
     photo: 'fumigacion-molino',
+    photo2: 'fumigacion-bajo-cobertor',
     seo: {
       title: 'Control de plagas para la industria alimentaria',
       description:
@@ -67,6 +70,7 @@ export const industries: Industry[] = [
       'medicion-de-gases-gas-free',
     ],
     photo: 'bodega-preventiva',
+    photo2: 'pallets-bajo-cobertor',
     seo: {
       title: 'Control de plagas para bodegas y centros logísticos',
       description:
@@ -87,7 +91,8 @@ export const industries: Industry[] = [
       'Daño a la reputación ante clientes.',
     ],
     services: ['control-de-insectos', 'manejo-integrado-de-plagas', 'sanitizacion', 'control-de-roedores'],
-    photo: 'local-comercial',
+    photo: 'desinsectacion-local-comercial',
+    photo2: 'local-comercial',
     seo: {
       title: 'Control de plagas para restaurantes y casinos',
       description:
@@ -114,6 +119,7 @@ export const industries: Industry[] = [
       'fumigacion-de-granos-almacenados',
     ],
     photo: 'monitoreo-fosfina-barco',
+    photo2: 'patio-contenedores',
     seo: {
       title: 'Tratamientos para puertos y comercio exterior',
       description:
@@ -140,6 +146,7 @@ export const industries: Industry[] = [
       'manejo-integrado-de-plagas',
     ],
     photo: 'aspersion-exterior-silo',
+    photo2: 'graneles-bajo-cobertor',
     seo: {
       title: 'Control de plagas para agroindustria y granos',
       description:
@@ -160,6 +167,7 @@ export const industries: Industry[] = [
     ],
     services: ['tratamientos-fitosanitarios-sag', 'manejo-integrado-de-plagas', 'control-de-roedores'],
     photo: 'astillas-de-pino',
+    photo2: 'astillas-bodega-barco',
     seo: {
       title: 'Tratamientos fitosanitarios para la industria forestal',
       description:
@@ -181,6 +189,7 @@ export const industries: Industry[] = [
     ],
     services: ['manejo-integrado-de-plagas', 'control-de-roedores', 'control-de-insectos', 'sanitizacion'],
     photo: 'termonebulizacion-estructuras',
+    photo2: 'galpon-cinta-transportadora',
     seo: {
       title: 'Control de plagas para plantas industriales',
       description:
@@ -201,7 +210,8 @@ export const industries: Industry[] = [
       'Ingreso por patios de carga.',
     ],
     services: ['manejo-integrado-de-plagas', 'control-de-roedores', 'control-de-insectos', 'sanitizacion'],
-    photo: 'sanitizacion-banos',
+    photo: 'local-comercial',
+    photo2: 'bodega-n4',
     seo: {
       title: 'Control de plagas para comercio y retail',
       description:

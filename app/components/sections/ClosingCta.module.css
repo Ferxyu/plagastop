@@ -1,19 +1,27 @@
-/* La banda de color intenso de la marca: lima con tipografía en tinta */
+/* Banda de cierre con degradado animado: azul marino, océano y celeste en movimiento lento */
 .band {
   overflow: hidden;
-  background: var(--ps-lime);
-  color: var(--ps-ink);
+  color: var(--ps-white);
+  background: linear-gradient(115deg, #102b46 0%, #17385a 22%, #247ba0 48%, #1d6a8f 62%, #102b46 82%, #247ba0 100%);
+  background-size: 260% 260%;
 }
 
-.band mark {
-  background: var(--ps-ink);
-  color: var(--ps-lime);
-  padding: 0 0.18em;
-  border-radius: 6px;
+@media (prefers-reduced-motion: no-preference) {
+  .band {
+    animation: gradient-drift 16s ease-in-out infinite alternate;
+  }
 }
 
-.band :focus-visible {
-  outline-color: var(--ps-ink);
+@keyframes gradient-drift {
+  0% {
+    background-position: 0% 30%;
+  }
+  50% {
+    background-position: 70% 70%;
+  }
+  100% {
+    background-position: 100% 20%;
+  }
 }
 
 .grid {
@@ -65,7 +73,7 @@
 .text {
   font-size: var(--text-lead);
   line-height: 1.6;
-  color: var(--ps-graphite-2);
+  color: rgb(255 255 255 / 0.85);
   max-width: 54ch;
 }
 
@@ -89,8 +97,8 @@
   height: 26px;
   padding: 5px;
   border-radius: 50%;
-  background: var(--ps-ink);
-  color: var(--ps-lime);
+  background: var(--ps-sky);
+  color: var(--ps-navy);
 }
 
 .actions {
@@ -103,5 +111,5 @@
 .phone {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--ps-graphite-2);
+  color: rgb(255 255 255 / 0.8);
 }

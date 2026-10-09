@@ -37,7 +37,7 @@ export default function Services() {
           </ButtonLink>
         }
       />
-      <section className="section section--paper">
+      <section className="section section--sage">
         <div className="container">
           <ServiceCards services={primaryServices} headingLevel={2} />
           <p style={{ marginTop: 'var(--s-7)', textAlign: 'center' }}>
@@ -46,7 +46,7 @@ export default function Services() {
           </p>
         </div>
       </section>
-      <section className="section">
+      <section className="section section--paper">
         <div className="container">
           <SectionHeader title="Cómo trabajamos" lead="Desde tu primera consulta hasta el seguimiento de cada servicio." />
           <Steps />
