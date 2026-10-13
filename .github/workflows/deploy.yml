@@ -37,14 +37,25 @@ jobs:
           DEPLOY_GH_PAGES: 'true'
         run: npm run build
 
-      - name: Verify build output
-        run: test -f build/client/index.html
+      # Con basename '/plagastop/', React Router guarda las páginas prerenderizadas en
+      # build/client/plagastop/. GitHub Pages ya sirve el sitio bajo /plagastop/, así que
+      # esas páginas se mueven a la raíz del artefacto (los assets ya están en build/client/assets).
+      - name: Move prerendered pages to the site root
+        run: |
+          if [ -d build/client/plagastop ]; then
+            cp -a build/client/plagastop/. build/client/
+            rm -rf build/client/plagastop
+          fi
 
-      - name: Add SPA fallback
+      - name: Verify build output
+        run: grep -q "Protegemos" build/client/index.html
+
+      - name: Add SPA fallback and disable Jekyll
         run: |
           if [ -f build/client/__spa-fallback.html ]; then
             cp build/client/__spa-fallback.html build/client/404.html
           fi
+          touch build/client/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
