@@ -32,8 +32,8 @@ import { initAnalytics } from '~/lib/analytics'
 export const links: Route.LinksFunction = () => [
   { rel: 'preload', href: displayFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
   { rel: 'preload', href: textFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
-  { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-  { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+  { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.svg`, type: 'image/svg+xml' },
+  { rel: 'apple-touch-icon', href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
 ]
 
 export function Layout({ children }: { children: ReactNode }) {
