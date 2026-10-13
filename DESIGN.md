@@ -412,3 +412,18 @@ La única banda lima de la página: foto real de 28px con anillo de tinta al 8%,
 - Los nombres de variables antiguas (`--ps-sage`, `--ps-copper`) quedan como alias de los nuevos roles.
 
 Home (de arriba abajo): hero con la fachada (sin objeto 3D ni texto animado por palabras) → nosotros → cifras con barras → servicios fijados y apilados (sticky) → banda de fondo con parallax y declaración que se enciende → tarjetas 3D tilt → lista compacta de industrias en dos columnas → galería horizontal fijada → pasos → cierre con degradado animado → preguntas (encabezado fijo) → cobertura → contacto.
+
+### Paleta definitiva y nuevas secciones (octubre 2026)
+
+> Reemplaza la paleta azul anterior.
+
+- **Identidad:** negro `#0B0B0B`, blanco y **lima `#CCE70B`** (color de conversión: botones de cotizar, palabras destacadas).
+- **Azul marino `#16263D`:** fondos corporativos, banda de industrias, formulario de cotización, footer.
+- **Verde bosque `#2F5B57`:** tarjetas e íconos de servicios, secciones técnicas, íconos de certificaciones.
+- **Gris `#5F6873`:** texto secundario.
+- **Turquesa `#00B8A9`:** interacción, íconos e indicadores (no como texto sobre fondo claro).
+- **Azul eléctrico `#2F80FF`:** solo en estadísticas y cifras.
+- **Amarillo manteca `#F3E39A`:** tarjetas informativas (certificaciones).
+- Turquesa y azul eléctrico no se usan en la misma sección.
+
+Home: hero con la foto `HOME` muy de fondo (desaturada, desenfocada, velo negro/azul marino y trama de puntos) → formulario oscuro → **Certificaciones** (SAG 3273/2025, SNS 36365/2013, PEC Degesch) → **Empresas que confían en Plagastop** (carrusel infinito de 49 logos en dos filas; los logos blancos van en tarjetas azul marino; se pausa al pasar el mouse) → resto de secciones.

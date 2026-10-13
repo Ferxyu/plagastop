@@ -56,7 +56,7 @@ export default function Quote() {
                 <Check strokeWidth={2.5} aria-hidden /> Desde {company.foundingYear} en Concepción
               </li>
               <li>
-                <Check strokeWidth={2.5} aria-hidden /> Autorizados por el SAG (Res. 2732/2021)
+                <Check strokeWidth={2.5} aria-hidden /> Autorizados por el SAG (Res. 3273/2025)
               </li>
               <li>
                 <Check strokeWidth={2.5} aria-hidden /> Desde Ñuble hasta Los Lagos

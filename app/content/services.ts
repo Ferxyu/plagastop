@@ -247,7 +247,7 @@ export const services: Service[] = [
     ],
     includes: [
       'Tratamientos fitosanitarios oficiales de exportación e importación.',
-      'Ejecución por empresa autorizada (Res. SAG 2732/2021).',
+      'Ejecución por empresa autorizada (Res. SAG 3273/2025).',
       'Coordinación con la operación portuaria y logística.',
     ],
     credentialIds: ['sag'],
@@ -255,7 +255,7 @@ export const services: Service[] = [
     seo: {
       title: 'Tratamientos fitosanitarios SAG para exportación',
       description:
-        'Tratamientos fitosanitarios oficiales de exportación e importación, autorizados por el SAG (Res. 2732/2021). Puertos del Biobío y sur de Chile.',
+        'Tratamientos fitosanitarios oficiales de exportación e importación, autorizados por el SAG (Res. 3273/2025). Puertos del Biobío y sur de Chile.',
     },
   },
   {

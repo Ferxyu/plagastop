@@ -25,7 +25,7 @@ export const landings: Landing[] = [
       },
       {
         title: 'Autorizados por el SAG',
-        text: 'Resolución SAG 2732/2021 para tratamientos fitosanitarios oficiales de exportación e importación.',
+        text: 'Resolución SAG 3273/2025 para tratamientos fitosanitarios oficiales de exportación e importación.',
       },
       {
         title: 'Cuatro décadas en terreno',

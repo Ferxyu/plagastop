@@ -1,7 +1,9 @@
 import type { CSSProperties } from 'react'
-import { Award, Check, FlaskConical, MapPin, ShieldCheck } from 'lucide-react'
+import { Award, BadgeCheck, Check, FlaskConical, MapPin, ShieldCheck } from 'lucide-react'
 import type { Route } from './+types/home'
 import { coverageSummary } from '~/content/coverage'
+import { credentials } from '~/content/credentials'
+import { ClientLogos } from '~/components/sections/ClientLogos'
 import { generalFaqs } from '~/content/faqs'
 import { primaryServices } from '~/content/services'
 import { buildMeta, faqLd, organizationLd } from '~/lib/seo'
@@ -48,7 +50,7 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: 'Autorización oficial',
-    text: 'Resolución SAG 2732/2021 para tratamientos fitosanitarios de exportación e importación.',
+    text: 'Resolución SAG 3273/2025 para tratamientos fitosanitarios de exportación e importación.',
   },
   {
     icon: MapPin,
@@ -93,7 +95,7 @@ export default function Home() {
       {/* 1. Hero: la sede, un velo azul marino y el símbolo de Plagastop en 3D */}
       <section className={`${styles.hero} on-dark`} aria-labelledby="hero-title">
         <div className={styles.heroBg}>
-          <Photo id="sede-fachada" sizes="100vw" priority parallax={-0.25} />
+          <Photo id="portada-home" sizes="100vw" priority parallax={-0.2} />
         </div>
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
@@ -112,8 +114,45 @@ export default function Home() {
         <QuickQuote />
       </div>
 
+      {/* 2. Certificaciones */}
+      <section className={`section ${styles.certs}`} aria-labelledby="certificaciones-title">
+        <div className="container">
+          <SectionHeader
+            id="certificaciones-title"
+            align="split"
+            title={<SplitTitle lead="Certificados y" mark="autorizados" />}
+            lead="Las autorizaciones que respaldan cada tratamiento que realizamos en tu instalación."
+            action={<TextLink to="/acreditaciones">Ver acreditaciones</TextLink>}
+          />
+          <ul className={styles.certList}>
+            {credentials.map((c, i) => (
+              <li key={c.id} className={styles.cert} data-reveal={i} data-tilt>
+                <span className={styles.certIcon}>
+                  <BadgeCheck size={28} strokeWidth={1.75} aria-hidden />
+                </span>
+                <p className={styles.certLabel}>{c.issuer}</p>
+                <p className={styles.certCode}>{c.code.replace('Res. ', '')}</p>
+                <p className={styles.certText}>{c.title}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 3. Empresas que confían en Plagastop */}
+      <section className="section section--paper" aria-labelledby="clientes-title">
+        <div className="container">
+          <SectionHeader
+            id="clientes-title"
+            title={<SplitTitle lead="Empresas que confían en" mark="Plagastop" />}
+            lead="Industrias, empresas de alimentos, transporte, educación y comercio que han trabajado con nosotros."
+          />
+        </div>
+        <ClientLogos />
+      </section>
+
       {/* 3. Nosotros */}
-      <section className="section section--paper" aria-labelledby="nosotros-title">
+      <section className="section" aria-labelledby="nosotros-title">
         <div className={`container ${styles.about}`}>
           <div className={styles.collage} data-reveal>
             <div className={styles.collageMain} data-reveal={1} data-reveal-style="clip">
@@ -125,7 +164,7 @@ export default function Home() {
             <div className={`${styles.collageBadge} float-soft`}>
               <ShieldCheck size={30} strokeWidth={1.75} aria-hidden />
               <span className={styles.badgeTitle}>Autorizados SAG</span>
-              <span>Res. 2732/2021</span>
+              <span>Res. 3273/2025</span>
             </div>
           </div>
 
@@ -151,7 +190,7 @@ export default function Home() {
       </section>
 
       {/* 4. Cifras: contadores en lima e infografía de barras */}
-      <section className={`section section--dark on-dark ${styles.figures}`} aria-label="Plagastop en cifras">
+      <section className={`section section--paper ${styles.figures}`} aria-label="Plagastop en cifras">
         <div className="container">
           <ul className={styles.figureList}>
             {figures.map((f, i) => (
@@ -234,7 +273,7 @@ export default function Home() {
       </section>
 
       {/* 8. Industrias: lista con imagen que aparece al pasar el mouse */}
-      <section className="section" aria-labelledby="industrias-title">
+      <section className="section section--dark on-dark" aria-labelledby="industrias-title">
         <div className="container">
           <SectionHeader
             id="industrias-title"

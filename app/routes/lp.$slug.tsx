@@ -49,7 +49,7 @@ export default function Landing({ loaderData }: Route.ComponentProps) {
             </ul>
             <ul className={styles.facts} style={{ color: 'var(--ps-steel)' }}>
               <li>Desde 1985 en Concepción</li>
-              <li>Autorizados por el SAG (Res. 2732/2021)</li>
+              <li>Autorizados por el SAG (Res. 3273/2025)</li>
               <li>Desde Ñuble hasta Los Lagos</li>
             </ul>
           </div>

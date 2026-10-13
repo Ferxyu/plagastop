@@ -63,3 +63,25 @@
   background: var(--ps-lime);
   border-color: var(--ps-lime);
 }
+
+/* Sobre azul marino: texto blanco y detalles turquesa */
+:global(.on-dark) .list,
+:global(.on-dark) .row {
+  border-color: var(--ps-graphite-3);
+}
+
+:global(.on-dark) .index {
+  color: var(--ps-turquoise);
+}
+
+:global(.on-dark) .facility {
+  color: var(--ps-mist);
+}
+
+:global(.on-dark) .go {
+  border-color: rgb(255 255 255 / 0.5);
+}
+
+:global(.on-dark) .row:hover .name {
+  color: var(--ps-turquoise);
+}

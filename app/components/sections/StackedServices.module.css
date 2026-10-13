@@ -19,13 +19,13 @@
   box-shadow: 0 0 0 1px var(--ps-line), var(--shadow-card);
 }
 
-/* Las tarjetas alternan blanco, gris hielo y azul marino */
+/* Las tarjetas alternan blanco, verde bosque claro y verde bosque */
 .card:nth-child(3n + 2) {
-  background: var(--ps-ice);
+  background: var(--ps-forest-soft);
 }
 
 .card:nth-child(3n) {
-  background: var(--ps-navy);
+  background: var(--ps-forest);
   color: var(--ps-white);
 }
 

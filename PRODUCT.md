@@ -80,13 +80,15 @@ Por decidir: días de atención, vigencia de certificaciones, destino de los lea
 
 Datos verificables del sitio actual:
 - Fundada en 1985 por Cecilia Otero; convenio SAG del 29-08-1985 para productos de exportación/importación en puertos de la VIII Región.
-- Resolución SAG 2732/2021; SNS 36365/2013.
+- Resolución SAG 3273/2025; SNS 36365/2013.
 - Programa de Empresas Certificadas (PEC) de Laboratorios Degesch (alianza desde 2003).
 - Hitos: 1985 fundación · 1999 registro de pesticidas domésticos · 2003 alianza Degesch · 2006 ISO 9001:2000 vía AENOR (primera empresa del rubro en Chile, según el sitio) · 2009 ISO 9001 y OHSAS 18001 vía Bureau Veritas.
 - Misión: "Entregamos a nuestros clientes un servicio de óptima calidad, personalizado y garantizado".
 - Valores: innovación constante, control de procesos y garantía operativa, cumplimiento legal con autoridades sanitarias y requisitos del cliente.
 
-No existen en el material disponible y no se deben inventar: cifras de clientes, servicios realizados o m² tratados; logos de clientes; testimonios; casos de éxito; tamaño del equipo; vigencia actual de las certificaciones ISO/OHSAS (OHSAS 18001 ya fue reemplazada por ISO 45001; confirmar antes de publicar). Las secciones de estadísticas y casos de éxito necesitan datos reales del cliente o quedan como espacios pendientes.
+**Logos de clientes (octubre 2026):** 49 logos de empresas que trabajan o han trabajado con Plagastop, entregados por el cliente (carpeta Logos, usados en app/assets/logos).
+
+No existen en el material disponible y no se deben inventar: cifras de clientes, servicios realizados o m² tratados; testimonios; casos de éxito; tamaño del equipo; vigencia actual de las certificaciones ISO/OHSAS (OHSAS 18001 ya fue reemplazada por ISO 45001; confirmar antes de publicar). Las secciones de estadísticas y casos de éxito necesitan datos reales del cliente o quedan como espacios pendientes.
 
 Fotografía propia: ninguna disponible en el repositorio.
 

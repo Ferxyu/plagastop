@@ -1,8 +1,8 @@
-/* Banda de cierre con degradado animado: azul marino, océano y celeste en movimiento lento */
+/* Banda de cierre con degradado animado: azul marino y verde bosque en movimiento lento */
 .band {
   overflow: hidden;
   color: var(--ps-white);
-  background: linear-gradient(115deg, #102b46 0%, #17385a 22%, #247ba0 48%, #1d6a8f 62%, #102b46 82%, #247ba0 100%);
+  background: linear-gradient(115deg, #16263d 0%, #1f3350 22%, #2f5b57 48%, #24474b 62%, #16263d 82%, #2f5b57 100%);
   background-size: 260% 260%;
 }
 

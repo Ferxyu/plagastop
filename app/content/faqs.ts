@@ -10,7 +10,7 @@ export const generalFaqs = [
   },
   {
     q: '¿Están autorizados por el SAG?',
-    a: 'Sí. Plagastop cuenta con la Resolución SAG 2732/2021 para ejecutar tratamientos fitosanitarios oficiales de exportación e importación, y trabaja con el SAG en los puertos de la zona desde 1985.',
+    a: 'Sí. Plagastop cuenta con la Resolución SAG 3273/2025 para ejecutar tratamientos fitosanitarios oficiales de exportación e importación, y trabaja con el SAG en los puertos de la zona desde 1985.',
   },
   {
     q: '¿Cómo solicito una cotización?',

@@ -3,7 +3,7 @@
  * Cada foto se exporta en dos o tres anchos a app/assets/photos/<slug>-<ancho>.jpg.
  */
 
-const files = import.meta.glob<string>('../assets/photos/*.jpg', {
+const files = import.meta.glob<string>('../assets/photos/*.{jpg,webp}', {
   eager: true,
   query: '?url',
   import: 'default',
@@ -18,6 +18,11 @@ export interface PhotoMeta {
 }
 
 const meta = {
+  'portada-home': {
+    alt: 'Técnico de Plagastop entrega un informe de control de plagas a una cliente',
+    ratio: 1672 / 941,
+    focus: '50% 40%',
+  },
   'desinfeccion-superficies': { alt: 'Técnico desinfectando superficies con amonio cuaternario', ratio: 3 / 4 },
   'sanitizacion-barco': { alt: 'Sanitización con bomba de espalda a bordo de un barco', ratio: 3 / 4 },
   'astillas-bodega-barco': { alt: 'Aspersión sobre astillas de pino en la bodega de un barco', ratio: 3 / 4 },
@@ -110,7 +115,7 @@ export interface Photo extends PhotoMeta {
 export function photo(id: PhotoId): Photo {
   const variants = Object.entries(files)
     .map(([path, url]) => {
-      const match = path.match(new RegExp(`/${id}-(\\d+)\\.jpg$`))
+      const match = path.match(new RegExp(`/${id}-(\\d+)\\.(?:jpg|webp)$`))
       return match ? { url, width: Number(match[1]) } : null
     })
     .filter((v): v is { url: string; width: number } => v !== null)

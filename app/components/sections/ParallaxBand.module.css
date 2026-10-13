@@ -32,7 +32,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgb(16 43 70 / 0.88) 0%, rgb(16 43 70 / 0.62) 50%, rgb(16 43 70 / 0.9) 100%);
+  background: linear-gradient(180deg, rgb(22 38 61 / 0.88) 0%, rgb(22 38 61 / 0.62) 50%, rgb(22 38 61 / 0.9) 100%);
 }
 
 .content {

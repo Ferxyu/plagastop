@@ -16,7 +16,7 @@ export const meta: Route.MetaFunction = () =>
   buildMeta({
     title: 'Acreditaciones y autorizaciones',
     description:
-      'Resolución SAG 2732/2021 para tratamientos fitosanitarios oficiales, resolución SNS 36365/2013 y Programa de Empresas Certificadas Degesch.',
+      'Resolución SAG 3273/2025 para tratamientos fitosanitarios oficiales, resolución SNS 36365/2013 y Programa de Empresas Certificadas Degesch.',
     path: '/acreditaciones',
     jsonLd: [breadcrumbLd(crumbs)],
   })

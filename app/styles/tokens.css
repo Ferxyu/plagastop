@@ -1,34 +1,43 @@
 :root {
-  /* Color
-     Azul marino #102B46: confianza y estabilidad (bandas oscuras, titulares, footer).
-     Azul océano #247BA0: dinamismo en gráficos, íconos, líneas e infografías.
-     Celeste #62C5E8: frescura en elementos visuales y acentos sobre oscuro.
-     Gris hielo #DCEAF0: fondo secundario que suaviza las composiciones.
-     Verde lima #CCE70B: identidad original; botones principales y lo más destacado. */
-  --ps-navy: #102b46;
-  --ps-ocean: #247ba0;
-  --ps-sky: #62c5e8;
-  --ps-ice: #dceaf0;
-  --ps-ice-soft: #eef5f8;
+  /* Color — identidad: negro #0B0B0B, blanco y lima #CCE70B (conversión).
+     Secundarios: azul marino #16263D (fondos corporativos, títulos, industrias, footer),
+     verde bosque #2F5B57 (tarjetas e íconos de servicios, secciones técnicas),
+     gris #5F6873 (texto secundario).
+     Acentos: turquesa #00B8A9 (interacción, íconos, indicadores, botones secundarios; no como texto sobre claro),
+     azul eléctrico #2F80FF (estadísticas y cifras), amarillo manteca #F3E39A (fondos suaves y tarjetas informativas).
+     Turquesa y azul eléctrico no se usan juntos en una misma sección. */
+  --ps-black: #0b0b0b;
+  --ps-navy: #16263d;
+  --ps-forest: #2f5b57;
+  --ps-forest-soft: #e4ecea;
+  --ps-turquoise: #00b8a9;
+  --ps-electric: #2f80ff;
+  --ps-butter: #f3e39a;
+  --ps-butter-soft: #fbf6dc;
+  --ps-neutral: #f4f5f6;
 
-  --ps-ink: #0b1e31;
+  --ps-ink: var(--ps-black);
   --ps-graphite: var(--ps-navy);
-  --ps-graphite-2: #17385a;
-  --ps-graphite-3: #2a4b6e;
-  --ps-steel: #46596c;
-  --ps-mist: #a9c0d2;
-  --ps-gray: #7d93a6;
-  --ps-line: #d6e3ea;
-  --ps-line-strong: #bfd1dc;
-  --ps-paper: var(--ps-ice-soft);
+  --ps-graphite-2: #1f3350;
+  --ps-graphite-3: #33476a;
+  --ps-steel: #5f6873;
+  --ps-mist: #b3bcc8;
+  --ps-gray: #8a929c;
+  --ps-line: #e3e5e8;
+  --ps-line-strong: #cdd1d6;
+  --ps-paper: var(--ps-neutral);
   --ps-white: #ffffff;
 
-  /* Alias de roles anteriores (los componentes los usan): tarjetas/fondos y detalles */
-  --ps-sage: var(--ps-sky);
-  --ps-sage-soft: var(--ps-ice);
-  --ps-sage-deep: var(--ps-ocean);
-  --ps-copper: var(--ps-ocean);
-  --ps-copper-soft: var(--ps-ice);
+  /* Alias de roles anteriores (los componentes los usan) */
+  --ps-ice: var(--ps-neutral);
+  --ps-ice-soft: var(--ps-neutral);
+  --ps-ocean: var(--ps-forest);
+  --ps-sky: var(--ps-turquoise);
+  --ps-sage: var(--ps-turquoise);
+  --ps-sage-soft: var(--ps-forest-soft);
+  --ps-sage-deep: var(--ps-forest);
+  --ps-copper: var(--ps-turquoise);
+  --ps-copper-soft: var(--ps-forest-soft);
 
   --ps-lime: #cce70b;
   --ps-lime-press: #b9d300;

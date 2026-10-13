@@ -1,18 +1,22 @@
 /* ---------- 1. Hero ----------
-   Escritorio: la fachada a sangre con velo azul marino desde la izquierda, texto a la izquierda
-   y el símbolo 3D a la derecha. Móvil: foto arriba sin velo, texto debajo sobre azul marino. */
+   La fotografía queda muy de fondo: desaturada, levemente desenfocada y bajo un velo oscuro,
+   para que el texto blanco se lea sin esfuerzo. */
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: var(--ps-navy);
+  display: flex;
+  align-items: center;
+  min-height: clamp(560px, 88vh, 820px);
+  padding-block: var(--s-8) calc(var(--s-9) + var(--s-7));
+  background: var(--ps-black);
   color: var(--ps-white);
-  padding-bottom: calc(var(--s-9) + var(--s-6));
 }
 
 .heroBg {
-  position: relative;
-  aspect-ratio: 4 / 3;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
 }
 
@@ -20,65 +24,59 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(0.55) blur(3px) brightness(0.75) contrast(0.95);
+}
+
+/* Velo: azul marino y negro, más denso del lado del texto */
+.heroBg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(11 11 11 / 0.88) 0%, rgb(22 38 61 / 0.8) 45%, rgb(22 38 61 / 0.62) 100%),
+    linear-gradient(0deg, rgb(11 11 11 / 0.6) 0%, transparent 40%);
+}
+
+/* Trama sutil de puntos que suaviza aún más la foto */
+.heroBg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1.2px);
+  background-size: 6px 6px;
+  pointer-events: none;
 }
 
 .heroInner {
   position: relative;
-  display: grid;
-  padding-top: var(--s-6);
+  width: 100%;
 }
 
 .heroCopy {
   display: grid;
   gap: var(--s-5);
   justify-items: start;
-  max-width: 620px;
+  max-width: 660px;
 }
 
 .heroTitle {
   font-size: var(--text-display);
-  line-height: 1.02;
+  line-height: 1.04;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
 }
 
 .heroCopy :global(.lead) {
-  color: rgb(255 255 255 / 0.86);
+  color: rgb(255 255 255 / 0.9);
 }
 
-@media (max-width: 999px) {
-  .heroBg img {
-    translate: none !important;
-  }
-}
-
-@media (min-width: 1000px) {
-  .hero {
-    display: flex;
-    align-items: center;
-    min-height: clamp(640px, 92vh, 860px);
-    padding-top: var(--s-7);
-  }
-
-  .heroBg {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    aspect-ratio: auto;
-  }
-
-  /* Velo azul marino desde la izquierda; la fachada verde asoma a la derecha */
-  .heroBg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, rgb(16 43 70 / 0.96) 0%, rgb(16 43 70 / 0.86) 38%, rgb(16 43 70 / 0.35) 70%, rgb(16 43 70 / 0.55) 100%),
-      linear-gradient(0deg, rgb(16 43 70 / 0.7) 0%, transparent 35%);
-  }
-
-  .heroInner {
-    padding-top: 0;
-  }
+.heroCopy::before {
+  content: '';
+  width: 64px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--ps-lime);
 }
 
 /* Entrada del hero al cargar */
@@ -103,8 +101,7 @@
 
 @keyframes settle {
   from {
-    scale: 1.35;
-    filter: brightness(0.7);
+    scale: 1.3;
   }
 }
 
@@ -179,7 +176,7 @@
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 0 10px var(--ps-ice-soft);
+  box-shadow: 0 0 0 10px var(--ps-white);
 }
 
 .collageBadge {
@@ -271,7 +268,7 @@
   font-weight: 700;
   font-size: clamp(3.25rem, 2.2rem + 4vw, 6rem);
   line-height: 0.95;
-  color: var(--ps-lime);
+  color: var(--ps-electric);
 }
 
 /* Infografía: barra océano a celeste que crece al aparecer */
@@ -279,7 +276,7 @@
   display: block;
   height: 6px;
   border-radius: 6px;
-  background: var(--ps-graphite-3);
+  background: var(--ps-line);
   overflow: hidden;
 }
 
@@ -287,7 +284,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--ps-ocean), var(--ps-sky));
+  background: var(--ps-electric);
   transform-origin: left;
   scale: var(--bar) 1;
 }
@@ -301,7 +298,7 @@
 }
 
 .figureLabel {
-  color: var(--ps-mist);
+  color: var(--ps-steel);
   font-size: 1.0625rem;
 }
 
@@ -478,4 +475,66 @@
 
 .contactCopy h2 {
   max-width: 14ch;
+}
+
+/* ---------- 2. Certificaciones ---------- */
+.certs {
+  background: var(--ps-white);
+}
+
+.certList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--s-5);
+}
+
+@media (min-width: 900px) {
+  .certList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.cert {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--ps-butter-soft);
+  box-shadow: 0 0 0 1px var(--ps-butter);
+  transition: transform 400ms var(--ease-expo), box-shadow var(--dur) var(--ease-out);
+}
+
+.cert:hover {
+  box-shadow: 0 0 0 1.5px var(--ps-forest), var(--shadow-card);
+}
+
+.certIcon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--s-3);
+  border-radius: 50%;
+  background: var(--ps-forest);
+  color: var(--ps-white);
+}
+
+.certLabel {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ps-steel);
+}
+
+.certCode {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.375rem);
+  line-height: 1.05;
+  color: var(--ps-navy);
+}
+
+.certText {
+  color: var(--ps-steel);
 }

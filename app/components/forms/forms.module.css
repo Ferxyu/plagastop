@@ -276,11 +276,14 @@
 }
 
 /* QuickQuote: barra flotante sobre el borde del hero */
+/* Formulario de cotización: fondo oscuro con botón lima */
 .quick {
   display: grid;
   gap: var(--s-4);
   padding: var(--s-5);
-  background: var(--ps-white);
+  color: var(--ps-white);
+  background: var(--ps-navy);
+  border: 1px solid var(--ps-graphite-3);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-float);
 }
@@ -299,7 +302,15 @@
 
 .quickText {
   font-size: 0.875rem;
-  color: var(--ps-steel);
+  color: var(--ps-mist);
+}
+
+.quick .label {
+  color: var(--ps-white);
+}
+
+.quick .input {
+  color: var(--ps-ink);
 }
 
 .quickFields {

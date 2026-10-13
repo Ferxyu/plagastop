@@ -24,7 +24,7 @@ Alternativa más liviana: `vite-react-ssg` sobre la base actual. Funciona, pero 
 
 **2. El logo ya define el sistema.** Wordmark negro extendido + símbolo de **tres nodos unidos** en verde `#CCE70B`. Ese símbolo es, literalmente, una red de puntos conectados: lo mismo que un programa MIP sobre una instalación (estaciones de control unidas por una ruta de inspección). Es el recurso de marca más valioso disponible y lo uso como eje del sistema gráfico.
 
-**3. Faltan pruebas reales.** El sitio actual no tiene cifras de clientes, casos, testimonios, logos de clientes ni fotografía propia. La arquitectura deja esos bloques diseñados pero **ocultos hasta tener material real**; nada se rellena con datos ficticios. Lo verificable hoy (1985, Res. SAG 2732/2021, SNS 36365/2013, PEC Degesch, hitos ISO) es suficiente para un bloque de confianza sólido.
+**3. Faltan pruebas reales.** El sitio actual no tiene cifras de clientes, casos, testimonios, logos de clientes ni fotografía propia. La arquitectura deja esos bloques diseñados pero **ocultos hasta tener material real**; nada se rellena con datos ficticios. Lo verificable hoy (1985, Res. SAG 3273/2025, SNS 36365/2013, PEC Degesch, hitos ISO) es suficiente para un bloque de confianza sólido.
 
 ---
 
@@ -127,7 +127,7 @@ El orden responde a las 5 preguntas del visitante: qué hacen → qué problemas
 |---|---|---|---|
 | 1 | **Header** | Orientar y dejar la acción siempre visible | Logo · Servicios (menú) · Industrias (menú) · Empresa · Recursos · Contacto · teléfono comercial · **[Solicitar cotización]** |
 | 2 | **Hero** | Responder "qué hacen y para quién" en 5 segundos e iniciar la cotización ahí mismo | H1 con el beneficio para la empresa (borrador: *"Control de plagas para operaciones que no pueden detenerse"*). Bajada: prevención y control para industria, alimentos, logística y puertos, desde 1985. **Inicio del formulario dentro del hero**: dos selectores (*tipo de instalación* + *qué necesitas*) → continúa en `/cotizar` con esos datos precargados. CTA secundario: *Hablar con un especialista* (teléfono comercial). Visual: fotografía industrial real + el recurso gráfico de la dirección elegida. |
-| 3 | **Franja de acreditación** | Confianza inmediata, verificable | `Desde 1985` · `Res. SAG 2732/2021` · `SNS 36365/2013` · `Programa PEC Degesch` → enlace a /acreditaciones. Solo datos reales. |
+| 3 | **Franja de acreditación** | Confianza inmediata, verificable | `Desde 1985` · `Res. SAG 3273/2025` · `SNS 36365/2013` · `Programa PEC Degesch` → enlace a /acreditaciones. Solo datos reales. |
 | 4 | **Problemas que resolvemos** | Hablar del problema del cliente, no de la plaga | 4–5 situaciones de negocio: auditoría o certificación próxima · exigencia de la autoridad sanitaria · exportación que requiere tratamiento SAG · continuidad operativa e inocuidad · prevención continua. Cada una lleva a su servicio. |
 | 5 | **Servicios** | Mostrar el alcance técnico | 6–8 servicios con una línea de valor cada uno y enlace a su página. MIP destacado como servicio insignia. CTA: *Cotizar un servicio*. |
 | 6 | **Industrias** | Que el visitante se reconozca | Selector por rubro: cada uno con foto, 2–3 riesgos típicos y los servicios recomendados. Enlace a la página de la industria. |
@@ -499,7 +499,7 @@ Tres direcciones, todas sobre el sistema del §3 (negro, blanco, grises, lima `#
 
 **Composición.** Hero con una fotografía amplia de una instalación (bodega o planta) y, superpuesta, una capa de **dibujo técnico en línea fina** registrada sobre la arquitectura de la foto, con 5–6 nodos lima numerados unidos por la ruta. **Interacción firma:** al pasar el cursor o tocar un nodo, este muestra qué se controla ahí (*"03 · Andén de carga: control de roedores, estaciones selladas"*) y enlaza al servicio. En mobile se convierte en una lista numerada sincronizada con el dibujo. El copy y el inicio del formulario viven a la izquierda, sobre blanco.
 
-Ese lenguaje recorre el sitio: cada **página de industria tiene su propio plano** (bodega, planta de alimentos, cocina, puerto, silo) con sus puntos ligados a servicios, lo que resuelve de forma visual el interlinking servicio ↔ industria. Las secciones cierran con un **cajetín**, el bloque de títulos de los planos técnicos, como componente recurrente que lleva la acreditación y el CTA (*"Plano preparado por Plagastop · Res. SAG 2732/2021 · Solicitar evaluación"*). El protocolo se dibuja como una ruta de nodos 01→05.
+Ese lenguaje recorre el sitio: cada **página de industria tiene su propio plano** (bodega, planta de alimentos, cocina, puerto, silo) con sus puntos ligados a servicios, lo que resuelve de forma visual el interlinking servicio ↔ industria. Las secciones cierran con un **cajetín**, el bloque de títulos de los planos técnicos, como componente recurrente que lleva la acreditación y el CTA (*"Plano preparado por Plagastop · Res. SAG 3273/2025 · Solicitar evaluación"*). El protocolo se dibuja como una ruta de nodos 01→05.
 
 **Color.** Blanco y paper como papel de plano, grafito para las líneas, negro para el texto y las bandas oscuras (capacidades, footer). El lima aparece **solo** en nodos, ruta activa, estado seleccionado y CTA. Es el uso más disciplinado del acento de las tres opciones.
 
