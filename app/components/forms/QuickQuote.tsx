@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router'
-import { company } from '~/content/company'
 import { facilityOptions, needOptions } from '~/content/quote'
 import { track } from '~/lib/analytics'
 import { Button } from '~/components/ui/Button'
@@ -32,7 +31,6 @@ export function QuickQuote({ location = 'hero', className }: { location?: string
         <p id="quick-quote-title" className={styles.quickTitle}>
           Cotiza en dos pasos
         </p>
-        <p className={styles.quickText}>Área Comercial · {company.hours.label}</p>
       </div>
       <div className={styles.quickFields}>
         <Field id="qq-instalacion" label="Tu instalación">

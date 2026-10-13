@@ -379,7 +379,7 @@
 .quickTitle {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.1875rem;
+  font-size: 24px;
   line-height: 1.25;
 }
 
