@@ -28,7 +28,7 @@ export default function Services() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="bodega-preventiva"
+        image="fdw-bodega"
         title="Servicios de control de plagas para empresas"
         lead="Programas preventivos, tratamientos específicos y servicios oficiales para comercio exterior. Si no sabes cuál necesitas, partimos con una evaluación en terreno."
         actions={

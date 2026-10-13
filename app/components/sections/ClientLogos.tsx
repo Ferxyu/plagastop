@@ -29,7 +29,7 @@ function Row({ items, reverse, duration }: { items: Client[]; reverse?: boolean;
   )
 }
 
-/** Carrusel infinito de logos de clientes en dos filas que avanzan en sentidos opuestos. Pausa al pasar el mouse. */
+/** Carrusel infinito de logos de clientes en dos filas que avanzan en sentidos opuestos. */
 export function ClientLogos() {
   const half = Math.ceil(clients.length / 2)
   return (

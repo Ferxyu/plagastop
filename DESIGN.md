@@ -427,3 +427,13 @@ Home (de arriba abajo): hero con la fachada (sin objeto 3D ni texto animado por 
 - Turquesa y azul eléctrico no se usan en la misma sección.
 
 Home: hero con la foto `HOME` muy de fondo (desaturada, desenfocada, velo negro/azul marino y trama de puntos) → formulario oscuro → **Certificaciones** (SAG 3273/2025, SNS 36365/2013, PEC Degesch) → **Empresas que confían en Plagastop** (carrusel infinito de 49 logos en dos filas; los logos blancos van en tarjetas azul marino; se pausa al pasar el mouse) → resto de secciones.
+
+### Ajustes (octubre 2026)
+
+- Fondos de sección: `.section--paper` = verde bosque claro `#E4ECEA`, `.section--sage` = amarillo manteca suave `#FBF6DC`, `.section--neutral` = `#F4F5F6`; el blanco queda como base en pocas secciones.
+- Certificaciones: tres tarjetas de color (verde bosque, azul marino, negro) con sigla gigante en marca de agua y sello lima, sobre banda amarillo manteca.
+- Carrusel de logos: no se pausa; el hover es un borde turquesa interior (no se corta).
+- Galería "Así trabajamos en terreno": eliminada.
+- Cabeceras interiores y banda con parallax usan las fotos FDW elegidas por el cliente.
+- Desplegables con estilo propio (combobox accesible) en lugar del menú nativo del sistema.
+- Contacto reducido a dos vías: Área Comercial (+56 9 7793 7824, areacomercial@plagastop.cl) y Secretaría (+56 41 210 4508, secretaria@plagastop.cl).

@@ -145,26 +145,25 @@ mark {
   padding-block: var(--section-y);
 }
 
-/* Fondos de sección: blanco (base), hielo claro, gris hielo y azul marino. */
+/* Fondos de sección: blanco (base), verde bosque claro (--paper), amarillo manteca suave (--sage),
+   neutro (--neutral), azul marino (--dark) y negro (--ink). */
 .section--paper {
-  background: var(--ps-ice-soft);
+  background: var(--ps-forest-soft);
 }
 
 .section--sage {
-  background: var(--ps-ice);
+  background: var(--ps-butter-soft);
+}
+
+.section--neutral {
+  background: var(--ps-neutral);
 }
 
 .section--sage .lead,
-.section--sage p {
-  color: var(--ps-graphite-2);
+.section--sage p,
+.section--paper .lead {
+  color: #3d4650;
 }
-
-/* Azul océano: banda de dinamismo con texto blanco */
-.section--ocean {
-  background: var(--ps-ocean);
-  color: var(--ps-white);
-}
-
 
 .section--dark {
   background: var(--ps-graphite);

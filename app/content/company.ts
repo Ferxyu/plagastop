@@ -44,39 +44,16 @@ export const contactAreas: ContactArea[] = [
   {
     id: 'comercial',
     name: 'Área Comercial',
-    phone: '+56977937483',
-    email: 'jpross@plagastop.cl',
+    phone: '+56977937824',
+    email: 'areacomercial@plagastop.cl',
     purpose: 'Cotizaciones y nuevos servicios',
-  },
-  {
-    id: 'operaciones',
-    name: 'Área Operaciones',
-    phone: '+56977937786',
-    email: 'cglarson@plagastop.cl',
-    purpose: 'Visitas programadas y servicios en curso',
-  },
-  {
-    id: 'prevencion',
-    name: 'Área Prevención',
-    phone: '+56977937939',
-    email: 'jpena@plagastop.cl',
-    purpose: 'Prevención de riesgos',
-  },
-  {
-    id: 'documentacion',
-    name: 'Documentación',
-    // Publicado como "+56 9 41 2104508" (un dígito de más para un móvil).
-    // Se asume fijo de Concepción (código 41). [Confirmar con Plagastop]
-    phone: '+56412104508',
-    phoneUnconfirmed: true,
-    email: 'secretaria@plagastop.cl',
-    purpose: 'Certificados e informes de servicio',
   },
   {
     id: 'secretaria',
     name: 'Secretaría',
-    phone: '+56978555078',
-    purpose: 'Recepción y consultas generales',
+    phone: '+56412104508',
+    email: 'secretaria@plagastop.cl',
+    purpose: 'Consultas generales, certificados e informes',
   },
 ]
 

@@ -25,6 +25,8 @@
   height: 100%;
   object-fit: cover;
   filter: grayscale(0.55) blur(3px) brightness(0.75) contrast(0.95);
+  /* El zoom y el parallax crecen desde arriba: no recortan las cabezas */
+  transform-origin: 50% 0;
 }
 
 /* Velo: azul marino y negro, más denso del lado del texto */
@@ -71,13 +73,7 @@
   color: rgb(255 255 255 / 0.9);
 }
 
-.heroCopy::before {
-  content: '';
-  width: 64px;
-  height: 4px;
-  border-radius: 4px;
-  background: var(--ps-lime);
-}
+
 
 /* Entrada del hero al cargar */
 @media (prefers-reduced-motion: no-preference) {
@@ -417,8 +413,10 @@
   }
 }
 
+/* Foto completa: respeta su proporción 4:3, sin recorte */
 .faqPhoto {
-  aspect-ratio: 16 / 11;
+  margin-top: var(--s-5);
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -477,9 +475,13 @@
   max-width: 14ch;
 }
 
-/* ---------- 2. Certificaciones ---------- */
+/* ---------- 2. Certificaciones ----------
+   Banda amarillo manteca con tres tarjetas de color (verde bosque, azul marino, negro),
+   sigla gigante de fondo y sello lima. */
 .certs {
-  background: var(--ps-white);
+  background: var(--ps-butter-soft);
+  position: relative;
+  overflow: hidden;
 }
 
 .certList {
@@ -496,45 +498,96 @@
 }
 
 .cert {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   gap: var(--s-2);
   align-content: start;
+  min-height: 320px;
   padding: var(--s-6);
   border-radius: var(--radius-lg);
-  background: var(--ps-butter-soft);
-  box-shadow: 0 0 0 1px var(--ps-butter);
+  color: var(--ps-white);
+  background: var(--ps-forest);
+  box-shadow: 0 24px 50px -30px rgb(11 11 11 / 0.55);
   transition: transform 400ms var(--ease-expo), box-shadow var(--dur) var(--ease-out);
 }
 
+.cert:nth-child(2) {
+  background: var(--ps-navy);
+}
+
+.cert:nth-child(3) {
+  background: var(--ps-black);
+}
+
 .cert:hover {
-  box-shadow: 0 0 0 1.5px var(--ps-forest), var(--shadow-card);
+  box-shadow: 0 34px 60px -28px rgb(11 11 11 / 0.65);
+}
+
+/* Sigla gigante en marca de agua */
+.certMark {
+  position: absolute;
+  z-index: -1;
+  right: -0.08em;
+  bottom: -0.22em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(7rem, 5rem + 6vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgb(255 255 255 / 0.07);
+  transition: translate 700ms var(--ease-expo), color var(--dur) var(--ease-out);
+  pointer-events: none;
+}
+
+.cert:hover .certMark {
+  translate: -10px -6px;
+  color: rgb(204 231 11 / 0.14);
+}
+
+.certTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
 }
 
 .certIcon {
   display: grid;
   place-items: center;
-  width: 56px;
-  height: 56px;
-  margin-bottom: var(--s-3);
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: var(--ps-forest);
-  color: var(--ps-white);
+  background: var(--ps-lime);
+  color: var(--ps-black);
+  box-shadow: 0 0 0 8px rgb(204 231 11 / 0.18);
+}
+
+.certTag {
+  padding: 6px var(--s-3);
+  border-radius: var(--pill);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .certLabel {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--ps-steel);
+  color: rgb(255 255 255 / 0.75);
 }
 
 .certCode {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.375rem);
-  line-height: 1.05;
-  color: var(--ps-navy);
+  font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
+  line-height: 1.02;
 }
 
 .certText {
-  color: var(--ps-steel);
+  max-width: 30ch;
+  color: rgb(255 255 255 / 0.82);
 }

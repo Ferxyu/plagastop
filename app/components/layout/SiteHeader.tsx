@@ -238,7 +238,7 @@ export function SiteHeader({ variant = 'full' }: { variant?: 'full' | 'landing' 
             Solicitar cotización
           </ButtonLink>
           <ul>
-            {contactAreas.slice(0, 3).map((a) => (
+            {contactAreas.map((a) => (
               <li key={a.id}>
                 <span>{a.name}</span>
                 <a href={telHref(a.phone)} className="tabular">

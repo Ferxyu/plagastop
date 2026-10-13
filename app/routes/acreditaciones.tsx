@@ -28,7 +28,7 @@ export default function Credentials() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="fumigacion-placas-degesch"
+        image="fdw-cubierta-barco"
         title="Acreditaciones y autorizaciones"
         lead="La información que piden las áreas de calidad, prevención y compras antes de contratar un proveedor de control de plagas."
         actions={

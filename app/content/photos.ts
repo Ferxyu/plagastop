@@ -18,10 +18,18 @@ export interface PhotoMeta {
 }
 
 const meta = {
+  'fdw-silos': { alt: 'Aspersión con motobomba en el exterior de silos', ratio: 4 / 3 },
+  'fdw-bodega': { alt: 'Desinsectación preventiva de una bodega de graneles', ratio: 4 / 3 },
+  'fdw-equipo': { alt: 'Equipo de fumigación de Plagastop en un acopio de graneles', ratio: 4 / 3 },
+  'fdw-contenedores': { alt: 'Fumigación de contenedores con bromuro de metilo', ratio: 16 / 9 },
+  'fdw-monitoreo-barco': { alt: 'Técnico monitorea gas fosfina en la bodega de un barco', ratio: 4 / 3 },
+  'fdw-patio-contenedores': { alt: 'Preparación de contenedores para fumigación', ratio: 4 / 3 },
+  'fdw-camiones': { alt: 'Ventilación de camiones fumigados con fosfina', ratio: 4 / 3 },
+  'fdw-cubierta-barco': { alt: 'Aspersión en la cubierta de un barco por polilla gitana', ratio: 4 / 3 },
   'portada-home': {
     alt: 'Técnico de Plagastop entrega un informe de control de plagas a una cliente',
     ratio: 1672 / 941,
-    focus: '50% 40%',
+    focus: '50% 12%',
   },
   'desinfeccion-superficies': { alt: 'Técnico desinfectando superficies con amonio cuaternario', ratio: 3 / 4 },
   'sanitizacion-barco': { alt: 'Sanitización con bomba de espalda a bordo de un barco', ratio: 3 / 4 },

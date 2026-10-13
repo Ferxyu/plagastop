@@ -45,7 +45,7 @@ export default function Company() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="sede-fachada"
+        image="fdw-equipo"
         title="Cuatro décadas controlando plagas en el sur de Chile"
         lead={`Plagastop nació en Concepción en ${company.foundingYear}, fundada por ${company.founder}. Desde nuestra sede en el ${company.address.area} protegemos industrias, bodegas, empresas de alimentos y puertos.`}
       />

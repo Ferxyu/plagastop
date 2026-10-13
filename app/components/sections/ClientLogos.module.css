@@ -14,7 +14,7 @@
   gap: var(--s-4);
   width: max-content;
   margin: 0;
-  padding: var(--s-1) 0;
+  padding: 6px 2px;
   list-style: none;
 }
 
@@ -25,10 +25,6 @@
 
   .track[data-reverse] {
     animation-direction: reverse;
-  }
-
-  .wrap:hover .track {
-    animation-play-state: paused;
   }
 }
 
@@ -71,6 +67,5 @@
 }
 
 .tile:hover {
-  translate: 0 -4px;
-  box-shadow: 0 0 0 1.5px var(--ps-turquoise), var(--shadow-card);
+  box-shadow: inset 0 0 0 2px var(--ps-turquoise);
 }

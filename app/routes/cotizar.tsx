@@ -29,7 +29,7 @@ export default function Quote() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="control-roedores-captura"
+        image="fdw-camiones"
         title="Solicitar cotización"
         lead="Dos pasos: cuéntanos qué necesitas y cómo contactarte. El Área Comercial te responde con una propuesta para tu instalación."
       />

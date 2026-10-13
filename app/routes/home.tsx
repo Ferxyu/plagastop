@@ -13,7 +13,6 @@ import { Counter } from '~/components/motion/Counter'
 import { RotatingBadge } from '~/components/motion/RotatingBadge'
 import { SplitTitle } from '~/components/motion/SplitWords'
 import { StatementReveal } from '~/components/motion/StatementReveal'
-import { FieldGallery, type FieldShot } from '~/components/sections/FieldGallery'
 import { ButtonLink, TextLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
 import { SectionHeader } from '~/components/ui/SectionHeader'
@@ -69,17 +68,6 @@ const reasons = [
   },
 ]
 
-const fieldShots: FieldShot[] = [
-  { photo: 'termonebulizacion-silo', title: 'Termonebulización al interior de un silo', place: 'Agroindustria' },
-  { photo: 'patio-contenedores', title: 'Tratamiento de contenedores', place: 'Comercio exterior' },
-  { photo: 'fumigacion-bajo-cobertor', title: 'Fumigación bajo cobertor', place: 'Bodega de sacos' },
-  { photo: 'pasillo-nave', title: 'Tratamiento a bordo', place: 'Puertos y buques' },
-  { photo: 'nube-termonebulizacion', title: 'Termonebulización de bodega', place: 'Bodega de graneles' },
-  { photo: 'medidor-fumisense', title: 'Medición de gas residual', place: 'Contenedor de importación' },
-  { photo: 'galpon-cinta-transportadora', title: 'Tratamiento de estructuras', place: 'Galpón de graneles' },
-  { photo: 'pallets-bajo-cobertor', title: 'Mercadería bajo cobertor', place: 'Centro de distribución' },
-  { photo: 'tratamiento-bodega-nave', title: 'Tratamiento en bodega de nave', place: 'Puertos y buques' },
-]
 
 
 const figures = [
@@ -127,12 +115,18 @@ export default function Home() {
           <ul className={styles.certList}>
             {credentials.map((c, i) => (
               <li key={c.id} className={styles.cert} data-reveal={i} data-tilt>
-                <span className={styles.certIcon}>
-                  <BadgeCheck size={28} strokeWidth={1.75} aria-hidden />
+                <span className={styles.certMark} aria-hidden>
+                  {c.id.toUpperCase()}
                 </span>
+                <div className={styles.certTop}>
+                  <span className={styles.certIcon}>
+                    <BadgeCheck size={30} strokeWidth={1.75} aria-hidden />
+                  </span>
+                  <span className={styles.certTag}>Autorización oficial</span>
+                </div>
                 <p className={styles.certLabel}>{c.issuer}</p>
                 <p className={styles.certCode}>{c.code.replace('Res. ', '')}</p>
-                <p className={styles.certText}>{c.title}</p>
+                <p className={styles.certText}>{c.description}</p>
               </li>
             ))}
           </ul>
@@ -190,7 +184,7 @@ export default function Home() {
       </section>
 
       {/* 4. Cifras: contadores en lima e infografía de barras */}
-      <section className={`section section--paper ${styles.figures}`} aria-label="Plagastop en cifras">
+      <section className={`section section--neutral ${styles.figures}`} aria-label="Plagastop en cifras">
         <div className="container">
           <ul className={styles.figureList}>
             {figures.map((f, i) => (
@@ -209,7 +203,7 @@ export default function Home() {
       </section>
 
       {/* 5. Servicios: encabezado fijo y tarjetas que se apilan */}
-      <section className="section" aria-labelledby="servicios-title">
+      <section className="section section--paper" aria-labelledby="servicios-title">
         <div className="container">
           <StackedServices
             services={primaryServices}
@@ -235,7 +229,7 @@ export default function Home() {
       </section>
 
       {/* 6. Fondo con parallax en el medio de la página y declaración cinética */}
-      <ParallaxBand image="fumigacion-contenedores">
+      <ParallaxBand image="fdw-contenedores">
         <StatementReveal text="Desde 1985 protegemos plantas, bodegas, silos y puertos del sur de Chile con [tratamientos] [autorizados] y equipos que trabajan donde está el riesgo." />
       </ParallaxBand>
 
@@ -286,21 +280,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9. Galería horizontal fijada */}
-      <FieldGallery
-        shots={fieldShots}
-        heading={
-          <SectionHeader
-            id="terreno-title"
-            align="split"
-            title={<SplitTitle lead="Así trabajamos" mark="en terreno" />}
-            lead="Silos, bodegas de graneles, naves y contenedores: fotografías reales de nuestros equipos."
-          />
-        }
-      />
-
       {/* 10. Cómo trabajamos */}
-      <section className="section section--paper" aria-labelledby="pasos-title">
+      <section className="section section--neutral" aria-labelledby="pasos-title">
         <div className="container">
           <SectionHeader
             id="pasos-title"
@@ -315,7 +296,7 @@ export default function Home() {
       <ClosingCta />
 
       {/* 12. Preguntas frecuentes */}
-      <section className="section" aria-labelledby="faq-title">
+      <section className="section section--paper" aria-labelledby="faq-title">
         <div className={`container ${styles.faqGrid}`}>
           <div className={styles.faqHead}>
             <SectionHeader
@@ -325,7 +306,7 @@ export default function Home() {
               lead="Si tu pregunta no está aquí, el Área Comercial te responde en horario de atención."
             />
             <div className={styles.faqPhoto} data-reveal data-reveal-style="clip">
-              <Photo id="medidor-fumisense" sizes="(min-width: 1000px) 30vw, 100vw" parallax={0.08} />
+              <Photo id="fdw-monitoreo-barco" sizes="(min-width: 1000px) 30vw, 100vw" />
             </div>
           </div>
           <Faq items={generalFaqs} />
@@ -351,7 +332,7 @@ export default function Home() {
       </section>
 
       {/* 14. Contacto (estructura conservada) */}
-      <section className="section" aria-labelledby="contacto-title">
+      <section className="section section--paper" aria-labelledby="contacto-title">
         <div className={`container ${styles.contact}`}>
           <div className={styles.contactCopy} data-reveal>
             <h2 id="contacto-title">

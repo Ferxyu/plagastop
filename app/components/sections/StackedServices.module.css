@@ -19,9 +19,9 @@
   box-shadow: 0 0 0 1px var(--ps-line), var(--shadow-card);
 }
 
-/* Las tarjetas alternan blanco, verde bosque claro y verde bosque */
+/* Las tarjetas alternan blanco, amarillo manteca y verde bosque */
 .card:nth-child(3n + 2) {
-  background: var(--ps-forest-soft);
+  background: var(--ps-butter-soft);
 }
 
 .card:nth-child(3n) {

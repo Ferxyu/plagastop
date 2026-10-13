@@ -40,12 +40,9 @@ Empresa de prevención y control de plagas fundada en 1985 en Concepción, con a
 - Cobertura (confirmada 2026-10-06): Gran Concepción (Concepción, Hualpén, Talcahuano, Coronel, San Pedro de la Paz, Lota, Chiguayante, Hualqui, Penco, Lirquén, Tomé), Los Ángeles, Chillán y toda la Región de Ñuble, Región de Los Ríos y Región de Los Lagos. Resumen: "desde Ñuble hasta Los Lagos".
 - Horario de atención: 9:00 a 18:00 h (días por confirmar).
 - **No usan WhatsApp**: los canales son teléfono, correo y formulario.
-- Contacto por área (sitio actual):
-  - Área Comercial: +56 9 7793 7483 · jpross@plagastop.cl
-  - Área Operaciones: +56 9 7793 7786 · cglarson@plagastop.cl
-  - Área Prevención: +56 9 7793 7939 · jpena@plagastop.cl
-  - Documentación: publicado como "+56 9 41 2104508" (un dígito de más); en el sitio se usa +56 41 210 4508 como fijo de Concepción [confirmar] · secretaria@plagastop.cl
-  - Secretaría: +56 9 7855 5078
+- Contacto (confirmado 2026-10-12, reemplaza los datos anteriores por área):
+  - Área Comercial: +56 9 7793 7824 · areacomercial@plagastop.cl
+  - Secretaría: +56 41 210 4508 · secretaria@plagastop.cl
 - Redes: facebook.com/plagastop · instagram.com/plagastop_ltda
 - El cliente B2B trabaja con documentación: certificados de servicio, registros MIP, informes, cumplimiento ante autoridad sanitaria y auditorías de clientes.
 
