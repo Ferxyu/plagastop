@@ -1,13 +1,18 @@
+
 import type { Config } from '@react-router/dev/config'
 import { services } from './app/content/services'
 import { industries } from './app/content/industries'
 import { landings } from './app/content/landings'
 
+const isGitHubPages = process.env.DEPLOY_GH_PAGES === 'true'
+
 export default {
   appDirectory: 'app',
-  // Sitio estático: cada ruta se prerenderiza a HTML en el build.
-  // El blog (fase 2) podrá pasar a SSR o a prerender disparado por webhook de WordPress.
+
+  basename: isGitHubPages ? '/plagastop/' : '/',
+
   ssr: false,
+
   prerender: [
     '/',
     '/servicios',
