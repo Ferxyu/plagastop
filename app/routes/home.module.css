@@ -479,7 +479,7 @@
    Banda amarillo manteca con tres tarjetas de color (verde bosque, azul marino, negro),
    sigla gigante de fondo y sello lima. */
 .certs {
-  background: var(--ps-butter-soft);
+  background: white;
   position: relative;
   overflow: hidden;
 }

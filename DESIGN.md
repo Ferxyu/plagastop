@@ -437,3 +437,10 @@ Home: hero con la foto `HOME` muy de fondo (desaturada, desenfocada, velo negro/
 - Cabeceras interiores y banda con parallax usan las fotos FDW elegidas por el cliente.
 - Desplegables con estilo propio (combobox accesible) en lugar del menú nativo del sistema.
 - Contacto reducido a dos vías: Área Comercial (+56 9 7793 7824, areacomercial@plagastop.cl) y Secretaría (+56 41 210 4508, secretaria@plagastop.cl).
+
+- Home acortada: se eliminaron la banda con parallax y declaración, "Un socio técnico para tu operación" y "Habla directo con el área que necesitas" (los contactos siguen en el footer y en /contacto).
+- Servicios en la Home: grilla de 4 columnas con aparición escalonada, inclinación 3D y zoom de imagen (reemplaza las tarjetas fijadas que se apilaban, que hacían lento el scroll). Se eliminó "Así de simple es trabajar con nosotros" de la Home.
+- Servicios en la Home: una sola hilera deslizable (4 tarjetas visibles en escritorio, con flechas, arrastre o gesto táctil y snap). Todas las tarjetas son blancas con ícono verde bosque.
+- Servicios en la Home: hilera que se desliza sola en bucle infinito (60 s por vuelta, sin pausa), bordes difuminados como el carrusel de logos; sin flechas.
+- Servicios en la Home: el avance automático (40 px/s) se detiene al pasar el mouse y la hilera se puede arrastrar en ambos sentidos (mouse o dedo), con inercia al soltar; un arrastre no abre la tarjeta, un clic simple sí.
+- Se eliminó "Experiencia en cada industria" de la Home (las industrias siguen en el menú y en /industrias).
