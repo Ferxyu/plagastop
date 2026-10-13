@@ -25,7 +25,7 @@
 }
 
 .dark .area:hover {
-  box-shadow: 0 0 0 1.5px var(--ps-lime);
+  box-shadow: 0 0 0 1.5px var(--ps-sage);
 }
 
 @media (min-width: 720px) {
@@ -37,7 +37,7 @@
 }
 
 .name {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
 }
 
@@ -76,11 +76,11 @@
 }
 
 .dark .channels a svg {
-  color: var(--ps-lime);
+  color: var(--ps-copper);
 }
 
 .channels a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--ps-lime);
+  text-decoration-color: var(--ps-copper);
   text-decoration-thickness: 2px;
 }

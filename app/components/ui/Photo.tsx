@@ -6,11 +6,14 @@ export function Photo({
   sizes = '(min-width: 1000px) 50vw, 100vw',
   className,
   priority,
+  parallax,
 }: {
   id: PhotoId
   sizes?: string
   className?: string
   priority?: boolean
+  /** Velocidad de parallax (p. ej. 0.12). El contenedor debe recortar el desborde. */
+  parallax?: number
 }) {
   const p = photo(id)
   return (
@@ -24,6 +27,7 @@ export function Photo({
       loading={priority ? 'eager' : 'lazy'}
       fetchPriority={priority ? 'high' : undefined}
       decoding={priority ? 'sync' : 'async'}
+      data-parallax={parallax}
     />
   )
 }

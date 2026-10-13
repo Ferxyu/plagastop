@@ -17,6 +17,18 @@ export function SiteHeader({ variant = 'full' }: { variant?: 'full' | 'landing' 
   const location = useLocation()
   const headerRef = useRef<HTMLElement>(null)
 
+  // El header se compacta al hacer scroll
+  useEffect(() => {
+    const el = headerRef.current
+    if (!el) return
+    const onScroll = () => {
+      el.dataset.scrolled = window.scrollY > 24 ? 'true' : 'false'
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   // Cerrar menús al navegar
   const [lastPath, setLastPath] = useState(location.pathname)
   if (lastPath !== location.pathname) {
@@ -226,7 +238,7 @@ export function SiteHeader({ variant = 'full' }: { variant?: 'full' | 'landing' 
             Solicitar cotización
           </ButtonLink>
           <ul>
-            {contactAreas.slice(0, 3).map((a) => (
+            {contactAreas.map((a) => (
               <li key={a.id}>
                 <span>{a.name}</span>
                 <a href={telHref(a.phone)} className="tabular">

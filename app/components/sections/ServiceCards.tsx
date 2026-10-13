@@ -11,9 +11,9 @@ export function ServiceCards({ services, headingLevel = 3 }: { services: Service
   return (
     <ul className={styles.grid}>
       {services.map((s, i) => (
-        <li key={s.slug} className={styles.card} data-reveal={i % 4}>
+        <li key={s.slug} className={styles.card} data-reveal={i % 4} data-tilt>
           <div className={styles.media}>
-            <Photo id={s.photo} sizes="(min-width: 1100px) 25vw, (min-width: 640px) 50vw, 100vw" />
+            <Photo id={s.photo} sizes="(min-width: 1100px) 25vw, (min-width: 640px) 50vw, 100vw" parallax={0.06} />
           </div>
           <div className={styles.body}>
             <span className={styles.icon}>

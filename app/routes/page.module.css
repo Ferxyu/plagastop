@@ -54,7 +54,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--ps-lime);
+  background: var(--ps-sage);
   color: var(--ps-ink);
 }
 
@@ -80,7 +80,7 @@
   height: 26px;
   padding: 5px;
   border-radius: 50%;
-  background: var(--ps-lime);
+  background: var(--ps-sage);
   color: var(--ps-ink);
 }
 
@@ -99,7 +99,7 @@
   padding: 0 var(--s-5);
   border-radius: var(--pill);
   background: var(--ps-paper);
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
@@ -111,7 +111,7 @@
 }
 
 .chips a:hover {
-  background: var(--ps-lime);
+  background: var(--ps-sage);
 }
 
 .timeline {
@@ -130,7 +130,7 @@
   bottom: 16px;
   width: 3px;
   border-radius: 3px;
-  background: var(--ps-lime);
+  background: var(--ps-copper);
 }
 
 .timeline li {
@@ -150,7 +150,7 @@
 }
 
 .timeline li:first-child::before {
-  background: var(--ps-lime);
+  background: var(--ps-copper);
 }
 
 .year {
@@ -200,7 +200,7 @@
   height: 52px;
   padding: 13px;
   border-radius: 50%;
-  background: var(--ps-lime);
+  background: var(--ps-sage);
 }
 
 .credentialCode {
@@ -309,7 +309,7 @@
   height: 26px;
   padding: 5px;
   border-radius: 50%;
-  background: var(--ps-lime);
+  background: var(--ps-sage);
   color: var(--ps-ink);
 }
 
@@ -373,4 +373,10 @@
   display: grid;
   gap: var(--s-2);
   padding-left: 1.2em;
+}
+
+/* La línea de tiempo se dibuja con el scroll */
+.timeline[data-draw-active='true']::before {
+  transform-origin: top;
+  scale: 1 var(--draw, 0);
 }

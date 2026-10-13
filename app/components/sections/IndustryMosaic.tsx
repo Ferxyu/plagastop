@@ -11,8 +11,8 @@ export function IndustryMosaic({ exclude }: { exclude?: string }) {
   return (
     <ul className={`${styles.mosaic} ${feature ? styles.feature : ''}`}>
       {list.map((industry, i) => (
-        <li key={industry.slug} className={styles.tile} data-reveal={i % 4}>
-          <Photo id={industry.photo} sizes="(min-width: 1100px) 25vw, 50vw" />
+        <li key={industry.slug} className={styles.tile} data-reveal={i % 4} data-reveal-style="clip">
+          <Photo id={industry.photo} sizes="(min-width: 1100px) 25vw, 50vw" parallax={0.1} />
           <Link to={`/industrias/${industry.slug}`} className={styles.link} prefetch="intent">
             <span className={styles.name}>{industry.name}</span>
             <span className={styles.go} aria-hidden>

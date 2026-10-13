@@ -16,7 +16,7 @@ export const meta: Route.MetaFunction = () =>
   buildMeta({
     title: 'Acreditaciones y autorizaciones',
     description:
-      'Resolución SAG 2732/2021 para tratamientos fitosanitarios oficiales, resolución SNS 36365/2013 y Programa de Empresas Certificadas Degesch.',
+      'Resolución SAG 3273/2025 para tratamientos fitosanitarios oficiales, resolución SNS 36365/2013 y Programa de Empresas Certificadas Degesch.',
     path: '/acreditaciones',
     jsonLd: [breadcrumbLd(crumbs)],
   })
@@ -28,7 +28,7 @@ export default function Credentials() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="fumigacion-placas-degesch"
+        image="fdw-cubierta-barco"
         title="Acreditaciones y autorizaciones"
         lead="La información que piden las áreas de calidad, prevención y compras antes de contratar un proveedor de control de plagas."
         actions={
@@ -54,10 +54,10 @@ export default function Credentials() {
         </div>
       </section>
 
-      <section className="section section--paper">
+      <section className="section section--sage">
         <div className={`container ${styles.split}`}>
           <h2>Certificaciones de gestión</h2>
-          <ol className={styles.timeline}>
+          <ol className={styles.timeline} data-draw>
             {certifications.map((m) => (
               <li key={m.year}>
                 <div>

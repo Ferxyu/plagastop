@@ -1,0 +1,71 @@
+.wrap {
+  display: grid;
+  gap: var(--s-4);
+  /* Bordes difuminados para que los logos entren y salgan con suavidad */
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.row {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: var(--s-4);
+  width: max-content;
+  margin: 0;
+  padding: 6px 2px;
+  list-style: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track {
+    animation: scroll var(--duration, 70s) linear infinite;
+  }
+
+  .track[data-reverse] {
+    animation-direction: reverse;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    overflow-x: auto;
+  }
+}
+
+@keyframes scroll {
+  to {
+    translate: -50% 0;
+  }
+}
+
+.tile {
+  flex: none;
+  display: flex;
+  width: clamp(150px, 12vw, 200px);
+  overflow: hidden;
+  height: clamp(84px, 7vw, 104px);
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--radius);
+  background: var(--ps-white);
+  box-shadow: 0 0 0 1px var(--ps-line);
+  transition: box-shadow var(--dur) var(--ease-out), translate var(--dur) var(--ease-expo);
+}
+
+/* Logos blancos: tarjeta azul marino */
+.tile[data-dark] {
+  background: var(--ps-navy);
+  box-shadow: none;
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.tile:hover {
+  box-shadow: inset 0 0 0 2px var(--ps-turquoise);
+}

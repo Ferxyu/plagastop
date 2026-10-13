@@ -7,7 +7,6 @@ import { breadcrumbLd, buildMeta } from '~/lib/seo'
 import { track } from '~/lib/analytics'
 import { ButtonLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
-import { secondaryPhoto } from '~/content/photos'
 import { PageHero } from '~/components/sections/PageHero'
 import { ServiceCards } from '~/components/sections/ServiceCards'
 import { IndustryMosaic } from '~/components/sections/IndustryMosaic'
@@ -69,8 +68,8 @@ export default function IndustryPage({ loaderData }: Route.ComponentProps) {
 
       <section className="section">
         <div className={`container ${styles.twoCol}`}>
-          <div className={styles.media} data-reveal>
-            <Photo id={secondaryPhoto(industry.photo, industry.slug)} sizes="(min-width: 1000px) 45vw, 100vw" />
+          <div className={styles.media} data-reveal data-reveal-style="clip">
+            <Photo id={industry.photo2} sizes="(min-width: 1000px) 45vw, 100vw" parallax={0.08} />
           </div>
           <div className={styles.stack} data-reveal={1}>
             <h2>Riesgos del rubro</h2>
@@ -86,7 +85,7 @@ export default function IndustryPage({ loaderData }: Route.ComponentProps) {
         </div>
       </section>
 
-      <section className="section section--paper">
+      <section className="section section--sage">
         <div className="container">
           <SectionHeader
             title="Servicios recomendados"

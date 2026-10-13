@@ -11,7 +11,7 @@
 
 .footer a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--ps-lime);
+  text-decoration-color: var(--ps-copper);
   text-decoration-thickness: 2px;
 }
 
@@ -68,7 +68,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--ps-lime);
+  background: var(--ps-sage);
   color: var(--ps-ink);
 }
 

@@ -8,10 +8,14 @@ import {
   ScrollRestoration,
   useMatches,
 } from 'react-router'
-import soraUrl from '@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url'
-import figtreeUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url'
-import '@fontsource-variable/sora/wght.css'
-import '@fontsource-variable/figtree/wght.css'
+import displayFontUrl from '@fontsource/philosopher/files/philosopher-latin-700-normal.woff2?url'
+import textFontUrl from '@fontsource/ibm-plex-sans-condensed/files/ibm-plex-sans-condensed-latin-400-normal.woff2?url'
+import '@fontsource/philosopher/400.css'
+import '@fontsource/philosopher/700.css'
+import '@fontsource/ibm-plex-sans-condensed/400.css'
+import '@fontsource/ibm-plex-sans-condensed/500.css'
+import '@fontsource/ibm-plex-sans-condensed/600.css'
+import '@fontsource/ibm-plex-sans-condensed/700.css'
 import './styles/tokens.css'
 import './styles/base.css'
 import type { Route } from './+types/root'
@@ -20,13 +24,14 @@ import { SiteFooter } from '~/components/layout/SiteFooter'
 import { MobileActionBar } from '~/components/layout/MobileActionBar'
 import { CursorDot } from '~/components/motion/CursorDot'
 import { useReveal } from '~/components/motion/useReveal'
+import { usePointerFx } from '~/components/motion/usePointerFx'
 import { ButtonLink } from '~/components/ui/Button'
 import { captureAttribution } from '~/lib/forms'
 import { initAnalytics } from '~/lib/analytics'
 
 export const links: Route.LinksFunction = () => [
-  { rel: 'preload', href: soraUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
-  { rel: 'preload', href: figtreeUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+  { rel: 'preload', href: displayFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+  { rel: 'preload', href: textFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
   { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
   { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
 ]
@@ -60,6 +65,7 @@ export default function App() {
   const handle = (matches.at(-1)?.handle ?? {}) as RouteHandle
   const chrome = handle.chrome ?? 'full'
   useReveal()
+  usePointerFx()
 
   useEffect(() => {
     captureAttribution()
@@ -71,6 +77,7 @@ export default function App() {
       <a href="#contenido" className="skip-link">
         Saltar al contenido
       </a>
+      <div className="scroll-progress" aria-hidden />
       <SiteHeader variant={chrome} />
       <main id="contenido">
         <Outlet />

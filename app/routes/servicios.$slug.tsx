@@ -8,7 +8,6 @@ import { breadcrumbLd, buildMeta, faqLd, serviceLd } from '~/lib/seo'
 import { track } from '~/lib/analytics'
 import { ButtonLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
-import { secondaryPhoto } from '~/content/photos'
 import { PageHero } from '~/components/sections/PageHero'
 import { ServiceCards } from '~/components/sections/ServiceCards'
 import { SectionHeader } from '~/components/ui/SectionHeader'
@@ -90,8 +89,8 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
               ))}
             </ul>
           </div>
-          <div className={styles.media} data-reveal={1}>
-            <Photo id={secondaryPhoto(service.photo, service.slug)} sizes="(min-width: 1000px) 45vw, 100vw" />
+          <div className={styles.media} data-reveal={1} data-reveal-style="clip">
+            <Photo id={service.photo2} sizes="(min-width: 1000px) 45vw, 100vw" parallax={0.08} />
           </div>
         </div>
       </section>
@@ -147,7 +146,7 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
       )}
 
       {related.length > 0 && (
-        <section className="section">
+        <section className="section section--sage">
           <div className="container">
             <SectionHeader title="Servicios relacionados" />
             <ServiceCards services={related} />

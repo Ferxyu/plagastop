@@ -15,7 +15,7 @@ export interface Credential {
 export const credentials: Credential[] = [
   {
     id: 'sag',
-    code: 'Res. SAG 2732/2021',
+    code: 'Res. SAG 3273/2025',
     issuer: 'Servicio Agrícola y Ganadero',
     title: 'Tratamientos fitosanitarios oficiales',
     description:
@@ -76,8 +76,8 @@ export const milestones: Milestone[] = [
     text: 'Resolución otorgada por la autoridad sanitaria.',
   },
   {
-    year: 2021,
-    title: 'Resolución SAG 2732',
+    year: 2025,
+    title: 'Resolución SAG 3273',
     text: 'Autorización SAG para tratamientos fitosanitarios oficiales de exportación e importación.',
   },
 ]

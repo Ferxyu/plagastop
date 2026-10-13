@@ -1,0 +1,161 @@
+.layout {
+  display: grid;
+  gap: var(--s-7);
+}
+
+/* Hilera que se desliza sola en bucle; bordes difuminados como el carrusel de logos */
+.viewport {
+  margin-inline: calc(var(--gutter) * -1);
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.stack {
+  list-style: none;
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: var(--s-3) 0 var(--s-6);
+}
+
+/* Al pasar el mouse la hilera se detiene y se puede arrastrar */
+.viewport {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.viewport[data-dragging] {
+  cursor: grabbing;
+}
+
+.viewport img {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.stack {
+  will-change: translate;
+}
+
+/* Tarjetas homogéneas: todas blancas con detalles verde bosque */
+.card {
+  position: relative;
+  flex: 0 0 min(78vw, 300px);
+  /* Separación con margen (no gap) para que el bucle al -50% sea exacto */
+  margin-right: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--ps-white);
+  box-shadow: 0 0 0 1px var(--ps-line);
+  transition:
+    transform 450ms var(--ease-expo),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+@media (min-width: 1100px) {
+  .card {
+    flex-basis: 300px;
+  }
+}
+
+.card:hover {
+  box-shadow: 0 0 0 1px var(--ps-line), 0 30px 60px -30px rgb(11 11 11 / 0.45);
+}
+
+.media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 900ms var(--ease-expo);
+}
+
+.card:hover .media img {
+  scale: 1.07;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ps-forest);
+  color: var(--ps-white);
+}
+
+.num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--ps-forest);
+  opacity: 0.3;
+}
+
+.title {
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.card:has(.link:focus-visible) {
+  outline: 3px solid var(--ps-forest);
+  outline-offset: 3px;
+}
+
+.summary {
+  font-size: 0.9375rem;
+  color: var(--ps-steel);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-2);
+  font-weight: 600;
+  color: var(--ps-forest);
+}
+
+.more svg {
+  transition: transform var(--dur) var(--ease-expo);
+}
+
+.card:hover .more svg {
+  transform: translateX(5px);
+}
