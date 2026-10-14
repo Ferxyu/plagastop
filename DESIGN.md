@@ -444,3 +444,20 @@ Home: hero con la foto `HOME` muy de fondo (desaturada, desenfocada, velo negro/
 - Servicios en la Home: hilera que se desliza sola en bucle infinito (60 s por vuelta, sin pausa), bordes difuminados como el carrusel de logos; sin flechas.
 - Servicios en la Home: el avance automático (40 px/s) se detiene al pasar el mouse y la hilera se puede arrastrar en ambos sentidos (mouse o dedo), con inercia al soltar; un arrastre no abre la tarjeta, un clic simple sí.
 - Se eliminó "Experiencia en cada industria" de la Home (las industrias siguen en el menú y en /industrias).
+
+## Rediseño del home (octubre 2026, rama feature/rediseno-home)
+
+> Concepto: **"Tú sigue. Nosotros cuidamos."** Tranquilidad empresarial con prevención visible. Reemplaza el home anterior.
+
+- **Tipografía (todo el sitio):** Bricolage Grotesque 700/800 (titulares y cifras), Fira Sans 400–600 (lectura y botones), Fira Sans Condensed 500/600 (rótulos `.eyebrow`, en mayúsculas). Reemplaza Philosopher e IBM Plex Sans Condensed.
+- **Color:** protagonistas azul marino, verde bosque, turquesa y blanco. Degradado de marca `--gradient-brand` (110°, `#2F5B57` → `#267A71` → `#00B8A9`); el texto blanco va solo sobre la mitad verde (5,1:1 en `#267A71`). Sobre turquesa el texto va en azul marino (6,1:1).
+- **Home, en orden:**
+  1. Hero con video real (`public/media/hero-1080.mp4` 10,9 MB y `hero-720.mp4` 6,5 MB, cinco escenas, sin audio). El póster carga primero; el video se pide al terminar de cargar la página y no se reproduce con movimiento reducido ni ahorro de datos (queda un botón para reproducir o pausar). Header transparente superpuesto (`handle.overlayHeader`) que pasa a blanco al hacer scroll. Bajo el logo, una línea fina con las tres credenciales (ícono turquesa, emisor y número, enlazan a /acreditaciones). Titular "Tú sigue *importando / produciendo / vendiendo / creciendo*. De las plagas nos encargamos nosotros." con el verbo rotativo en lima.
+  2. Multas (art. 174 del Código Sanitario): banda turquesa centrada, "Hasta 1.000 UTM" con contador animado, tres datos (desde 0,1 UTM, el doble con reincidencia, clausura o paralización) y el compromiso acotado a lo que depende de Plagastop: "nos aseguramos de que tu control de plagas esté en regla".
+  3. "Soluciones para cada operación": encabezado centrado y 8 servicios como fotos a sangre (zoom y flecha lima al pasar el mouse), con accesos por industria.
+  4. Sede: foto a la izquierda con parallax, foto del equipo superpuesta, texto a la derecha, "Desde 1985".
+  5. Cobertura: la misma línea con paradas, ahora al centro con regiones alternadas (en móvil, a la izquierda); se dibuja con el scroll y la base (Biobío) late en lima.
+  6. "Resolvemos tus dudas": preguntas a la izquierda (lista abierta, sin tarjetas) y título, teléfono y foto completa a la derecha.
+  7. Cierre centrado sobre el degradado de marca.
+- **Retirado del home:** carrusel de logos de clientes, cifras con barras, formulario rápido del hero, tarjetas de certificaciones.
+- **Composición:** las secciones alternan izquierda, centro y derecha para no cargar un solo lado.

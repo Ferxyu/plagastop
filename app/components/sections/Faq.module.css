@@ -1,31 +1,29 @@
+/* Lista abierta separada por líneas, sin tarjetas */
 .faq {
   display: grid;
-  gap: var(--s-3);
+  border-bottom: 1px solid var(--ps-line-strong);
 }
 
 .item {
-  border-radius: var(--radius);
-  background: var(--ps-white);
-  box-shadow: 0 0 0 1px var(--ps-line);
-  transition: background-color var(--dur) var(--ease-out);
+  border-top: 1px solid var(--ps-line-strong);
 }
 
+:global(.on-dark) .faq,
 :global(.on-dark) .item {
-  background: var(--ps-graphite-2);
-  box-shadow: 0 0 0 1px var(--ps-graphite-3);
+  border-color: var(--ps-graphite-3);
 }
 
 .question {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: var(--s-3);
-  min-height: 68px;
-  padding: var(--s-3) var(--s-5);
+  gap: var(--s-4);
+  min-height: 76px;
+  padding: var(--s-4) 0;
   font-family: var(--font);
   font-weight: 600;
-  font-size: 1.0625rem;
-  line-height: 1.35;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem);
+  line-height: 1.3;
   list-style: none;
   cursor: pointer;
 }
@@ -35,37 +33,52 @@
 }
 
 .index {
-  color: var(--ps-steel);
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  color: var(--ps-forest);
 }
 
 :global(.on-dark) .index {
-  color: var(--ps-copper);
+  color: var(--ps-turquoise);
+}
+
+.qText {
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.question:hover .qText {
+  color: var(--ps-forest);
 }
 
 .icon {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--ps-paper);
+  box-shadow: inset 0 0 0 1.5px var(--ps-forest);
+  color: var(--ps-forest);
   transition:
-    transform var(--dur) var(--ease-expo),
-    background-color var(--dur) var(--ease-out);
+    transform 450ms var(--ease-expo),
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
 }
 
 :global(.on-dark) .icon {
-  background: var(--ps-graphite-3);
+  box-shadow: inset 0 0 0 1.5px var(--ps-turquoise);
+  color: var(--ps-turquoise);
 }
 
 .item[open] .icon {
   transform: rotate(45deg);
-  background: var(--ps-sage);
-  color: var(--ps-ink);
+  background: var(--ps-navy);
+  box-shadow: none;
+  color: var(--ps-lime);
 }
 
 .answer {
-  padding: 0 var(--s-5) var(--s-5) calc(var(--s-5) + 2ch + var(--s-3));
+  padding: 0 calc(40px + var(--s-4)) var(--s-5) calc(2ch + var(--s-4));
   color: var(--ps-steel);
   max-width: 70ch;
 }

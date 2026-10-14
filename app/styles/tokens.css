@@ -44,9 +44,12 @@
   --ps-lime-soft: #f4f9d8;
   --ps-error: #c2361f;
 
-  /* Tipografía: Philosopher para titulares, botones y cifras; IBM Plex Sans Condensed para lectura y menú */
-  --font-display: 'Philosopher', 'Trebuchet MS', sans-serif;
-  --font: 'IBM Plex Sans Condensed', 'Arial Narrow', system-ui, sans-serif;
+  /* Tipografía (Design System): Bricolage Grotesque para titulares y cifras, Fira Sans para lectura,
+     Fira Sans Condensed para rótulos en mayúsculas */
+  --font-display: 'Bricolage Grotesque', 'Arial Black', sans-serif;
+  --font: 'Fira Sans', Arial, system-ui, sans-serif;
+  --font-label: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
+  --gradient-brand: linear-gradient(110deg, #2f5b57 0%, #267a71 52%, #00b8a9 100%);
 
   --text-sm: 0.875rem;
   --text-base: clamp(1.0625rem, 1.03rem + 0.15vw, 1.125rem);

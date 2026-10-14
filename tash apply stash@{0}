@@ -1,0 +1,17 @@
+ DESIGN.md                                       |  17 [32m+[m
+ app/components/layout/SiteHeader.module.css     |  80 [32m+++[m
+ app/components/layout/SiteHeader.tsx            |  16 [32m+[m[31m-[m
+ app/components/motion/Counter.tsx               |   2 [32m+[m[31m-[m
+ app/components/sections/CoverageLine.module.css | 135 [32m++++[m[31m-[m
+ app/components/sections/CoverageLine.tsx        |  22 [32m+[m[31m-[m
+ app/components/sections/Faq.module.css          |  59 [32m++[m[31m-[m
+ app/components/ui/Button.module.css             |  10 [32m+[m[31m-[m
+ app/content/credentials.ts                      |   5 [32m+[m
+ app/root.tsx                                    |  21 [32m+[m[31m-[m
+ app/routes/home.module.css                      | 634 [32m++++++[m[31m------------------[m
+ app/routes/home.tsx                             | 333 [32m++++++[m[31m-------[m
+ app/styles/base.css                             |  22 [32m+[m[31m-[m
+ app/styles/tokens.css                           |   9 [32m+[m[31m-[m
+ package-lock.json                               |  26 [32m+[m[31m-[m
+ package.json                                    |   5 [32m+[m[31m-[m
+ 16 files changed, 630 insertions(+), 766 deletions(-)

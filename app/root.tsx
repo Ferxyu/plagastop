@@ -8,14 +8,15 @@ import {
   ScrollRestoration,
   useMatches,
 } from 'react-router'
-import displayFontUrl from '@fontsource/philosopher/files/philosopher-latin-700-normal.woff2?url'
-import textFontUrl from '@fontsource/ibm-plex-sans-condensed/files/ibm-plex-sans-condensed-latin-400-normal.woff2?url'
-import '@fontsource/philosopher/400.css'
-import '@fontsource/philosopher/700.css'
-import '@fontsource/ibm-plex-sans-condensed/400.css'
-import '@fontsource/ibm-plex-sans-condensed/500.css'
-import '@fontsource/ibm-plex-sans-condensed/600.css'
-import '@fontsource/ibm-plex-sans-condensed/700.css'
+import displayFontUrl from '@fontsource/bricolage-grotesque/files/bricolage-grotesque-latin-800-normal.woff2?url'
+import textFontUrl from '@fontsource/fira-sans/files/fira-sans-latin-400-normal.woff2?url'
+import '@fontsource/bricolage-grotesque/700.css'
+import '@fontsource/bricolage-grotesque/800.css'
+import '@fontsource/fira-sans/400.css'
+import '@fontsource/fira-sans/500.css'
+import '@fontsource/fira-sans/600.css'
+import '@fontsource/fira-sans-condensed/500.css'
+import '@fontsource/fira-sans-condensed/600.css'
 import './styles/tokens.css'
 import './styles/base.css'
 import type { Route } from './+types/root'
@@ -57,6 +58,8 @@ export function Layout({ children }: { children: ReactNode }) {
 
 export interface RouteHandle {
   chrome?: 'full' | 'landing'
+  /** El header se superpone transparente sobre un hero oscuro (home). */
+  overlayHeader?: boolean
   hideActionBar?: boolean
 }
 
@@ -78,7 +81,7 @@ export default function App() {
         Saltar al contenido
       </a>
       <div className="scroll-progress" aria-hidden />
-      <SiteHeader variant={chrome} />
+      <SiteHeader variant={chrome} overlay={handle.overlayHeader} />
       <main id="contenido">
         <Outlet />
       </main>

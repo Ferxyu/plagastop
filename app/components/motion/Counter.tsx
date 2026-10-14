@@ -36,7 +36,7 @@ export function Counter({ value, prefix = '', suffix = '' }: { value: number; pr
   return (
     <span ref={ref} className="tabular">
       {prefix}
-      {shown}
+      {shown.toLocaleString('es-CL')}
       {suffix}
     </span>
   )

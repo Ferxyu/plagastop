@@ -11,7 +11,7 @@ import { Logo } from '~/components/ui/Logo'
 import { ServiceIcon } from '~/components/ui/ServiceIcon'
 import styles from './SiteHeader.module.css'
 
-export function SiteHeader({ variant = 'full' }: { variant?: 'full' | 'landing' }) {
+export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | 'landing'; overlay?: boolean }) {
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [drawer, setDrawer] = useState(false)
   const location = useLocation()
@@ -86,11 +86,23 @@ export function SiteHeader({ variant = 'full' }: { variant?: 'full' | 'landing' 
     <header
       ref={headerRef}
       className={styles.header}
+      data-overlay={overlay || undefined}
       onMouseLeave={() => setOpenMenu(null)}
     >
       <div className={`container ${styles.bar}`}>
         <Link to="/" className={styles.logo} aria-label="Plagastop, ir al inicio">
-          <Logo />
+          {overlay ? (
+            <>
+              <span className={styles.logoOnDark}>
+                <Logo negative />
+              </span>
+              <span className={styles.logoOnLight}>
+                <Logo />
+              </span>
+            </>
+          ) : (
+            <Logo />
+          )}
         </Link>
 
         <nav className={styles.nav} aria-label="Principal">
