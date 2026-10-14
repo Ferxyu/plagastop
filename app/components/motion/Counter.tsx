@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
-/** Cuenta hasta el valor al entrar en pantalla. El HTML prerenderizado ya trae el valor final. */
+/**
+ * Cuenta hasta el valor cada vez que entra en pantalla; se rearma cuando sale por completo.
+ * El HTML prerenderizado ya trae el valor final.
+ */
 export function Counter({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
   const [shown, setShown] = useState(value)
@@ -8,12 +11,18 @@ export function Counter({ value, prefix = '', suffix = '' }: { value: number; pr
   useEffect(() => {
     const el = ref.current
     if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    if (el.getBoundingClientRect().top < window.innerHeight) return
+    // Si ya está a la vista al cargar, no cuenta hasta que salga y vuelva.
+    let armed = el.getBoundingClientRect().top >= window.innerHeight
     let frame = 0
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return
-        io.disconnect()
+        if (!entry.isIntersecting) {
+          armed = true
+          return
+        }
+        if (!armed || entry.intersectionRatio < 0.6) return
+        armed = false
+        cancelAnimationFrame(frame)
         const start = performance.now()
         const duration = 1400
         const step = (now: number) => {
@@ -24,7 +33,7 @@ export function Counter({ value, prefix = '', suffix = '' }: { value: number; pr
         setShown(0)
         frame = requestAnimationFrame(step)
       },
-      { threshold: 0.6 },
+      { threshold: [0, 0.6] },
     )
     io.observe(el)
     return () => {

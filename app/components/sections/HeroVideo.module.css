@@ -57,53 +57,68 @@
   }
 }
 
-/* Credenciales bajo el logo: una línea fina, sin panel */
+/* Credenciales bajo el logo: sellos circulares */
 .top {
   padding-top: calc(var(--header-h) + var(--s-1));
 }
 
 .creds {
   display: flex;
+  gap: 10px;
   list-style: none;
   padding: 0;
 }
 
 .creds li {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.creds li + li {
-  border-left: 1px solid rgb(255 255 255 / 0.28);
+  flex: none;
 }
 
 .cred {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  padding: 2px 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100px;
+  aspect-ratio: 1;
+  padding: 12px;
+  border: 1px solid rgb(255 255 255 / 0.32);
+  border-radius: 50%;
+  background: rgb(22 38 61 / 0.55);
+  backdrop-filter: blur(6px);
+  text-align: center;
   text-decoration: none;
   color: var(--ps-white);
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out);
 }
 
-.creds li:first-child .cred {
-  padding-left: 0;
+/* Anillo interior punteado, como un timbre */
+.cred::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgb(255 255 255 / 0.18);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: border-color var(--dur) var(--ease-out);
 }
 
 .cred svg {
   flex: none;
-  width: 16px;
-  height: 16px;
-  margin-top: 1px;
+  width: 18px;
+  height: 18px;
   color: var(--ps-turquoise);
 }
 
 .cred small {
   display: block;
   font-family: var(--font-label);
-  font-size: 0.625rem;
+  font-size: 0.5625rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgb(255 255 255 / 0.72);
@@ -112,41 +127,47 @@
 .cred b {
   display: block;
   margin-top: 2px;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
-.cred:hover b {
-  text-decoration: underline;
-  text-decoration-color: var(--ps-turquoise);
-  text-underline-offset: 0.25em;
+.cred:hover {
+  border-color: var(--ps-turquoise);
+  background: rgb(22 38 61 / 0.75);
+}
+
+.cred:hover::before {
+  border-color: rgb(0 184 169 / 0.45);
 }
 
 @media (min-width: 768px) {
-  .creds li {
-    flex: none;
+  .creds {
+    gap: 14px;
   }
 
   .cred {
-    align-items: center;
-    gap: 10px;
-    padding: 2px 18px;
+    width: 120px;
+    gap: 6px;
+    padding: 14px;
+  }
+
+  .cred::before {
+    inset: 5px;
   }
 
   .cred svg {
     width: 20px;
     height: 20px;
-    margin-top: 0;
   }
 
   .cred small {
-    font-size: 0.6875rem;
+    font-size: 0.625rem;
     letter-spacing: 0.1em;
   }
 
   .cred b {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
   }
 }
 
