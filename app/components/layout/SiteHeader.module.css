@@ -379,3 +379,83 @@
   border-radius: var(--radius);
 }
 
+
+/* Modo superpuesto (home): transparente sobre el video, sólido al hacer scroll o abrir un menú */
+.logoOnLight {
+  display: none;
+}
+
+.header[data-overlay] {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: transparent;
+  border-bottom-color: transparent;
+  color: var(--ps-white);
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+.header[data-overlay] .navItem:hover,
+.header[data-overlay] .navItem[aria-expanded='true'] {
+  background: rgb(255 255 255 / 0.14);
+}
+
+.header[data-overlay] .phone svg {
+  background: rgb(255 255 255 / 0.14);
+  color: var(--ps-lime);
+}
+
+.header[data-overlay] .burger {
+  border-color: transparent;
+  background: rgb(255 255 255 / 0.16);
+  color: var(--ps-white);
+}
+
+.header[data-overlay][data-scrolled='true'],
+.header[data-overlay]:has(.mega:not([hidden])),
+.header[data-overlay]:has(.drawer:not([hidden])) {
+  background: var(--ps-white);
+  color: var(--ps-ink);
+  box-shadow: 0 10px 30px -18px rgb(10 11 11 / 0.35);
+}
+
+.header[data-overlay][data-scrolled='true'] .logoOnDark,
+.header[data-overlay]:has(.mega:not([hidden])) .logoOnDark,
+.header[data-overlay]:has(.drawer:not([hidden])) .logoOnDark {
+  display: none;
+}
+
+.header[data-overlay][data-scrolled='true'] .logoOnLight,
+.header[data-overlay]:has(.mega:not([hidden])) .logoOnLight,
+.header[data-overlay]:has(.drawer:not([hidden])) .logoOnLight {
+  display: block;
+}
+
+.header[data-overlay][data-scrolled='true'] .navItem:hover,
+.header[data-overlay]:has(.mega:not([hidden])) .navItem[aria-expanded='true'] {
+  background: var(--ps-paper);
+}
+
+.header[data-overlay][data-scrolled='true'] .phone svg,
+.header[data-overlay]:has(.drawer:not([hidden])) .phone svg {
+  background: var(--ps-ink);
+  color: var(--ps-sage);
+}
+
+.header[data-overlay][data-scrolled='true'] .burger,
+.header[data-overlay]:has(.drawer:not([hidden])) .burger {
+  border-color: var(--ps-line-strong);
+  background: var(--ps-white);
+  color: var(--ps-ink);
+}
+
+.header[data-overlay] .drawer {
+  color: var(--ps-ink);
+}
+
+.header[data-overlay] :focus-visible {
+  outline-color: currentColor;
+}

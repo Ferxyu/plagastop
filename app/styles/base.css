@@ -61,15 +61,15 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
 h1 {
   font-size: var(--text-h1);
-  line-height: 1.06;
+  line-height: 0.98;
 }
 
 h2 {
@@ -79,8 +79,18 @@ h2 {
 h3 {
   font-size: var(--text-h3);
   font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.2;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* Rótulo de sección: Fira Sans Condensed en mayúsculas */
+.eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 p {

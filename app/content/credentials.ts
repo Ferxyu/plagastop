@@ -8,6 +8,8 @@ export interface Credential {
   id: string
   code: string
   issuer: string
+  /** Versión corta para la franja del hero: emisor y número. */
+  short: { issuer: string; code: string }
   title: string
   description: string
 }
@@ -17,6 +19,7 @@ export const credentials: Credential[] = [
     id: 'sag',
     code: 'Res. SAG 3273/2025',
     issuer: 'Servicio Agrícola y Ganadero',
+    short: { issuer: 'SAG', code: 'Res. 3273/2025' },
     title: 'Tratamientos fitosanitarios oficiales',
     description:
       'Autorización para ejecutar tratamientos fitosanitarios de exportación e importación.',
@@ -25,6 +28,7 @@ export const credentials: Credential[] = [
     id: 'sns',
     code: 'SNS 36365/2013',
     issuer: 'Autoridad Sanitaria',
+    short: { issuer: 'Autoridad Sanitaria', code: 'SNS 36365/2013' },
     title: 'Resolución sanitaria',
     // Alcance exacto de la resolución por confirmar con Plagastop.
     description: 'Resolución otorgada por la autoridad sanitaria.',
@@ -33,6 +37,7 @@ export const credentials: Credential[] = [
     id: 'pec',
     code: 'PEC Degesch',
     issuer: 'Laboratorios Degesch',
+    short: { issuer: 'Degesch', code: 'Certificación PEC' },
     title: 'Programa de Empresas Certificadas',
     description: 'Empresa certificada en el programa de Laboratorios Degesch desde 2003.',
   },

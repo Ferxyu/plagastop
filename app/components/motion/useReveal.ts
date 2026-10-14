@@ -42,50 +42,34 @@ export function useReveal() {
     const targets = new Map<Element, HTMLElement[]>()
 
     const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const elements = targets.get(entry.target) ?? []
+  (entries) => {
+    for (const entry of entries) {
+      const elements = targets.get(entry.target) ?? []
 
-          /*
-           * Cuando una cantidad suficiente del elemento entra en pantalla,
-           * mostramos todos los reveals asociados.
-           */
-          if (entry.intersectionRatio >= 0.12) {
-            for (const el of elements) {
-              el.dataset.revealState = 'shown'
-            }
+      if (entry.isIntersecting) {
+        for (const el of elements) {
+          el.dataset.revealState = 'shown'
+        }
+      } else {
+        const rect = entry.boundingClientRect
 
-            continue
-          }
-
-          /*
-           * Solo reseteamos la animación cuando el target ha salido
-           * completamente del área observada.
-           *
-           * De esta forma no parpadea cuando está justo en el borde
-           * del viewport.
-           */
-          if (
-            !entry.isIntersecting ||
-            entry.intersectionRatio === 0
-          ) {
-            for (const el of elements) {
-              el.dataset.revealState = 'pending'
-            }
+        // Solo se reinicia cuando salió completamente de pantalla
+        if (
+          rect.bottom <= 0 ||
+          rect.top >= window.innerHeight
+        ) {
+          for (const el of elements) {
+            el.dataset.revealState = 'pending'
           }
         }
-      },
-      {
-        rootMargin: '0px 0px -8% 0px',
-
-        /*
-         * 0 permite detectar cuando sale completamente.
-         * 0.12 define cuándo consideramos que entró lo suficiente
-         * como para ejecutar la animación.
-         */
-        threshold: [0, 0.12],
-      },
-    )
+      }
+    }
+  },
+  {
+    rootMargin: '0px',
+    threshold: 0,
+  },
+)
 
     for (const el of reveals) {
       const step = Number(el.dataset.reveal) || 0

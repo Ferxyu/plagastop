@@ -1,0 +1,167 @@
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 1100px) {
+  .tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+.tile {
+  position: relative;
+  display: block;
+  height: clamp(210px, 12rem + 10vw, 380px);
+  overflow: hidden;
+  border-radius: var(--radius);
+  color: var(--ps-white);
+  text-decoration: none;
+}
+
+@media (min-width: 1100px) {
+  .tile {
+    height: 380px;
+    border-radius: 20px;
+  }
+}
+
+.tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 700ms var(--ease-expo);
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(22 38 61 / 0) 34%, rgb(22 38 61 / 0.92) 100%);
+  transition: background-color var(--dur) var(--ease-out);
+}
+
+.text {
+  position: absolute;
+  left: 14px;
+  right: 12px;
+  bottom: 14px;
+  z-index: 1;
+  display: grid;
+  gap: 6px;
+}
+
+.n {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--ps-turquoise);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 0.9rem + 0.6vw, 1.5625rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+@media (min-width: 1100px) {
+  .text {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+}
+
+/* Al pasar el mouse: la foto se acerca y aparece la flecha lima */
+.go {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ps-lime);
+  color: var(--ps-ink);
+  opacity: 0;
+  scale: 0.6;
+  transition:
+    opacity var(--dur) var(--ease-out),
+    scale 450ms var(--ease-expo);
+}
+
+.tile:hover img,
+.tile:focus-visible img {
+  scale: 1.07;
+}
+
+.tile:hover .go,
+.tile:focus-visible .go {
+  opacity: 1;
+  scale: 1;
+}
+
+@media (hover: none) {
+  .go {
+    display: none;
+  }
+}
+
+/* Industrias */
+.industries {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  margin-top: var(--s-7);
+  text-align: center;
+}
+
+.industries .eyebrow {
+  color: var(--ps-steel);
+}
+
+.industries ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+}
+
+.industries li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: var(--pill);
+  background: var(--ps-butter);
+  color: var(--ps-navy);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.industries li a:hover {
+  background: var(--ps-navy);
+  color: var(--ps-white);
+}
+
+.industries > :last-child {
+  margin-top: var(--s-3);
+}
