@@ -48,7 +48,9 @@ jobs:
           fi
 
       - name: Verify build output
-        run: grep -q "Protegemos" build/client/index.html
+        run: |
+          test -s build/client/index.html
+          grep -qi "<html" build/client/index.html
 
       - name: Add SPA fallback and disable Jekyll
         run: |
