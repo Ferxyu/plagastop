@@ -238,10 +238,57 @@
   }
 }
 
-.toggle {
+/* Controles de video y música, juntos en la esquina */
+.controls {
   position: absolute;
   right: var(--gutter);
   bottom: 28px;
+  display: flex;
+  gap: 8px;
+}
+
+/* Regulador de volumen: cápsula vertical que se abre sobre la bocina */
+.sound {
+  position: relative;
+}
+
+.volume {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  padding-bottom: 8px;
+  opacity: 0;
+  visibility: hidden;
+  translate: -50% 6px;
+  transition:
+    opacity var(--dur) var(--ease-out),
+    translate var(--dur) var(--ease-out),
+    visibility var(--dur);
+}
+
+.sound:hover .volume,
+.sound:focus-within .volume {
+  opacity: 1;
+  visibility: visible;
+  translate: -50% 0;
+}
+
+.volume input {
+  display: block;
+  width: 44px;
+  height: 112px;
+  margin: 0;
+  padding: 14px 0;
+  border-radius: 22px;
+  background: rgb(22 38 61 / 0.72);
+  backdrop-filter: blur(6px);
+  accent-color: var(--ps-turquoise);
+  writing-mode: vertical-lr;
+  direction: rtl;
+  cursor: pointer;
+}
+
+.toggle {
   display: grid;
   place-items: center;
   width: 44px;
@@ -258,7 +305,16 @@
 }
 
 @media (max-width: 767px) {
-  .toggle {
+  /* En móvil los controles van arriba: el regulador se abre hacia abajo */
+  .volume {
+    top: 100%;
+    bottom: auto;
+    padding-top: 8px;
+    padding-bottom: 0;
+    translate: -50% -6px;
+  }
+
+  .controls {
     top: calc(var(--header-h) + 64px);
     bottom: auto;
   }

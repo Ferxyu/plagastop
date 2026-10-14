@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router'
-import { Award, FileCheck2, Pause, Play, ShieldCheck } from 'lucide-react'
+import { Award, FileCheck2, Pause, Play, ShieldCheck, Volume2, VolumeX } from 'lucide-react'
 import posterWide from '~/assets/media/hero-poster-1600.webp'
 import posterTall from '~/assets/media/hero-poster-720.webp'
 import { credentials } from '~/content/credentials'
@@ -10,6 +10,10 @@ import styles from './HeroVideo.module.css'
 
 const VIDEO_WIDE = `${import.meta.env.BASE_URL}media/hero-1080.mp4`
 const VIDEO_NARROW = `${import.meta.env.BASE_URL}media/hero-720.mp4`
+const MUSIC = `${import.meta.env.BASE_URL}media/musica-fondo.mp3`
+const MUSIC_KEY = 'ps-music-muted'
+const VOLUME_KEY = 'ps-music-volume'
+const DEFAULT_VOLUME = 0.35
 
 const credentialIcons = { sag: ShieldCheck, sns: FileCheck2, pec: Award } as const
 
@@ -44,6 +48,73 @@ export function HeroVideo() {
     else window.addEventListener('load', start, { once: true })
     return () => window.removeEventListener('load', start)
   }, [])
+
+  /*
+   * Música de fondo: suena mientras se recorre el home (el hero no se desmonta al hacer scroll).
+   * Los navegadores bloquean el audio automático, así que si no puede partir sola, parte con el
+   * primer clic, toque o tecla. El silencio y el volumen elegidos se recuerdan para la próxima visita.
+   */
+  const musicRef = useRef<HTMLAudioElement>(null)
+  const [sounding, setSounding] = useState(false)
+  const [volume, setVolume] = useState(DEFAULT_VOLUME)
+
+  useEffect(() => {
+    const audio = musicRef.current
+    if (!audio) return
+    audio.volume = DEFAULT_VOLUME
+    let muted = false
+    try {
+      const saved = Number(localStorage.getItem(VOLUME_KEY))
+      if (saved > 0 && saved <= 1) {
+        audio.volume = saved
+        setVolume(saved)
+      }
+      muted = localStorage.getItem(MUSIC_KEY) === '1'
+    } catch {}
+    if (muted) return
+    const events = ['pointerdown', 'keydown', 'touchstart'] as const
+    const unlock = (e: Event) => {
+      // La bocina y su regulador deciden por sí mismos.
+      if ((e.target as Element | null)?.closest?.('[data-music-toggle]')) return
+      audio.play().then(clear, () => {})
+    }
+    function clear() {
+      events.forEach((e) => window.removeEventListener(e, unlock))
+    }
+    audio.play().then(clear, () => events.forEach((e) => window.addEventListener(e, unlock)))
+    return () => {
+      clear()
+      audio.pause()
+    }
+  }, [])
+
+  function toggleMusic() {
+    const audio = musicRef.current
+    if (!audio) return
+    const mute = !audio.paused
+    try {
+      localStorage.setItem(MUSIC_KEY, mute ? '1' : '0')
+    } catch {}
+    if (mute) audio.pause()
+    else {
+      // Si quedó en cero, vuelve al volumen de fondo para que se escuche algo.
+      if (audio.volume === 0) changeVolume(DEFAULT_VOLUME)
+      audio.play().catch(() => {})
+    }
+  }
+
+  function changeVolume(next: number) {
+    const audio = musicRef.current
+    if (!audio) return
+    audio.volume = next
+    setVolume(next)
+    try {
+      if (next > 0) localStorage.setItem(VOLUME_KEY, String(next))
+      localStorage.setItem(MUSIC_KEY, next === 0 ? '1' : '0')
+    } catch {}
+    if (next === 0) audio.pause()
+    else if (audio.paused) audio.play().catch(() => {})
+  }
 
   function toggle() {
     const video = videoRef.current
@@ -123,15 +194,48 @@ export function HeroVideo() {
         </div>
       </div>
 
+      <audio
+        ref={musicRef}
+        src={MUSIC}
+        loop
+        preload="none"
+        onPlay={() => setSounding(true)}
+        onPause={() => setSounding(false)}
+      />
+
       {ready && (
-        <button
-          type="button"
-          className={styles.toggle}
-          onClick={toggle}
-          aria-label={playing ? 'Pausar video' : 'Reproducir video'}
-        >
-          {playing ? <Pause size={16} fill="currentColor" aria-hidden /> : <Play size={16} fill="currentColor" aria-hidden />}
-        </button>
+        <div className={styles.controls}>
+          <div className={styles.sound} data-music-toggle>
+            <div className={styles.volume}>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                step={1}
+                value={sounding ? Math.round(volume * 100) : 0}
+                onChange={(e) => changeVolume(Number(e.target.value) / 100)}
+                aria-label="Volumen de la música"
+              />
+            </div>
+            <button
+              type="button"
+              className={styles.toggle}
+              onClick={toggleMusic}
+              aria-pressed={sounding}
+              aria-label={sounding ? 'Silenciar música' : 'Activar música'}
+            >
+              {sounding ? <Volume2 size={18} aria-hidden /> : <VolumeX size={18} aria-hidden />}
+            </button>
+          </div>
+          <button
+            type="button"
+            className={styles.toggle}
+            onClick={toggle}
+            aria-label={playing ? 'Pausar video' : 'Reproducir video'}
+          >
+            {playing ? <Pause size={16} fill="currentColor" aria-hidden /> : <Play size={16} fill="currentColor" aria-hidden />}
+          </button>
+        </div>
       )}
       <span className={styles.line} aria-hidden />
     </section>
