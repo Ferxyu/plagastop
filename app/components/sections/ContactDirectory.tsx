@@ -1,6 +1,6 @@
-import { Mail, Phone } from 'lucide-react'
+import { Mail, MessageCircle, Phone } from 'lucide-react'
 import { contactAreas } from '~/content/company'
-import { formatPhone, mailHref, telHref } from '~/lib/contact'
+import { formatPhone, mailHref, telHref, whatsappHref } from '~/lib/contact'
 import { track } from '~/lib/analytics'
 import styles from './ContactDirectory.module.css'
 
@@ -23,6 +23,17 @@ export function ContactDirectory({ tone = 'light' }: { tone?: 'light' | 'dark' }
               >
                 <Phone size={16} strokeWidth={1.75} aria-hidden />
                 {formatPhone(area.phone)}
+              </a>
+            )}
+            {area.whatsapp && (
+              <a
+                href={whatsappHref(area.phone)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track('whatsapp_click', { location: 'directory', area: area.id })}
+              >
+                <MessageCircle size={16} strokeWidth={1.75} aria-hidden />
+                WhatsApp
               </a>
             )}
             {area.email && (

@@ -4,7 +4,7 @@ import { company, contactAreas, salesArea } from '~/content/company'
 import { coverageSummary } from '~/content/coverage'
 import { industries } from '~/content/industries'
 import { primaryServices } from '~/content/services'
-import { formatPhone, mailHref, telHref } from '~/lib/contact'
+import { formatPhone, mailHref, telHref, whatsappHref } from '~/lib/contact'
 import { Logo } from '~/components/ui/Logo'
 import styles from './SiteFooter.module.css'
 
@@ -136,6 +136,11 @@ export function SiteFooter({ variant = 'full' }: { variant?: 'full' | 'landing' 
                 {!a.phoneUnconfirmed && (
                   <a href={telHref(a.phone)} className="tabular">
                     {formatPhone(a.phone)}
+                  </a>
+                )}
+                {a.whatsapp && (
+                  <a href={whatsappHref(a.phone)} target="_blank" rel="noopener noreferrer">
+                    WhatsApp
                   </a>
                 )}
                 {a.email && <a href={mailHref(a.email)}>{a.email}</a>}

@@ -27,7 +27,7 @@ export default function Contact() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="fdw-silos"
+        image="sede-concepcion"
         title="Contacto"
         lead="Llama o escribe directamente al área que necesitas. Para cotizar un servicio, usa el formulario de cotización: es más rápido."
         actions={

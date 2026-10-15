@@ -90,3 +90,18 @@
   --dur: 260ms;
   --dur-slow: 700ms;
 }
+
+/* Botones flotantes (WhatsApp y música): esquina inferior derecha.
+   Bajo 960 px suben para no tapar la barra fija de acciones del móvil. */
+:root {
+  --fab-right: clamp(16px, 2vw, 28px);
+  --fab-bottom: 24px;
+  --fab-size: 56px;
+}
+
+@media (max-width: 959px) {
+  :root {
+    --fab-bottom: calc(84px + env(safe-area-inset-bottom));
+    --fab-size: 52px;
+  }
+}

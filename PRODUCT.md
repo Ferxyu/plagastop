@@ -42,7 +42,7 @@ Empresa de prevención y control de plagas fundada en 1985 en Concepción, con a
 - **No usan WhatsApp**: los canales son teléfono, correo y formulario.
 - Contacto (confirmado 2026-10-12, reemplaza los datos anteriores por área):
   - Área Comercial: +56 9 7793 7824 · areacomercial@plagastop.cl
-  - Secretaría: +56 41 210 4508 · secretaria@plagastop.cl
+  - Secretaría: (41) 210 4508 (fijo) · secretaria@plagastop.cl
 - Redes: facebook.com/plagastop · instagram.com/plagastop_ltda
 - El cliente B2B trabaja con documentación: certificados de servicio, registros MIP, informes, cumplimiento ante autoridad sanitaria y auditorías de clientes.
 

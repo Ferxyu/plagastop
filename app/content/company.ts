@@ -13,6 +13,8 @@ export interface ContactArea {
   purpose: string
   /** Teléfono pendiente de confirmación: no se publica. */
   phoneUnconfirmed?: boolean
+  /** El número atiende WhatsApp (confirmado por Plagastop). */
+  whatsapp?: boolean
 }
 
 export const company = {
@@ -45,6 +47,7 @@ export const contactAreas: ContactArea[] = [
     id: 'comercial',
     name: 'Área Comercial',
     phone: '+56977937824',
+    whatsapp: true,
     email: 'areacomercial@plagastop.cl',
     purpose: 'Cotizaciones y nuevos servicios',
   },

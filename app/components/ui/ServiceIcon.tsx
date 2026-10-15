@@ -66,6 +66,15 @@ const paths: Record<ServiceIconName, ReactNode> = {
       <path d="M6 15v-4h8v4M9 11V7h3v4M16 15v-2.5h3V15" />
     </>
   ),
+  // Corte de tronco: la madera que se exporta como astillas
+  wood: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="4.75" />
+      <circle cx="12" cy="12" r="1.25" />
+      <path d="M12 3.5v3.75" />
+    </>
+  ),
   home: (
     <>
       <path d="M4 11l8-6.5 8 6.5" />

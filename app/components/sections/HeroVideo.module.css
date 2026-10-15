@@ -238,7 +238,7 @@
   }
 }
 
-/* Controles de video y música, juntos en la esquina */
+/* Control de pausa del video, en la esquina del hero */
 .controls {
   position: absolute;
   right: var(--gutter);
@@ -247,11 +247,65 @@
   gap: 8px;
 }
 
-/* Regulador de volumen: cápsula vertical que se abre sobre la bocina */
-.sound {
-  position: relative;
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.16);
+  color: var(--ps-white);
+  transition: background-color var(--dur) var(--ease-out);
 }
 
+.toggle:hover {
+  background: rgb(255 255 255 / 0.28);
+}
+
+@media (max-width: 767px) {
+  .controls {
+    top: calc(var(--header-h) + 64px);
+    bottom: auto;
+  }
+}
+
+/* Bocina flotante: más pequeña que WhatsApp, centrada sobre él y fija al hacer scroll */
+.sound {
+  position: fixed;
+  right: calc(var(--fab-right) + (var(--fab-size) - 40px) / 2);
+  bottom: calc(var(--fab-bottom) + var(--fab-size) + 12px);
+  z-index: 45;
+}
+
+.soundButton {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(22 38 61 / 0.86);
+  color: var(--ps-white);
+  box-shadow:
+    inset 0 0 0 1.5px rgb(255 255 255 / 0.4),
+    0 10px 24px -10px rgb(10 11 11 / 0.5);
+  backdrop-filter: blur(6px);
+  transition:
+    background-color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-expo);
+}
+
+.soundButton:hover {
+  background: var(--ps-navy);
+  transform: translateY(-2px);
+}
+
+.soundButton[aria-pressed='true'] {
+  color: var(--ps-lime);
+}
+
+/* Regulador de volumen: cápsula vertical que se abre sobre la bocina */
 .volume {
   position: absolute;
   left: 50%;
@@ -273,50 +327,79 @@
   translate: -50% 0;
 }
 
-.volume input {
-  display: block;
-  width: 44px;
-  height: 112px;
-  margin: 0;
-  padding: 14px 0;
-  border-radius: 22px;
-  background: rgb(22 38 61 / 0.72);
+/* Cápsula: el regulador es un rango horizontal girado, con riel propio que va de punta a punta,
+   así el mínimo (silencio) coincide con el fondo visible del riel en todos los navegadores. */
+.capsule {
+  position: relative;
+  width: 40px;
+  height: 128px;
+  border-radius: 20px;
+  background: rgb(22 38 61 / 0.9);
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.3);
   backdrop-filter: blur(6px);
-  accent-color: var(--ps-turquoise);
-  writing-mode: vertical-lr;
-  direction: rtl;
+}
+
+.capsule input {
+  --thumb: 16px;
+  /* El relleno termina en el centro del pulgar, que recorre el riel menos su propio ancho */
+  --fill-to: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--level, 0));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  rotate: -90deg;
+  translate: -50% -50%;
+  appearance: none;
   cursor: pointer;
 }
 
-.toggle {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
+.capsule input::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--ps-turquoise) var(--fill-to), rgb(255 255 255 / 0.28) var(--fill-to));
+}
+
+.capsule input::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--ps-turquoise) var(--fill-to), rgb(255 255 255 / 0.28) var(--fill-to));
+}
+
+.capsule input::-webkit-slider-thumb {
+  width: var(--thumb);
+  height: var(--thumb);
+  margin-top: calc((6px - var(--thumb)) / 2);
   border: 0;
   border-radius: 50%;
-  background: rgb(255 255 255 / 0.16);
-  color: var(--ps-white);
-  transition: background-color var(--dur) var(--ease-out);
+  background: var(--ps-white);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.35);
+  appearance: none;
 }
 
-.toggle:hover {
-  background: rgb(255 255 255 / 0.28);
+.capsule input::-moz-range-thumb {
+  width: var(--thumb);
+  height: var(--thumb);
+  border: 0;
+  border-radius: 50%;
+  background: var(--ps-white);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.35);
 }
 
-@media (max-width: 767px) {
-  /* En móvil los controles van arriba: el regulador se abre hacia abajo */
-  .volume {
-    top: 100%;
-    bottom: auto;
-    padding-top: 8px;
-    padding-bottom: 0;
-    translate: -50% -6px;
-  }
+.capsule input:focus-visible {
+  outline: none;
+}
 
-  .controls {
-    top: calc(var(--header-h) + 64px);
-    bottom: auto;
+.capsule:has(input:focus-visible) {
+  outline: 2px solid var(--ps-lime);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sound {
+    animation: fade-up 700ms var(--ease-expo) 1100ms both;
   }
 }
 

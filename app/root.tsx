@@ -23,6 +23,7 @@ import type { Route } from './+types/root'
 import { SiteHeader } from '~/components/layout/SiteHeader'
 import { SiteFooter } from '~/components/layout/SiteFooter'
 import { MobileActionBar } from '~/components/layout/MobileActionBar'
+import { WhatsAppButton } from '~/components/layout/WhatsAppButton'
 import { CursorDot } from '~/components/motion/CursorDot'
 import { useReveal } from '~/components/motion/useReveal'
 import { usePointerFx } from '~/components/motion/usePointerFx'
@@ -87,6 +88,7 @@ export default function App() {
       </main>
       <SiteFooter variant={chrome} />
       {chrome === 'full' && !handle.hideActionBar && <MobileActionBar />}
+      <WhatsAppButton />
       <CursorDot />
     </>
   )

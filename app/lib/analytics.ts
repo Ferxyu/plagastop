@@ -12,6 +12,7 @@ export type AnalyticsEvent =
   | 'contact_submit'
   | 'tel_click'
   | 'email_click'
+  | 'whatsapp_click'
 
 declare global {
   interface Window {

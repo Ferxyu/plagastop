@@ -16,6 +16,7 @@ export type ServiceIconName =
   | 'export'
   | 'gas'
   | 'port'
+  | 'wood'
   | 'home'
 
 export interface ServiceFaq {
@@ -49,7 +50,7 @@ export interface Service {
   seo: { title: string; description: string }
 }
 
-export const services: Service[] = [
+const serviceList: Service[] = [
   {
     slug: 'manejo-integrado-de-plagas',
     name: 'Manejo Integrado de Plagas (MIP)',
@@ -57,7 +58,6 @@ export const services: Service[] = [
     icon: 'mip',
     photo: 'estacion-control-interior',
     photo2: 'galpon-tecnico',
-    featured: true,
     summary:
       'Programa preventivo y periódico para mantener toda la instalación bajo control, con sanitización incluida.',
     headline: 'Manejo Integrado de Plagas para empresas e industrias',
@@ -206,6 +206,7 @@ export const services: Service[] = [
     icon: 'grain',
     photo: 'silos-graneles',
     photo2: 'termonebulizacion-silo',
+    featured: true,
     summary:
       'Programas para granos almacenados con laboratorio móvil, para proteger el valor del producto.',
     headline: 'Fumigación y programas para granos almacenados',
@@ -226,6 +227,36 @@ export const services: Service[] = [
       title: 'Fumigación de granos almacenados',
       description:
         'Programas de control y fumigación para granos almacenados en silos y bodegas, con laboratorio móvil. Plagastop, Concepción.',
+    },
+  },
+  {
+    // Especialidad indicada por Plagastop (octubre 2026). [Validar redacción con Plagastop]
+    slug: 'pulverizacion-de-astillas-de-madera',
+    name: 'Pulverización de astillas de madera',
+    shortName: 'Astillas de madera',
+    icon: 'wood',
+    photo: 'astillas-bodega-barco',
+    photo2: 'astillas-de-pino',
+    featured: true,
+    summary: 'Pulverización de astillas de madera de exportación en bodegas de buques y en contenedores.',
+    headline: 'Pulverización de astillas de madera en buques y contenedores',
+    intro:
+      'Las astillas de madera que se exportan a granel viajan en bodegas de buques o en contenedores. Plagastop realiza la pulverización de la carga en ambos formatos, coordinada con los tiempos del embarque.',
+    whenNeeded: [
+      'Exportas astillas de madera a granel en bodegas de buques.',
+      'Despachas astillas de madera en contenedores.',
+      'Necesitas que el tratamiento se coordine con la carga y la salida de la nave.',
+    ],
+    includes: [
+      'Pulverización de astillas en bodegas de buques.',
+      'Pulverización de astillas en contenedores.',
+      'Coordinación con la operación portuaria y los tiempos de carga.',
+    ],
+    industries: ['forestal', 'puertos-y-comercio-exterior'],
+    seo: {
+      title: 'Pulverización de astillas de madera en buques y contenedores',
+      description:
+        'Pulverización de astillas de madera de exportación en bodegas de buques y contenedores, en los puertos del Biobío y el sur de Chile. Plagastop, desde 1985.',
     },
   },
   {
@@ -294,6 +325,7 @@ export const services: Service[] = [
     icon: 'port',
     photo: 'tratamiento-buque',
     photo2: 'pasillo-nave',
+    featured: true,
     summary:
       'Control de plagas en instalaciones portuarias y naves, coordinado con la operación.',
     headline: 'Control de plagas en instalaciones portuarias y buques',
@@ -344,6 +376,15 @@ export const services: Service[] = [
         'Control de roedores e insectos para casas, departamentos y condominios en el Gran Concepción y el sur de Chile.',
     },
   },
+]
+
+/**
+ * Las especialidades (featured: granos almacenados, astillas de madera, puertos y buques) van primero,
+ * así encabezan el menú, el home y los listados.
+ */
+export const services: Service[] = [
+  ...serviceList.filter((s) => s.featured),
+  ...serviceList.filter((s) => !s.featured),
 ]
 
 export const primaryServices = services.filter((s) => !s.secondary)

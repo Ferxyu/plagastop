@@ -113,10 +113,11 @@ export const industries: Industry[] = [
       'Plagas en bodegas y naves durante la estadía en puerto.',
     ],
     services: [
+      'tratamientos-portuarios-y-buques',
+      'pulverizacion-de-astillas-de-madera',
+      'fumigacion-de-granos-almacenados',
       'tratamientos-fitosanitarios-sag',
       'medicion-de-gases-gas-free',
-      'tratamientos-portuarios-y-buques',
-      'fumigacion-de-granos-almacenados',
     ],
     photo: 'monitoreo-fosfina-barco',
     photo2: 'patio-contenedores',
@@ -165,7 +166,12 @@ export const industries: Industry[] = [
       'Exigencias fitosanitarias de los mercados de destino.',
       'Plagas en bodegas de insumos e instalaciones de proceso.',
     ],
-    services: ['tratamientos-fitosanitarios-sag', 'manejo-integrado-de-plagas', 'control-de-roedores'],
+    services: [
+      'pulverizacion-de-astillas-de-madera',
+      'tratamientos-fitosanitarios-sag',
+      'manejo-integrado-de-plagas',
+      'control-de-roedores',
+    ],
     photo: 'astillas-de-pino',
     photo2: 'astillas-bodega-barco',
     seo: {

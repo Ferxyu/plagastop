@@ -436,7 +436,7 @@ Home: hero con la foto `HOME` muy de fondo (desaturada, desenfocada, velo negro/
 - Galería "Así trabajamos en terreno": eliminada.
 - Cabeceras interiores y banda con parallax usan las fotos FDW elegidas por el cliente.
 - Desplegables con estilo propio (combobox accesible) en lugar del menú nativo del sistema.
-- Contacto reducido a dos vías: Área Comercial (+56 9 7793 7824, areacomercial@plagastop.cl) y Secretaría (+56 41 210 4508, secretaria@plagastop.cl).
+- Contacto reducido a dos vías: Área Comercial (+56 9 7793 7824, areacomercial@plagastop.cl) y Secretaría ((41) 210 4508, fijo; enlace tel:+56412104508; secretaria@plagastop.cl).
 
 - Home acortada: se eliminaron la banda con parallax y declaración, "Un socio técnico para tu operación" y "Habla directo con el área que necesitas" (los contactos siguen en el footer y en /contacto).
 - Servicios en la Home: grilla de 4 columnas con aparición escalonada, inclinación 3D y zoom de imagen (reemplaza las tarjetas fijadas que se apilaban, que hacían lento el scroll). Se eliminó "Así de simple es trabajar con nosotros" de la Home.

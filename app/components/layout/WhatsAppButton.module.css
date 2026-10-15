@@ -1,0 +1,74 @@
+.fab {
+  position: fixed;
+  right: var(--fab-right);
+  bottom: var(--fab-bottom);
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  width: var(--fab-size);
+  height: var(--fab-size);
+  border-radius: 50%;
+  background: #25d366;
+  color: var(--ps-white);
+  box-shadow: 0 12px 28px -10px rgb(10 11 11 / 0.45);
+  transition:
+    transform var(--dur) var(--ease-expo),
+    box-shadow var(--dur) var(--ease-out),
+    bottom var(--dur) var(--ease-out);
+}
+
+.fab svg {
+  width: 30px;
+  height: 30px;
+}
+
+.fab:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 18px 34px -12px rgb(10 11 11 / 0.5);
+}
+
+.fab:focus-visible {
+  outline: 3px solid var(--ps-navy);
+  outline-offset: 3px;
+}
+
+/* Etiqueta que asoma a la izquierda al pasar el mouse (solo escritorio) */
+.tip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  padding: 8px 14px;
+  border-radius: var(--pill);
+  background: var(--ps-navy);
+  color: var(--ps-white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  translate: 8px -50%;
+  pointer-events: none;
+  transition:
+    opacity var(--dur) var(--ease-out),
+    translate var(--dur) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .fab:hover .tip {
+    opacity: 1;
+    translate: 0 -50%;
+  }
+}
+
+/* Entrada suave al cargar */
+@media (prefers-reduced-motion: no-preference) {
+  .fab {
+    animation: fab-in 700ms var(--ease-expo) 900ms both;
+  }
+}
+
+@keyframes fab-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
