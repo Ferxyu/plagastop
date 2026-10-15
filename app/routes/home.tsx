@@ -15,6 +15,7 @@ import { FineBand } from '~/components/sections/FineBand'
 import { ServiceTiles } from '~/components/sections/ServiceTiles'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { Faq } from '~/components/sections/Faq'
+import { SedeModel } from '~/components/sections/SedeModel'
 import styles from './home.module.css'
 
 export const meta: Route.MetaFunction = () =>
@@ -59,15 +60,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Sede: foto a la izquierda, texto a la derecha */}
+      {/* 4. Sede: maqueta 3D a la izquierda, texto a la derecha */}
       <section className={`${styles.sede} on-dark`} aria-labelledby="sede-title">
-        <div className={styles.sedeMedia}>
-          <div className={styles.sedePhoto}>
-            <Photo id="sede-concepcion" sizes="(min-width: 1000px) 55vw, 100vw" parallax={0.1} />
-          </div>
-          <div className={styles.sedeInset} data-reveal="2" data-reveal-style="clip">
-            <Photo id="equipo-en-nave" sizes="300px" />
-          </div>
+        <div className={styles.sedeMedia} data-reveal="1" data-reveal-style="scale">
+          <SedeModel />
         </div>
         <div className={styles.sedeCopy}>
           <p className={`eyebrow ${styles.eyebrowTurquoise}`} data-reveal>
