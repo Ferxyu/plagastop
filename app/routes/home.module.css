@@ -60,6 +60,15 @@
   background: var(--ps-white);
 }
 
+/* 6. Reseñas sobre amarillo manteca suave */
+.reviews {
+  background: var(--ps-butter-soft);
+}
+
+.reviewsHead {
+  margin-bottom: var(--s-6);
+}
+
 /* 4. Sede: foto a sangre a la izquierda, texto a la derecha */
 .sede {
   display: grid;
@@ -83,11 +92,23 @@
   padding: var(--s-4) var(--gutter) var(--s-9);
 }
 
+/* Cuatro párrafos: algo más chicos que un lead para que el bloque no se alargue demasiado */
 .sedeText {
-  max-width: 48ch;
-  font-size: var(--text-lead);
-  line-height: 1.5;
-  color: rgb(255 255 255 / 0.86);
+  display: grid;
+  gap: var(--s-3);
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.84);
+}
+
+.sedeText strong {
+  font-weight: 600;
+  color: var(--ps-white);
+}
+
+.sedeText em {
+  color: var(--ps-butter);
 }
 
 .since {
@@ -117,7 +138,8 @@
 
 @media (min-width: 1000px) {
   .sede {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    /* La maqueta cede espacio al texto, que tiene cuatro párrafos */
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     min-height: 720px;
   }
 
@@ -127,8 +149,8 @@
 
   .sedeCopy {
     align-content: center;
-    max-width: 620px;
-    padding: var(--s-9) var(--s-9) var(--s-9) 120px;
+    max-width: 760px;
+    padding: var(--s-9) var(--gutter) var(--s-9) 64px;
   }
 }
 

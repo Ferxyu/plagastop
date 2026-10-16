@@ -16,6 +16,7 @@ import { ServiceTiles } from '~/components/sections/ServiceTiles'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { Faq } from '~/components/sections/Faq'
 import { SedeModel } from '~/components/sections/SedeModel'
+import { GoogleReviews } from '~/components/sections/GoogleReviews'
 import styles from './home.module.css'
 
 export const meta: Route.MetaFunction = () =>
@@ -70,18 +71,34 @@ export default function Home() {
             Nuestra sede
           </p>
           <h2 id="sede-title" className={styles.title} data-reveal={1}>
-            <SplitWords text="Un respaldo que puedes conocer en" />{' '}
+            <SplitWords text="Una sede que refleja" />{' '}
             <span className={styles.lime}>
-              <SplitWords text="persona." start={6} />
+              <SplitWords text="nuestra trayectoria." start={4} />
             </span>
           </h2>
-          <p className={styles.sedeText} data-reveal={2}>
-            No somos solo una página web. En nuestra sede de Concepción te recibimos para conocer tu operación y
-            planificar contigo el programa de tu instalación.
-          </p>
+          <div className={styles.sedeText} data-reveal={2}>
+            <p>
+              Ubicadas en el Parque Industrial Ejército de Concepción, nuestras oficinas fueron diseñadas por el
+              arquitecto chileno <strong>Cristián Verdugo Núñez</strong>, director de Verdugo Arquitecto.
+            </p>
+            <p>
+              Con una superficie construida de <strong>327 m²</strong>, el edificio destaca por su propuesta de
+              arquitectura corporativa, que fue seleccionada por la Delegación Concepción del Colegio de Arquitectos
+              para formar parte de <em>Diálogos Urbanos</em>, un espacio de difusión y reflexión sobre arquitectura
+              local.
+            </p>
+            <p>
+              Más que un lugar de trabajo, nuestra sede representa el compromiso de Plagastop con el desarrollo, la
+              innovación y la mejora continua.
+            </p>
+            <p>
+              Desde aquí, seguimos construyendo relaciones de confianza con las empresas e industrias que nos eligen
+              para proteger sus operaciones.
+            </p>
+          </div>
           <p className={styles.since} data-reveal={3}>
-            <b>Desde {company.foundingYear}</b>
-            <span>en {company.address.city}</span>
+            <b>25 años</b>
+            <span>de presencia en el mercado nacional</span>
           </p>
           <p className={styles.address} data-reveal={3}>
             {company.address.street}, {company.address.area} · {company.hours.label}
@@ -115,7 +132,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
+      {/* 6. Reseñas de Google: valoración y carrusel de reseñas positivas */}
+      <section className={`section ${styles.reviews}`} aria-labelledby="resenas-title">
+        <div className="container">
+          <header className={`${styles.centerHead} ${styles.reviewsHead}`}>
+            <p className={`eyebrow ${styles.eyebrowForest}`} data-reveal>
+              Reseñas en Google
+            </p>
+            <h2 id="resenas-title" className={styles.bigTitle} data-reveal={1}>
+              <SplitWords text="Lo que dicen" />{' '}
+              <span className={styles.forest}>
+                <SplitWords text="nuestros clientes." start={3} />
+              </span>
+            </h2>
+          </header>
+          <GoogleReviews />
+        </div>
+      </section>
+
+      {/* 7. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
       <section className="section" aria-labelledby="faq-title">
         <div className={`container ${styles.faqGrid}`}>
           <div className={styles.faqList}>

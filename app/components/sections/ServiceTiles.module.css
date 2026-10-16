@@ -1,39 +1,60 @@
-.tiles {
-  display: grid;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
+/* Una hilera de cartas grandes en carrusel: tres a la vista en escritorio, una y un poco en móvil */
+.carousel {
+  container-type: inline-size;
+  overflow: hidden;
 }
 
-/* Especialidades: una columna en móvil, tres grandes desde 900 px */
-.featured {
-  grid-template-columns: minmax(0, 1fr);
+.track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.track li {
+  flex: none;
+  width: 85cqi;
 }
 
 @media (min-width: 900px) {
-  .featured {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+  .track li {
+    width: calc((100cqi - 40px) / 3);
   }
 }
 
-/* Resto: dos columnas en móvil, tres en tablet, seis en escritorio */
-.others {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 10px;
-}
+/*
+ * El carrusel queda quieto hasta que la sección aparece en pantalla (useReveal la marca como shown);
+ * entonces espera 2,5 s para que se aprecien las tres especialidades y avanza. Se detiene con el mouse.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .track {
+    animation: carousel 110s linear 2.5s infinite;
+    animation-play-state: paused;
+  }
 
-@media (min-width: 700px) {
-  .others {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .carousel[data-reveal-state='shown'] .track {
+    animation-play-state: running;
+  }
+
+  .carousel[data-reveal-state='shown']:hover .track,
+  .carousel[data-reveal-state='shown']:focus-within .track {
+    animation-play-state: paused;
   }
 }
 
-@media (min-width: 1100px) {
-  .others {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+/* Sin movimiento: se recorre a mano */
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    overflow-x: auto;
+  }
+}
+
+/* La segunda copia empieza justo donde termina la primera (mitad del ancho + medio espacio) */
+@keyframes carousel {
+  to {
+    translate: calc(-50% - 10px) 0;
   }
 }
 
@@ -240,17 +261,5 @@
     right: 28px;
     bottom: 28px;
     gap: 10px;
-  }
-}
-
-@media (min-width: 1100px) {
-  .others .name {
-    font-size: 1.1875rem;
-  }
-
-  .others .text {
-    left: 18px;
-    right: 16px;
-    bottom: 18px;
   }
 }

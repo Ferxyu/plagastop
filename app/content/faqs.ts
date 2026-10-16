@@ -2,12 +2,11 @@ import { company, salesArea } from './company'
 import { coverageSummary } from './coverage'
 import { formatPhone } from '~/lib/contact'
 
-/** Preguntas frecuentes generales. Solo respuestas con información confirmada. */
+/**
+ * Preguntas frecuentes generales. Solo respuestas con información confirmada.
+ * La primera se muestra abierta; la de zonas va más abajo porque el home ya la responde en Cobertura.
+ */
 export const generalFaqs = [
-  {
-    q: '¿En qué zonas trabajan?',
-    a: `${coverageSummary}. Atendemos todo el Gran Concepción (Concepción, Talcahuano, Hualpén, San Pedro de la Paz, Chiguayante, Hualqui, Penco, Lirquén, Tomé, Coronel y Lota), Los Ángeles, Chillán y toda la Región de Ñuble, además de las regiones de Los Ríos y Los Lagos.`,
-  },
   {
     q: '¿Están autorizados por el SAG?',
     a: 'Sí. Plagastop cuenta con la Resolución SAG 3273/2025 para ejecutar tratamientos fitosanitarios oficiales de exportación e importación, y trabaja con el SAG en los puertos de la zona desde 1985.',
@@ -23,6 +22,10 @@ export const generalFaqs = [
   {
     q: '¿Desde cuándo operan?',
     a: 'Desde 1985. Plagastop nació en Concepción y en 2006 fue la primera empresa de control de plagas en Chile en certificarse bajo la norma ISO 9001.',
+  },
+  {
+    q: '¿En qué zonas trabajan?',
+    a: `${coverageSummary}. Atendemos todo el Gran Concepción (Concepción, Talcahuano, Hualpén, San Pedro de la Paz, Chiguayante, Hualqui, Penco, Lirquén, Tomé, Coronel y Lota), Los Ángeles, Chillán y toda la Región de Ñuble, además de las regiones de Los Ríos y Los Lagos.`,
   },
   {
     q: '¿Atienden hogares?',

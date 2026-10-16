@@ -55,13 +55,13 @@ export function FineBand() {
           día.
         </p>
         <ButtonLink
-          to="/cotizar?servicio=evaluacion"
+          to="/contacto"
           variant="secondary"
           size="lg"
           arrow
           onClick={() => track('cta_click', { location: 'multas' })}
         >
-          Prepara tu próxima fiscalización
+          Contáctanos
         </ButtonLink>
       </div>
     </section>

@@ -1,0 +1,171 @@
+.wrap {
+  display: grid;
+  gap: var(--s-7);
+}
+
+/* Valoración del perfil: nota grande, estrellas y enlace */
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3) var(--s-5);
+}
+
+.score {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 2.6rem + 3vw, 5rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--ps-navy);
+}
+
+.summaryText {
+  display: grid;
+  gap: 6px;
+  color: var(--ps-steel);
+}
+
+.summaryText b {
+  color: var(--ps-navy);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: var(--pill);
+  background: var(--ps-navy);
+  color: var(--ps-white);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease-out);
+}
+
+.link:hover {
+  background: var(--ps-forest);
+}
+
+/* Estrellas: dos capas, la de color recortada según --fill */
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star {
+  position: relative;
+  display: inline-grid;
+  line-height: 0;
+}
+
+.star > svg {
+  grid-area: 1 / 1;
+}
+
+.star > svg:first-child {
+  color: var(--ps-line-strong);
+}
+
+.star > svg:last-child {
+  color: #f2b01e;
+  clip-path: inset(0 calc((1 - var(--fill)) * 100%) 0 0);
+}
+
+/* Carrusel continuo de derecha a izquierda; se detiene al pasar el mouse */
+.carousel {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.track {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  width: max-content;
+  margin: 0;
+  padding: 4px 0 8px;
+  list-style: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track {
+    animation: reviews 60s linear infinite;
+  }
+
+  .carousel:hover .track,
+  .carousel:focus-within .track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    overflow-x: auto;
+  }
+}
+
+@keyframes reviews {
+  to {
+    translate: calc(-50% - 10px) 0;
+  }
+}
+
+.card {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  width: clamp(270px, 24vw, 360px);
+  padding: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--ps-white);
+  box-shadow: 0 0 0 1px var(--ps-line);
+}
+
+.quote {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ps-navy);
+  /* Reseñas largas: se cortan a seis líneas para que todas las tarjetas midan parecido */
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author b,
+.author small {
+  display: block;
+}
+
+.author b {
+  color: var(--ps-navy);
+}
+
+.author small {
+  font-size: 0.8125rem;
+  color: var(--ps-steel);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ps-forest);
+  color: var(--ps-white);
+  font-weight: 700;
+}

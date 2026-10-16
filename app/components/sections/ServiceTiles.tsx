@@ -8,50 +8,45 @@ import { Photo } from '~/components/ui/Photo'
 import styles from './ServiceTiles.module.css'
 
 /**
- * Servicios como fotografías a sangre con su nombre. Las especialidades (featured) van primero y en grande,
- * con su descripción; el resto, en una grilla más compacta. Debajo, accesos por industria.
+ * Servicios en una sola hilera de cartas grandes (foto a sangre, nombre y descripción) que avanza en carrusel
+ * de derecha a izquierda. Las especialidades (featured) van primero: al llegar a la sección se ven las tres
+ * quietas un momento y luego el carrusel arranca; se detiene al pasar el mouse. Debajo, accesos por industria.
  */
 export function ServiceTiles({ services }: { services: Service[] }) {
-  const featured = services.filter((s) => s.featured)
-  const rest = services.filter((s) => !s.featured)
+  // primaryServices ya viene con las especialidades primero.
+  const n = services.length
 
   return (
     <>
-      <ul className={`${styles.tiles} ${styles.featured}`} aria-label="Especialidades">
-        {featured.map((s, i) => (
-          <li key={s.slug} data-reveal={i}>
-            <Link to={`/servicios/${s.slug}`} className={`${styles.tile} ${styles.big}`} prefetch="intent">
-              <Photo id={s.photo} sizes="(min-width: 900px) 30vw, 100vw" />
-              <span className={styles.badge}>Especialidad</span>
-              <span className={styles.go} aria-hidden>
-                <ArrowRight size={18} strokeWidth={2.25} />
-              </span>
-              <span className={styles.text}>
-                <span className={styles.n}>{String(i + 1).padStart(2, '0')}</span>
-                <span className={styles.name}>{s.name}</span>
-                <span className={styles.summary}>{s.summary}</span>
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <ul className={`${styles.tiles} ${styles.others}`} aria-label="Otros servicios">
-        {rest.map((s, i) => (
-          <li key={s.slug} data-reveal={i % 3}>
-            <Link to={`/servicios/${s.slug}`} className={styles.tile} prefetch="intent">
-              <Photo id={s.photo} sizes="(min-width: 1100px) 16vw, (min-width: 700px) 32vw, 50vw" />
-              <span className={styles.go} aria-hidden>
-                <ArrowRight size={18} strokeWidth={2.25} />
-              </span>
-              <span className={styles.text}>
-                <span className={styles.n}>{String(featured.length + i + 1).padStart(2, '0')}</span>
-                <span className={styles.name}>{s.shortName}</span>
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {/* Dos copias para el bucle continuo; la segunda no se lee ni se enfoca */}
+      <div className={styles.carousel} data-reveal>
+        <ul className={styles.track} aria-label="Servicios">
+          {[...services, ...services].map((s, i) => {
+            const copy = i >= n
+            return (
+              <li key={i} aria-hidden={copy || undefined}>
+                <Link
+                  to={`/servicios/${s.slug}`}
+                  className={`${styles.tile} ${styles.big}`}
+                  prefetch="intent"
+                  tabIndex={copy ? -1 : undefined}
+                >
+                  <Photo id={s.photo} sizes="(min-width: 900px) 30vw, 85vw" />
+                  {s.featured && <span className={styles.badge}>Especialidad</span>}
+                  <span className={styles.go} aria-hidden>
+                    <ArrowRight size={18} strokeWidth={2.25} />
+                  </span>
+                  <span className={styles.text}>
+                    <span className={styles.n}>{String((i % n) + 1).padStart(2, '0')}</span>
+                    <span className={styles.name}>{s.name}</span>
+                    <span className={styles.summary}>{s.summary}</span>
+                  </span>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
 
       <div className={styles.industries} data-reveal>
         <p className="eyebrow">Soluciones por industria</p>
