@@ -1,7 +1,8 @@
-import { Phone } from 'lucide-react'
+import { Award, Phone } from 'lucide-react'
 import type { Route } from './+types/home'
 import type { RouteHandle } from '~/root'
 import { company, salesArea } from '~/content/company'
+import { distinctions } from '~/content/credentials'
 import { generalFaqs } from '~/content/faqs'
 import { primaryServices } from '~/content/services'
 import { buildMeta, faqLd, organizationLd } from '~/lib/seo'
@@ -66,7 +67,7 @@ export default function Home() {
           <SedeModel />
         </div>
         <div className={styles.sedeCopy}>
-          <p className={`eyebrow ${styles.eyebrowTurquoise}`} data-reveal>
+          <p className={`eyebrow ${styles.eyebrowButter}`} data-reveal>
             Nuestra sede
           </p>
           <h2 id="sede-title" className={styles.title} data-reveal={1}>
@@ -83,6 +84,17 @@ export default function Home() {
             <b>Desde {company.foundingYear}</b>
             <span>en {company.address.city}</span>
           </p>
+          <ul className={styles.distinctions} aria-label="Lo que nos distingue">
+            {distinctions.map((d, i) => (
+              <li key={d.id} data-reveal={i}>
+                <Award size={20} strokeWidth={1.75} aria-hidden />
+                <span>
+                  <b>{d.title}</b>
+                  {d.text}
+                </span>
+              </li>
+            ))}
+          </ul>
           <p className={styles.address} data-reveal={3}>
             {company.address.street}, {company.address.area} · {company.hours.label}
           </p>
@@ -95,15 +107,15 @@ export default function Home() {
       </section>
 
       {/* 5. Cobertura: línea con paradas que se dibuja hacia abajo */}
-      <section className={`section on-dark ${styles.coverage}`} aria-labelledby="cobertura-title">
+      <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title">
         <div className="container">
           <header className={styles.centerHead}>
-            <p className={`eyebrow ${styles.eyebrowButter}`} data-reveal>
+            <p className={`eyebrow ${styles.eyebrowBlue}`} data-reveal>
               Cobertura
             </p>
             <h2 id="cobertura-title" className={styles.bigTitle} data-reveal={1}>
               <SplitWords text="Estamos donde está" />{' '}
-              <span className={styles.lime}>
+              <span className={styles.blue}>
                 <SplitWords text="tu operación." start={3} />
               </span>
             </h2>

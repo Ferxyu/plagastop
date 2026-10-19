@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router'
-import { Award, FileCheck2, Pause, Play, ShieldCheck, Volume2, VolumeX } from 'lucide-react'
+import { Award, FileCheck2, ShieldCheck, Volume2, VolumeX } from 'lucide-react'
 import posterWide from '~/assets/media/hero-poster-1600.webp'
 import posterTall from '~/assets/media/hero-poster-720.webp'
 import { credentials } from '~/content/credentials'
@@ -44,7 +44,7 @@ const verbs = ['importando', 'produciendo', 'vendiendo', 'creciendo']
 /**
  * Hero del home: video real de terreno (cinco escenas), titular con verbo rotativo y credenciales bajo el logo.
  * El póster carga primero; el video se pide recién cuando la página terminó de cargar, y nunca con
- * movimiento reducido o ahorro de datos (en ese caso queda el botón para reproducirlo a voluntad).
+ * movimiento reducido o ahorro de datos: en esos casos queda el póster fijo.
  */
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -89,7 +89,8 @@ export function HeroVideo() {
     const start = performance.now()
     audio.volume = 0
     const step = (now: number) => {
-      const t = Math.min(1, (now - start) / FADE_MS)
+      // El primer cuadro puede llegar con una marca de tiempo levemente anterior a start
+      const t = Math.min(1, Math.max(0, (now - start) / FADE_MS))
       audio.volume = target * t
       if (t < 1) fadeRef.current = requestAnimationFrame(step)
     }
@@ -168,13 +169,6 @@ export function HeroVideo() {
     }
     if (next === 0) audio.pause()
     else if (audio.paused) audio.play().catch(() => {})
-  }
-
-  function toggle() {
-    const video = videoRef.current
-    if (!video) return
-    if (video.paused) video.play().catch(() => setPlaying(false))
-    else video.pause()
   }
 
   return (
@@ -290,19 +284,6 @@ export function HeroVideo() {
           document.body,
         )}
 
-      {ready && (
-        <div className={styles.controls}>
-          <button
-            type="button"
-            className={styles.toggle}
-            onClick={toggle}
-            aria-label={playing ? 'Pausar video' : 'Reproducir video'}
-          >
-            {playing ? <Pause size={16} fill="currentColor" aria-hidden /> : <Play size={16} fill="currentColor" aria-hidden />}
-          </button>
-        </div>
-      )}
-      <span className={styles.line} aria-hidden />
     </section>
   )
 }

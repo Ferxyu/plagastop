@@ -1,25 +1,38 @@
 :root {
-  /* Color — identidad: negro #0B0B0B, blanco y lima #CCE70B (conversión).
-     Secundarios: azul marino #16263D (fondos corporativos, títulos, industrias, footer),
-     verde bosque #2F5B57 (tarjetas e íconos de servicios, secciones técnicas),
-     gris #5F6873 (texto secundario).
-     Acentos: turquesa #00B8A9 (interacción, íconos, indicadores, botones secundarios; no como texto sobre claro),
-     azul eléctrico #2F80FF (estadísticas y cifras), amarillo manteca #F3E39A (fondos suaves y tarjetas informativas).
-     Turquesa y azul eléctrico no se usan juntos en una misma sección. */
+  /* Color (octubre 2026, pieza de referencia de gerencia): una sola familia, para que el sitio se vea homogéneo.
+     - Azul (muestreado de la referencia): #0B2B68 principal, #062057 intermedio, #041C44 profundo.
+       Estructura: fondos oscuros, velo del video, pie, botones secundarios y énfasis de texto sobre blanco.
+     - Lima #CCE70B (color del logo): todos los acentos: líneas, íconos, rótulos sobre oscuro, palabras destacadas.
+     - Amarillo #FCC41C (de la referencia): solo botones de cotizar y la cifra de alerta. Nunca como fondo.
+     - Grises: texto secundario y fondos claros.
+     - Degradados: entre azules, grises y el verde #2F5B57 (ver --gradient-*). */
   --ps-black: #0b0b0b;
-  --ps-navy: #16263d;
+  --ps-blue: #0b2b68;
+  --ps-blue-mid: #062057;
+  --ps-blue-deep: #041c44;
+  --ps-navy: var(--ps-blue-deep);
+  --ps-blue-soft: #eef2f8;
+  --ps-yellow: #fcc41c;
+  --ps-yellow-press: #e9ae00;
+  --ps-cta: var(--ps-yellow);
+  --ps-cta-press: var(--ps-yellow-press);
+  --ps-lime: #cce70b;
+  --ps-lime-press: #b9d300;
+  --ps-lime-soft: #f4f9d8;
+  --ps-accent: var(--ps-lime);
+  /* Verde y grises de apoyo para degradados y fondos (el verde no se usa plano) */
   --ps-forest: #2f5b57;
   --ps-forest-soft: #e4ecea;
-  --ps-turquoise: #00b8a9;
-  --ps-electric: #2f80ff;
+  --ps-slate: #4a5a6e;
+  --ps-neutral: #f4f5f6;
   --ps-butter: #f3e39a;
   --ps-butter-soft: #fbf6dc;
-  --ps-neutral: #f4f5f6;
+  --ps-electric: #2f80ff;
 
   --ps-ink: var(--ps-black);
   --ps-graphite: var(--ps-navy);
-  --ps-graphite-2: #1f3350;
-  --ps-graphite-3: #33476a;
+  --ps-graphite-2: #0f2f63;
+  --ps-graphite-3: #2b4270;
   --ps-steel: #5f6873;
   --ps-mist: #b3bcc8;
   --ps-gray: #8a929c;
@@ -28,28 +41,25 @@
   --ps-paper: var(--ps-neutral);
   --ps-white: #ffffff;
 
-  /* Alias de roles anteriores (los componentes los usan) */
+  /* Alias de roles anteriores (algunos componentes aún los usan) */
   --ps-ice: var(--ps-neutral);
   --ps-ice-soft: var(--ps-neutral);
-  --ps-ocean: var(--ps-forest);
-  --ps-sky: var(--ps-turquoise);
-  --ps-sage: var(--ps-turquoise);
-  --ps-sage-soft: var(--ps-forest-soft);
-  --ps-sage-deep: var(--ps-forest);
-  --ps-copper: var(--ps-turquoise);
-  --ps-copper-soft: var(--ps-forest-soft);
-
-  --ps-lime: #cce70b;
-  --ps-lime-press: #b9d300;
-  --ps-lime-soft: #f4f9d8;
+  --ps-sage-soft: var(--ps-blue-soft);
+  --ps-sage-deep: var(--ps-blue);
+  --ps-copper-soft: var(--ps-blue-soft);
   --ps-error: #c2361f;
 
-  /* Tipografía (Design System): Bricolage Grotesque para titulares y cifras, Fira Sans para lectura,
+  /* Degradados de marca: azules con gris o verde */
+  --gradient-brand: linear-gradient(115deg, #041c44 0%, #0b2b68 45%, #2f5b57 100%);
+  --gradient-blue-slate: linear-gradient(135deg, #0b2b68 0%, #1a3666 55%, #4a5a6e 100%);
+  --gradient-alert: linear-gradient(160deg, #041c44 0%, #0b2b68 58%, #23495a 100%);
+  --gradient-light: linear-gradient(180deg, #eef2f8 0%, #e4ecea 100%);
+
+  /* Tipografía (Design System): Anton para titulares, cifras y piezas de impacto (un solo grosor), Fira Sans para lectura,
      Fira Sans Condensed para rótulos en mayúsculas */
-  --font-display: 'Bricolage Grotesque', 'Arial Black', sans-serif;
+  --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
   --font: 'Fira Sans', Arial, system-ui, sans-serif;
   --font-label: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
-  --gradient-brand: linear-gradient(110deg, #2f5b57 0%, #267a71 52%, #00b8a9 100%);
 
   --text-sm: 0.875rem;
   --text-base: clamp(1.0625rem, 1.03rem + 0.15vw, 1.125rem);

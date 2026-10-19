@@ -11,7 +11,7 @@
   width: 100%;
   /* Proporción fija del lienzo: la proyección y los puntos dependen de ella */
   aspect-ratio: 800 / 550;
-  background: radial-gradient(ellipse 58% 52% at 52% 56%, rgb(0 184 169 / 0.22), rgb(0 184 169 / 0) 72%);
+  background: radial-gradient(ellipse 58% 52% at 52% 56%, rgb(204 231 11 / 0.22), rgb(204 231 11 / 0) 72%);
 }
 
 .canvas {
@@ -27,7 +27,7 @@
 }
 
 .canvas:focus-visible {
-  outline: 2px solid var(--ps-turquoise);
+  outline: 2px solid var(--ps-accent);
   outline-offset: -2px;
   border-radius: var(--radius);
 }
@@ -69,7 +69,7 @@
   content: '';
   position: absolute;
   inset: -3px;
-  border: 2px solid var(--ps-turquoise);
+  border: 2px solid var(--ps-accent);
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
@@ -85,7 +85,7 @@
 }
 
 .dot:focus-visible .dotIcon {
-  outline: 2px solid var(--ps-turquoise);
+  outline: 2px solid var(--ps-accent);
   outline-offset: 3px;
 }
 
@@ -201,7 +201,7 @@
 }
 
 .dialog figcaption button:hover {
-  border-color: var(--ps-turquoise);
+  border-color: var(--ps-accent);
 }
 
 /* Sin WebGL: la foto de la sede ocupa el lugar */

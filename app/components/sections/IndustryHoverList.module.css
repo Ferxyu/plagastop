@@ -24,14 +24,14 @@
 
 .index {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 400;
   font-size: 0.9375rem;
-  color: var(--ps-ocean);
+  color: var(--ps-blue);
 }
 
 .name {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 400;
   font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
   line-height: 1.25;
 }
@@ -56,7 +56,7 @@
 }
 
 .row:hover .name {
-  color: var(--ps-ocean);
+  color: var(--ps-blue);
 }
 
 .row:hover .go {
@@ -71,7 +71,7 @@
 }
 
 :global(.on-dark) .index {
-  color: var(--ps-turquoise);
+  color: var(--ps-accent);
 }
 
 :global(.on-dark) .facility {
@@ -83,5 +83,5 @@
 }
 
 :global(.on-dark) .row:hover .name {
-  color: var(--ps-turquoise);
+  color: var(--ps-accent);
 }

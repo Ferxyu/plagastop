@@ -56,15 +56,15 @@
 }
 
 .primary {
-  background: var(--ps-lime);
+  background: var(--ps-cta);
   color: var(--ps-ink);
-  border-color: var(--ps-lime);
+  border-color: var(--ps-cta);
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--ps-lime-press);
-  border-color: var(--ps-lime-press);
-  box-shadow: 0 12px 24px -14px rgb(130 150 0 / 0.9);
+  background: var(--ps-cta-press);
+  border-color: var(--ps-cta-press);
+  box-shadow: 0 12px 24px -14px rgb(178 128 0 / 0.7);
 }
 
 .secondary {
@@ -92,7 +92,7 @@
 .inverse {
   background: transparent;
   color: var(--ps-white);
-  border-color: var(--ps-turquoise);
+  border-color: var(--ps-accent);
 }
 
 .inverse:hover:not(:disabled) {
@@ -128,7 +128,7 @@
 
 .textLink span {
   text-decoration: underline;
-  text-decoration-color: var(--ps-copper);
+  text-decoration-color: var(--ps-accent);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.3em;
 }

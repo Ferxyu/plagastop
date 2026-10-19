@@ -81,7 +81,7 @@
 .navItem:global(.active),
 .navItem[data-current] {
   background: var(--ps-sage-soft);
-  box-shadow: inset 0 0 0 1px var(--ps-sage);
+  box-shadow: inset 0 0 0 1px var(--ps-blue);
 }
 
 .navItem svg {
@@ -115,7 +115,7 @@
   height: 36px;
   padding: 9px;
   border-radius: 50%;
-  background: var(--ps-turquoise);
+  background: var(--ps-accent);
   color: var(--ps-navy);
 }
 
@@ -212,7 +212,7 @@
 
 .megaLink:hover strong {
   text-decoration: underline;
-  text-decoration-color: var(--ps-copper);
+  text-decoration-color: var(--ps-accent);
   text-decoration-thickness: 2px;
 }
 
@@ -236,7 +236,7 @@
 
 .megaLink:hover .megaIcon,
 .megaLink:focus-visible .megaIcon {
-  background: var(--ps-sage);
+  background: var(--ps-accent);
 }
 
 .megaIndustries {
@@ -258,7 +258,7 @@
 
 .megaIndustry:hover {
   text-decoration: underline;
-  text-decoration-color: var(--ps-copper);
+  text-decoration-color: var(--ps-accent);
   text-decoration-thickness: 2px;
 }
 
@@ -441,7 +441,7 @@
 
 .header[data-overlay][data-scrolled='true'] .phone svg,
 .header[data-overlay]:has(.drawer:not([hidden])) .phone svg {
-  background: var(--ps-turquoise);
+  background: var(--ps-accent);
   color: var(--ps-navy);
 }
 

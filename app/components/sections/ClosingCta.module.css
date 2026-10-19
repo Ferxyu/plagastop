@@ -2,7 +2,7 @@
 .band {
   overflow: hidden;
   color: var(--ps-white);
-  background: linear-gradient(115deg, #16263d 0%, #1f3350 22%, #2f5b57 48%, #24474b 62%, #16263d 82%, #2f5b57 100%);
+  background: linear-gradient(115deg, #041c44 0%, #0b2b68 30%, #2f5b57 58%, #041c44 82%, #0b2b68 100%);
   background-size: 260% 260%;
 }
 
@@ -97,7 +97,7 @@
   height: 26px;
   padding: 5px;
   border-radius: 50%;
-  background: var(--ps-sky);
+  background: var(--ps-accent);
   color: var(--ps-navy);
 }
 

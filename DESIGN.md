@@ -461,3 +461,21 @@ Home: hero con la foto `HOME` muy de fondo (desaturada, desenfocada, velo negro/
   7. Cierre centrado sobre el degradado de marca.
 - **Retirado del home:** carrusel de logos de clientes, cifras con barras, formulario rápido del hero, tarjetas de certificaciones.
 - **Composición:** las secciones alternan izquierda, centro y derecha para no cargar un solo lado.
+
+### Tipografía de títulos: Anton (octubre 2026)
+
+- **Anton** (400, único grosor, condensada) reemplaza a Bricolage Grotesque en todo el sitio: titulares h1–h4, cifras ("1.000 UTM", "Desde 1985", años), nombres de servicios y regiones, y las piezas de impacto del hero.
+- Fira Sans sigue para lectura, botones y menús; Fira Sans Condensed para rótulos.
+- Reglas: grosor 400 siempre (`font-synthesis-weight: none` en `body` evita negritas simuladas), espaciado `0.01em` (sin tracking negativo) e interlineado ≥ 1.02 en títulos de varias líneas para que los acentos no choquen.
+
+### Paleta homogénea: azul y amarillo de la referencia + lima + grises (octubre 2026, pedido de gerencia)
+
+- **Azul** (muestreado de la pieza de referencia): `#0B2B68` principal (`--ps-blue`), `#062057` intermedio, `#041C44` profundo (`--ps-blue-deep`, también `--ps-navy`). Estructura: fondos oscuros, velo del video, pie, botones secundarios y énfasis de texto sobre blanco.
+- **Amarillo `#FCC41C`** (de la referencia, `--ps-cta`): solo botones de cotizar y la cifra de alerta "1.000". **Nunca como fondo.**
+- **Lima `#CCE70B`** (logo, `--ps-accent`): todos los acentos sobre oscuro: líneas, íconos, rótulos, palabras destacadas, insignias. Sobre blanco el énfasis va en azul (el lima no se lee).
+- **Grises:** texto secundario y fondos claros. El verde `#2F5B57` ya no se usa plano: solo dentro de degradados. El turquesa se retiró para que el sitio se lea como una sola familia.
+- **Degradados** (tokens `--gradient-*`): `brand` azul profundo → azul → verde (cierre), `blue-slate` azul → gris pizarra (sede), `alert` azul → gris verdoso (multas), `light` gris azulado → gris verdoso claro (cobertura).
+- Home: hero con velo azul · multas en degradado azul con la cifra en amarillo · servicios en blanco · sede en degradado azul-gris · cobertura en degradado claro · preguntas en blanco · cierre en degradado azul-verde. Sin botón de pausa ni línea bajo el video.
+- Servicios: carrusel de una sola hilera con los 9 servicios (especialidades primero). Se ven 4 en escritorio, 2 en tablet y 1,2 en móvil; arranca quieto 1,5 s al entrar en pantalla y luego avanza solo de derecha a izquierda a 30 px/s, en bucle y sin detenerse al pasar el mouse. Flechas a los lados adelantan o devuelven una tarjeta sin cortar el movimiento.
+- Se mantienen los fondos de sección de páginas interiores definidos por el cliente (`.section--paper`, `.section--sage`).
+- No se usan íconos de insectos ni promesas como "garantizado" o "24/7" de la pieza de referencia.
