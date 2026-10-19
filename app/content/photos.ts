@@ -111,6 +111,27 @@ const meta = {
     alt: 'Traslado de máquinas y materiales a bordo de un barco',
     ratio: 3 / 4,
   },
+  // Edificio de la sede (carpeta "imágenes edificio plagastop")
+  'edificio-frente': { alt: 'Fachada verde de la sede de Plagastop vista desde la calle', ratio: 3 / 2 },
+  'edificio-frente-costado': { alt: 'Frente de la sede de Plagastop entre árboles, desde un costado', ratio: 3 / 2 },
+  'edificio-frente-angular': {
+    alt: 'Fachada verde de la sede de Plagastop vista en ángulo a través del cerco',
+    ratio: 2 / 3,
+  },
+  'edificio-lateral-izquierdo': {
+    alt: 'Costado izquierdo de la sede de Plagastop, con su franja de ventanas verde y el acceso',
+    ratio: 3 / 2,
+  },
+  'edificio-costado-derecho': {
+    alt: 'Costado derecho de la sede de Plagastop, con celosías verticales y jardín',
+    ratio: 3 / 2,
+  },
+  'edificio-lateral-derecho': { alt: 'Vista lateral completa de la sede de Plagastop desde la calle', ratio: 3 / 2 },
+  'edificio-detras-costado-derecho': {
+    alt: 'Volumen posterior de la sede de Plagastop, con remate verde y contenedores',
+    ratio: 3 / 2,
+  },
+  'edificio-casino-bodegas': { alt: 'Casino y bodegas en contenedores, en el patio de la sede', ratio: 3 / 2 },
 } satisfies Record<string, PhotoMeta>
 
 export type PhotoId = keyof typeof meta

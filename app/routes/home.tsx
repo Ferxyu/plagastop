@@ -1,8 +1,7 @@
-import { Award, Phone } from 'lucide-react'
+import { Award, DraftingCompass, MapPin, Phone, Ruler } from 'lucide-react'
 import type { Route } from './+types/home'
 import type { RouteHandle } from '~/root'
 import { company, salesArea } from '~/content/company'
-import { distinctions } from '~/content/credentials'
 import { generalFaqs } from '~/content/faqs'
 import { primaryServices } from '~/content/services'
 import { buildMeta, faqLd, organizationLd } from '~/lib/seo'
@@ -30,6 +29,28 @@ export const meta: Route.MetaFunction = () =>
   })
 
 export const handle: RouteHandle = { overlayHeader: true }
+
+/** Ficha del edificio de la sede (fuentes: Verdugo Arquitecto y Diálogos Urbanos, Colegio de Arquitectos). */
+const sedeFacts = [
+  {
+    icon: DraftingCompass,
+    title: 'Arquitecto',
+    text: 'Cristián Verdugo Núñez, Verdugo Arquitecto',
+    href: 'https://verdugoarquitecto.cl/edificiosC.php',
+  },
+  { icon: Ruler, title: 'Superficie', text: '327 m² construidos' },
+  {
+    icon: MapPin,
+    title: 'Ubicación',
+    text: `${company.address.street}, ${company.address.area}, ${company.address.city}`,
+  },
+  {
+    icon: Award,
+    title: 'Reconocimiento',
+    text: 'Obra destacada en Diálogos Urbanos, Colegio de Arquitectos',
+    href: 'http://dialogosurbanos.blogspot.com/2009/08/obra-destacada-oficinas-plagastop_5378.html',
+  },
+]
 
 export default function Home() {
   return (
@@ -71,33 +92,40 @@ export default function Home() {
             Nuestra sede
           </p>
           <h2 id="sede-title" className={styles.title} data-reveal={1}>
-            <SplitWords text="Un respaldo que puedes conocer en" />{' '}
+            <SplitWords text="Una sede que refleja" />{' '}
             <span className={styles.lime}>
-              <SplitWords text="persona." start={6} />
+              <SplitWords text="nuestra trayectoria." start={4} />
             </span>
           </h2>
-          <p className={styles.sedeText} data-reveal={2}>
-            No somos solo una página web. En nuestra sede de Concepción te recibimos para conocer tu operación y
-            planificar contigo el programa de tu instalación.
-          </p>
-          <p className={styles.since} data-reveal={3}>
-            <b>Desde {company.foundingYear}</b>
-            <span>en {company.address.city}</span>
-          </p>
-          <ul className={styles.distinctions} aria-label="Lo que nos distingue">
-            {distinctions.map((d, i) => (
-              <li key={d.id} data-reveal={i}>
-                <Award size={20} strokeWidth={1.75} aria-hidden />
+          <div className={styles.sedeText} data-reveal={2}>
+            <p>
+              Nuestra sede en Concepción es una expresión de la identidad y trayectoria de Plagastop. Un espacio que
+              acompaña nuestro desarrollo como empresa y refleja la importancia que damos al profesionalismo, la
+              confianza y las relaciones de largo plazo.
+            </p>
+            <p>
+              Su arquitectura corporativa representa esa misma visión: una empresa que busca proyectar solidez,
+              mantener un vínculo cercano con sus clientes y seguir fortaleciendo su presencia en el sector industrial.
+            </p>
+          </div>
+          {/* Ficha del edificio: mismo formato compacto en dos columnas que la lista de distinciones */}
+          <ul className={styles.distinctions} aria-label="Ficha del edificio">
+            {sedeFacts.map((f, i) => (
+              <li key={f.title} data-reveal={i}>
+                <f.icon size={20} strokeWidth={1.75} aria-hidden />
                 <span>
-                  <b>{d.title}</b>
-                  {d.text}
+                  <b>{f.title}</b>
+                  {f.href ? (
+                    <a href={f.href} target="_blank" rel="noopener noreferrer">
+                      {f.text}
+                    </a>
+                  ) : (
+                    f.text
+                  )}
                 </span>
               </li>
             ))}
           </ul>
-          <p className={styles.address} data-reveal={3}>
-            {company.address.street}, {company.address.area} · {company.hours.label}
-          </p>
           <div data-reveal={4}>
             <ButtonLink to="/contacto" variant="inverse">
               Agenda una reunión en nuestra sede

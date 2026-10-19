@@ -1,0 +1,117 @@
+/* Carrusel de fotos del edificio: alto fijo, ancho según la proporción de cada foto, encaje foto a foto */
+.gallery {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.track {
+  /* Referencia de offsetLeft para las flechas */
+  position: relative;
+  display: flex;
+  gap: var(--s-4);
+  margin: 0;
+  padding: 0 0 var(--s-2);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track:focus-visible {
+  outline: 2px solid var(--ps-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+
+.track li {
+  flex: none;
+  scroll-snap-align: start;
+}
+
+.track figure {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+}
+
+.frame {
+  height: clamp(260px, 22rem + 8vw, 480px);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--ps-line);
+}
+
+/* La foto define su propio ancho a partir del alto: horizontales y verticales conviven en la misma fila */
+.frame img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 85vw;
+  object-fit: cover;
+  transition: scale 700ms var(--ease-expo);
+}
+
+.track li:hover .frame img {
+  scale: 1.04;
+}
+
+.track figcaption {
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ps-steel);
+}
+
+@media (max-width: 639px) {
+  .frame {
+    height: 300px;
+  }
+}
+
+/* Flechas a la izquierda, bajo el carrusel (a la derecha quedarían bajo el botón flotante de WhatsApp) */
+.controls {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--s-2);
+}
+
+.controls button {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--ps-line-strong);
+  border-radius: 50%;
+  background: var(--ps-white);
+  color: var(--ps-navy);
+  cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+
+.controls button:hover {
+  border-color: var(--ps-navy);
+  background: var(--ps-navy);
+  color: var(--ps-white);
+}
+
+.controls button:focus-visible {
+  outline: 2px solid var(--ps-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    scroll-behavior: auto;
+  }
+}

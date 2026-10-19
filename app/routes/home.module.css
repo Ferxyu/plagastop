@@ -93,35 +93,28 @@
 }
 
 .sedeText {
+  display: grid;
+  gap: var(--s-3);
   max-width: 48ch;
   font-size: var(--text-lead);
   line-height: 1.5;
   color: rgb(255 255 255 / 0.86);
 }
 
-.since {
-  display: grid;
-  gap: 6px;
-  padding-top: var(--s-4);
-  border-top: 4px solid var(--ps-lime);
+.sedeText strong {
+  font-weight: 600;
+  color: var(--ps-white);
 }
 
-.since b {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.01em;
+.sedeText em {
   color: var(--ps-lime);
 }
 
-.since span {
-  color: rgb(255 255 255 / 0.8);
-}
-
-.address {
-  font-size: 1rem;
-  color: rgb(255 255 255 / 0.8);
+/* Justificado solo desde tablet: en móvil las líneas son cortas y abriría huecos entre palabras */
+@media (min-width: 640px) {
+  .sedeText p {
+    text-align: justify;
+  }
 }
 
 /* Escritorio: el texto manda (columna ancha y con aire); la maqueta 3D acompaña en una columna más angosta */
@@ -245,7 +238,7 @@
   margin-top: var(--s-2);
 }
 
-/* Lo que nos distingue: lista compacta bajo "Desde 1985", en la sección azul de la sede */
+/* Ficha del edificio: lista compacta bajo el texto, en la sección azul de la sede */
 .distinctions {
   display: grid;
   gap: var(--s-4);
@@ -281,5 +274,16 @@
   margin-bottom: 2px;
   font-size: 1rem;
   font-weight: 600;
+  color: var(--ps-white);
+}
+
+.distinctions a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--ps-lime);
+  text-underline-offset: 0.2em;
+}
+
+.distinctions a:hover {
   color: var(--ps-white);
 }

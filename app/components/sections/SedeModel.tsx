@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Plus, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Plus, X } from 'lucide-react'
+import { photo, type PhotoId } from '~/content/photos'
 import { Photo } from '~/components/ui/Photo'
 import { faces, type V } from './sede/geometry'
 import { createRenderer, project, rotate } from './sede/renderer'
@@ -7,11 +8,22 @@ import styles from './SedeModel.module.css'
 
 const BASE = `${import.meta.env.BASE_URL}media/sede/`
 
-/** Puntos sobre la maqueta: cada uno abre la foto real de ese costado. */
-const markers: { name: string; point: V; normal: V; src: string; alt: string }[] = [
-  { name: 'Frente y entrada', point: [-0.7, 2.8, 7.1], normal: [0, 0, 1], src: 'frente.jpg', alt: 'Frente y entrada de la sede de Plagastop en Concepción' },
-  { name: 'Costado izquierdo', point: [-3.4, 2.7, 1], normal: [-1, 0, 0], src: 'izquierdo.jpg', alt: 'Costado izquierdo de la sede de Plagastop' },
-  { name: 'Costado derecho', point: [3.45, 2.7, 0], normal: [1, 0, 0], src: 'derecho.jpg', alt: 'Costado derecho de la sede de Plagastop, con el letrero' },
+/** Puntos sobre la maqueta: cada uno abre las fotos reales de ese sector del edificio. */
+const markers: { name: string; point: V; normal: V; photos: PhotoId[] }[] = [
+  {
+    name: 'Frente y entrada',
+    point: [-0.7, 2.8, 7.1],
+    normal: [0, 0, 1],
+    photos: ['edificio-frente', 'edificio-frente-costado', 'edificio-frente-angular'],
+  },
+  { name: 'Costado izquierdo', point: [-3.4, 2.7, 1], normal: [-1, 0, 0], photos: ['edificio-lateral-izquierdo'] },
+  {
+    name: 'Costado derecho',
+    point: [3.45, 2.7, 0],
+    normal: [1, 0, 0],
+    photos: ['edificio-costado-derecho', 'edificio-lateral-derecho', 'edificio-detras-costado-derecho'],
+  },
+  { name: 'Baños y casino', point: [-5.85, 4.45, -7.7], normal: [-1, 0, 0], photos: ['edificio-casino-bodegas'] },
 ]
 
 const START_ANGLE = 0.65
@@ -37,6 +49,7 @@ export function SedeModel() {
   const hold = useRef(0)
   const [failed, setFailed] = useState(false)
   const [open, setOpen] = useState<number | null>(null)
+  const [shot, setShot] = useState(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -167,6 +180,9 @@ export function SedeModel() {
   }
 
   const current = open !== null ? markers[open] : null
+  const total = current?.photos.length ?? 0
+  const image = current ? photo(current.photos[shot]) : null
+  const go = (delta: number) => setShot((s) => (s + delta + total) % total)
   // Mientras el cursor o el foco están sobre un punto, el modelo se queda quieto para poder pulsarlo.
   const pause = () => hold.current++
   const resume = () => (hold.current = Math.max(0, hold.current - 1))
@@ -193,12 +209,15 @@ export function SedeModel() {
               className={styles.dot}
               style={{ left: `${left}%`, top: `${top}%` }}
               hidden={!facing(m.normal, START_ANGLE, START_TILT)}
-              onClick={() => setOpen(i)}
+              onClick={() => {
+                setShot(0)
+                setOpen(i)
+              }}
               onPointerEnter={pause}
               onPointerLeave={resume}
               onFocus={pause}
               onBlur={resume}
-              aria-label={`Ver foto: ${m.name}`}
+              aria-label={`Ver fotos: ${m.name}`}
             >
               <span className={styles.dotIcon} aria-hidden>
                 <Plus size={18} strokeWidth={2.5} />
@@ -208,12 +227,12 @@ export function SedeModel() {
           )
         })}
       </div>
-      <p className={styles.hint}>Maqueta ilustrativa · arrastra para girar y toca un + para ver la foto</p>
+      <p className={styles.hint}>Maqueta ilustrativa · arrastra para girar y toca un + para ver las fotos</p>
 
       <dialog
         ref={dialogRef}
         className={styles.dialog}
-        aria-label={current ? `Foto: ${current.name}` : 'Foto de la sede'}
+        aria-label={current ? `Fotos: ${current.name}` : 'Fotos de la sede'}
         onClose={() => {
           setOpen(null)
           resume()
@@ -221,12 +240,43 @@ export function SedeModel() {
         onClick={(e) => {
           if (e.target === e.currentTarget) dialogRef.current?.close()
         }}
+        onKeyDown={(e) => {
+          if (total < 2 || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return
+          e.preventDefault()
+          go(e.key === 'ArrowLeft' ? -1 : 1)
+        }}
       >
-        {current && (
+        {current && image && (
           <figure>
-            <img src={`${BASE}${current.src}`} alt={current.alt} decoding="async" />
+            <div className={styles.dialogMedia}>
+              <img
+                key={current.photos[shot]}
+                src={image.src}
+                srcSet={image.srcSet}
+                sizes="92vw"
+                alt={image.alt}
+                decoding="async"
+              />
+              {total > 1 && (
+                <>
+                  <button type="button" className={`${styles.nav} ${styles.prev}`} onClick={() => go(-1)} aria-label="Foto anterior">
+                    <ArrowLeft size={20} strokeWidth={2.25} aria-hidden />
+                  </button>
+                  <button type="button" className={`${styles.nav} ${styles.next}`} onClick={() => go(1)} aria-label="Foto siguiente">
+                    <ArrowRight size={20} strokeWidth={2.25} aria-hidden />
+                  </button>
+                </>
+              )}
+            </div>
             <figcaption>
-              <span>{current.name}</span>
+              <span>
+                {current.name}
+                {total > 1 && (
+                  <small className="tabular" aria-live="polite">
+                    {shot + 1} / {total}
+                  </small>
+                )}
+              </span>
               <button type="button" onClick={() => dialogRef.current?.close()} autoFocus>
                 Cerrar <X size={16} aria-hidden />
               </button>
