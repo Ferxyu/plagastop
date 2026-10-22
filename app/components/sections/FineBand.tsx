@@ -51,17 +51,17 @@ export function FineBand() {
 
       <div className={`container ${styles.close}`} data-reveal>
         <p className={styles.promise}>
-          Nosotros nos aseguramos de que tu control de plagas esté en regla: programa, registros y certificados al
-          día.
+          Nosotros nos aseguramos de mantener la asepsia general en tus dependencias e instalaciones y que estén al
+          día tus registros y certificados.
         </p>
         <ButtonLink
-          to="/cotizar?servicio=evaluacion"
+          to="/contacto"
           variant="primary"
           size="lg"
           arrow
           onClick={() => track('cta_click', { location: 'multas' })}
         >
-          Prepara tu próxima fiscalización
+          Contáctanos
         </ButtonLink>
       </div>
     </section>

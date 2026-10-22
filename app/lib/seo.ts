@@ -13,6 +13,8 @@ interface MetaInput {
   /** El título ya incluye la marca. */
   rawTitle?: boolean
   jsonLd?: object[]
+  /** Artículo del blog: og:type article, fechas, sección y Twitter Card completa. */
+  article?: { published: string; modified?: string; section?: string; author?: string; imageAlt?: string }
 }
 
 export function absoluteUrl(path: string) {
@@ -27,14 +29,27 @@ export function buildMeta({
   noindex,
   rawTitle,
   jsonLd = [],
+  article,
 }: MetaInput): MetaDescriptor[] {
   const fullTitle = rawTitle ? title : `${title} | Plagastop`
   const url = absoluteUrl(path)
+  const articleMeta: MetaDescriptor[] = article
+    ? [
+        { property: 'article:published_time', content: article.published },
+        ...(article.modified ? [{ property: 'article:modified_time', content: article.modified }] : []),
+        ...(article.section ? [{ property: 'article:section', content: article.section }] : []),
+        ...(article.author ? [{ property: 'article:author', content: article.author }] : []),
+        ...(article.imageAlt ? [{ property: 'og:image:alt', content: article.imageAlt }] : []),
+        { name: 'twitter:title', content: fullTitle },
+        { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: absoluteUrl(image) },
+      ]
+    : []
   return [
     { title: fullTitle },
     { name: 'description', content: description },
     { tagName: 'link', rel: 'canonical', href: url },
-    { property: 'og:type', content: 'website' },
+    { property: 'og:type', content: article ? 'article' : 'website' },
     { property: 'og:locale', content: 'es_CL' },
     { property: 'og:site_name', content: 'Plagastop' },
     { property: 'og:title', content: fullTitle },
@@ -42,6 +57,7 @@ export function buildMeta({
     { property: 'og:url', content: url },
     { property: 'og:image', content: absoluteUrl(image) },
     { name: 'twitter:card', content: 'summary_large_image' },
+    ...articleMeta,
     ...(noindex ? [{ name: 'robots', content: 'noindex, follow' }] : []),
     ...jsonLd.map((data) => ({ 'script:ld+json': data })),
   ]
@@ -105,6 +121,40 @@ export function faqLd(faqs: { q: string; a: string }[]) {
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
+  }
+}
+
+/** Schema BlogPosting de un artículo. Editor: la organización (mismo @id que en el home). */
+export function blogPostingLd(post: {
+  slug: string
+  title: string
+  description: string
+  date: string
+  modified?: string
+  author?: string
+  section: string
+  image?: string
+  wordCountText: string
+}) {
+  const url = absoluteUrl(`/blog/${post.slug}`)
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    url,
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.modified ?? post.date,
+    articleSection: post.section,
+    inLanguage: 'es-CL',
+    wordCount: post.wordCountText.split(' ').filter(Boolean).length,
+    ...(post.image ? { image: [absoluteUrl(post.image)] } : {}),
+    author: post.author
+      ? { '@type': 'Person', name: post.author }
+      : { '@type': 'Organization', name: company.name, url: SITE_URL },
+    publisher: { '@id': `${SITE_URL}/#organization`, '@type': 'Organization', name: company.name },
   }
 }
 

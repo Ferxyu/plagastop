@@ -30,5 +30,6 @@ export const mainNav: NavGroup[] = [
   },
   { label: 'Empresa', href: '/empresa' },
   { label: 'Acreditaciones', href: '/acreditaciones' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contacto', href: '/contacto' },
 ]
