@@ -1,0 +1,149 @@
+/*
+ * Portal de la molécula (ver MoleculePortal.tsx). El contenedor es alto y su escenario queda fijo
+ * (sticky) mientras se recorre; su último tramo se monta sobre los servicios (margen negativo), así al
+ * desvanecerse el escenario aparece la sección siguiente detrás. La línea de tiempo es el propio
+ * contenedor (view-timeline), en el tramo en que cubre toda la pantalla.
+ */
+
+.portal {
+  display: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .portal {
+      display: block;
+      position: relative;
+      z-index: 2;
+      height: 220vh;
+      height: 220svh;
+      margin-bottom: -100vh;
+      margin-bottom: -100svh;
+      pointer-events: none;
+      view-timeline: --portal block;
+    }
+
+    .stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: clip;
+      background:
+        radial-gradient(60% 50% at 50% 45%, rgb(204 231 11 / 0.08), transparent 70%),
+        linear-gradient(180deg, #17395e 0%, var(--ps-blue-deep) 55%);
+      animation: portal-stage linear both;
+      animation-timeline: --portal;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .stage > * {
+      grid-area: 1 / 1;
+    }
+
+    .iso {
+      width: clamp(110px, 14vw, 200px);
+      overflow: visible;
+      /* Centro de la molécula superior: la cámara la atraviesa */
+      transform-origin: 49.8% 15.2%;
+      animation: portal-dive linear both;
+      animation-timeline: --portal;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .atom {
+      animation: portal-atom linear both;
+      animation-timeline: --portal;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .bond {
+      stroke-dasharray: 1;
+      animation: portal-bond linear both;
+      animation-timeline: --portal;
+      animation-range: contain 0% contain 100%;
+    }
+
+    /* Pulso de protección: nace del isotipo recién armado y se expande */
+    .ring {
+      width: clamp(150px, 20vw, 280px);
+      aspect-ratio: 1;
+      border: 2px solid var(--ps-lime);
+      border-radius: 50%;
+      box-shadow:
+        0 0 40px rgb(204 231 11 / 0.45),
+        inset 0 0 30px rgb(204 231 11 / 0.3);
+      opacity: 0;
+      animation: portal-ring linear both;
+      animation-timeline: --portal;
+      animation-range: contain 0% contain 100%;
+    }
+  }
+}
+
+@keyframes portal-atom {
+  0% {
+    opacity: 0;
+    translate: var(--dx) var(--dy);
+  }
+  8% {
+    opacity: 1;
+  }
+  24% {
+    translate: 0 0;
+  }
+}
+
+@keyframes portal-bond {
+  0%,
+  20% {
+    stroke-dashoffset: 1;
+  }
+  32%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes portal-ring {
+  0%,
+  30% {
+    opacity: 0;
+    scale: 0.6;
+  }
+  34% {
+    opacity: 1;
+  }
+  52%,
+  100% {
+    opacity: 0;
+    scale: 4;
+  }
+}
+
+/* La cámara atraviesa la molécula: acelera al acercarse */
+@keyframes portal-dive {
+  0%,
+  38% {
+    scale: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.4);
+  }
+  80%,
+  100% {
+    scale: 46;
+  }
+}
+
+/* Al quedar la pantalla en lima, el escenario se abre sobre los servicios */
+@keyframes portal-stage {
+  0%,
+  78% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}

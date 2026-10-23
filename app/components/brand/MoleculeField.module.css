@@ -1,0 +1,88 @@
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.iso,
+.atom {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  opacity: var(--o);
+  rotate: var(--rot);
+}
+
+.atom {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ps-lime);
+  box-shadow: 0 0 14px rgb(204 231 11 / 0.6);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .iso,
+  .atom {
+    animation: drift var(--dur) ease-in-out var(--delay) infinite alternate paused;
+  }
+
+  .field[data-active] .iso,
+  .field[data-active] .atom {
+    animation-play-state: running;
+  }
+}
+
+@keyframes drift {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 22px -28px;
+  }
+  100% {
+    translate: -16px 20px;
+    rotate: calc(var(--rot) + 25deg);
+  }
+}
+
+/* En los bordes: centradas en su posición y con una deriva más corta, para no entrar a la zona del texto */
+.field[data-layout='edges'] .iso,
+.field[data-layout='edges'] .atom {
+  margin-left: calc(var(--size) / -2);
+  animation-name: drift-edge;
+}
+
+@keyframes drift-edge {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 8px -24px;
+  }
+  100% {
+    translate: -8px 18px;
+    rotate: calc(var(--rot) + 25deg);
+  }
+}
+
+/* En pantallas chicas, menos partículas */
+@media (max-width: 699px) {
+  .field[data-layout='scatter'] .iso:nth-child(n + 6),
+  .field[data-layout='scatter'] .atom:nth-child(n + 6) {
+    display: none;
+  }
+
+  /* En móvil no hay bordes libres: la banda de multas se queda sin moléculas */
+  .field[data-layout='edges'] {
+    display: none;
+  }
+}

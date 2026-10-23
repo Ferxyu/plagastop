@@ -1,4 +1,8 @@
 .button {
+  /* Contiene la onda al pulsar (.ripple en base.css) */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -59,6 +63,24 @@
   background: var(--ps-cta);
   color: var(--ps-ink);
   border-color: var(--ps-cta);
+}
+
+/* Brillo que recorre el botón principal al pasar el mouse */
+.primary::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.55) 48%, transparent 66%);
+  translate: -120% 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .primary:hover:not(:disabled)::after {
+    translate: 120% 0;
+    transition: translate 750ms var(--ease-out);
+  }
 }
 
 .primary:hover:not(:disabled) {

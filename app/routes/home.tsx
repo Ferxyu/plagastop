@@ -16,6 +16,9 @@ import { ServiceTiles } from '~/components/sections/ServiceTiles'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { Faq } from '~/components/sections/Faq'
 import { SedeModel } from '~/components/sections/SedeModel'
+import { IsotypeAssembly } from '~/components/brand/IsotypeAssembly'
+import { MoleculePortal } from '~/components/brand/MoleculePortal'
+import { MoleculeField } from '~/components/brand/MoleculeField'
 import styles from './home.module.css'
 
 export const meta: Route.MetaFunction = () =>
@@ -60,10 +63,11 @@ export default function Home() {
 
       {/* 2. Riesgo: multas del Código Sanitario, centrado sobre turquesa */}
       <FineBand />
+      <MoleculePortal />
 
       {/* 3. Soluciones para cada operación */}
       <section className={`section ${styles.services}`} aria-labelledby="servicios-title">
-        <div className="container">
+        <div className="container" data-scroll-flow>
           <header className={styles.centerHead}>
             <p className={`eyebrow ${styles.eyebrowForest}`} data-reveal>
               Servicios
@@ -83,7 +87,8 @@ export default function Home() {
       </section>
 
       {/* 4. Sede: maqueta 3D a la izquierda, texto a la derecha */}
-      <section className={`${styles.sede} on-dark`} aria-labelledby="sede-title">
+      <section className={`${styles.sede} on-dark`} aria-labelledby="sede-title" data-scroll-card>
+        <MoleculeField />
         <div className={styles.sedeMedia} data-reveal="1" data-reveal-style="scale">
           <SedeModel />
         </div>
@@ -135,8 +140,8 @@ export default function Home() {
       </section>
 
       {/* 5. Cobertura: línea con paradas que se dibuja hacia abajo */}
-      <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title">
-        <div className="container">
+      <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title" data-scroll-card>
+        <div className="container" data-scroll-flow>
           <header className={styles.centerHead}>
             <p className={`eyebrow ${styles.eyebrowBlue}`} data-reveal>
               Cobertura
@@ -157,7 +162,7 @@ export default function Home() {
 
       {/* 6. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
       <section className="section" aria-labelledby="faq-title">
-        <div className={`container ${styles.faqGrid}`}>
+        <div className={`container ${styles.faqGrid}`} data-scroll-flow>
           <div className={styles.faqList}>
             <Faq items={generalFaqs} />
           </div>
@@ -191,8 +196,10 @@ export default function Home() {
       </section>
 
       {/* 7. Cierre */}
-      <section className={`on-dark ${styles.closing}`} aria-labelledby="cierre-title">
-        <div className={`container ${styles.closingInner}`}>
+      <section className={`on-dark ${styles.closing}`} aria-labelledby="cierre-title" data-scroll-card>
+        <div className={`container ${styles.closingInner}`} data-scroll-flow>
+          <span className={styles.closingPulse} aria-hidden />
+          <IsotypeAssembly className={styles.closingIso} />
           <h2 id="cierre-title" className={styles.bigTitle} data-reveal>
             <SplitWords text="¿Tu operación necesita control de" />{' '}
             <span className={styles.lime}>

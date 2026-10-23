@@ -45,7 +45,7 @@ export function HeroVideo() {
 
   return (
     <section className={`${styles.hero} on-dark`} aria-labelledby="hero-title">
-      <div className={styles.media} aria-hidden>
+      <div className={styles.media} aria-hidden data-scroll-zoom>
         <picture>
           <source media="(max-width: 767px)" srcSet={posterTall} />
           <img className={styles.poster} src={posterWide} alt="" fetchPriority="high" decoding="async" />
@@ -82,7 +82,7 @@ export function HeroVideo() {
         </ul>
       </div>
 
-      <div className={`container ${styles.content}`}>
+      <div className={`container ${styles.content}`} data-scroll-out>
         <p className={`eyebrow ${styles.eyebrow}`}>Control de plagas para empresas e industrias</p>
         <h1 id="hero-title" className={styles.title}>
           <span className="visually-hidden">

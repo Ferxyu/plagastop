@@ -112,6 +112,7 @@ export function ServiceTiles({ services }: { services: Service[] }) {
                     <Link
                       to={`/servicios/${s.slug}`}
                       className={styles.tile}
+                      data-glow
                       prefetch="intent"
                       tabIndex={hidden ? -1 : undefined}
                     >
@@ -131,6 +132,7 @@ export function ServiceTiles({ services }: { services: Service[] }) {
               }),
             )}
           </ul>
+          <span className={styles.pulse} aria-hidden />
         </div>
         <button type="button" className={`${styles.arrow} ${styles.prev}`} onClick={() => move(-1)} aria-label="Servicio anterior">
           <ArrowLeft size={22} strokeWidth={2.25} aria-hidden />

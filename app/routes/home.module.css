@@ -71,6 +71,9 @@
 
 /* 4. Sede: foto a sangre a la izquierda, texto a la derecha */
 .sede {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   background: var(--gradient-blue-slate);
   color: var(--ps-white);
@@ -79,6 +82,7 @@
 /* Maqueta 3D de la sede, centrada en su columna */
 .sedeMedia {
   position: relative;
+  z-index: 1;
   display: grid;
   place-items: center;
   min-height: 300px;
@@ -86,6 +90,8 @@
 }
 
 .sedeCopy {
+  position: relative;
+  z-index: 1;
   display: grid;
   justify-items: start;
   gap: var(--s-5);
@@ -214,6 +220,8 @@
 
 /* 7. Cierre: degradado de marca, centrado */
 .closing {
+  /* Las moléculas del isotipo llegan desde fuera de la sección */
+  overflow: clip;
   padding-block: clamp(72px, 4rem + 4vw, 120px);
   background: var(--gradient-brand);
   color: var(--ps-white);
@@ -221,9 +229,58 @@
 }
 
 .closingInner {
+  position: relative;
   display: grid;
   justify-items: center;
   gap: var(--s-5);
+}
+
+/* El pulso de protección baja desde el borde de la sección hasta el isotipo, que lo recibe al armarse */
+.closingPulse {
+  display: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .closingPulse {
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% - var(--s-2));
+      width: 3px;
+      height: clamp(72px, 4rem + 4vw, 120px);
+      margin-left: -1.5px;
+      border-radius: 3px;
+      background: linear-gradient(180deg, rgb(204 231 11 / 0), var(--ps-lime));
+      box-shadow: 0 0 14px rgb(204 231 11 / 0.7);
+      transform-origin: 50% 0;
+      pointer-events: none;
+      animation: closing-pulse linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+}
+
+@keyframes closing-pulse {
+  0% {
+    scale: 1 0;
+    opacity: 1;
+  }
+  60% {
+    scale: 1 1;
+    opacity: 1;
+  }
+  100% {
+    scale: 1 1;
+    opacity: 0;
+  }
+}
+
+/* Isotipo que se arma al llegar al cierre */
+.closingIso {
+  width: clamp(72px, 7vw, 104px);
+  margin-bottom: var(--s-3);
 }
 
 .closingInner .bigTitle {

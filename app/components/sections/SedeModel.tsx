@@ -197,6 +197,8 @@ export function SedeModel() {
           role="img"
           aria-label="Maqueta 3D de la sede de Plagastop en Concepción. Usa las flechas para girarla."
         />
+        <Orbit side="back" />
+        <Orbit side="front" />
         {markers.map((m, i) => {
           const [left, top] = project(m.point, START_ANGLE, START_TILT)
           return (
@@ -287,3 +289,27 @@ export function SedeModel() {
     </div>
   )
 }
+
+/**
+ * Pulso de protección orbitando la maqueta: una elipse inclinada partida en dos mitades. La de atrás va
+ * debajo del lienzo (el edificio la tapa) y la de adelante encima; ambas recorren el mismo trazo, así el
+ * pulso pasa por detrás y por delante de la sede. No recibe clics (los puntos + siguen encima).
+ */
+function Orbit({ side }: { side: 'back' | 'front' }) {
+  const clip = `orbit-${side}`
+  return (
+    <svg className={`${styles.orbit} ${side === 'back' ? styles.orbitBack : styles.orbitFront}`} viewBox="0 0 800 550" aria-hidden focusable="false">
+      <defs>
+        <clipPath id={clip}>
+          {side === 'back' ? <rect x="0" y="0" width="800" height="340" /> : <rect x="0" y="340" width="800" height="210" />}
+        </clipPath>
+      </defs>
+      <g transform="rotate(-7 400 340)" clipPath={`url(#${clip})`}>
+        <ellipse className={styles.orbitTrack} cx="400" cy="340" rx="370" ry="112" pathLength={1} />
+        <ellipse className={styles.orbitTail} cx="400" cy="340" rx="370" ry="112" pathLength={1} />
+        <ellipse className={styles.orbitHead} cx="400" cy="340" rx="370" ry="112" pathLength={1} />
+      </g>
+    </svg>
+  )
+}
+

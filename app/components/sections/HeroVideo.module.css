@@ -5,7 +5,9 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: max(680px, 100svh);
-  overflow: hidden;
+  /* clip y no hidden: hidden lo volvería contenedor de scroll y las animaciones ligadas al scroll
+     de su contenido (data-scroll-out, data-scroll-zoom) no seguirían el scroll de la página */
+  overflow: clip;
   background: var(--ps-blue-deep);
   color: var(--ps-white);
 }
@@ -139,6 +141,30 @@
 
 .cred:hover::before {
   border-color: rgb(204 231 11 / 0.45);
+}
+
+/* Al pasar el mouse, el anillo punteado gira como un timbre y el sello se ilumina */
+.cred {
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out),
+    box-shadow 600ms var(--ease-out);
+}
+
+.cred:hover {
+  box-shadow: 0 0 0 6px rgb(204 231 11 / 0.08), 0 0 28px rgb(204 231 11 / 0.25);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cred:hover::before {
+    animation: stamp-spin 9s linear infinite;
+  }
+}
+
+@keyframes stamp-spin {
+  to {
+    rotate: 360deg;
+  }
 }
 
 @media (min-width: 768px) {
