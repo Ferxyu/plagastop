@@ -1,90 +1,65 @@
-# Blog de Plagastop: arquitectura y conexión con WordPress
+# Blog de Plagastop con WordPress headless
 
-Este documento explica cómo funciona el blog (`/blog` y `/blog/:slug`) y los pasos para conectarlo a WordPress cuando esté instalado. WordPress se usa **solo para administrar los artículos**. El diseño, la navegación y la presentación viven en este proyecto.
+WordPress (`cms.plagastop.cl`) se usa **solo para administrar los artículos**. El diseño, la navegación y la presentación viven en este proyecto. La conexión usa la API REST pública de WordPress: no lleva usuarios ni contraseñas.
 
-## 1. Cómo funciona hoy
+## 1. Cómo llegan los artículos al sitio
 
-El sitio es **estático**: React Router compila cada ruta como HTML completo (`ssr: false` + `prerender` en `react-router.config.ts`). Google y los buscadores con IA leen el contenido completo sin ejecutar JavaScript, así que no hace falta migrar a otro framework.
+El sitio es **estático**: React Router genera cada ruta como HTML completo al compilar (`ssr: false` + `prerender` en `react-router.config.ts`). Sobre eso, el blog funciona en dos capas:
 
-Al compilar:
-
-1. `react-router.config.ts` pide la lista de artículos a la fuente del blog y genera una página por artículo.
-2. `/blog` incluye la lista completa (sin el cuerpo de cada artículo). La búsqueda, los filtros y "Cargar más" funcionan en el navegador sobre esa lista.
-3. `sitemap.xml` incluye los artículos reales, con su fecha de actualización.
-
-**Consecuencia importante:** un artículo nuevo en WordPress aparece en el sitio **después del siguiente build**. La sección 5 explica cómo automatizarlo.
-
-## 2. Fuentes de datos
-
-Todo pasa por `blog` en `app/lib/cms.ts`. Las rutas y componentes no saben de dónde vienen los artículos.
-
-| Situación | Qué se publica |
-|---|---|
-| Sin `WP_API_URL` (hoy) | Los artículos del sitio (`app/lib/blog/local-posts.ts`) |
-| `WP_API_URL` definida | Los de WordPress **más** los del sitio, ordenados por fecha |
-
-**Artículos del sitio.** Son 7 artículos reales, redactados a partir de fuentes oficiales y técnicas (SAG, Minsal, BCN, FAO, GRDC), que se citan al final de cada uno. Se indexan y entran al sitemap. No atribuyen a Plagastop certificaciones ni resultados: describen normativa y buenas prácticas, y enlazan al servicio relacionado.
-
-**Migrarlos a WordPress (opcional).** Si en WordPress se publica un artículo con el **mismo slug** que uno del sitio, prevalece el de WordPress y no se duplica. Después se puede borrar su entrada de `local-posts.ts`.
-
-## 3. Variables de entorno
-
-Se leen **al compilar**, desde el entorno de la terminal o de GitHub Actions. Un archivo `.env` no sirve, porque Vite solo lo inyecta en el código del navegador. No es secreta.
-
-| Variable | Ejemplo | Uso |
+| Momento | Qué pasa | Para qué |
 |---|---|---|
-| `WP_API_URL` | `https://cms.plagastop.cl/wp-json/wp/v2` | Raíz de la API REST (sin barra final) |
+| **Al compilar** | Se piden a WordPress todos los artículos publicados y sus categorías. Se genera una página estática por artículo, se arma `/blog` y se actualiza el sitemap. | SEO: Google y los buscadores con IA ven el contenido completo en el HTML. |
+| **En el navegador** | `/blog` consulta WordPress al abrirse y suma los artículos publicados después del último build (y quita los que se despublicaron). Si alguien abre la URL de un artículo nuevo, la página lo trae directo desde la API. | Que un artículo nuevo se vea **de inmediato**, sin tocar código ni recompilar. |
 
-No se usan credenciales: la API pública entrega solo artículos **publicados**. Los borradores y los artículos privados nunca llegan al sitio.
+**Importante para SEO:** un artículo publicado después del último build ya se puede leer, pero su página todavía no es estática (la sirve la página de respaldo, con estado HTTP 404). Google lo indexará bien recién después del siguiente build. Por eso conviene automatizar la recompilación (sección 5).
 
-## 4. Pasos para activar WordPress
+## 2. Qué se muestra
 
-### 4.1 En WordPress
+- **Artículos de WordPress** (fuente principal).
+- **Artículos editoriales del sitio** (`app/lib/blog/local-posts.ts`): 7 artículos reales con fuentes oficiales citadas, publicados desde el código. Usan las mismas categorías de WordPress. Para mostrar **solo** WordPress: `includeSitePosts: false` en `app/lib/blog/config.ts`. Para migrar uno a WordPress, publícalo allí con el **mismo slug**: prevalece el de WordPress y no se duplica.
+- **Artículo destacado:** el que esté marcado en WordPress como "Fijar en la portada"; si no hay ninguno, el más reciente.
+- **Filtros:** las categorías de WordPress, con sus nombres y su orden. Solo aparecen las que tienen artículos (por ejemplo, "General" hoy no aparece).
+- **Autor:** se muestra el "nombre público" del autor en WordPress solo si parece un nombre de persona (nombre y apellido). Un nombre de usuario como "Blogplagastop" no se muestra; en ese caso el autor es Plagastop (también en los datos estructurados).
 
-1. Instalar WordPress en un subdominio, por ejemplo `cms.plagastop.cl`.
-2. **Ajustes → Enlaces permanentes:** "Nombre de la entrada". El *slug* de WordPress será la URL: `/blog/<slug>`.
-3. Comprobar que la API responde: `https://cms.plagastop.cl/wp-json/wp/v2/posts` debe devolver JSON.
-4. Crear las **categorías** (por ejemplo Prevención, Normativa y auditorías, Industria alimentaria). La primera categoría asignada a un artículo es la que se muestra.
-5. En cada artículo:
-   - **Imagen destacada** con **texto alternativo** (Biblioteca de medios → Texto alternativo). Si falta, se usa el título.
-   - **Extracto** propio (opcional; si no, WordPress lo genera).
-   - **Fijar en la portada** para que sea el **artículo destacado** de `/blog`. Si ninguno está fijado, se destaca el más reciente.
-   - Usar H2 y H3 para los subtítulos. Un H1 dentro del contenido se convierte en H2, porque la página ya tiene un H1, el título.
-6. Opcional:
-   - **Yoast SEO:** su título y su meta descripción se usan automáticamente. Al título se le quita el sufijo de marca, porque el sitio agrega "| Plagastop".
-   - **ACF:** campos `servicio_relacionado` e `industria_relacionada`, con el slug del sitio. Por ejemplo, `control-de-roedores` o `industria-alimentaria`. Muestran un bloque "Para tu empresa" con el enlace al servicio. Los slugs válidos están en `app/content/services.ts` y `app/content/industries.ts`. Para que ACF los exponga en la API hay que activar "Mostrar en la API REST" en el grupo de campos.
-7. No hace falta configurar CORS: la API se consulta desde el build, no desde el navegador.
+## 3. Configuración
 
-### 4.2 Probar en local
+| Dónde | Valor |
+|---|---|
+| `app/lib/blog/config.ts` → `DEFAULT_WP_API_URL` | `https://cms.plagastop.cl/wp-json/wp/v2` (URL base por defecto) |
+| Variable de entorno `WP_API_URL` (al compilar) | Opcional: otra instalación, o `off` para no usar WordPress |
 
-```powershell
-$env:WP_API_URL = "https://cms.plagastop.cl/wp-json/wp/v2"
-npm run build
-npm run preview
-```
+No hay credenciales: la API pública entrega solo artículos **publicados**. WordPress ya permite las consultas desde el navegador (CORS), que la carga en vivo necesita.
 
-Abrir `http://localhost:4173/blog/`, con barra final (ver sección 7). Si WordPress no responde, el build **falla con un mensaje claro** en vez de publicar un blog vacío.
+Si WordPress no responde **al compilar**, el build falla con un mensaje claro y se mantiene la versión publicada anterior. Así no se publica un blog vacío por error. Si no responde **en el navegador**, el blog sigue mostrando los artículos del último build.
 
-### 4.3 En GitHub Actions (producción)
+## 4. Cómo publicar en WordPress
 
-Requiere autorización: modifica la configuración de despliegue y no se ha aplicado.
+1. **Entradas → Añadir nueva.**
+2. **Título** y contenido. Usa **Encabezado H2 y H3** para los subtítulos. Un H1 dentro del contenido se convierte en H2, porque la página ya tiene un H1, que es el título.
+3. **Extracto** (panel lateral): escribe 1 o 2 frases. Es la bajada del artículo, el texto de la tarjeta y la meta descripción para Google. Si se deja vacío, WordPress genera uno largo y cortado.
+4. **Imagen destacada** con **texto alternativo**, en la Biblioteca de medios. Se recomienda al menos 1200 × 630 px, porque también es la imagen para redes sociales.
+5. **Categoría:** una de las existentes. Se muestra la primera asignada.
+6. **Destacar:** "Fijar en la portada", en el panel de visibilidad.
+7. **Publicar.** El artículo aparece en `/blog` en cuanto alguien abre la página.
 
-1. GitHub → Settings → Secrets and variables → Actions → **Variables** → `WP_API_URL`.
-2. En `.github/workflows/deploy.yml`, paso "Build website":
+El slug de WordPress es la URL pública: `plagastop.cl/blog/<slug>`.
 
-```yaml
-      - name: Build website
-        env:
-          DEPLOY_GH_PAGES: 'true'
-          WP_API_URL: ${{ vars.WP_API_URL }}
-        run: npm run build
-```
+**No se muestran** (se eliminan al limpiar el HTML): scripts, iframes y videos incrustados, formularios, estilos en línea y atributos de eventos. Párrafos, encabezados, listas, enlaces, imágenes, citas y tablas sí.
 
-## 5. Publicar sin tocar código
+## 5. Pendientes (requieren tu autorización o acción)
 
-Como el sitio es estático, publicar en WordPress debe disparar un build. Hay dos opciones, que se pueden combinar:
+### 5.1 Evitar contenido duplicado entre cms.plagastop.cl y plagastop.cl
 
-- **Build programado (más simple):** agregar al workflow un `schedule` (por ejemplo, cada hora). Los artículos aparecen con hasta una hora de retraso.
+Hoy el WordPress público **es indexable**: sus páginas no tienen `noindex`, su canonical apunta a `cms.plagastop.cl` y publica su propio sitemap (`wp-sitemap.xml`). Solución sin plugins:
+
+- **WordPress → Ajustes → Lectura → "Disuadir a los motores de búsqueda de indexar este sitio"**. Agrega `noindex` a las páginas de WordPress y desactiva su sitemap. **No** bloquea la API (que ya responde con `X-Robots-Tag: noindex`) ni las imágenes, que el sitio sigue cargando.
+- Opcional, más adelante: redirigir las páginas públicas de WordPress a su versión en `plagastop.cl/blog/…`. Requiere un plugin o código en el tema, así que se decide aparte.
+
+### 5.2 Recompilar automáticamente (indexación de artículos nuevos)
+
+Para que cada artículo nuevo tenga su página estática, con SEO completo, hay que recompilar después de publicarlo. Opciones:
+
+- **Build programado (más simple, sin plugins):** agregar un `schedule` al workflow de despliegue (`.github/workflows/deploy.yml`):
 
   ```yaml
   on:
@@ -92,42 +67,42 @@ Como el sitio es estático, publicar en WordPress debe disparar un build. Hay do
       branches: [main]
     workflow_dispatch:
     schedule:
-      - cron: '0 * * * *'
+      - cron: '0 * * * *'   # cada hora
   ```
 
-- **Build al publicar (inmediato):** un plugin de *webhooks* en WordPress (por ejemplo, WP Webhooks) llama a la API de GitHub (`repository_dispatch`) cada vez que se publica o actualiza un artículo. El workflow escucha `repository_dispatch`. Esto requiere un token de GitHub con permiso mínimo sobre el repositorio, guardado **solo en WordPress** y nunca en este código.
+- **Build al publicar (inmediato):** un plugin de webhooks en WordPress llama a GitHub (`repository_dispatch`) al publicar o actualizar un artículo. Requiere instalar un plugin y un token de GitHub guardado **solo en WordPress**.
 
-El build tarda unos 2 o 3 minutos.
+Mientras no se automatice, un artículo nuevo se ve en el sitio de inmediato, pero queda bien indexado recién con el siguiente despliegue (cualquier push a `main` o "Run workflow" en GitHub Actions).
 
-## 6. Seguridad del contenido
+### 5.3 Hosting del sitio React
 
-`app/lib/blog/sanitize.ts` limpia el HTML de WordPress al compilar, con una lista blanca:
+El dominio canónico configurado es `https://plagastop.cl` (`SITE_URL` en `app/content/company.ts`). El servidor que publique `build/client` debe:
 
-- Solo pasan las etiquetas de texto, listas, enlaces, imágenes, figuras, citas, código y tablas.
-- Se eliminan, con su contenido, `script`, `style`, `iframe`, formularios, `svg` y similares. **Los videos incrustados (YouTube, etc.) no se muestran.** Si se necesitan, habría que agregar un componente específico con dominios permitidos.
-- Los atributos `on*` y `style` se descartan. `href` y `src` solo aceptan `http(s)`, rutas relativas, anclas, `mailto:` y `tel:`.
-- Las etiquetas quedan balanceadas: HTML mal cerrado no puede romper el diseño de la página.
+1. Servir `ruta/index.html` para `/ruta/` y **redirigir `/ruta` a `/ruta/`** (GitHub Pages lo hace solo).
+2. Responder las rutas inexistentes con `__spa-fallback.html` (en GitHub Pages el workflow ya lo copia como `404.html`). Es lo que permite abrir artículos publicados después del último build.
 
-## 7. Pendientes antes de desplegar
+Hoy el workflow publica en GitHub Pages bajo `/plagastop/`. Si `plagastop.cl` apunta a otro hosting, hay que replicar esos dos puntos.
 
-- [ ] Instalar WordPress y definir el dominio de `WP_API_URL`.
-- [ ] Autorizar los cambios de `deploy.yml` (variable y reconstrucción automática).
-- [ ] Que Plagastop revise los 7 artículos del sitio (`app/lib/blog/local-posts.ts`) antes de publicar: tono, alcance y si quiere sumar experiencia propia.
-- [ ] **Barra final en las URL:** el sitio genera `ruta/index.html`. GitHub Pages redirige `/blog/x` a `/blog/x/`. Si se cambia de hosting, configurar esa misma redirección, porque sin ella la página carga con datos de otra ruta y falla. `vite preview` en local tiene este problema: usar URLs con `/` final.
-- [ ] Imagen Open Graph por artículo: se usa la imagen destacada. Conviene subirla de al menos 1200 × 630 px.
-- [ ] Las imágenes de los artículos se sirven desde el dominio de WordPress. Si se quiere un CDN o una optimización adicional, se decide al instalarlo.
+### 5.4 Otros
 
-## 8. Archivos
+- **Nombre público del autor** en WordPress (Usuarios → Perfil): con nombre y apellido, aparecerá como autor en la página y en los datos estructurados.
+- **Plugins SEO (opcional):** si se instala Yoast, su título y descripción SEO se usan automáticamente.
+
+## 6. SEO de cada artículo
+
+URL `plagastop.cl/blog/<slug>`, título y meta descripción, canonical a esa URL, Open Graph de tipo artículo (imagen, texto alternativo, fechas de publicación y modificación, sección), Twitter Card, datos estructurados `BlogPosting` y `BreadcrumbList`, un solo H1, subtítulos del contenido como H2/H3, imagen con su texto alternativo y entrada en `sitemap.xml` con su fecha de modificación.
+
+## 7. Archivos
 
 | Archivo | Rol |
 |---|---|
-| `app/lib/cms.ts` | Combina los artículos del sitio con los de WordPress |
-| `app/lib/blog/types.ts` | Modelo de datos independiente de la fuente |
-| `app/lib/blog/config.ts` | Configuración central (variables de entorno, tamaños de página) |
-| `app/lib/blog/wordpress.ts` | Cliente de la API REST y traducción al modelo |
-| `app/lib/blog/sanitize.ts` | Limpieza del HTML |
-| `app/lib/blog/local-posts.ts` | Artículos del sitio, con sus fuentes |
-| `app/lib/blog/utils.ts` | Fechas, extractos, búsqueda, relacionados |
-| `app/routes/blog._index.tsx` | Landing `/blog` |
-| `app/routes/blog.$slug.tsx` | Plantilla de artículo |
-| `app/components/blog/*` | Tarjeta, destacado, buscador y filtros, imagen, metadatos, CTA y estilos |
+| `app/lib/blog/config.ts` | URL de WordPress y opciones del blog |
+| `app/lib/blog/wordpress.ts` | Cliente de la API (artículos, artículo por slug, categorías) y traducción al modelo |
+| `app/lib/blog/live.ts` | Consultas desde el navegador (artículos nuevos) |
+| `app/lib/blog/sanitize.ts` | Limpieza del HTML (sin scripts ni atributos peligrosos) |
+| `app/lib/blog/local-posts.ts` | Artículos editoriales del sitio |
+| `app/lib/blog/types.ts`, `utils.ts` | Modelo de datos y utilidades |
+| `app/lib/cms.ts` | Combina WordPress y los artículos del sitio |
+| `app/routes/blog._index.tsx` | `/blog`: lista del build y artículos nuevos en vivo |
+| `app/routes/blog.$slug.tsx` | Artículo: estático o, si es nuevo, cargado desde la API |
+| `app/root.tsx` | Pantalla de carga para páginas sin versión estática |

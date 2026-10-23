@@ -93,6 +93,24 @@ export default function App() {
   )
 }
 
+/**
+ * Pantalla de carga para rutas sin página estática (p. ej. un artículo publicado en WordPress después
+ * del último build): se muestra mientras el navegador trae los datos. Las páginas prerenderizadas no la usan.
+ */
+export function HydrateFallback() {
+  return (
+    <>
+      <SiteHeader />
+      <main id="contenido" className="section">
+        <div className="container" role="status" aria-live="polite">
+          <p className="lead">Cargando…</p>
+        </div>
+      </main>
+      <SiteFooter />
+    </>
+  )
+}
+
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const notFound = isRouteErrorResponse(error) && error.status === 404
   return (

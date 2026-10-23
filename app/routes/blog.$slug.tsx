@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react'
 import type { Route } from './+types/blog.$slug'
 import { blog, toSummary, type BlogImage } from '~/lib/cms'
 import { relatedPosts, stripHtml } from '~/lib/blog/utils'
+import { fetchLivePost, fetchLivePosts } from '~/lib/blog/live'
 import { photo } from '~/content/photos'
 import { getService } from '~/content/services'
 import { getIndustry } from '~/content/industries'
@@ -21,6 +22,22 @@ export async function loader({ params }: Route.LoaderArgs) {
   if (!post) throw data(null, { status: 404 })
   const related = relatedPosts(post, await blog.getPosts()).map(toSummary)
   return { post, related }
+}
+
+/**
+ * En el navegador: los artículos del build traen sus datos estáticos (serverLoader). Si el artículo se
+ * publicó en WordPress después del último build, no tiene página estática: se pide directo a la API.
+ * Mientras carga se ve el HydrateFallback de root; si no existe, el 404 del sitio.
+ */
+export async function clientLoader({ params, serverLoader }: Route.ClientLoaderArgs) {
+  try {
+    return await serverLoader()
+  } catch {
+    const post = await fetchLivePost(params.slug)
+    if (!post) throw data(null, { status: 404 })
+    const latest = await fetchLivePosts().catch(() => [])
+    return { post, related: relatedPosts(post, latest) }
+  }
 }
 
 /** URL de la imagen para Open Graph y el schema (foto del sitio o imagen de WordPress). */

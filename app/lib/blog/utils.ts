@@ -44,11 +44,16 @@ export function formatDate(iso: string) {
   return dateFormat.format(new Date(iso))
 }
 
-/** Categorías presentes en los artículos, en orden de aparición. */
-export function categoriesOf(posts: BlogPostSummary[]): BlogCategory[] {
-  const seen = new Map<string, BlogCategory>()
-  for (const p of posts) if (!seen.has(p.category.slug)) seen.set(p.category.slug, p.category)
-  return [...seen.values()]
+/**
+ * Categorías con al menos un artículo. Si se entrega la lista de WordPress, se respeta su orden y sus
+ * nombres; las que solo aparecen en los artículos van al final, en orden de aparición.
+ */
+export function categoriesOf(posts: BlogPostSummary[], known: BlogCategory[] = []): BlogCategory[] {
+  const used = new Map<string, BlogCategory>()
+  for (const p of posts) if (!used.has(p.category.slug)) used.set(p.category.slug, p.category)
+  const ordered = known.filter((c) => used.has(c.slug))
+  const extra = [...used.values()].filter((c) => !known.some((k) => k.slug === c.slug))
+  return [...ordered, ...extra]
 }
 
 /** El destacado explícito más reciente o, si no hay, el último publicado. */

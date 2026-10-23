@@ -70,6 +70,15 @@ function mapCategory(post: WpPost): BlogCategory {
   return category ? { slug: category.slug, name: decodeEntities(category.name) } : UNCATEGORIZED
 }
 
+/**
+ * Autor solo si el "nombre público" de WordPress parece una persona (al menos dos palabras). Un nombre de
+ * usuario como "Blogplagastop" se omite: entonces el autor es la organización (página y schema).
+ */
+function mapAuthor(post: WpPost) {
+  const name = decodeEntities(post._embedded?.author?.[0]?.name?.trim() ?? '')
+  return /\S+\s+\S+/.test(name) ? { name } : undefined
+}
+
 export function mapWpPost(post: WpPost): BlogPost {
   const title = decodeEntities(stripHtml(post.title.rendered))
   const html = sanitizeHtml(post.content.rendered)
@@ -81,7 +90,7 @@ export function mapWpPost(post: WpPost): BlogPost {
     html,
     date: iso(post.date_gmt),
     modified: iso(post.modified_gmt),
-    author: post._embedded?.author?.[0]?.name ? { name: post._embedded.author[0].name } : undefined,
+    author: mapAuthor(post),
     category: mapCategory(post),
     image: mapImage(post, title),
     seo: {
@@ -90,15 +99,25 @@ export function mapWpPost(post: WpPost): BlogPost {
     },
     featured: Boolean(post.sticky),
     readingMinutes: readingMinutes(html),
+    source: 'wordpress',
     relatedService: post.acf?.servicio_relacionado || undefined,
     relatedIndustry: post.acf?.industria_relacionada || undefined,
   }
 }
 
-async function request(url: string) {
+interface WpCategory {
+  slug: string
+  name: string
+  count: number
+}
+
+async function request(url: string, timeoutMs?: number) {
   let response: Response
   try {
-    response = await fetch(url, { headers: { Accept: 'application/json' } })
+    response = await fetch(url, {
+      headers: { Accept: 'application/json' },
+      signal: timeoutMs ? AbortSignal.timeout(timeoutMs) : undefined,
+    })
   } catch (error) {
     throw new Error(`Blog: no se pudo conectar con WordPress (${url}): ${(error as Error).message}`, { cause: error })
   }
@@ -106,32 +125,54 @@ async function request(url: string) {
   return response
 }
 
-export function createWordPressSource(apiUrl: string): BlogSource {
-  let cache: Promise<BlogPost[]> | undefined
-
-  async function fetchAll() {
-    const posts: BlogPost[] = []
-    for (let page = 1, total = 1; page <= total; page++) {
-      const url = `${apiUrl}/posts?_embed&status=publish&orderby=date&order=desc&per_page=${blogConfig.wpPageSize}&page=${page}`
-      const response = await request(url)
-      total = Number(response.headers.get('X-WP-TotalPages')) || 1
-      const data = (await response.json()) as WpPost[]
-      posts.push(...data.map(mapWpPost))
-    }
-    return posts.sort((a, b) => b.date.localeCompare(a.date))
+/** Todos los artículos publicados (recorre todas las páginas), del más reciente al más antiguo. */
+export async function fetchWpPosts(apiUrl: string, { maxPages = Infinity, timeoutMs }: { maxPages?: number; timeoutMs?: number } = {}) {
+  const posts: BlogPost[] = []
+  for (let page = 1, total = 1; page <= Math.min(total, maxPages); page++) {
+    const url = `${apiUrl}/posts?_embed&orderby=date&order=desc&per_page=${blogConfig.wpPageSize}&page=${page}`
+    const response = await request(url, timeoutMs)
+    total = Number(response.headers.get('X-WP-TotalPages')) || 1
+    const data = (await response.json()) as WpPost[]
+    posts.push(...data.map(mapWpPost))
   }
+  return posts.sort((a, b) => b.date.localeCompare(a.date))
+}
+
+/** Un artículo por slug, o undefined si no existe o no está publicado. */
+export async function fetchWpPost(apiUrl: string, slug: string, { timeoutMs }: { timeoutMs?: number } = {}) {
+  const url = `${apiUrl}/posts?_embed&slug=${encodeURIComponent(slug)}`
+  const data = (await (await request(url, timeoutMs)).json()) as WpPost[]
+  return data[0] ? mapWpPost(data[0]) : undefined
+}
+
+/** Categorías de WordPress en su orden (por nombre), incluidas las que aún no tienen artículos. */
+export async function fetchWpCategories(apiUrl: string, { timeoutMs }: { timeoutMs?: number } = {}) {
+  const url = `${apiUrl}/categories?hide_empty=false&per_page=100&orderby=name&order=asc`
+  const data = (await (await request(url, timeoutMs)).json()) as WpCategory[]
+  return data
+    .filter((c) => c.slug !== 'uncategorized' && c.slug !== 'sin-categoria')
+    .map((c) => ({ slug: c.slug, name: decodeEntities(c.name) }))
+}
+
+export function createWordPressSource(apiUrl: string): BlogSource {
+  // Un build pide cada lista una sola vez y la comparte entre /blog, cada artículo y el sitemap
+  let posts: Promise<BlogPost[]> | undefined
+  let categories: Promise<BlogCategory[]> | undefined
 
   return {
-    // Un build pide la lista una sola vez y la comparte entre /blog, cada artículo y el sitemap
     async getPosts({ limit, category } = {}) {
-      cache ??= fetchAll()
-      const all = await cache
+      posts ??= fetchWpPosts(apiUrl)
+      const all = await posts
       const filtered = category ? all.filter((p) => p.category.slug === category) : all
       return limit ? filtered.slice(0, limit) : filtered
     },
     async getPost(slug) {
-      cache ??= fetchAll()
-      return (await cache).find((p) => p.slug === slug)
+      posts ??= fetchWpPosts(apiUrl)
+      return (await posts).find((p) => p.slug === slug)
+    },
+    async getCategories() {
+      categories ??= fetchWpCategories(apiUrl)
+      return categories
     },
   }
 }

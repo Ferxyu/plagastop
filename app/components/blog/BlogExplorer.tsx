@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { Search, X } from 'lucide-react'
-import type { BlogPostSummary } from '~/lib/cms'
+import type { BlogCategory, BlogPostSummary } from '~/lib/cms'
 import { blogConfig } from '~/lib/blog/config'
 import { categoriesOf, matchesQuery } from '~/lib/blog/utils'
 import { PostCard } from './PostCard'
@@ -18,7 +18,16 @@ function readUrl() {
  * sigue siendo estática y los buscadores ven todos los artículos en el HTML.
  * Sin filtros se excluye el destacado (ya está arriba); con filtros entra en los resultados.
  */
-export function BlogExplorer({ posts, featuredSlug }: { posts: BlogPostSummary[]; featuredSlug?: string }) {
+export function BlogExplorer({
+  posts,
+  categories: known = [],
+  featuredSlug,
+}: {
+  posts: BlogPostSummary[]
+  /** Categorías de WordPress, en su orden; se muestran solo las que tienen artículos. */
+  categories?: BlogCategory[]
+  featuredSlug?: string
+}) {
   const searchId = useId()
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('')
@@ -39,7 +48,7 @@ export function BlogExplorer({ posts, featuredSlug }: { posts: BlogPostSummary[]
     return () => window.removeEventListener('popstate', sync)
   }, [])
 
-  const categories = useMemo(() => categoriesOf(posts), [posts])
+  const categories = useMemo(() => categoriesOf(posts, known), [posts, known])
   const filtering = Boolean(query.trim() || category)
   const results = useMemo(
     () =>

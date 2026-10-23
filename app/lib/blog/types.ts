@@ -39,6 +39,8 @@ export interface BlogPost {
   /** Destacado en la portada del blog (en WordPress: "Fijar en la portada"). */
   featured?: boolean
   readingMinutes: number
+  /** Origen: WordPress o artículo editorial del sitio (lib/blog/local-posts.ts). */
+  source: 'wordpress' | 'site'
   /** Interlinking hacia páginas comerciales (slug de servicio o industria). */
   relatedService?: string
   relatedIndustry?: string
@@ -57,4 +59,6 @@ export interface BlogSource {
   /** Artículos publicados, del más reciente al más antiguo. */
   getPosts(options?: { limit?: number; category?: string }): Promise<BlogPost[]>
   getPost(slug: string): Promise<BlogPost | undefined>
+  /** Categorías de la fuente, en su orden (pueden incluir algunas sin artículos). */
+  getCategories(): Promise<BlogCategory[]>
 }

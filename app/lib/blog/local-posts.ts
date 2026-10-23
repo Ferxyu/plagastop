@@ -10,14 +10,13 @@
 import type { BlogPost, BlogSource } from './types'
 import { readingMinutes, truncate } from './utils'
 
-type Input = Omit<BlogPost, 'readingMinutes' | 'seo'> & { seo?: Partial<BlogPost['seo']> }
+type Input = Omit<BlogPost, 'readingMinutes' | 'seo' | 'source'> & { seo?: Partial<BlogPost['seo']> }
 
+/** Categorías de WordPress (mismo slug): los filtros del blog usan una sola taxonomía. El nombre lo toma de WordPress. */
 const cat = {
-  normativa: { slug: 'normativa', name: 'Normativa' },
-  comercioExterior: { slug: 'comercio-exterior', name: 'Comercio exterior' },
-  agro: { slug: 'agroindustria', name: 'Agroindustria' },
-  prevencion: { slug: 'prevencion', name: 'Prevención' },
-  puertos: { slug: 'puertos-y-naves', name: 'Puertos y naves' },
+  normativas: { slug: 'normativas-y-cumplimiento', name: 'Normativas y cumplimiento' },
+  tratamientos: { slug: 'tratamientos-especializados', name: 'Tratamientos especializados' },
+  prevencion: { slug: 'prevencion-y-manejo-de-plagas', name: 'Prevención y manejo de plagas' },
 }
 
 /** Lista de fuentes al final de cada artículo; los enlaces externos abren en otra pestaña. */
@@ -35,8 +34,7 @@ const inputs: Input[] = [
     excerpt:
       'El Reglamento Sanitario de los Alimentos exige un programa preventivo continuo, inspecciones periódicas y que los tratamientos los realicen empresas autorizadas. Esto es lo que dice la norma.',
     date: '2026-10-20T12:00:00Z',
-    featured: true,
-    category: cat.normativa,
+    category: cat.normativas,
     image: { photo: 'monitoreo-trampas-uv', alt: 'Técnico revisa la lámina de una trampa de luz ultravioleta' },
     relatedService: 'manejo-integrado-de-plagas',
     relatedIndustry: 'industria-alimentaria',
@@ -79,7 +77,7 @@ ${sources([
     excerpt:
       'Pallets, bins, cajas y madera de estiba deben ir tratados y marcados según la NIMF 15. Te explicamos qué certifica la marca, cómo se compone y qué embalajes quedan exentos.',
     date: '2026-10-16T12:00:00Z',
-    category: cat.comercioExterior,
+    category: cat.normativas,
     image: { photo: 'pallets-bajo-cobertor', alt: 'Pallets de mercadería bajo cobertor en una bodega' },
     relatedService: 'tratamientos-fitosanitarios-sag',
     relatedIndustry: 'puertos-y-comercio-exterior',
@@ -135,7 +133,7 @@ ${sources([
     excerpt:
       'Fosfina y bromuro de metilo pueden quedar atrapados dentro de un contenedor. En 2018, casi la mitad de las mediciones del SAG en Iquique superó el límite legal. Así se evita el riesgo.',
     date: '2026-10-09T12:00:00Z',
-    category: cat.comercioExterior,
+    category: cat.tratamientos,
     image: { photo: 'gas-free-contenedor', alt: 'Monitoreo de gas residual en un contenedor de importación' },
     relatedService: 'medicion-de-gases-gas-free',
     relatedIndustry: 'puertos-y-comercio-exterior',
@@ -171,7 +169,7 @@ ${sources([
     excerpt:
       'Una fumigación con fosfina solo funciona si el gas se mantiene en la concentración y el tiempo necesarios. La investigación muestra que las fugas son la principal causa de fallas y de resistencia.',
     date: '2026-10-02T12:00:00Z',
-    category: cat.agro,
+    category: cat.tratamientos,
     image: { photo: 'medicion-fosfina-graneles', alt: 'Técnico mide gas fosfina residual sobre la carga de graneles' },
     relatedService: 'fumigacion-de-granos-almacenados',
     relatedIndustry: 'agroindustria-y-granos',
@@ -297,7 +295,7 @@ ${sources([
     excerpt:
       'La polilla gitana asiática es una plaga cuarentenaria para Chile. Las naves que estuvieron en zonas con su presencia deben cumplir requisitos del SAG y pueden ser inspeccionadas al llegar.',
     date: '2026-09-11T12:00:00Z',
-    category: cat.puertos,
+    category: cat.normativas,
     image: { photo: 'aspersion-nave-polilla-gitana', alt: 'Aspersión cuarentenaria en la cubierta de una nave por polilla gitana' },
     relatedService: 'tratamientos-portuarios-y-buques',
     relatedIndustry: 'puertos-y-comercio-exterior',
@@ -335,6 +333,7 @@ const localPosts: BlogPost[] = inputs
   .map(({ seo, ...p }) => ({
     ...p,
     readingMinutes: readingMinutes(p.html),
+    source: 'site' as const,
     seo: { title: seo?.title ?? p.title, description: seo?.description ?? truncate(p.excerpt) },
   }))
   .sort((a, b) => b.date.localeCompare(a.date))
@@ -346,5 +345,8 @@ export const localSource: BlogSource = {
   },
   async getPost(slug) {
     return localPosts.find((p) => p.slug === slug)
+  },
+  async getCategories() {
+    return Object.values(cat)
   },
 }
