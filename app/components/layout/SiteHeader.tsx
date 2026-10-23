@@ -11,6 +11,20 @@ import { Logo } from '~/components/ui/Logo'
 import { ServiceIcon } from '~/components/ui/ServiceIcon'
 import styles from './SiteHeader.module.css'
 
+/**
+ * Slogan bajo el logo, del mismo ancho que el logo: es texto SVG con textLength, así ocupa exactamente
+ * el ancho disponible (el del logo) en cualquier tamaño. El enlace ya tiene su nombre accesible.
+ */
+function Slogan() {
+  return (
+    <svg className={styles.slogan} viewBox="0 0 300 27" aria-hidden focusable="false">
+      <text x="0" y="22" textLength="300" lengthAdjust="spacingAndGlyphs">
+        Control profesional de plagas
+      </text>
+    </svg>
+  )
+}
+
 export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | 'landing'; overlay?: boolean }) {
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [drawer, setDrawer] = useState(false)
@@ -68,6 +82,7 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
         <div className={`container ${styles.bar}`}>
           <Link to="/" className={styles.logo} aria-label="Plagastop, ir al inicio">
             <Logo />
+            <Slogan />
           </Link>
           <a
             className={styles.phone}
@@ -103,6 +118,7 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
           ) : (
             <Logo />
           )}
+          <Slogan />
         </Link>
 
         <nav className={styles.nav} aria-label="Principal">

@@ -14,14 +14,14 @@
 
 .bigTitle {
   font-size: clamp(2.625rem, 1.6rem + 4vw, 4.75rem);
-  line-height: 0.94;
-  letter-spacing: -0.03em;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
 }
 
 .title {
   font-size: clamp(2.5rem, 1.7rem + 3vw, 4rem);
-  line-height: 0.94;
-  letter-spacing: -0.03em;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
 }
 
 .centerLead {
@@ -32,27 +32,36 @@
 }
 
 .eyebrowForest {
-  color: var(--ps-forest);
+  color: var(--ps-blue);
 }
 
 .eyebrowTurquoise {
-  color: var(--ps-turquoise);
+  color: var(--ps-accent);
 }
 
 .eyebrowButter {
-  color: var(--ps-butter);
+  color: var(--ps-lime);
+}
+
+.eyebrowBlue {
+  color: var(--ps-blue);
+}
+
+.blue {
+  color: var(--ps-blue);
 }
 
 .forest {
-  color: var(--ps-forest);
+  color: var(--ps-blue);
 }
 
 .lime {
   color: var(--ps-lime);
 }
 
+/* Énfasis sobre fondo claro: azul (el lima no se lee sobre blanco) */
 .turquoise {
-  color: var(--ps-turquoise);
+  color: var(--ps-blue);
 }
 
 /* 3. Servicios */
@@ -60,19 +69,10 @@
   background: var(--ps-white);
 }
 
-/* 6. Reseñas sobre amarillo manteca suave */
-.reviews {
-  background: var(--ps-butter-soft);
-}
-
-.reviewsHead {
-  margin-bottom: var(--s-6);
-}
-
 /* 4. Sede: foto a sangre a la izquierda, texto a la derecha */
 .sede {
   display: grid;
-  background: var(--ps-navy);
+  background: var(--gradient-blue-slate);
   color: var(--ps-white);
 }
 
@@ -92,14 +92,13 @@
   padding: var(--s-4) var(--gutter) var(--s-9);
 }
 
-/* Cuatro párrafos: algo más chicos que un lead para que el bloque no se alargue demasiado */
 .sedeText {
   display: grid;
   gap: var(--s-3);
-  max-width: 52ch;
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: rgb(255 255 255 / 0.84);
+  max-width: 48ch;
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.86);
 }
 
 .sedeText strong {
@@ -108,38 +107,20 @@
 }
 
 .sedeText em {
-  color: var(--ps-butter);
+  color: var(--ps-lime);
 }
 
-.since {
-  display: grid;
-  gap: 6px;
-  padding-top: var(--s-4);
-  border-top: 4px solid var(--ps-turquoise);
+/* Justificado solo desde tablet: en móvil las líneas son cortas y abriría huecos entre palabras */
+@media (min-width: 640px) {
+  .sedeText p {
+    text-align: justify;
+  }
 }
 
-.since b {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--ps-butter);
-}
-
-.since span {
-  color: rgb(255 255 255 / 0.8);
-}
-
-.address {
-  font-size: 1rem;
-  color: rgb(255 255 255 / 0.8);
-}
-
+/* Escritorio: el texto manda (columna ancha y con aire); la maqueta 3D acompaña en una columna más angosta */
 @media (min-width: 1000px) {
   .sede {
-    /* La maqueta cede espacio al texto, que tiene cuatro párrafos */
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
     min-height: 720px;
   }
 
@@ -147,17 +128,30 @@
     padding: var(--s-8) 0 var(--s-8) var(--gutter);
   }
 
+  .sedeMedia > * {
+    max-width: 520px;
+  }
+
   .sedeCopy {
     align-content: center;
-    max-width: 760px;
-    padding: var(--s-9) var(--gutter) var(--s-9) 64px;
+    gap: var(--s-6);
+    max-width: 780px;
+    padding: var(--s-9) var(--gutter) var(--s-9) var(--s-8);
+  }
+
+  .sedeText {
+    max-width: 56ch;
   }
 }
 
-/* 5. Cobertura sobre degradado verde bosque (texto blanco con contraste suficiente) */
+/* Sección luminosa: degradado de gris azulado a gris verdoso, texto azul */
 .coverage {
-  background: linear-gradient(180deg, #2f5b57 0%, #267a71 100%);
-  color: var(--ps-white);
+  background: var(--gradient-light);
+  color: var(--ps-navy);
+}
+
+.coverage .centerLead {
+  color: var(--ps-steel);
 }
 
 /* 6. Preguntas frecuentes */
@@ -178,7 +172,7 @@
   align-items: center;
   gap: var(--s-2);
   padding-bottom: 6px;
-  border-bottom: 2px solid var(--ps-turquoise);
+  border-bottom: 2px solid var(--ps-accent);
   font-weight: 600;
   font-size: 1.125rem;
   text-decoration: none;
@@ -242,4 +236,54 @@
   justify-content: center;
   gap: var(--s-3);
   margin-top: var(--s-2);
+}
+
+/* Ficha del edificio: lista compacta bajo el texto, en la sección azul de la sede */
+.distinctions {
+  display: grid;
+  gap: var(--s-4);
+  list-style: none;
+  padding: 0;
+}
+
+/* Dos columnas desde tablet: la columna de texto de la sede tiene espacio */
+@media (min-width: 640px) {
+  .distinctions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--s-6);
+  }
+}
+
+.distinctions li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: start;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: rgb(255 255 255 / 0.86);
+}
+
+.distinctions svg {
+  margin-top: 2px;
+  color: var(--ps-lime);
+}
+
+.distinctions b {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ps-white);
+}
+
+.distinctions a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--ps-lime);
+  text-underline-offset: 0.2em;
+}
+
+.distinctions a:hover {
+  color: var(--ps-white);
 }

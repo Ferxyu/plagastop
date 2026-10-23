@@ -25,7 +25,7 @@
 }
 
 .dark .area:hover {
-  box-shadow: 0 0 0 1.5px var(--ps-sage);
+  box-shadow: 0 0 0 1.5px var(--ps-accent);
 }
 
 @media (min-width: 720px) {
@@ -76,11 +76,11 @@
 }
 
 .dark .channels a svg {
-  color: var(--ps-copper);
+  color: var(--ps-accent);
 }
 
 .channels a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--ps-copper);
+  text-decoration-color: var(--ps-accent);
   text-decoration-thickness: 2px;
 }

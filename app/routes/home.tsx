@@ -1,4 +1,4 @@
-import { Phone } from 'lucide-react'
+import { Award, DraftingCompass, MapPin, Phone, Ruler } from 'lucide-react'
 import type { Route } from './+types/home'
 import type { RouteHandle } from '~/root'
 import { company, salesArea } from '~/content/company'
@@ -16,7 +16,6 @@ import { ServiceTiles } from '~/components/sections/ServiceTiles'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { Faq } from '~/components/sections/Faq'
 import { SedeModel } from '~/components/sections/SedeModel'
-import { GoogleReviews } from '~/components/sections/GoogleReviews'
 import styles from './home.module.css'
 
 export const meta: Route.MetaFunction = () =>
@@ -30,6 +29,28 @@ export const meta: Route.MetaFunction = () =>
   })
 
 export const handle: RouteHandle = { overlayHeader: true }
+
+/** Ficha del edificio de la sede (fuentes: Verdugo Arquitecto y Diálogos Urbanos, Colegio de Arquitectos). */
+const sedeFacts = [
+  {
+    icon: DraftingCompass,
+    title: 'Arquitecto',
+    text: 'Cristián Verdugo Núñez, Verdugo Arquitecto',
+    href: 'https://verdugoarquitecto.cl/edificiosC.php',
+  },
+  { icon: Ruler, title: 'Superficie', text: '327 m² construidos' },
+  {
+    icon: MapPin,
+    title: 'Ubicación',
+    text: `${company.address.street}, ${company.address.area}, ${company.address.city}`,
+  },
+  {
+    icon: Award,
+    title: 'Reconocimiento',
+    text: 'Obra destacada en Diálogos Urbanos, Colegio de Arquitectos',
+    href: 'http://dialogosurbanos.blogspot.com/2009/08/obra-destacada-oficinas-plagastop_5378.html',
+  },
+]
 
 export default function Home() {
   return (
@@ -67,7 +88,7 @@ export default function Home() {
           <SedeModel />
         </div>
         <div className={styles.sedeCopy}>
-          <p className={`eyebrow ${styles.eyebrowTurquoise}`} data-reveal>
+          <p className={`eyebrow ${styles.eyebrowButter}`} data-reveal>
             Nuestra sede
           </p>
           <h2 id="sede-title" className={styles.title} data-reveal={1}>
@@ -78,31 +99,33 @@ export default function Home() {
           </h2>
           <div className={styles.sedeText} data-reveal={2}>
             <p>
-              Ubicadas en el Parque Industrial Ejército de Concepción, nuestras oficinas fueron diseñadas por el
-              arquitecto chileno <strong>Cristián Verdugo Núñez</strong>, director de Verdugo Arquitecto.
+              Nuestra sede en Concepción es una expresión de la identidad y trayectoria de Plagastop. Un espacio que
+              acompaña nuestro desarrollo como empresa y refleja la importancia que damos al profesionalismo, la
+              confianza y las relaciones de largo plazo.
             </p>
             <p>
-              Con una superficie construida de <strong>327 m²</strong>, el edificio destaca por su propuesta de
-              arquitectura corporativa, que fue seleccionada por la Delegación Concepción del Colegio de Arquitectos
-              para formar parte de <em>Diálogos Urbanos</em>, un espacio de difusión y reflexión sobre arquitectura
-              local.
-            </p>
-            <p>
-              Más que un lugar de trabajo, nuestra sede representa el compromiso de Plagastop con el desarrollo, la
-              innovación y la mejora continua.
-            </p>
-            <p>
-              Desde aquí, seguimos construyendo relaciones de confianza con las empresas e industrias que nos eligen
-              para proteger sus operaciones.
+              Su arquitectura corporativa representa esa misma visión: una empresa que busca proyectar solidez,
+              mantener un vínculo cercano con sus clientes y seguir fortaleciendo su presencia en el sector industrial.
             </p>
           </div>
-          <p className={styles.since} data-reveal={3}>
-            <b>25 años</b>
-            <span>de presencia en el mercado nacional</span>
-          </p>
-          <p className={styles.address} data-reveal={3}>
-            {company.address.street}, {company.address.area} · {company.hours.label}
-          </p>
+          {/* Ficha del edificio: mismo formato compacto en dos columnas que la lista de distinciones */}
+          <ul className={styles.distinctions} aria-label="Ficha del edificio">
+            {sedeFacts.map((f, i) => (
+              <li key={f.title} data-reveal={i}>
+                <f.icon size={20} strokeWidth={1.75} aria-hidden />
+                <span>
+                  <b>{f.title}</b>
+                  {f.href ? (
+                    <a href={f.href} target="_blank" rel="noopener noreferrer">
+                      {f.text}
+                    </a>
+                  ) : (
+                    f.text
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
           <div data-reveal={4}>
             <ButtonLink to="/contacto" variant="inverse">
               Agenda una reunión en nuestra sede
@@ -112,15 +135,15 @@ export default function Home() {
       </section>
 
       {/* 5. Cobertura: línea con paradas que se dibuja hacia abajo */}
-      <section className={`section on-dark ${styles.coverage}`} aria-labelledby="cobertura-title">
+      <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title">
         <div className="container">
           <header className={styles.centerHead}>
-            <p className={`eyebrow ${styles.eyebrowButter}`} data-reveal>
+            <p className={`eyebrow ${styles.eyebrowBlue}`} data-reveal>
               Cobertura
             </p>
             <h2 id="cobertura-title" className={styles.bigTitle} data-reveal={1}>
               <SplitWords text="Estamos donde está" />{' '}
-              <span className={styles.lime}>
+              <span className={styles.blue}>
                 <SplitWords text="tu operación." start={3} />
               </span>
             </h2>
@@ -132,25 +155,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Reseñas de Google: valoración y carrusel de reseñas positivas */}
-      <section className={`section ${styles.reviews}`} aria-labelledby="resenas-title">
-        <div className="container">
-          <header className={`${styles.centerHead} ${styles.reviewsHead}`}>
-            <p className={`eyebrow ${styles.eyebrowForest}`} data-reveal>
-              Reseñas en Google
-            </p>
-            <h2 id="resenas-title" className={styles.bigTitle} data-reveal={1}>
-              <SplitWords text="Lo que dicen" />{' '}
-              <span className={styles.forest}>
-                <SplitWords text="nuestros clientes." start={3} />
-              </span>
-            </h2>
-          </header>
-          <GoogleReviews />
-        </div>
-      </section>
-
-      {/* 7. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
+      {/* 6. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
       <section className="section" aria-labelledby="faq-title">
         <div className={`container ${styles.faqGrid}`}>
           <div className={styles.faqList}>

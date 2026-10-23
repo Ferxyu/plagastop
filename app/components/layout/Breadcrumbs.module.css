@@ -23,7 +23,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--ps-copper);
+  background: var(--ps-accent);
 }
 
 .nav a {

@@ -24,7 +24,7 @@
   place-items: center;
   min-height: 52px;
   border-radius: var(--pill);
-  background: var(--ps-lime);
+  background: var(--ps-cta);
   color: var(--ps-ink);
   font-family: var(--font);
   font-weight: 600;

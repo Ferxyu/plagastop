@@ -9,6 +9,7 @@ import { Steps } from '~/components/sections/Steps'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { SectionHeader } from '~/components/ui/SectionHeader'
 import { ClosingCta } from '~/components/sections/ClosingCta'
+import { BuildingGallery } from '~/components/sections/BuildingGallery'
 import styles from './page.module.css'
 
 const crumbs = [
@@ -68,6 +69,22 @@ export default function Company() {
               la salud pública y la operación de la industria.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="sede-title">
+        <div className="container">
+          <SectionHeader
+            id="sede-title"
+            align="split"
+            title={
+              <>
+                Nuestra <mark>sede</mark>
+              </>
+            }
+            lead="Nuestra sede en Concepción es una expresión de la identidad y trayectoria de Plagastop."
+          />
+          <BuildingGallery />
         </div>
       </section>
 

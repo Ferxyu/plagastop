@@ -1,88 +1,100 @@
-/* Una hilera de cartas grandes en carrusel: tres a la vista en escritorio, una y un poco en móvil */
+/* Carrusel de una hilera: se ven cuatro tarjetas en escritorio, dos en tablet y una y media en móvil.
+   El ancho de cada tarjeta sale del ancho visible del carrusel (unidades de contenedor). */
 .carousel {
-  container-type: inline-size;
+  position: relative;
+  --gap: 20px;
+  --per-view: 1.2;
+}
+
+@media (min-width: 640px) {
+  .carousel {
+    --per-view: 2;
+  }
+}
+
+@media (min-width: 1100px) {
+  .carousel {
+    --per-view: 4;
+  }
+}
+
+.viewport {
   overflow: hidden;
+  container-type: inline-size;
+  border-radius: 24px;
 }
 
 .track {
   display: flex;
-  gap: 20px;
   width: max-content;
   margin: 0;
   padding: 0;
   list-style: none;
+  will-change: translate;
 }
 
 .track li {
   flex: none;
-  width: 85cqi;
-}
-
-@media (min-width: 900px) {
-  .track li {
-    width: calc((100cqi - 40px) / 3);
-  }
-}
-
-/*
- * El carrusel queda quieto hasta que la sección aparece en pantalla (useReveal la marca como shown);
- * entonces espera 2,5 s para que se aprecien las tres especialidades y avanza. Se detiene con el mouse.
- */
-@media (prefers-reduced-motion: no-preference) {
-  .track {
-    animation: carousel 110s linear 2.5s infinite;
-    animation-play-state: paused;
-  }
-
-  .carousel[data-reveal-state='shown'] .track {
-    animation-play-state: running;
-  }
-
-  .carousel[data-reveal-state='shown']:hover .track,
-  .carousel[data-reveal-state='shown']:focus-within .track {
-    animation-play-state: paused;
-  }
-}
-
-/* Sin movimiento: se recorre a mano */
-@media (prefers-reduced-motion: reduce) {
-  .carousel {
-    overflow-x: auto;
-  }
-}
-
-/* La segunda copia empieza justo donde termina la primera (mitad del ancho + medio espacio) */
-@keyframes carousel {
-  to {
-    translate: calc(-50% - 10px) 0;
-  }
+  width: calc((100cqw - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
+  /* Separación con margen (no gap): el ancho de una vuelta es exacto para el bucle */
+  margin-right: var(--gap);
 }
 
 .tile {
   position: relative;
   display: block;
-  height: 190px;
+  height: clamp(380px, 20rem + 8vw, 500px);
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: 24px;
   color: var(--ps-white);
   text-decoration: none;
 }
 
+/* Flechas a los lados: adelantan o devuelven una tarjeta sin detener el avance */
+.arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ps-blue-deep);
+  color: var(--ps-lime);
+  box-shadow: 0 0 0 3px var(--ps-white), 0 14px 30px -12px rgb(4 28 68 / 0.6);
+  translate: 0 -50%;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    scale 300ms var(--ease-expo);
+}
+
+.arrow:hover {
+  background: var(--ps-blue);
+  scale: 1.06;
+}
+
+.arrow:focus-visible {
+  outline: 3px solid var(--ps-lime);
+  outline-offset: 3px;
+}
+
+.prev {
+  left: -12px;
+}
+
+.next {
+  right: -12px;
+}
+
 @media (min-width: 1100px) {
-  .tile {
-    height: 230px;
-    border-radius: 20px;
+  .prev {
+    left: -26px;
   }
-}
 
-.big {
-  height: 340px;
-}
-
-@media (min-width: 900px) {
-  .big {
-    height: clamp(420px, 18rem + 12vw, 520px);
-    border-radius: 24px;
+  .next {
+    right: -26px;
   }
 }
 
@@ -123,7 +135,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgb(22 38 61 / 0) 34%, rgb(22 38 61 / 0.92) 100%);
+  background: linear-gradient(180deg, rgb(4 28 68 / 0) 34%, rgb(4 28 68 / 0.92) 100%);
   transition: background-color var(--dur) var(--ease-out);
 }
 
@@ -142,15 +154,15 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
-  color: var(--ps-turquoise);
+  color: var(--ps-accent);
 }
 
 .name {
   font-family: var(--font-display);
   font-size: clamp(1.0625rem, 0.9rem + 0.6vw, 1.5625rem);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
   text-wrap: balance;
 }
 
@@ -227,8 +239,9 @@
   min-height: 44px;
   padding: 0 18px;
   border-radius: var(--pill);
-  background: var(--ps-butter);
-  color: var(--ps-navy);
+  background: var(--ps-blue-soft);
+  box-shadow: inset 0 0 0 1px rgb(11 43 104 / 0.12);
+  color: var(--ps-blue);
   font-size: 0.9375rem;
   font-weight: 500;
   text-decoration: none;
@@ -246,20 +259,20 @@
   margin-top: var(--s-3);
 }
 
-/* Tamaños de texto por tipo de tarjeta */
-.big .name {
-  font-size: clamp(1.625rem, 1.2rem + 1.4vw, 2.25rem);
+/* Texto de la tarjeta */
+.name {
+  font-size: clamp(1.5rem, 1.2rem + 0.8vw, 1.875rem);
 }
 
-.big::after {
-  background: linear-gradient(180deg, rgb(22 38 61 / 0) 28%, rgb(22 38 61 / 0.94) 100%);
+.tile::after {
+  background: linear-gradient(180deg, rgb(4 28 68 / 0) 28%, rgb(4 28 68 / 0.94) 100%);
 }
 
-@media (min-width: 900px) {
-  .big .text {
-    left: 28px;
-    right: 28px;
-    bottom: 28px;
-    gap: 10px;
+@media (min-width: 640px) {
+  .text {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    gap: 8px;
   }
 }

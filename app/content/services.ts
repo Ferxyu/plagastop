@@ -221,6 +221,7 @@ const serviceList: Service[] = [
       'Programa de control específico para granos almacenados.',
       'Laboratorio móvil en terreno.',
       'Tratamientos de fumigación según el tipo de almacenamiento.',
+      'Fumigación con generadores de fosfina (GDF).',
     ],
     industries: ['agroindustria-y-granos', 'puertos-y-comercio-exterior'],
     seo: {
@@ -278,6 +279,7 @@ const serviceList: Service[] = [
     ],
     includes: [
       'Tratamientos fitosanitarios oficiales de exportación e importación.',
+      'Fumigación de madera de exportación con bromuro de metilo bajo geomembranas con protección UV, técnica en la que fuimos pioneros.',
       'Ejecución por empresa autorizada (Res. SAG 3273/2025).',
       'Coordinación con la operación portuaria y logística.',
     ],

@@ -15,7 +15,7 @@
   bottom: 16px;
   width: 3px;
   border-radius: 3px;
-  background: var(--ps-turquoise);
+  background: var(--ps-blue);
   transform-origin: top;
 }
 
@@ -36,7 +36,7 @@
   height: 34px;
   border-radius: 50%;
   background: var(--ps-white);
-  box-shadow: inset 0 0 0 4px var(--ps-turquoise);
+  box-shadow: inset 0 0 0 4px var(--ps-blue);
   transition: scale 600ms var(--ease-expo);
 }
 
@@ -77,10 +77,10 @@
 
 .region {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 400;
   font-size: clamp(1.375rem, 1.15rem + 0.9vw, 2rem);
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
 }
 
 .base {
@@ -110,7 +110,7 @@
 
 /* Sobre fondo oscuro o degradado */
 :global(.on-dark) .dot {
-  background: var(--ps-forest);
+  background: var(--ps-blue);
 }
 
 :global(.on-dark) .stop[data-base] .dot {
@@ -169,4 +169,13 @@
   .centered .places {
     max-width: 40ch;
   }
+}
+
+/* Sobre fondo oscuro la línea y los anillos van en lima */
+:global(.on-dark) .line::before {
+  background: var(--ps-lime);
+}
+
+:global(.on-dark) .dot {
+  box-shadow: inset 0 0 0 4px var(--ps-lime);
 }

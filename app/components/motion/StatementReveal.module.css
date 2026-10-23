@@ -1,10 +1,10 @@
 .statement {
   max-width: 24ch;
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 400;
   font-size: clamp(2rem, 1.2rem + 3.4vw, 4.25rem);
   line-height: 1.12;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   color: var(--ps-white);
   text-wrap: balance;
 }

@@ -86,8 +86,8 @@
 }
 
 .selectWrap[data-open] .select {
-  border-color: var(--ps-forest);
-  box-shadow: 0 0 0 3px rgb(47 91 87 / 0.18);
+  border-color: var(--ps-blue);
+  box-shadow: 0 0 0 3px rgb(11 43 104 / 0.18);
 }
 
 .chevron {
@@ -95,7 +95,7 @@
   right: var(--s-4);
   top: 50%;
   translate: 0 -50%;
-  color: var(--ps-forest);
+  color: var(--ps-blue);
   pointer-events: none;
   transition: rotate var(--dur) var(--ease-expo);
 }
@@ -156,12 +156,12 @@
 
 .option2[aria-selected='true'] {
   font-weight: 600;
-  color: var(--ps-forest);
+  color: var(--ps-blue);
 }
 
 .option2 svg {
   flex: none;
-  color: var(--ps-forest);
+  color: var(--ps-blue);
 }
 
 .error {
@@ -314,7 +314,7 @@
 
 .steps li[data-done]::before,
 .steps li[aria-current]::before {
-  background: var(--ps-copper);
+  background: var(--ps-accent);
 }
 
 .stepDot {
@@ -378,7 +378,7 @@
 
 .quickTitle {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 400;
   font-size: 24px;
   line-height: 1.25;
 }

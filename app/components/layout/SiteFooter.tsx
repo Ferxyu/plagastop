@@ -122,6 +122,9 @@ export function SiteFooter({ variant = 'full' }: { variant?: 'full' | 'landing' 
               <Link to="/acreditaciones">Acreditaciones</Link>
             </li>
             <li>
+              <Link to="/blog">Blog y recursos</Link>
+            </li>
+            <li>
               <Link to="/cotizar">Solicitar cotización</Link>
             </li>
           </ul>

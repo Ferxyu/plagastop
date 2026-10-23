@@ -8,10 +8,9 @@ import {
   ScrollRestoration,
   useMatches,
 } from 'react-router'
-import displayFontUrl from '@fontsource/bricolage-grotesque/files/bricolage-grotesque-latin-800-normal.woff2?url'
+import displayFontUrl from '@fontsource/anton/files/anton-latin-400-normal.woff2?url'
 import textFontUrl from '@fontsource/fira-sans/files/fira-sans-latin-400-normal.woff2?url'
-import '@fontsource/bricolage-grotesque/700.css'
-import '@fontsource/bricolage-grotesque/800.css'
+import '@fontsource/anton/400.css'
 import '@fontsource/fira-sans/400.css'
 import '@fontsource/fira-sans/500.css'
 import '@fontsource/fira-sans/600.css'
@@ -90,6 +89,24 @@ export default function App() {
       {chrome === 'full' && !handle.hideActionBar && <MobileActionBar />}
       <WhatsAppButton />
       <CursorDot />
+    </>
+  )
+}
+
+/**
+ * Pantalla de carga para rutas sin página estática (p. ej. un artículo publicado en WordPress después
+ * del último build): se muestra mientras el navegador trae los datos. Las páginas prerenderizadas no la usan.
+ */
+export function HydrateFallback() {
+  return (
+    <>
+      <SiteHeader />
+      <main id="contenido" className="section">
+        <div className="container" role="status" aria-live="polite">
+          <p className="lead">Cargando…</p>
+        </div>
+      </main>
+      <SiteFooter />
     </>
   )
 }

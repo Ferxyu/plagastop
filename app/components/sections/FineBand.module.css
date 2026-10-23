@@ -1,8 +1,8 @@
-/* Banda turquesa centrada: todo el texto en azul marino (6,1:1 sobre turquesa) */
+/* Banda de alerta: degradado azul a gris verdoso, texto blanco y la cifra en amarillo */
 .band {
   padding-block: clamp(64px, 3rem + 5vw, 112px) clamp(64px, 3rem + 5vw, 104px);
-  background: var(--ps-turquoise);
-  color: var(--ps-navy);
+  background: var(--gradient-alert);
+  color: var(--ps-white);
   text-align: center;
 }
 
@@ -13,9 +13,9 @@
 }
 
 .title {
-  max-width: 20ch;
+  max-width: 28ch;
   font-size: clamp(2.125rem, 1.5rem + 2.4vw, 3.5rem);
-  line-height: 0.98;
+  line-height: 1.04;
 }
 
 .figure {
@@ -25,7 +25,7 @@
   gap: 4px;
   margin-block: var(--s-2) var(--s-1);
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 400;
 }
 
 .until {
@@ -39,13 +39,13 @@
 .amount {
   font-size: clamp(7rem, 3rem + 13vw, 14.5rem);
   line-height: 0.8;
-  letter-spacing: -0.05em;
+  letter-spacing: 0.01em;
 }
 
 .unit {
   font-size: clamp(2.5rem, 1.6rem + 3vw, 4.5rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.01em;
 }
 
 @media (min-width: 900px) {
@@ -87,12 +87,12 @@
   column-gap: var(--s-4);
   align-items: center;
   padding: var(--s-4) 0;
-  border-top: 1px solid rgb(22 38 61 / 0.22);
+  border-top: 1px solid rgb(255 255 255 / 0.2);
   text-align: left;
 }
 
 .facts li:last-child {
-  border-bottom: 1px solid rgb(22 38 61 / 0.22);
+  border-bottom: 1px solid rgb(255 255 255 / 0.2);
 }
 
 .icon {
@@ -102,8 +102,8 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--ps-navy);
-  color: var(--ps-lime);
+  background: rgb(255 255 255 / 0.1);
+  color: var(--ps-yellow);
 }
 
 .icon svg {
@@ -114,9 +114,9 @@
 .facts b {
   font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
 }
 
 .facts li > span:last-child {
@@ -144,7 +144,7 @@
   }
 
   .facts li + li {
-    border-left: 1px solid rgb(22 38 61 / 0.22);
+    border-left: 1px solid rgb(255 255 255 / 0.2);
   }
 
   .icon {
@@ -177,11 +177,26 @@
   max-width: 34ch;
   font-family: var(--font-display);
   font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
 }
 
 .band :focus-visible {
-  outline-color: var(--ps-navy);
+  outline-color: var(--ps-lime);
+}
+
+/* La cifra es la alerta: en amarillo, como en la pieza de referencia */
+.amount {
+  color: var(--ps-yellow);
+}
+
+.unit,
+.until {
+  color: var(--ps-lime);
+}
+
+.text,
+.facts li > span:last-child {
+  color: rgb(255 255 255 / 0.84);
 }

@@ -101,16 +101,16 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--ps-forest);
+  background: var(--ps-blue);
   color: var(--ps-white);
 }
 
 .num {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 400;
   font-size: 2.25rem;
   line-height: 1;
-  color: var(--ps-forest);
+  color: var(--ps-blue);
   opacity: 0.3;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .card:has(.link:focus-visible) {
-  outline: 3px solid var(--ps-forest);
+  outline: 3px solid var(--ps-blue);
   outline-offset: 3px;
 }
 
@@ -149,7 +149,7 @@
   margin-top: auto;
   padding-top: var(--s-2);
   font-weight: 600;
-  color: var(--ps-forest);
+  color: var(--ps-blue);
 }
 
 .more svg {

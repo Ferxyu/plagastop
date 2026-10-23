@@ -16,7 +16,7 @@ const facts = [
  */
 export function FineBand() {
   return (
-    <section className={styles.band} aria-labelledby="multas-title">
+    <section className={`${styles.band} on-dark`} aria-labelledby="multas-title">
       <div className={`container ${styles.head}`}>
         <p className="eyebrow" data-reveal>
           Código Sanitario · artículo 174
@@ -51,12 +51,12 @@ export function FineBand() {
 
       <div className={`container ${styles.close}`} data-reveal>
         <p className={styles.promise}>
-          Nosotros nos aseguramos de que tu control de plagas esté en regla: programa, registros y certificados al
-          día.
+          Nosotros nos aseguramos de mantener la asepsia general en tus dependencias e instalaciones y que estén al
+          día tus registros y certificados.
         </p>
         <ButtonLink
           to="/contacto"
-          variant="secondary"
+          variant="primary"
           size="lg"
           arrow
           onClick={() => track('cta_click', { location: 'multas' })}
