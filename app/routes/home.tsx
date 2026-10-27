@@ -108,10 +108,6 @@ export default function Home() {
               acompaña nuestro desarrollo como empresa y refleja la importancia que damos al profesionalismo, la
               confianza y las relaciones de largo plazo.
             </p>
-            <p>
-              Su arquitectura corporativa representa esa misma visión: una empresa que busca proyectar solidez,
-              mantener un vínculo cercano con sus clientes y seguir fortaleciendo su presencia en el sector industrial.
-            </p>
           </div>
           {/* Ficha del edificio: mismo formato compacto en dos columnas que la lista de distinciones */}
           <ul className={styles.distinctions} aria-label="Ficha del edificio">

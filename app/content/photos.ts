@@ -64,6 +64,7 @@ const meta = {
     ratio: 4 / 3,
   },
   'equipo-en-nave': { alt: 'Equipo de técnicos de Plagastop a bordo de una nave', ratio: 4 / 3 },
+  'equipo-plagastop': { alt: 'Equipo de Plagastop en el jardín de su sede en Concepción', ratio: 3 / 2 },
   'monitoreo-trampas-uv': {
     alt: 'Técnico revisa y cuenta insectos en la lámina de una trampa de luz ultravioleta',
     ratio: 3 / 4,

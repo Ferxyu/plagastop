@@ -1,7 +1,7 @@
 /* Banda de alerta: degradado azul a gris verdoso, texto blanco y la cifra en amarillo */
 .band {
-  /* Las moléculas de los bordes (MoleculeField) quedan detrás del contenido; las grietas del quiebre
-     llegan a los bordes y se recortan aquí (clip, no hidden: no rompe las animaciones de scroll) */
+  /* Las moléculas de los bordes (MoleculeField) quedan detrás del contenido; la gráfica del quiebre
+     se recorta aquí (clip, no hidden: no rompe las animaciones de scroll) */
   position: relative;
   isolation: isolate;
   overflow: clip;
@@ -30,7 +30,7 @@
   line-height: 1.04;
 }
 
-/* La cifra es el escenario del quiebre: gráfica detrás del texto (z 0), grietas delante (z 2) */
+/* La cifra es el escenario del quiebre: la gráfica va detrás del texto */
 .figure {
   position: relative;
   isolation: isolate;
@@ -226,11 +226,11 @@
 /* ---------- Punto de quiebre (fases en data-break, ver BreakingPoint.tsx) ---------- */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Tensión mientras sube: la cifra crece y se ilumina */
+  /* Tensión mientras sube: la cifra crece y se ilumina; al llegar a 1.000 se asienta */
   .amount {
     transition:
-      scale 1700ms cubic-bezier(0.33, 1, 0.68, 1),
-      text-shadow 1700ms var(--ease-out);
+      scale 1100ms cubic-bezier(0.33, 1, 0.68, 1),
+      text-shadow 1100ms var(--ease-out);
   }
 
   .band[data-break='armed'] .amount {
@@ -240,55 +240,5 @@
   .band[data-break='count'] .amount {
     scale: 1.04;
     text-shadow: 0 0 48px rgb(252 196 28 / 0.55);
-  }
-
-  /* Impacto: golpe en la cifra y vibración breve de la escena */
-  .band[data-break='impact'] .amount {
-    animation: punch 520ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
-    text-shadow: 0 0 70px rgb(252 196 28 / 0.75);
-  }
-
-  .band[data-break='impact'] .figure {
-    animation: shake 420ms linear;
-  }
-
-  /* Los tres indicadores esperan a que la escena se estabilice y entran escalonados */
-  .band:is([data-break='armed'], [data-break='count'], [data-break='impact'], [data-break='crash']) .facts li {
-    opacity: 0;
-    translate: 0 24px;
-  }
-}
-
-@keyframes punch {
-  0% {
-    scale: 1.04;
-  }
-  30% {
-    scale: 1.16;
-  }
-  100% {
-    scale: 1;
-  }
-}
-
-@keyframes shake {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  15% {
-    transform: translate(-9px, 4px) rotate(-0.4deg);
-  }
-  30% {
-    transform: translate(8px, -5px) rotate(0.4deg);
-  }
-  45% {
-    transform: translate(-6px, 3px);
-  }
-  60% {
-    transform: translate(5px, -2px);
-  }
-  80% {
-    transform: translate(-2px, 1px);
   }
 }

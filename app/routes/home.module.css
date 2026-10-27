@@ -95,7 +95,7 @@
   display: grid;
   justify-items: start;
   gap: var(--s-5);
-  padding: var(--s-4) var(--gutter) var(--s-9);
+  padding: var(--s-4) var(--gutter) var(--s-8);
 }
 
 .sedeText {
@@ -127,11 +127,11 @@
 @media (min-width: 1000px) {
   .sede {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    min-height: 720px;
+    align-items: center;
   }
 
   .sedeMedia {
-    padding: var(--s-8) 0 var(--s-8) var(--gutter);
+    padding: var(--s-7) 0 var(--s-7) var(--gutter);
   }
 
   .sedeMedia > * {
@@ -142,7 +142,7 @@
     align-content: center;
     gap: var(--s-6);
     max-width: 780px;
-    padding: var(--s-9) var(--gutter) var(--s-9) var(--s-8);
+    padding: var(--s-8) var(--gutter) var(--s-8) var(--s-8);
   }
 
   .sedeText {

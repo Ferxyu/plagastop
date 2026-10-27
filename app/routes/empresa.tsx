@@ -9,7 +9,7 @@ import { Steps } from '~/components/sections/Steps'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { SectionHeader } from '~/components/ui/SectionHeader'
 import { ClosingCta } from '~/components/sections/ClosingCta'
-import { BuildingGallery } from '~/components/sections/BuildingGallery'
+import { SedeVideo } from '~/components/sections/SedeVideo'
 import styles from './page.module.css'
 
 const crumbs = [
@@ -54,7 +54,7 @@ export default function Company() {
       <section className="section">
         <div className={`container ${styles.twoCol}`}>
           <div className={styles.media} data-reveal data-reveal-style="clip">
-            <Photo id="equipo-en-nave" sizes="(min-width: 1000px) 45vw, 100vw" parallax={0.08} />
+            <Photo id="equipo-plagastop" sizes="(min-width: 1000px) 45vw, 100vw" parallax={0.08} />
           </div>
           <div className={styles.stack} data-reveal={1}>
             <h2>
@@ -84,7 +84,7 @@ export default function Company() {
             }
             lead="Nuestra sede en Concepción es una expresión de la identidad y trayectoria de Plagastop."
           />
-          <BuildingGallery />
+          <SedeVideo />
         </div>
       </section>
 

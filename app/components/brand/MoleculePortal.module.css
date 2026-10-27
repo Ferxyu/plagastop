@@ -2,7 +2,9 @@
  * Portal de la molécula (ver MoleculePortal.tsx). El contenedor es alto y su escenario queda fijo
  * (sticky) mientras se recorre; su último tramo se monta sobre los servicios (margen negativo), así al
  * desvanecerse el escenario aparece la sección siguiente detrás. La línea de tiempo es el propio
- * contenedor (view-timeline), en el tramo en que cubre toda la pantalla.
+ * contenedor (view-timeline) desde que asoma: las moléculas ya se están reuniendo mientras sube, centradas
+ * en la parte visible, y el borde superior continúa el color con que termina la banda de multas, así
+ * nunca se ve un tramo azul vacío.
  */
 
 .portal {
@@ -15,8 +17,8 @@
       display: block;
       position: relative;
       z-index: 2;
-      height: 220vh;
-      height: 220svh;
+      height: 200vh;
+      height: 200svh;
       margin-bottom: -100vh;
       margin-bottom: -100svh;
       pointer-events: none;
@@ -33,10 +35,10 @@
       overflow: clip;
       background:
         radial-gradient(60% 50% at 50% 45%, rgb(204 231 11 / 0.08), transparent 70%),
-        linear-gradient(180deg, #17395e 0%, var(--ps-blue-deep) 55%);
+        linear-gradient(180deg, #23495a 0%, #0b2b68 40%, var(--ps-blue-deep) 80%);
       animation: portal-stage linear both;
       animation-timeline: --portal;
-      animation-range: contain 0% contain 100%;
+      animation-range: entry 0% contain 100%;
     }
 
     .stage > * {
@@ -48,22 +50,26 @@
       overflow: visible;
       /* Centro de la molécula superior: la cámara la atraviesa */
       transform-origin: 49.8% 15.2%;
-      animation: portal-dive linear both;
-      animation-timeline: --portal;
-      animation-range: contain 0% contain 100%;
+      animation:
+        portal-dive linear both,
+        portal-lift linear both;
+      animation-timeline: --portal, --portal;
+      animation-range:
+        entry 0% contain 100%,
+        entry 0% entry 100%;
     }
 
     .atom {
       animation: portal-atom linear both;
       animation-timeline: --portal;
-      animation-range: contain 0% contain 100%;
+      animation-range: entry 0% contain 100%;
     }
 
     .bond {
       stroke-dasharray: 1;
       animation: portal-bond linear both;
       animation-timeline: --portal;
-      animation-range: contain 0% contain 100%;
+      animation-range: entry 0% contain 100%;
     }
 
     /* Pulso de protección: nace del isotipo recién armado y se expande */
@@ -76,32 +82,37 @@
         0 0 40px rgb(204 231 11 / 0.45),
         inset 0 0 30px rgb(204 231 11 / 0.3);
       opacity: 0;
-      animation: portal-ring linear both;
-      animation-timeline: --portal;
-      animation-range: contain 0% contain 100%;
+      animation:
+        portal-ring linear both,
+        portal-lift linear both;
+      animation-timeline: --portal, --portal;
+      animation-range:
+        entry 0% contain 100%,
+        entry 0% entry 100%;
     }
   }
 }
 
+/* Tramos sobre el recorrido completo (la primera mitad es la entrada del portal) */
 @keyframes portal-atom {
   0% {
     opacity: 0;
     translate: var(--dx) var(--dy);
   }
-  8% {
+  5% {
     opacity: 1;
   }
-  24% {
+  40% {
     translate: 0 0;
   }
 }
 
 @keyframes portal-bond {
   0%,
-  20% {
+  36% {
     stroke-dashoffset: 1;
   }
-  32%,
+  48%,
   100% {
     stroke-dashoffset: 0;
   }
@@ -109,28 +120,39 @@
 
 @keyframes portal-ring {
   0%,
-  30% {
+  46% {
     opacity: 0;
     scale: 0.6;
   }
-  34% {
+  50% {
     opacity: 1;
   }
-  52%,
+  66%,
   100% {
     opacity: 0;
     scale: 4;
   }
 }
 
+/* Mientras el portal entra, la escena se centra en la parte ya visible y no al medio del escenario */
+@keyframes portal-lift {
+  from {
+    translate: 0 -50vh;
+    translate: 0 -50svh;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
 /* La cámara atraviesa la molécula: acelera al acercarse */
 @keyframes portal-dive {
   0%,
-  38% {
+  52% {
     scale: 1;
     animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.4);
   }
-  80%,
+  86%,
   100% {
     scale: 46;
   }
@@ -139,7 +161,7 @@
 /* Al quedar la pantalla en lima, el escenario se abre sobre los servicios */
 @keyframes portal-stage {
   0%,
-  78% {
+  84% {
     opacity: 1;
   }
   96%,

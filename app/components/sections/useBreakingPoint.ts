@@ -3,20 +3,18 @@ import { useEffect, useState, type RefObject } from 'react'
 /**
  * «El punto de quiebre» de la banda de multas (1.000 UTM):
  *   count   el contador sube (rápido al inicio, lento cerca de 1.000) con una gráfica que asciende detrás
- *   impact  al llegar a 1.000: golpe, vibración breve, grietas desde el número, fragmentos y onda expansiva
- *   crash   la gráfica se desploma con peso y estela (impacto económico de una sanción, no el monto)
- *   settled las grietas y fragmentos se van, la gráfica queda tenue y la cifra estable
+ *   crash   al llegar a 1.000 la gráfica se desploma (impacto económico de una sanción, no el monto)
+ *   settled la gráfica queda tenue y la cifra estable
  *
- * Se ejecuta al entrar en pantalla y no se repite con movimientos leves: se rearma recién cuando la cifra
- * sale por completo de la vista. Sin JavaScript o con movimiento reducido, la cifra se ve fija en 1.000.
- * Las fases se publican en data-break de la sección (vibración y aparición escalonada de los indicadores).
+ * Es breve (menos de 2 s) y arranca apenas la cifra asoma, sin obligar a detenerse a mirarla. No se repite
+ * con movimientos leves: se rearma recién cuando la cifra sale por completo de la vista. Sin JavaScript o
+ * con movimiento reducido, la cifra se ve fija en 1.000. Las fases se publican en data-break de la sección.
  */
 
-export type BreakPhase = 'static' | 'armed' | 'count' | 'impact' | 'crash' | 'settled'
+export type BreakPhase = 'static' | 'armed' | 'count' | 'crash' | 'settled'
 
-const COUNT_MS = 1700
-const IMPACT_MS = 900
-const CRASH_MS = 1400
+const COUNT_MS = 1100
+const CRASH_MS = 700
 
 const easeOut = (t: number) => 1 - Math.pow(1 - t, 3)
 
@@ -45,9 +43,8 @@ export function useBreakingPoint(ref: RefObject<HTMLElement | null>, target: num
         setValue(Math.round(target * easeOut(t)))
         if (t < 1) frame = requestAnimationFrame(step)
         else {
-          go('impact')
-          timers.push(window.setTimeout(() => go('crash'), IMPACT_MS))
-          timers.push(window.setTimeout(() => go('settled'), IMPACT_MS + CRASH_MS))
+          go('crash')
+          timers.push(window.setTimeout(() => go('settled'), CRASH_MS))
         }
       }
       frame = requestAnimationFrame(step)
@@ -67,14 +64,14 @@ export function useBreakingPoint(ref: RefObject<HTMLElement | null>, target: num
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.intersectionRatio >= 0.6 && current === 'armed') play()
+        if (entry.intersectionRatio >= 0.25 && current === 'armed') play()
         // Se rearma solo cuando la cifra salió por completo de la pantalla
         if (!entry.isIntersecting && current === 'settled') {
           setValue(0)
           go('armed')
         }
       },
-      { threshold: [0, 0.6] },
+      { threshold: [0, 0.25] },
     )
     io.observe(el)
     return () => {

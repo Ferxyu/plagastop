@@ -1,0 +1,15 @@
+/* Video vertical de la sede: centrado, con alto acotado a la pantalla */
+.frame {
+  display: grid;
+  justify-items: center;
+}
+
+.video {
+  display: block;
+  width: min(100%, 420px, calc(80svh * 9 / 16));
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-lg);
+  background: var(--ps-navy);
+  box-shadow: 0 24px 60px -28px rgb(4 28 68 / 0.55);
+  object-fit: cover;
+}
