@@ -183,6 +183,7 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
         }
         text="Cuéntanos dónde está tu instalación y qué necesitas. Te respondemos con una propuesta a la medida de tu operación."
         location="service_closing"
+        image={service.closingPhoto}
       />
     </>
   )

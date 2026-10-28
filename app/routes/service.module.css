@@ -190,6 +190,7 @@
 .includesHead {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--s-4);
 }
 
@@ -198,17 +199,40 @@
   width: clamp(44px, 4vw, 60px);
 }
 
+/* Recuadros centrados y del mismo ancho: si la última fila queda incompleta, sus recuadros van al medio */
 .includesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  --cols: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--s-4);
   padding: 0;
   list-style: none;
 }
 
+@media (min-width: 640px) {
+  .includesGrid {
+    --cols: 2;
+  }
+}
+
+@media (min-width: 1000px) {
+  .includesGrid {
+    --cols: 3;
+  }
+
+  /* Cuatro puntos caben en una sola fila */
+  .includesGrid:has(> li:nth-child(4):last-child) {
+    --cols: 4;
+  }
+}
+
 .includesGrid li {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--s-4)) / var(--cols));
   display: grid;
   align-content: start;
+  justify-items: center;
+  text-align: center;
   gap: var(--s-4);
   padding: var(--s-5);
   border-radius: 20px;
@@ -252,6 +276,7 @@
 .credentials {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--s-2) var(--s-5);
   color: rgb(255 255 255 / 0.85);
 }
@@ -265,6 +290,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: var(--s-3) var(--s-4);
   padding-top: var(--s-5);
   border-top: 1px solid rgb(255 255 255 / 0.16);
@@ -277,6 +303,7 @@
 .where ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--s-2);
   padding: 0;
   list-style: none;

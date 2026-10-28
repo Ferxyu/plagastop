@@ -32,6 +32,8 @@ export interface Service {
   photo: PhotoId
   /** Foto del cuerpo de la página: distinta a la de la cabecera y del mismo servicio. */
   photo2: PhotoId
+  /** Foto de la banda de cierre "Cotiza…": otra escena del mismo servicio. */
+  closingPhoto: PhotoId
   /** Fotos adicionales del servicio en terreno. */
   gallery?: PhotoId[]
   /** Una línea: qué resuelve. */
@@ -60,6 +62,7 @@ const serviceList: Service[] = [
     icon: 'mip',
     photo: 'estacion-control-interior',
     photo2: 'galpon-tecnico',
+    closingPhoto: 'monitoreo-trampas-uv',
     summary:
       'Programa preventivo y periódico para mantener toda la instalación bajo control, con sanitización incluida.',
     headline: 'Manejo Integrado de Plagas para empresas e industrias',
@@ -103,6 +106,7 @@ const serviceList: Service[] = [
     icon: 'rodent',
     photo: 'control-roedores-captura',
     photo2: 'estacion-control-interior',
+    closingPhoto: 'pallets-bajo-cobertor',
     summary:
       'Monitoreo y control de roedores en perímetros, andenes, bodegas y zonas de proceso.',
     headline: 'Control de roedores para instalaciones industriales y comerciales',
@@ -140,6 +144,7 @@ const serviceList: Service[] = [
     icon: 'insect',
     photo: 'desinsectacion-local-comercial',
     photo2: 'nube-termonebulizacion',
+    closingPhoto: 'termonebulizacion-bodega',
     summary:
       'Control de insectos rastreros y voladores en cocinas, zonas de proceso y áreas comunes.',
     headline: 'Control de insectos para empresas de alimentos y comercio',
@@ -174,6 +179,7 @@ const serviceList: Service[] = [
     icon: 'sanitize',
     photo: 'sanitizacion-banos',
     photo2: 'sanitizacion-barco',
+    closingPhoto: 'desinfeccion-superficies',
     summary:
       'Control de microorganismos en superficies y ambientes de trabajo, como servicio puntual o periódico.',
     headline: 'Sanitización de instalaciones para empresas',
@@ -208,6 +214,7 @@ const serviceList: Service[] = [
     icon: 'grain',
     photo: 'silos-graneles',
     photo2: 'termonebulizacion-silo',
+    closingPhoto: 'fumigacion-placas-degesch',
     featured: true,
     summary:
       'Programas para granos almacenados, con análisis del grado de infestación, para proteger el valor del producto.',
@@ -215,14 +222,15 @@ const serviceList: Service[] = [
     intro:
       'Los insectos de granos almacenados deterioran el producto y su valor comercial. Plagastop trabaja programas específicos para granos almacenados, con análisis interno del grado de infestación.',
     whenNeeded: [
-      'Almacenas granos en silos, bodegas o celdas por períodos prolongados.',
+      'Almacenas granos en silos o bodegas por períodos prolongados.',
       'Detectaste insectos o deterioro en el producto almacenado.',
       'Necesitas proteger la calidad del grano antes de su venta o despacho.',
     ],
     includes: [
       'Programa de control específico para granos almacenados.',
-      'Análisis interno de grado de infestación de granos.',
-      'Fumigación con generadores de fosfina (GDF).',
+      'Análisis en terreno de grado de infestación de granos.',
+      'Fumigación con fosfina.',
+      'Emisión de certificación.',
     ],
     industries: ['agroindustria-y-granos', 'puertos-y-comercio-exterior'],
     seo: {
@@ -239,6 +247,7 @@ const serviceList: Service[] = [
     icon: 'wood',
     photo: 'astillas-bodega-barco',
     photo2: 'astillas-de-pino',
+    closingPhoto: 'tratamiento-bodega-nave',
     featured: true,
     summary: 'Pulverizado de astillas de madera en buques y plantas de origen.',
     headline: 'Pulverizado de astillas de madera en buques y plantas de origen',
@@ -267,6 +276,7 @@ const serviceList: Service[] = [
     icon: 'export',
     photo: 'aspersion-nave-polilla-gitana',
     photo2: 'fumigacion-contenedores',
+    closingPhoto: 'patio-contenedores',
     summary:
       'Tratamientos oficiales para exportación e importación, autorizados por el SAG.',
     headline: 'Tratamientos fitosanitarios oficiales para exportación e importación',
@@ -298,6 +308,7 @@ const serviceList: Service[] = [
     icon: 'gas',
     photo: 'gas-free-cubierta-nave',
     photo2: 'medidor-fumisense',
+    closingPhoto: 'medicion-fosfina-graneles',
     gallery: ['gas-free-fosfina-granel', 'gas-free-escotilla-nave', 'gas-free-detector-granos'],
     summary:
       'Medición de gases residuales en contenedores y naves antes de su apertura o descarga.',
@@ -328,6 +339,7 @@ const serviceList: Service[] = [
     icon: 'port',
     photo: 'tratamiento-buque',
     photo2: 'pasillo-nave',
+    closingPhoto: 'equipo-en-nave',
     featured: true,
     summary:
       'Control de plagas en instalaciones portuarias y naves, coordinado con la operación.',
@@ -358,6 +370,7 @@ const serviceList: Service[] = [
     icon: 'home',
     photo: 'desinsectacion-exterior-casa',
     photo2: 'desinfeccion-superficies',
+    closingPhoto: 'local-comercial',
     secondary: true,
     summary: 'Control de plagas para casas, departamentos y condominios.',
     headline: 'Control de plagas residencial',

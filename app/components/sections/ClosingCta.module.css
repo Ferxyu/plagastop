@@ -64,12 +64,18 @@
   display: grid;
   gap: var(--s-5);
   justify-items: start;
+  /* Sin esto la columna toma el ancho de su texto más largo y se corta en pantallas angostas */
+  min-width: 0;
 }
 
+/* Nombres de servicio largos ("Tratamientos fitosanitarios SAG") deben caber en cualquier ancho */
 .copy h2 {
-  font-size: var(--text-h1);
-  max-width: 16ch;
+  font-size: clamp(1.875rem, 1.2rem + 3.2vw, 3.875rem);
+  max-width: 18ch;
   line-height: 1.12;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-wrap: balance;
 }
 
 .text {
@@ -88,9 +94,10 @@
 
 .points li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--s-3);
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .points svg {
@@ -114,9 +121,14 @@
   width: clamp(56px, 5vw, 76px);
 }
 
+/* Dos columnas solo cuando hay ancho; el texto de cada punto puede bajar de línea */
+.points {
+  width: 100%;
+}
+
 @media (min-width: 640px) {
   .points {
-    grid-template-columns: repeat(2, max-content);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
     column-gap: var(--s-6);
   }
 }
