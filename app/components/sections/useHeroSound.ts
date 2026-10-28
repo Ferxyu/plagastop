@@ -7,7 +7,7 @@ const VOLUME = 0.6
 /** El botón de sonido marca su zona: sus clics no cuentan como gesto para activar el audio solo. */
 export const SOUND_ATTR = 'data-hero-sound'
 
-const mutedByUser = () => {
+export const mutedByUser = () => {
   try {
     return sessionStorage.getItem(KEY) === '1'
   } catch {
@@ -25,10 +25,11 @@ const saveMuted = (muted: boolean) => {
 }
 
 /**
- * Sonido de la portada: el audio va dentro del video y se repite con él en bucle.
- * Los navegadores no dejan sonar nada sin un gesto previo, así que el video arranca sin sonido y se
- * activa con el primer clic, toque o tecla mientras la portada está a la vista (o de inmediato si ya hubo
- * interacción en la página). El botón flotante lo silencia o lo vuelve a activar en cualquier momento.
+ * Sonido de la portada: el audio va dentro del video y se repite con él en bucle, activo siempre salvo
+ * que el visitante lo silencie con el botón flotante.
+ * El video intenta arrancar con sonido (HeroVideo). Si el navegador lo bloquea por falta de un gesto previo
+ * (lo normal en la primera visita), arranca sin sonido y el audio se activa con el primer clic, toque o
+ * tecla en cualquier parte de la página, o de inmediato si ya hubo interacción.
  * Devuelve si el botón puede mostrarse (el video ya corre), si suena y la acción del botón.
  */
 export function useHeroSound(sectionRef: RefObject<HTMLElement | null>, videoRef: RefObject<HTMLVideoElement | null>) {
@@ -37,14 +38,13 @@ export function useHeroSound(sectionRef: RefObject<HTMLElement | null>, videoRef
   const toggleRef = useRef<() => void>(() => {})
 
   useEffect(() => {
-    const section = sectionRef.current
     const video = videoRef.current
-    if (!section || !video) return
+    if (!video) return
     video.volume = VOLUME
     let userMuted = mutedByUser()
-    let inView = true
 
-    const gestures = ['pointerdown', 'keydown'] as const
+    // Gestos que el navegador acepta para habilitar el sonido: con mouse cuenta al presionar, al tocar cuenta al soltar
+    const gestures = ['pointerdown', 'mousedown', 'pointerup', 'touchend', 'click', 'keydown'] as const
     const detachGestures = () => gestures.forEach((g) => window.removeEventListener(g, onGesture, true))
 
     const unmute = () => {
@@ -59,27 +59,23 @@ export function useHeroSound(sectionRef: RefObject<HTMLElement | null>, videoRef
     }
 
     const tryAuto = () => {
-      if (userMuted || !inView || video.paused || !video.muted) return
+      if (userMuted || video.paused || !video.muted) return
       const active = (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } }).userActivation
       if (active?.hasBeenActive) unmute()
     }
 
     function onGesture(e: Event) {
       if (e.target instanceof Element && e.target.closest(`[${SOUND_ATTR}]`)) return
-      if (userMuted || !inView || video!.paused || !video!.muted) return
+      if (userMuted || video!.paused || !video!.muted) return
       unmute()
     }
 
     const onPlaying = () => {
       setReady(true)
-      tryAuto()
+      setOn(!video.muted)
+      if (video.muted) tryAuto()
+      else detachGestures()
     }
-
-    const io = new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting
-      if (inView) tryAuto()
-    })
-    io.observe(section)
 
     toggleRef.current = () => {
       if (!video.muted) {
@@ -132,7 +128,6 @@ export function useHeroSound(sectionRef: RefObject<HTMLElement | null>, videoRef
     if (!video.paused) queueMicrotask(onPlaying)
 
     return () => {
-      io.disconnect()
       detachGestures()
       video.removeEventListener('playing', onPlaying)
       document.removeEventListener('play', onOtherPlay, true)

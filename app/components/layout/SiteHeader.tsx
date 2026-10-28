@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { mainNav } from '~/content/navigation'
-import { contactAreas, company, salesArea } from '~/content/company'
+import { COMMERCIAL_HOURS, contactAreas, officeArea, QUOTE_HREF, salesArea, SERVICE_HOURS } from '~/content/company'
 import { primaryServices } from '~/content/services'
 import { formatPhone, mailHref, telHref } from '~/lib/contact'
 import { track } from '~/lib/analytics'
@@ -86,11 +86,12 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
           </Link>
           <a
             className={styles.phone}
-            href={telHref(salesArea.phone)}
+            href={telHref(officeArea.phone)}
+            aria-label={`Llamar al ${formatPhone(officeArea.phone)}`}
+            title={`Llamar al ${formatPhone(officeArea.phone)}`}
             onClick={() => track('tel_click', { location: 'landing_header' })}
           >
             <Phone size={18} strokeWidth={1.75} aria-hidden />
-            <span className="tabular">{formatPhone(salesArea.phone)}</span>
           </a>
         </div>
       </header>
@@ -152,14 +153,15 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
         <div className={styles.actions}>
           <a
             className={styles.phone}
-            href={telHref(salesArea.phone)}
+            href={telHref(officeArea.phone)}
+            aria-label={`Llamar al ${formatPhone(officeArea.phone)}`}
+            title={`Llamar al ${formatPhone(officeArea.phone)}`}
             onClick={() => track('tel_click', { location: 'header' })}
           >
             <Phone size={18} strokeWidth={1.75} aria-hidden />
-            <span className="tabular">{formatPhone(salesArea.phone)}</span>
           </a>
           <ButtonLink
-            to="/cotizar"
+            to={QUOTE_HREF}
             className={styles.cta}
             onClick={() => track('cta_click', { location: 'header' })}
           >
@@ -203,32 +205,7 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
           <aside className={styles.megaAside}>
             <p className={styles.megaAsideTitle}>¿No sabes qué servicio necesitas?</p>
             <p>Inspeccionamos tu instalación y te proponemos un plan de control.</p>
-            <TextLink to="/cotizar?servicio=evaluacion">Solicitar una evaluación</TextLink>
             <TextLink to="/servicios">Ver todos los servicios</TextLink>
-          </aside>
-        </div>
-      </div>
-
-      {/* Mega menú: Industrias */}
-      <div
-        id="menu-Industrias"
-        className={styles.mega}
-        hidden={openMenu !== 'Industrias'}
-      >
-        <div className={`container ${styles.megaInner}`}>
-          <ul className={styles.megaIndustries}>
-            {mainNav[1].children!.map((i) => (
-              <li key={i.href}>
-                <Link to={i.href} className={styles.megaIndustry} prefetch="intent">
-                  {i.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <aside className={styles.megaAside}>
-            <p className={styles.megaAsideTitle}>Cada instalación tiene sus propios riesgos</p>
-            <p>Revisa cómo trabajamos en tu tipo de instalación.</p>
-            <TextLink to="/industrias">Ver todas las industrias</TextLink>
           </aside>
         </div>
       </div>
@@ -262,7 +239,7 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
           )}
         </nav>
         <div className={styles.drawerContact}>
-          <ButtonLink to="/cotizar" block arrow>
+          <ButtonLink to={QUOTE_HREF} block arrow>
             Solicitar cotización
           </ButtonLink>
           <ul>
@@ -279,7 +256,9 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
               <a href={mailHref(salesArea.email!)}>{salesArea.email}</a>
             </li>
           </ul>
-          <p className={styles.drawerHours}>Horario de atención: {company.hours.label}</p>
+          <p className={styles.drawerHours}>
+            {COMMERCIAL_HOURS} · {SERVICE_HOURS}
+          </p>
         </div>
       </div>
     </header>

@@ -3,7 +3,7 @@ import { Plus, X } from 'lucide-react'
 import { Photo } from '~/components/ui/Photo'
 import { faces, type V } from './sede/geometry'
 import { createRenderer, project } from './sede/renderer'
-import { SEDE_POSTER, SEDE_VIDEO } from './sede/video'
+import { halfVolume, SEDE_POSTER, SEDE_VIDEO } from './sede/video'
 import styles from './SedeModel.module.css'
 
 const BASE = `${import.meta.env.BASE_URL}media/sede/`
@@ -213,6 +213,7 @@ export function SedeModel() {
               <video
                 src={SEDE_VIDEO}
                 poster={SEDE_POSTER}
+                ref={halfVolume}
                 controls
                 autoPlay
                 playsInline

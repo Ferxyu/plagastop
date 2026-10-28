@@ -1,10 +1,10 @@
 import { useRef, type CSSProperties } from 'react'
 import { useInView } from '~/components/motion/useInView'
-import { ISO_ATOMS, ISO_BOND, ISO_LIME, ISO_NODE, ISO_VIEWBOX } from './isotype'
+import { ISO_ATOMS, ISO_BOND, ISO_NODE, ISO_VIEWBOX } from './isotype'
 import styles from './MoleculeField.module.css'
 
 /**
- * Fondo de partículas para secciones azules: isotipos pequeños y moléculas sueltas del logo que derivan
+ * Fondo de partículas (secciones azules o claras): isotipos pequeños y moléculas sueltas del logo que derivan
  * lento a distinta opacidad. Posiciones fijas (sin azar) para que el HTML prerenderizado y el navegador
  * coincidan. Las animaciones se pausan fuera de pantalla. Decorativo.
  */
@@ -43,19 +43,28 @@ const LAYOUTS: Record<'scatter' | 'edges', Particle[]> = {
 function MiniIsotype() {
   return (
     <svg viewBox={ISO_VIEWBOX} className={styles.svg}>
-      <g stroke={ISO_LIME} strokeWidth={ISO_BOND}>
+      <g stroke="currentColor" strokeWidth={ISO_BOND}>
         {ISO_ATOMS.map((a) => (
           <line key={a.id} x1={ISO_NODE.x} y1={ISO_NODE.y} x2={a.cx} y2={a.cy} />
         ))}
       </g>
       {ISO_ATOMS.map((a) => (
-        <circle key={a.id} cx={a.cx} cy={a.cy} r={a.r} fill={ISO_LIME} />
+        <circle key={a.id} cx={a.cx} cy={a.cy} r={a.r} fill="currentColor" />
       ))}
     </svg>
   )
 }
 
-export function MoleculeField({ layout = 'scatter', className }: { layout?: keyof typeof LAYOUTS; className?: string }) {
+/** tone: 'dark' (lima sobre azul, por defecto) o 'light' (azul sobre fondos claros). */
+export function MoleculeField({
+  layout = 'scatter',
+  tone = 'dark',
+  className,
+}: {
+  layout?: keyof typeof LAYOUTS
+  tone?: 'dark' | 'light'
+  className?: string
+}) {
   const ref = useRef<HTMLDivElement>(null)
   const active = useInView(ref, { threshold: 0 })
 
@@ -64,6 +73,7 @@ export function MoleculeField({ layout = 'scatter', className }: { layout?: keyo
       ref={ref}
       className={`${styles.field} ${className ?? ''}`}
       data-layout={layout}
+      data-tone={tone}
       data-active={active || undefined}
       aria-hidden
     >

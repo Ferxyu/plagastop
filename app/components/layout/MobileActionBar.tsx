@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { Mail, Phone } from 'lucide-react'
-import { salesArea } from '~/content/company'
+import { officeArea, QUOTE_HREF, salesArea } from '~/content/company'
 import { mailHref, telHref } from '~/lib/contact'
 import { track } from '~/lib/analytics'
 import styles from './MobileActionBar.module.css'
@@ -31,7 +31,7 @@ export function MobileActionBar() {
   return (
     <div className={styles.bar} data-visible={visible && !typing} aria-hidden={!visible || typing}>
       <Link
-        to="/cotizar"
+        to={QUOTE_HREF}
         className={styles.quote}
         tabIndex={visible ? 0 : -1}
         onClick={() => track('cta_click', { location: 'mobile_bar' })}
@@ -39,7 +39,7 @@ export function MobileActionBar() {
         Solicitar cotización
       </Link>
       <a
-        href={telHref(salesArea.phone)}
+        href={telHref(officeArea.phone)}
         className={styles.icon}
         tabIndex={visible ? 0 : -1}
         onClick={() => track('tel_click', { location: 'mobile_bar' })}

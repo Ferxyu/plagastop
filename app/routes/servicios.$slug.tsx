@@ -1,19 +1,21 @@
-import { data, Link } from 'react-router'
+import { data } from 'react-router'
 import { Check } from 'lucide-react'
 import type { Route } from './+types/servicios.$slug'
 import { credentials } from '~/content/credentials'
 import { getIndustry } from '~/content/industries'
 import { getService, primaryServices } from '~/content/services'
 import { breadcrumbLd, buildMeta, faqLd, serviceLd } from '~/lib/seo'
-import { track } from '~/lib/analytics'
-import { ButtonLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
+import { ServiceIcon } from '~/components/ui/ServiceIcon'
 import { PageHero } from '~/components/sections/PageHero'
 import { ServiceCards } from '~/components/sections/ServiceCards'
 import { SectionHeader } from '~/components/ui/SectionHeader'
 import { Faq } from '~/components/sections/Faq'
 import { ClosingCta } from '~/components/sections/ClosingCta'
+import { IsotypeAssembly } from '~/components/brand/IsotypeAssembly'
+import { MoleculeField } from '~/components/brand/MoleculeField'
 import styles from './page.module.css'
+import s from './service.module.css'
 
 /** Solo se publica un bloque de preguntas cuando hay suficientes para que valga la pena. */
 const MIN_FAQS = 3
@@ -44,14 +46,20 @@ export const meta: Route.MetaFunction = ({ params }) => {
   })
 }
 
+/**
+ * Landing de servicio: cabecera con moléculas, "Cuándo lo necesitas" en tarjetas numeradas junto a una
+ * foto que acompaña el alto del texto, "Qué incluye" en banda azul con moléculas y el isotipo que se arma,
+ * y las industrias donde se aplica como texto (no tienen páginas propias). Sin botones de contacto:
+ * eso queda en el encabezado y en el botón de WhatsApp.
+ */
 export default function ServicePage({ loaderData }: Route.ComponentProps) {
   const service = getService(loaderData.slug)!
   const serviceCredentials = credentials.filter((c) => service.credentialIds?.includes(c.id))
   const related = primaryServices
-    .filter((s) => s.slug !== service.slug && s.industries.some((i) => service.industries.includes(i)))
+    .filter((r) => r.slug !== service.slug && r.industries.some((i) => service.industries.includes(i)))
     .slice(0, 4)
-  const quoteHref = `/cotizar?servicio=${service.slug}`
   const faqs = (service.faqs?.length ?? 0) >= MIN_FAQS ? service.faqs! : []
+  const where = service.industries.map((slug) => getIndustry(slug)?.name).filter(Boolean)
 
   return (
     <>
@@ -64,75 +72,88 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
         image={service.photo}
         title={service.headline}
         lead={service.intro}
-        actions={
-          <ButtonLink
-            to={quoteHref}
-            size="lg"
-            arrow
-            onClick={() => track('cta_click', { location: 'service_hero', service: service.slug })}
-          >
-            Cotizar este servicio
-          </ButtonLink>
-        }
+        molecules
       />
 
-      <section className="section">
-        <div className={`container ${styles.twoCol}`}>
-          <div className={styles.stack} data-reveal>
-            <h2>Cuándo lo necesitas</h2>
-            <ul className={styles.checklist}>
-              {service.whenNeeded.map((item) => (
-                <li key={item}>
-                  <Check strokeWidth={2.5} aria-hidden />
-                  {item}
+      {/* Cuándo lo necesitas */}
+      <section className={`section ${s.need}`} aria-labelledby="cuando-title">
+        <MoleculeField tone="light" />
+        <div className={`container ${s.needGrid}`}>
+          <div className={s.needCopy}>
+            <p className={`eyebrow ${s.eyebrow}`} data-reveal>
+              {service.shortName}
+            </p>
+            <h2 id="cuando-title" data-reveal={1}>
+              Cuándo lo <span className={s.blue}>necesitas</span>
+            </h2>
+            <ol className={s.needList}>
+              {service.whenNeeded.map((item, i) => (
+                <li key={item} data-reveal={i + 2}>
+                  <span className={s.needN}>{String(i + 1).padStart(2, '0')}</span>
+                  <p>{item}</p>
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
-          <div className={styles.media} data-reveal={1} data-reveal-style="clip">
+          <div className={s.needMedia} data-reveal={1} data-reveal-style="clip">
             <Photo id={service.photo2} sizes="(min-width: 1000px) 45vw, 100vw" parallax={0.08} />
           </div>
         </div>
-      </section>
-
-      <section className="section section--paper">
-        <div className={`container ${styles.twoCol}`}>
-          <div className={styles.stack} data-reveal>
-            <h2>Qué incluye</h2>
-            <ul className={styles.checklist}>
-              {service.includes.map((item) => (
-                <li key={item}>
-                  <Check strokeWidth={2.5} aria-hidden />
-                  {item}
+        {service.gallery && (
+          <div className={`container ${s.gallery}`}>
+            <h3 data-reveal>
+              {service.shortName} <span className={s.blue}>en terreno</span>
+            </h3>
+            <ul>
+              {service.gallery.map((id, i) => (
+                <li key={id} data-reveal={i + 1} data-reveal-style="clip">
+                  <Photo id={id} sizes="(min-width: 760px) 32vw, 78vw" />
                 </li>
               ))}
             </ul>
-            {serviceCredentials.map((c) => (
-              <p key={c.id}>
-                <strong>{c.code}</strong> · {c.title}
-              </p>
+          </div>
+        )}
+      </section>
+
+      {/* Qué incluye y dónde lo aplicamos */}
+      <section className={`section on-dark ${s.includes}`} aria-labelledby="incluye-title">
+        <MoleculeField />
+        <div className={`container ${s.includesInner}`}>
+          <header className={s.includesHead}>
+            <IsotypeAssembly className={s.iso} />
+            <h2 id="incluye-title" data-reveal>
+              Qué <span className={s.lime}>incluye</span>
+            </h2>
+          </header>
+          <ul className={s.includesGrid}>
+            {service.includes.map((item, i) => (
+              <li key={item} data-reveal={i + 1}>
+                <span className={s.includesIcon} aria-hidden>
+                  {i === 0 ? <ServiceIcon name={service.icon} /> : <Check strokeWidth={2.5} />}
+                </span>
+                <p>{item}</p>
+              </li>
             ))}
-          </div>
-          <div className={styles.stack} data-reveal={1}>
-            {service.industries.length > 0 && (
-              <>
-                <h2>Dónde lo aplicamos</h2>
-                <ul className={styles.chips}>
-                  {service.industries.map((slug) => {
-                    const industry = getIndustry(slug)
-                    return industry ? (
-                      <li key={slug}>
-                        <Link to={`/industrias/${slug}`}>{industry.name}</Link>
-                      </li>
-                    ) : null
-                  })}
-                </ul>
-              </>
-            )}
-            <ButtonLink to={quoteHref} variant="secondary" arrow>
-              Solicitar una evaluación
-            </ButtonLink>
-          </div>
+          </ul>
+          {serviceCredentials.length > 0 && (
+            <p className={s.credentials} data-reveal>
+              {serviceCredentials.map((c) => (
+                <span key={c.id}>
+                  <strong>{c.code}</strong> · {c.title}
+                </span>
+              ))}
+            </p>
+          )}
+          {where.length > 0 && (
+            <div className={s.where} data-reveal>
+              <p className={`eyebrow ${s.whereLabel}`}>Dónde lo aplicamos</p>
+              <ul>
+                {where.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
 
@@ -161,7 +182,6 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
           </>
         }
         text="Cuéntanos dónde está tu instalación y qué necesitas. Te respondemos con una propuesta a la medida de tu operación."
-        quoteHref={quoteHref}
         location="service_closing"
       />
     </>

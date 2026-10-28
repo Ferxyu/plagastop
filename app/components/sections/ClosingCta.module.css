@@ -1,5 +1,7 @@
 /* Banda de cierre con degradado animado: azul marino y verde bosque en movimiento lento */
 .band {
+  position: relative;
+  isolation: isolate;
   overflow: hidden;
   color: var(--ps-white);
   background: linear-gradient(115deg, #041c44 0%, #0b2b68 30%, #2f5b57 58%, #041c44 82%, #0b2b68 100%);
@@ -101,15 +103,20 @@
   color: var(--ps-navy);
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-3);
-  margin-top: var(--s-3);
+/* La grilla queda sobre las moléculas del fondo */
+.grid {
+  position: relative;
+  z-index: 1;
 }
 
-.phone {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: rgb(255 255 255 / 0.8);
+/* Isotipo que se arma sobre el título */
+.iso {
+  width: clamp(56px, 5vw, 76px);
+}
+
+@media (min-width: 640px) {
+  .points {
+    grid-template-columns: repeat(2, max-content);
+    column-gap: var(--s-6);
+  }
 }

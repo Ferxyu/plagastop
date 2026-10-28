@@ -253,10 +253,11 @@
   padding: 0;
 }
 
-.industries li a {
+/* Industrias como texto (sin páginas propias) */
+.industries li {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 40px;
   padding: 0 18px;
   border-radius: var(--pill);
   background: var(--ps-blue-soft);
@@ -264,19 +265,6 @@
   color: var(--ps-blue);
   font-size: 0.9375rem;
   font-weight: 500;
-  text-decoration: none;
-  transition:
-    background-color var(--dur-fast) var(--ease-out),
-    color var(--dur-fast) var(--ease-out);
-}
-
-.industries li a:hover {
-  background: var(--ps-navy);
-  color: var(--ps-white);
-}
-
-.industries > :last-child {
-  margin-top: var(--s-3);
 }
 
 /* Texto de la tarjeta */

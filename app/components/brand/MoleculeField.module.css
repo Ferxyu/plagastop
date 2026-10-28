@@ -23,6 +23,20 @@
   box-shadow: 0 0 14px rgb(204 231 11 / 0.6);
 }
 
+.iso {
+  color: var(--ps-lime);
+}
+
+/* Sobre fondos claros: moléculas azules, sin brillo */
+.field[data-tone='light'] .iso {
+  color: var(--ps-blue);
+}
+
+.field[data-tone='light'] .atom {
+  background: var(--ps-blue);
+  box-shadow: none;
+}
+
 .svg {
   display: block;
   width: 100%;

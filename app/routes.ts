@@ -9,8 +9,6 @@ export default [
   index('routes/home.tsx'),
   route('servicios', 'routes/servicios._index.tsx'),
   route('servicios/:slug', 'routes/servicios.$slug.tsx'),
-  route('industrias', 'routes/industrias._index.tsx'),
-  route('industrias/:slug', 'routes/industrias.$slug.tsx'),
   route('empresa', 'routes/empresa.tsx'),
   route('acreditaciones', 'routes/acreditaciones.tsx'),
   route('contacto', 'routes/contacto.tsx'),

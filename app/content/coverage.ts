@@ -44,7 +44,7 @@ export const coverage: CoverageZone[] = [
   },
 ]
 
-export const coverageSummary = 'Desde Ñuble hasta Los Lagos'
+export const coverageSummary = 'Desde Concepción, llegamos de Ñuble a Los Lagos'
 
 /** Valores para schema.org areaServed */
 export const areaServed = [

@@ -51,7 +51,12 @@ const meta = {
   'nube-termonebulizacion': { alt: 'Nube de termonebulización avanzando por una bodega de graneles', ratio: 3 / 4 },
   'pasillo-nave': { alt: 'Técnico de Plagastop recorriendo el pasillo de cubierta de una nave', ratio: 3 / 4 },
   'silo-motobomba': { alt: 'Aspersión con motobomba en el exterior de un silo', ratio: 3 / 4 },
-  'medidor-fumisense': { alt: 'Medición de gas con un detector FumiSense junto a un contenedor', ratio: 3 / 4 },
+  'medidor-fumisense': {
+    alt: 'Medición de gas con un detector FumiSense junto a un contenedor',
+    ratio: 3 / 4,
+    // El equipo está en la mitad inferior: en un recorte horizontal se encuadra ahí
+    focus: '50% 72%',
+  },
   'pallets-bajo-cobertor': { alt: 'Pallets de mercadería bajo cobertor en una bodega', ratio: 3 / 4 },
   'galpon-tecnico': { alt: 'Técnico de Plagastop trabajando dentro de un galpón de graneles', ratio: 3 / 4 },
   'sede-concepcion': {
@@ -110,6 +115,21 @@ const meta = {
   'detector-gas-residual': { alt: 'Detector digital de gas residual en terreno', ratio: 4 / 3 },
   'traslado-equipos-a-bordo': {
     alt: 'Traslado de máquinas y materiales a bordo de un barco',
+    ratio: 3 / 4,
+  },
+  // Medición de GAS FREE (carpeta "imágenes plagastop")
+  'gas-free-cubierta-nave': {
+    alt: 'Técnico de Plagastop mide gases residuales en la cubierta de una nave',
+    ratio: 4 / 3,
+    focus: '60% 6%',
+  },
+  'gas-free-fosfina-granel': {
+    alt: 'Detector de fosfina sobre la carga a granel de una nave, al atardecer',
+    ratio: 3 / 4,
+  },
+  'gas-free-escotilla-nave': { alt: 'Detector de fosfina en la escotilla de la bodega de una nave', ratio: 3 / 4 },
+  'gas-free-detector-granos': {
+    alt: 'Medición de gases con un detector Dräger X-am 7000 sobre una bodega de granos',
     ratio: 3 / 4,
   },
   // Edificio de la sede (carpeta "imágenes edificio plagastop")

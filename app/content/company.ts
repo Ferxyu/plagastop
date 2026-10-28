@@ -38,7 +38,8 @@ export const company = {
   hours: { label: '9:00 a 18:00 h', opens: '09:00', closes: '18:00' },
   social: {
     facebook: 'https://www.facebook.com/plagastop/',
-    instagram: 'https://www.instagram.com/plagastop_ltda',
+    instagram: 'https://www.instagram.com/plagastop.cl/',
+    linkedin: 'https://cl.linkedin.com/company/plagastop-ltda',
   },
 } as const
 
@@ -61,3 +62,13 @@ export const contactAreas: ContactArea[] = [
 ]
 
 export const salesArea = contactAreas[0]
+
+/** Línea fija de la Secretaría: es el número al que llama el botón de teléfono del encabezado. */
+export const officeArea = contactAreas[1]
+
+/** Formulario de la página de Contacto: destino del botón "Solicitar cotización". */
+export const QUOTE_HREF = '/contacto#formulario'
+
+/** Horarios tal como se publican: la atención comercial tiene horario; la prestación del servicio es 24/7. */
+export const COMMERCIAL_HOURS = `Atención comercial de ${company.hours.label}`
+export const SERVICE_HOURS = 'Prestación del servicio 24/7'

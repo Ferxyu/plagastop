@@ -166,7 +166,7 @@ function QuoteFormInner({ params }: { params: URLSearchParams }) {
             id="comuna"
             label="Comuna o ciudad de la instalación"
             error={err('comuna')}
-            hint="Atendemos desde Ñuble hasta Los Lagos."
+            hint="Desde Concepción, llegamos de Ñuble a Los Lagos."
           >
             <Input
               id="comuna"

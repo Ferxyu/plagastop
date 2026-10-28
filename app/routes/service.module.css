@@ -1,0 +1,299 @@
+/* Landing de servicio: degradado claro con moléculas azules, luego banda azul con moléculas lima. */
+
+.need,
+.includes {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.need {
+  padding-block: clamp(56px, 3rem + 4vw, 104px);
+  background: var(--gradient-light);
+  color: var(--ps-navy);
+}
+
+.needGrid,
+.includesInner {
+  position: relative;
+  z-index: 1;
+}
+
+.needGrid {
+  display: grid;
+  gap: var(--s-7);
+}
+
+@media (min-width: 1000px) {
+  .needGrid {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: var(--s-8);
+    /* La foto toma el alto del texto: con pocas situaciones no queda espacio vacío */
+    align-items: stretch;
+  }
+}
+
+.needCopy {
+  display: grid;
+  gap: var(--s-4);
+  align-content: center;
+}
+
+.eyebrow {
+  color: var(--ps-blue);
+}
+
+.blue {
+  color: var(--ps-blue);
+}
+
+.lime {
+  color: var(--ps-lime);
+}
+
+.needList {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-3);
+  padding: 0;
+  list-style: none;
+}
+
+.needList li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-radius: 18px;
+  background: rgb(255 255 255 / 0.78);
+  box-shadow: 0 0 0 1px rgb(11 43 104 / 0.08), 0 18px 36px -28px rgb(4 28 68 / 0.5);
+  backdrop-filter: blur(4px);
+  transition:
+    translate 400ms var(--ease-expo),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+.needList li:hover {
+  translate: 6px 0;
+  box-shadow: inset 4px 0 0 var(--ps-lime), 0 0 0 1px rgb(11 43 104 / 0.1), 0 18px 36px -24px rgb(4 28 68 / 0.55);
+}
+
+.needN {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: var(--ps-lime);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+}
+
+.needList p {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.needMedia {
+  position: relative;
+  min-height: 300px;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -36px rgb(4 28 68 / 0.6);
+}
+
+@media (min-width: 1000px) {
+  .needMedia {
+    aspect-ratio: auto;
+    min-height: 360px;
+  }
+}
+
+.needMedia img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Galería del servicio en terreno: tres columnas; en móvil, carrusel con desplazamiento lateral */
+.gallery {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+}
+
+.gallery h3 {
+  font-size: clamp(1.5rem, 1.2rem + 0.9vw, 2rem);
+}
+
+.gallery ul {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78%;
+  gap: var(--s-4);
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+@media (min-width: 760px) {
+  .gallery ul {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-5);
+    overflow: visible;
+  }
+}
+
+.gallery li {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 30px 60px -36px rgb(4 28 68 / 0.6);
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 700ms var(--ease-expo);
+}
+
+.gallery li:hover img {
+  scale: 1.04;
+}
+
+/* Qué incluye: banda azul en degradado con moléculas */
+.includes {
+  padding-block: clamp(64px, 3.5rem + 4vw, 112px);
+  background: var(--gradient-blue-slate);
+  color: var(--ps-white);
+}
+
+.includesInner {
+  display: grid;
+  gap: var(--s-6);
+}
+
+.includesHead {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.iso {
+  flex: none;
+  width: clamp(44px, 4vw, 60px);
+}
+
+.includesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--s-4);
+  padding: 0;
+  list-style: none;
+}
+
+.includesGrid li {
+  display: grid;
+  align-content: start;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 0.07);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
+  backdrop-filter: blur(6px);
+  transition:
+    background-color var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out),
+    translate 400ms var(--ease-expo);
+}
+
+.includesGrid li:hover {
+  translate: 0 -4px;
+  background: rgb(255 255 255 / 0.11);
+  box-shadow: inset 0 0 0 1.5px rgb(204 231 11 / 0.6);
+}
+
+.includesIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ps-lime);
+  color: var(--ps-navy);
+}
+
+.includesIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.includesGrid p {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgb(255 255 255 / 0.92);
+}
+
+.credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  color: rgb(255 255 255 / 0.85);
+}
+
+.credentials strong {
+  color: var(--ps-lime);
+}
+
+/* Dónde lo aplicamos: solo texto */
+.where {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3) var(--s-4);
+  padding-top: var(--s-5);
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+}
+
+.whereLabel {
+  color: var(--ps-lime);
+}
+
+.where ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding: 0;
+  list-style: none;
+}
+
+.where li {
+  padding: 8px 16px;
+  border-radius: var(--pill);
+  background: rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .needList li,
+  .includesGrid li {
+    transition: none;
+  }
+}

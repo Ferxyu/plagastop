@@ -1,7 +1,5 @@
 import { useRef } from 'react'
 import { Banknote, Lock, Repeat } from 'lucide-react'
-import { track } from '~/lib/analytics'
-import { ButtonLink } from '~/components/ui/Button'
 import { MoleculeField } from '~/components/brand/MoleculeField'
 import { BreakingFx } from './BreakingPoint'
 import { useBreakingPoint } from './useBreakingPoint'
@@ -62,15 +60,6 @@ export function FineBand() {
           Nosotros nos aseguramos de mantener la asepsia general en tus dependencias e instalaciones y que estén al
           día tus registros y certificados.
         </p>
-        <ButtonLink
-          to="/contacto"
-          variant="primary"
-          size="lg"
-          arrow
-          onClick={() => track('cta_click', { location: 'multas' })}
-        >
-          Contáctanos
-        </ButtonLink>
       </div>
     </section>
   )

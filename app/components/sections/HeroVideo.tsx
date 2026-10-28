@@ -5,9 +5,8 @@ import { Award, FileCheck2, ShieldCheck, Volume2, VolumeX } from 'lucide-react'
 import posterWide from '~/assets/media/hero-poster-1600.webp'
 import posterTall from '~/assets/media/hero-poster-720.webp'
 import { credentials } from '~/content/credentials'
-import { track } from '~/lib/analytics'
 import { ButtonLink } from '~/components/ui/Button'
-import { SOUND_ATTR, useHeroSound } from './useHeroSound'
+import { mutedByUser, SOUND_ATTR, useHeroSound } from './useHeroSound'
 import styles from './HeroVideo.module.css'
 
 const VIDEO_WIDE = `${import.meta.env.BASE_URL}media/hero-1080.mp4`
@@ -21,8 +20,8 @@ const verbs = ['importando', 'produciendo', 'vendiendo', 'creciendo']
 /**
  * Hero del home: video real de terreno (cinco escenas), titular con verbo rotativo y credenciales bajo el logo.
  * El póster carga primero; el video se pide recién cuando la página terminó de cargar, y nunca con
- * movimiento reducido o ahorro de datos: en esos casos queda el póster fijo. El video va sin sonido y en
- * bucle con su audio; un botón flotante lo silencia o lo vuelve a activar (ver useHeroSound.ts).
+ * movimiento reducido o ahorro de datos: en esos casos queda el póster fijo. El video va en bucle
+ * con su audio activo; un botón flotante lo silencia o lo vuelve a activar (ver useHeroSound.ts).
  */
 export function HeroVideo() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -40,8 +39,14 @@ export function HeroVideo() {
     const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
     if (reduced || saveData) return
 
+    // Intenta arrancar con sonido; si el navegador aún no lo permite, sigue sin sonido y
+    // useHeroSound lo activa con el primer gesto del visitante.
     const start = () => {
-      video.play().catch(() => setPlaying(false))
+      video.muted = mutedByUser()
+      video.play().catch(() => {
+        video.muted = true
+        video.play().catch(() => setPlaying(false))
+      })
     }
     if (document.readyState === 'complete') start()
     else window.addEventListener('load', start, { once: true })
@@ -109,10 +114,7 @@ export function HeroVideo() {
           Prevención, control y seguimiento profesional de plagas para plantas, bodegas, puertos y agroindustrias.
         </p>
         <div className={styles.actions}>
-          <ButtonLink to="/cotizar" size="lg" arrow onClick={() => track('cta_click', { location: 'hero' })}>
-            Solicitar cotización
-          </ButtonLink>
-          <ButtonLink to="/servicios" size="lg" variant="inverse">
+          <ButtonLink to="/servicios" size="lg" arrow>
             Conoce nuestros servicios
           </ButtonLink>
         </div>

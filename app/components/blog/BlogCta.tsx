@@ -1,8 +1,6 @@
-import { track } from '~/lib/analytics'
-import { ButtonLink } from '~/components/ui/Button'
 import styles from './blog.module.css'
 
-/** Cierre comercial del blog y de cada artículo: lleva a la página de contacto existente. */
+/** Cierre comercial del blog y de cada artículo (el contacto queda en el encabezado y en WhatsApp). */
 export function BlogCta({ location }: { location: string }) {
   return (
     <section className={`section on-dark ${styles.cta}`} aria-labelledby={`${location}-cta-title`}>
@@ -12,9 +10,6 @@ export function BlogCta({ location }: { location: string }) {
           Nuestro equipo puede ayudarte a identificar riesgos y desarrollar estrategias de control de plagas adaptadas a
           tus instalaciones.
         </p>
-        <ButtonLink to="/contacto" size="lg" arrow onClick={() => track('cta_click', { location })}>
-          Contactar a un especialista
-        </ButtonLink>
       </div>
     </section>
   )

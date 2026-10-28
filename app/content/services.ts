@@ -32,6 +32,8 @@ export interface Service {
   photo: PhotoId
   /** Foto del cuerpo de la página: distinta a la de la cabecera y del mismo servicio. */
   photo2: PhotoId
+  /** Fotos adicionales del servicio en terreno. */
+  gallery?: PhotoId[]
   /** Una línea: qué resuelve. */
   summary: string
   /** H1 de la página de servicio. */
@@ -91,7 +93,7 @@ const serviceList: Service[] = [
     seo: {
       title: 'Manejo Integrado de Plagas (MIP) para empresas',
       description:
-        'Programas MIP con monitoreo, control y sanitización periódica para plantas, bodegas y empresas de alimentos en el sur de Chile. Plagastop, desde 1985.',
+        'Programas MIP con monitoreo, control y sanitización periódica para plantas, bodegas y empresas de alimentos en el sur de Chile. Plagastop, más de 25 años de experiencia.',
     },
   },
   {
@@ -128,7 +130,7 @@ const serviceList: Service[] = [
     seo: {
       title: 'Control de roedores para empresas',
       description:
-        'Control y monitoreo de roedores para bodegas, centros logísticos, plantas de alimentos y comercio. Cobertura desde Ñuble hasta Los Lagos.',
+        'Control y monitoreo de roedores para bodegas, centros logísticos, plantas de alimentos y comercio. Desde Concepción, llegamos de Ñuble a Los Lagos.',
     },
   },
   {
@@ -208,10 +210,10 @@ const serviceList: Service[] = [
     photo2: 'termonebulizacion-silo',
     featured: true,
     summary:
-      'Programas para granos almacenados con laboratorio móvil, para proteger el valor del producto.',
+      'Programas para granos almacenados, con análisis del grado de infestación, para proteger el valor del producto.',
     headline: 'Fumigación y programas para granos almacenados',
     intro:
-      'Los insectos de granos almacenados deterioran el producto y su valor comercial. Plagastop trabaja programas específicos para granos almacenados, con apoyo de laboratorio móvil en terreno.',
+      'Los insectos de granos almacenados deterioran el producto y su valor comercial. Plagastop trabaja programas específicos para granos almacenados, con análisis interno del grado de infestación.',
     whenNeeded: [
       'Almacenas granos en silos, bodegas o celdas por períodos prolongados.',
       'Detectaste insectos o deterioro en el producto almacenado.',
@@ -219,15 +221,14 @@ const serviceList: Service[] = [
     ],
     includes: [
       'Programa de control específico para granos almacenados.',
-      'Laboratorio móvil en terreno.',
-      'Tratamientos de fumigación según el tipo de almacenamiento.',
+      'Análisis interno de grado de infestación de granos.',
       'Fumigación con generadores de fosfina (GDF).',
     ],
     industries: ['agroindustria-y-granos', 'puertos-y-comercio-exterior'],
     seo: {
       title: 'Fumigación de granos almacenados',
       description:
-        'Programas de control y fumigación para granos almacenados en silos y bodegas, con laboratorio móvil. Plagastop, Concepción.',
+        'Programas de control y fumigación para granos almacenados en silos y bodegas, con análisis del grado de infestación. Plagastop, Concepción.',
     },
   },
   {
@@ -239,25 +240,24 @@ const serviceList: Service[] = [
     photo: 'astillas-bodega-barco',
     photo2: 'astillas-de-pino',
     featured: true,
-    summary: 'Pulverización de astillas de madera de exportación en bodegas de buques y en contenedores.',
-    headline: 'Pulverización de astillas de madera en buques y contenedores',
+    summary: 'Pulverizado de astillas de madera en buques y plantas de origen.',
+    headline: 'Pulverizado de astillas de madera en buques y plantas de origen',
     intro:
-      'Las astillas de madera que se exportan a granel viajan en bodegas de buques o en contenedores. Plagastop realiza la pulverización de la carga en ambos formatos, coordinada con los tiempos del embarque.',
+      'Las astillas de madera de exportación se tratan en su planta de origen o en las bodegas del buque. Plagastop realiza el pulverizado de la carga en ambos puntos.',
     whenNeeded: [
-      'Exportas astillas de madera a granel en bodegas de buques.',
-      'Despachas astillas de madera en contenedores.',
-      'Necesitas que el tratamiento se coordine con la carga y la salida de la nave.',
+      'Despachas astillas de madera.',
+      'Exportas astillas de madera.',
     ],
     includes: [
-      'Pulverización de astillas en bodegas de buques.',
-      'Pulverización de astillas en contenedores.',
+      'Pulverizado de astillas de madera en bodegas de buques.',
+      'Pulverizado de astillas de madera en plantas de origen.',
       'Coordinación con la operación portuaria y los tiempos de carga.',
     ],
     industries: ['forestal', 'puertos-y-comercio-exterior'],
     seo: {
-      title: 'Pulverización de astillas de madera en buques y contenedores',
+      title: 'Pulverizado de astillas de madera en buques y plantas de origen',
       description:
-        'Pulverización de astillas de madera de exportación en bodegas de buques y contenedores, en los puertos del Biobío y el sur de Chile. Plagastop, desde 1985.',
+        'Pulverizado de astillas de madera de exportación en buques y plantas de origen, en los puertos del Biobío y el sur de Chile. Plagastop, más de 25 años de experiencia.',
     },
   },
   {
@@ -271,7 +271,7 @@ const serviceList: Service[] = [
       'Tratamientos oficiales para exportación e importación, autorizados por el SAG.',
     headline: 'Tratamientos fitosanitarios oficiales para exportación e importación',
     intro:
-      'Los productos que cruzan fronteras deben cumplir exigencias fitosanitarias oficiales. Plagastop está autorizada por el Servicio Agrícola y Ganadero para ejecutarlas, y trabaja en los puertos de la zona desde 1985.',
+      'Los productos que cruzan fronteras deben cumplir exigencias fitosanitarias oficiales. Plagastop está autorizada por el Servicio Agrícola y Ganadero para ejecutarlas, y trabaja en los puertos de la zona hace más de 25 años.',
     whenNeeded: [
       'Exportas o importas productos sujetos a tratamiento fitosanitario oficial.',
       'Tu carga requiere tratamiento antes del embarque o tras su llegada.',
@@ -296,8 +296,9 @@ const serviceList: Service[] = [
     name: 'Medición de gases residuales (Gas Free)',
     shortName: 'Medición Gas Free',
     icon: 'gas',
-    photo: 'gas-free-contenedor',
+    photo: 'gas-free-cubierta-nave',
     photo2: 'medidor-fumisense',
+    gallery: ['gas-free-fosfina-granel', 'gas-free-escotilla-nave', 'gas-free-detector-granos'],
     summary:
       'Medición de gases residuales en contenedores y naves antes de su apertura o descarga.',
     headline: 'Medición de gases residuales Gas Free en contenedores y naves',
@@ -347,7 +348,7 @@ const serviceList: Service[] = [
     seo: {
       title: 'Control de plagas en puertos y buques',
       description:
-        'Tratamientos de control de plagas en instalaciones portuarias y naves en los puertos del Biobío y el sur de Chile. Plagastop, desde 1985.',
+        'Tratamientos de control de plagas en instalaciones portuarias y naves en los puertos del Biobío y el sur de Chile. Plagastop, más de 25 años de experiencia.',
     },
   },
   {

@@ -16,8 +16,8 @@ export interface Landing {
 export const landings: Landing[] = [
   {
     slug: 'control-de-plagas-empresas',
-    headline: 'Control de plagas para empresas, con respaldo técnico desde 1985',
-    lead: 'Programas preventivos y tratamientos para plantas, bodegas, empresas de alimentos y puertos, desde Ñuble hasta Los Lagos.',
+    headline: 'Control de plagas para empresas, con respaldo técnico de más de 25 años',
+    lead: 'Programas preventivos y tratamientos para plantas, bodegas, empresas de alimentos y puertos. Desde Concepción, llegamos de Ñuble a Los Lagos.',
     reasons: [
       {
         title: 'Un plan para tu instalación',
@@ -29,7 +29,7 @@ export const landings: Landing[] = [
       },
       {
         title: 'Cuatro décadas en terreno',
-        text: 'Trabajamos en industrias y puertos del sur de Chile desde 1985.',
+        text: 'Trabajamos en industrias y puertos del sur de Chile hace más de 25 años.',
       },
     ],
     service: 'manejo-integrado-de-plagas',

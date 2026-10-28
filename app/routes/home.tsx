@@ -1,14 +1,11 @@
-import { Award, DraftingCompass, MapPin, Phone, Ruler } from 'lucide-react'
+import { Award, DraftingCompass, MapPin, Ruler } from 'lucide-react'
 import type { Route } from './+types/home'
 import type { RouteHandle } from '~/root'
-import { company, salesArea } from '~/content/company'
+import { company } from '~/content/company'
 import { generalFaqs } from '~/content/faqs'
 import { primaryServices } from '~/content/services'
 import { buildMeta, faqLd, organizationLd } from '~/lib/seo'
-import { formatPhone, telHref } from '~/lib/contact'
-import { track } from '~/lib/analytics'
 import { SplitWords } from '~/components/motion/SplitWords'
-import { ButtonLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
 import { HeroVideo } from '~/components/sections/HeroVideo'
 import { FineBand } from '~/components/sections/FineBand'
@@ -23,10 +20,10 @@ import styles from './home.module.css'
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
-    title: 'Plagastop · Control de plagas para empresas e industrias desde 1985',
+    title: 'Plagastop · Control de plagas para empresas e industrias, más de 25 años',
     rawTitle: true,
     description:
-      'Prevención, control y seguimiento de plagas para plantas, bodegas, silos y puertos. Autorizados por el SAG. Desde Ñuble hasta Los Lagos.',
+      'Prevención, control y seguimiento de plagas para plantas, bodegas, silos y puertos. Autorizados por el SAG. Desde Concepción, llegamos de Ñuble a Los Lagos.',
     path: '/',
     jsonLd: [organizationLd, faqLd(generalFaqs)],
   })
@@ -127,11 +124,6 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <div data-reveal={4}>
-            <ButtonLink to="/contacto" variant="inverse">
-              Agenda una reunión en nuestra sede
-            </ButtonLink>
-          </div>
         </div>
       </section>
 
@@ -139,7 +131,7 @@ export default function Home() {
       <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title" data-scroll-card>
         <div className="container" data-scroll-flow>
           <header className={styles.centerHead}>
-            <p className={`eyebrow ${styles.eyebrowBlue}`} data-reveal>
+            <p className={`eyebrow ${styles.eyebrowBlue} ${styles.coverageEyebrow}`} data-reveal>
               Cobertura
             </p>
             <h2 id="cobertura-title" className={styles.bigTitle} data-reveal={1}>
@@ -149,7 +141,7 @@ export default function Home() {
               </span>
             </h2>
             <p className={styles.centerLead} data-reveal={2}>
-              Salimos desde Concepción a plantas, bodegas y puertos de cuatro regiones, desde Ñuble hasta Los Lagos.
+              Desde Concepción, llegamos de Ñuble a Los Lagos: plantas, bodegas y puertos de cuatro regiones.
             </p>
           </header>
           <CoverageLine centered />
@@ -173,17 +165,8 @@ export default function Home() {
               </span>
             </h2>
             <p className="lead" data-reveal={2}>
-              Si tu pregunta no está aquí, el Área Comercial te responde en horario de atención.
+              Si tu pregunta no está aquí, escríbenos por WhatsApp y el Área Comercial te responde en horario de atención.
             </p>
-            <a
-              href={telHref(salesArea.phone)}
-              className={styles.phone}
-              onClick={() => track('tel_click', { location: 'faq' })}
-              data-reveal={3}
-            >
-              <Phone size={18} strokeWidth={2} aria-hidden />
-              <span className="tabular">{formatPhone(salesArea.phone)}</span>
-            </a>
             <div className={styles.faqPhoto} data-reveal="3" data-reveal-style="clip">
               <Photo id="fdw-monitoreo-barco" sizes="(min-width: 1000px) 34vw, 100vw" />
             </div>
@@ -205,20 +188,6 @@ export default function Home() {
           <p className={styles.centerLead} data-reveal={1}>
             Te visitamos, evaluamos en terreno y te proponemos un plan a la medida.
           </p>
-          <div className={styles.closingActions} data-reveal={2}>
-            <ButtonLink to="/cotizar" size="lg" arrow onClick={() => track('cta_click', { location: 'closing' })}>
-              Solicitar cotización
-            </ButtonLink>
-            <ButtonLink
-              to={telHref(salesArea.phone)}
-              variant="secondary"
-              size="lg"
-              icon={<Phone size={18} strokeWidth={2} aria-hidden />}
-              onClick={() => track('tel_click', { location: 'closing' })}
-            >
-              {formatPhone(salesArea.phone)}
-            </ButtonLink>
-          </div>
         </div>
       </section>
     </>

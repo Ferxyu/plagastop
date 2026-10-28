@@ -9,7 +9,7 @@ import { formatPhone } from '~/lib/contact'
 export const generalFaqs = [
   {
     q: '¿Están autorizados por el SAG?',
-    a: 'Sí. Plagastop cuenta con la Resolución SAG 3273/2025 para ejecutar tratamientos fitosanitarios oficiales de exportación e importación, y trabaja con el SAG en los puertos de la zona desde 1985.',
+    a: 'Sí. Plagastop cuenta con la Resolución SAG 3273/2025 para ejecutar tratamientos fitosanitarios oficiales de exportación e importación, y trabaja con el SAG en los puertos de la zona hace más de 25 años.',
   },
   {
     q: '¿Cómo solicito una cotización?',
@@ -17,11 +17,11 @@ export const generalFaqs = [
   },
   {
     q: '¿Cuál es el horario de atención?',
-    a: `Atendemos de ${company.hours.label}.`,
+    a: `La atención comercial es de ${company.hours.label} y la prestación del servicio es 24/7.`,
   },
   {
     q: '¿Desde cuándo operan?',
-    a: 'Desde 1985. Plagastop nació en Concepción y en 2006 fue la primera empresa de control de plagas en Chile en certificarse bajo la norma ISO 9001.',
+    a: 'Hace más de 25 años. Plagastop nació en Concepción y en 2006 fue la primera empresa de control de plagas en Chile en certificarse bajo la norma ISO 9001.',
   },
   {
     q: '¿En qué zonas trabajan?',

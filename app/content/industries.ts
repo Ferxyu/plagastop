@@ -48,7 +48,7 @@ export const industries: Industry[] = [
     seo: {
       title: 'Control de plagas para la industria alimentaria',
       description:
-        'Programas MIP, control de roedores e insectos y sanitización para plantas de alimentos. Plagastop, desde Ñuble hasta Los Lagos.',
+        'Programas MIP, control de roedores e insectos y sanitización para plantas de alimentos. Plagastop. Desde Concepción, llegamos de Ñuble a Los Lagos.',
     },
   },
   {
@@ -124,7 +124,7 @@ export const industries: Industry[] = [
     seo: {
       title: 'Tratamientos para puertos y comercio exterior',
       description:
-        'Tratamientos fitosanitarios SAG, medición Gas Free y control de plagas en puertos y buques del Biobío. Plagastop, desde 1985.',
+        'Tratamientos fitosanitarios SAG, medición Gas Free y control de plagas en puertos y buques del Biobío. Plagastop, más de 25 años de experiencia.',
     },
   },
   {

@@ -6,7 +6,6 @@ import { relatedPosts, stripHtml } from '~/lib/blog/utils'
 import { fetchLivePost, fetchLivePosts } from '~/lib/blog/live'
 import { photo } from '~/content/photos'
 import { getService } from '~/content/services'
-import { getIndustry } from '~/content/industries'
 import { blogPostingLd, breadcrumbLd, buildMeta } from '~/lib/seo'
 import { PageHero } from '~/components/sections/PageHero'
 import { SectionHeader } from '~/components/ui/SectionHeader'
@@ -87,7 +86,6 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
 export default function BlogPostPage({ loaderData }: Route.ComponentProps) {
   const { post, related } = loaderData
   const service = getService(post.relatedService)
-  const industry = getIndustry(post.relatedIndustry)
 
   return (
     <>
@@ -122,19 +120,12 @@ export default function BlogPostPage({ loaderData }: Route.ComponentProps) {
           {/* HTML ya sanitizado al compilar (lib/blog/sanitize.ts) */}
           <div className={styles.prose} dangerouslySetInnerHTML={{ __html: post.html }} />
 
-          {(service || industry) && (
+          {service && (
             <aside className={styles.related} aria-label="Servicios relacionados">
               <p>Para tu empresa</p>
-              {service && (
-                <Link to={`/servicios/${service.slug}`} prefetch="intent">
-                  {service.name} →
-                </Link>
-              )}
-              {industry && (
-                <Link to={`/industrias/${industry.slug}`} prefetch="intent">
-                  Control de plagas en {industry.name.toLowerCase()} →
-                </Link>
-              )}
+              <Link to={`/servicios/${service.slug}`} prefetch="intent">
+                {service.name} →
+              </Link>
             </aside>
           )}
         </div>

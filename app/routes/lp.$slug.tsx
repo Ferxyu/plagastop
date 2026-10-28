@@ -48,9 +48,9 @@ export default function Landing({ loaderData }: Route.ComponentProps) {
               ))}
             </ul>
             <ul className={styles.facts} style={{ color: 'var(--ps-steel)' }}>
-              <li>Desde 1985 en Concepción</li>
+              <li>Más de 25 años en Concepción</li>
               <li>Autorizados por el SAG (Res. 3273/2025)</li>
-              <li>Desde Ñuble hasta Los Lagos</li>
+              <li>Desde Concepción, llegamos de Ñuble a Los Lagos</li>
             </ul>
           </div>
           <div className={styles.formPanel} id="cotizar">
