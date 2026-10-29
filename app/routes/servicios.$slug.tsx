@@ -127,11 +127,22 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
           </header>
           <ul className={s.includesGrid}>
             {service.includes.map((item, i) => (
-              <li key={item} data-reveal={i + 1}>
+              <li key={typeof item === 'string' ? item : item.title} data-reveal={i + 1}>
                 <span className={s.includesIcon} aria-hidden>
                   {i === 0 ? <ServiceIcon name={service.icon} /> : <Check strokeWidth={2.5} />}
                 </span>
-                <p>{item}</p>
+                {typeof item === 'string' ? (
+                  <p>{item}</p>
+                ) : (
+                  <div className={s.includesGroup}>
+                    <p>{item.title}</p>
+                    <ul>
+                      {item.items.map((option) => (
+                        <li key={option}>{option}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -181,7 +192,7 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
             Cotiza <mark>{service.shortName}</mark>
           </>
         }
-        text="Cuéntanos dónde está tu instalación y qué necesitas. Te respondemos con una propuesta a la medida de tu operación."
+        text={`${service.closingLead ?? 'Cuéntanos dónde está tu instalación y qué necesitas.'} Te respondemos con una propuesta a la medida de tu operación.`}
         location="service_closing"
         image={service.closingPhoto}
       />

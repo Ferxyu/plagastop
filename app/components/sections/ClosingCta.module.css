@@ -68,13 +68,14 @@
   min-width: 0;
 }
 
-/* Nombres de servicio largos ("Tratamientos fitosanitarios SAG") deben caber en cualquier ancho */
+/* Nombres de servicio largos ("Tratamientos fitosanitarios SAG") deben caber en cualquier ancho,
+   sin partir palabras con guion */
 .copy h2 {
-  font-size: clamp(1.875rem, 1.2rem + 3.2vw, 3.875rem);
+  font-size: clamp(1.75rem, 1.1rem + 3.2vw, 3.875rem);
   max-width: 18ch;
   line-height: 1.12;
   overflow-wrap: break-word;
-  hyphens: auto;
+  hyphens: manual;
   text-wrap: balance;
 }
 

@@ -132,6 +132,61 @@ const meta = {
     alt: 'Medición de gases con un detector Dräger X-am 7000 sobre una bodega de granos',
     ratio: 3 / 4,
   },
+  // Portadas y fotos de servicio (carpeta "imágenes plagastop", octubre 2026)
+  'mip-perimetro-planta': {
+    alt: 'Técnico revisa el perímetro exterior de una planta industrial',
+    ratio: 1672 / 941,
+    focus: '50% 50%',
+  },
+  'roedores-estacion-perimetro': {
+    alt: 'Técnico revisa una estación de control de roedores junto al muro de una bodega',
+    ratio: 1672 / 941,
+    focus: '65% 45%',
+  },
+  'insectos-oficina-aplicacion': {
+    alt: 'Técnico con traje de protección aplica un tratamiento contra insectos en una oficina',
+    ratio: 1672 / 941,
+    focus: '62% 45%',
+  },
+  'sanitizacion-lavamanos': {
+    alt: 'Técnico sanitiza los lavamanos de un baño con bomba de espalda',
+    ratio: 4 / 3,
+    focus: '55% 40%',
+  },
+  'sanitizacion-vitrina': {
+    alt: 'Técnico sanitiza las vitrinas refrigeradas de un local de alimentos',
+    ratio: 4 / 3,
+    focus: '50% 35%',
+  },
+  'acido-propionico-galpon': {
+    alt: 'Técnico aplica ácido propiónico sobre harina a granel que descarga una retroexcavadora en un galpón',
+    ratio: 1672 / 941,
+    focus: '70% 55%',
+  },
+  'acido-propionico-aplicacion': {
+    alt: 'Aplicación de ácido propiónico en harina a granel, con el tambor del producto en primer plano',
+    ratio: 3 / 4,
+    focus: '50% 62%',
+  },
+  'acido-propionico-tambor': {
+    alt: 'Técnico con máscara junto al tambor de ácido propiónico en un galpón',
+    ratio: 3 / 4,
+    focus: '50% 55%',
+  },
+  'aves-bandada': { alt: 'Bandada de palomas en vuelo sobre el cielo azul', ratio: 1672 / 941, focus: '50% 45%' },
+  'mip-monitoreo-exterior': {
+    alt: 'Técnico de Plagastop revisa el monitoreo junto a un contenedor en el exterior de una planta',
+    // Recortada arriba de la marca de agua del original
+    ratio: 2560 / 1594,
+    focus: '68% 50%',
+  },
+  'insectos-cocina-aplicacion': {
+    alt: 'Técnico con traje de protección aplica un tratamiento contra insectos en una cocina industrial',
+    ratio: 1672 / 941,
+    focus: '75% 50%',
+  },
+  'aves-paloma-malla': { alt: 'Paloma posada detrás de una malla metálica', ratio: 1624 / 968, focus: '55% 45%' },
+  'aves-paloma-pasto': { alt: 'Paloma en un área verde junto a un estacionamiento', ratio: 4 / 3, focus: '60% 50%' },
   // Edificio de la sede (carpeta "imágenes edificio plagastop")
   'edificio-frente': { alt: 'Fachada verde de la sede de Plagastop vista desde la calle', ratio: 3 / 2 },
   'edificio-frente-costado': { alt: 'Frente de la sede de Plagastop entre árboles, desde un costado', ratio: 3 / 2 },

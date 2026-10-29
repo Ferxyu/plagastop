@@ -273,6 +273,46 @@
   color: rgb(255 255 255 / 0.92);
 }
 
+/* Recuadro con varias opciones listadas (p. ej. tipos de tratamiento) */
+.includesGroup {
+  display: grid;
+  gap: var(--s-3);
+}
+
+/* La lista queda centrada en el recuadro, con el texto alineado a la izquierda */
+.includesGrid .includesGroup ul {
+  display: grid;
+  gap: var(--s-2);
+  justify-self: center;
+  text-align: left;
+  padding: 0;
+  list-style: none;
+}
+
+.includesGrid .includesGroup li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  translate: none;
+  text-align: left;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.includesGrid .includesGroup li::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ps-lime);
+  translate: 0 -2px;
+}
+
 .credentials {
   display: flex;
   flex-wrap: wrap;
