@@ -185,6 +185,31 @@ const meta = {
     ratio: 1672 / 941,
     focus: '75% 50%',
   },
+  'roedores-estacion-cebadera': {
+    alt: 'Técnico revisa una estación de control de roedores junto a un muro de ladrillo',
+    ratio: 1942 / 809,
+    focus: '32% 55%',
+  },
+  'roedores-rejilla-desague': {
+    alt: 'Dos ratas junto a la rejilla de un desagüe',
+    ratio: 1534 / 1025,
+    focus: '62% 55%',
+  },
+  'insectos-cocina-desague': {
+    alt: 'Técnico con traje de protección aplica un tratamiento contra insectos en el desagüe de una cocina industrial',
+    ratio: 1916 / 821,
+    focus: '32% 55%',
+  },
+  'sanitizacion-vitrinas-local': {
+    alt: 'Técnico con traje de protección sanitiza las vitrinas refrigeradas de un local de alimentos',
+    ratio: 1,
+    focus: '50% 22%',
+  },
+  'insectos-trampa-uv': {
+    alt: 'Trampa de luz ultravioleta para insectos voladores instalada bajo un alero',
+    ratio: 1,
+    focus: '55% 40%',
+  },
   'aves-paloma-malla': { alt: 'Paloma posada detrás de una malla metálica', ratio: 1624 / 968, focus: '55% 45%' },
   'aves-paloma-pasto': { alt: 'Paloma en un área verde junto a un estacionamiento', ratio: 4 / 3, focus: '60% 50%' },
   // Edificio de la sede (carpeta "imágenes edificio plagastop")

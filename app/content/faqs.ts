@@ -29,6 +29,6 @@ export const generalFaqs = [
   },
   {
     q: '¿Atienden hogares?',
-    a: 'Sí. Nuestro foco son empresas e industrias, pero también atendemos casas, departamentos y condominios.',
+    a: 'Sí. Nuestro foco son empresas e industrias, pero también atendemos el sector domiciliario.',
   },
 ]

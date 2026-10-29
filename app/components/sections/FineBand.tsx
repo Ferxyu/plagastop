@@ -58,7 +58,7 @@ export function FineBand() {
       <div className={`container ${styles.close}`} data-reveal>
         <p className={styles.promise}>
           Nosotros nos aseguramos de mantener la asepsia general en tus dependencias e instalaciones y que estén al
-          día tus registros y certificados.
+          día tus registros y certificados ante auditorías y fiscalizaciones.
         </p>
       </div>
     </section>

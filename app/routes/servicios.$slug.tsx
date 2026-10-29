@@ -47,7 +47,7 @@ export const meta: Route.MetaFunction = ({ params }) => {
 }
 
 /**
- * Landing de servicio: cabecera con moléculas, "Cuándo lo necesitas" en tarjetas numeradas junto a una
+ * Landing de servicio: cabecera con moléculas, "Situaciones en las que podemos ayudarte" en tarjetas numeradas junto a una
  * foto que acompaña el alto del texto, "Qué incluye" en banda azul con moléculas y el isotipo que se arma,
  * y las industrias donde se aplica como texto (no tienen páginas propias). Sin botones de contacto:
  * eso queda en el encabezado y en el botón de WhatsApp.
@@ -75,7 +75,7 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
         molecules
       />
 
-      {/* Cuándo lo necesitas */}
+      {/* Situaciones en las que podemos ayudarte */}
       <section className={`section ${s.need}`} aria-labelledby="cuando-title">
         <MoleculeField tone="light" />
         <div className={`container ${s.needGrid}`}>
@@ -84,7 +84,7 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
               {service.shortName}
             </p>
             <h2 id="cuando-title" data-reveal={1}>
-              Cuándo lo <span className={s.blue}>necesitas</span>
+              Situaciones en las que <span className={s.blue}>podemos ayudarte</span>
             </h2>
             <ol className={s.needList}>
               {service.whenNeeded.map((item, i) => (

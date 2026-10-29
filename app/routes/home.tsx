@@ -180,9 +180,9 @@ export default function Home() {
           <span className={styles.closingPulse} aria-hidden />
           <IsotypeAssembly className={styles.closingIso} />
           <h2 id="cierre-title" className={styles.bigTitle} data-reveal>
-            <SplitWords text="¿Tu operación necesita control de" />{' '}
+            <SplitWords text="¿Tu necesidad de control de plagas está resuelta?" />{' '}
             <span className={styles.lime}>
-              <SplitWords text="plagas?" start={5} />
+              <SplitWords text="Nosotros la resolvemos." start={8} />
             </span>
           </h2>
           <p className={styles.centerLead} data-reveal={1}>

@@ -80,16 +80,15 @@ const serviceList: Service[] = [
       'Un programa MIP no espera a que aparezca el problema. Combina inspección, monitoreo, control y registro en visitas periódicas, diseñadas para la operación real de cada instalación: sus accesos, sus zonas críticas y sus exigencias sanitarias.',
     whenNeeded: [
       'Necesitas cumplir con la normativa sanitaria vigente.',
-      'Manipulas, almacenas o despachas alimentos y no puedes arriesgar la inocuidad.',
-      'Quieres pasar de reaccionar ante cada aparición a prevenirla con un plan.',
+      'Tu empresa manipula, almacena o despacha alimentos y no puede arriesgar la inocuidad.',
+      'Quieres dejar de reaccionar ante cada aparición y prevenirla con un plan.',
     ],
     includes: [
       'Inspección inicial de la instalación y diagnóstico de riesgos.',
       'Plan de control con puntos de monitoreo definidos por zona.',
       'Visitas periódicas de control de roedores, sanitización y desinsectación.',
-      'Servicios periódicos de sanitización.',
       'Registro de cada visita para respaldar la prestación del servicio.',
-      'Emisión de certificación del servicio.',
+      'Emisión de certificación del servicio ante la SEREMI de Salud.',
     ],
     industries: [
       'industria-alimentaria',
@@ -116,19 +115,19 @@ const serviceList: Service[] = [
     shortName: 'Control de roedores',
     icon: 'rodent',
     photo: 'roedores-estacion-perimetro',
-    photo2: 'estacion-control-interior',
-    closingPhoto: 'pallets-bajo-cobertor',
+    photo2: 'roedores-estacion-cebadera',
+    closingPhoto: 'roedores-rejilla-desague',
     summary:
       'Monitoreo y control de roedores en perímetros, andenes, bodegas y zonas de proceso.',
     headline: 'Control de roedores para instalaciones industriales y comerciales',
     intro:
       'Los roedores, siendo vectores de enfermedades, contaminan las instalaciones y ponen en riesgo la salud de las personas.',
     whenNeeded: [
-      'Detectaste signos o daños en mercancía, embalajes o cableado.',
-      'Tu instalación recibe carga de forma constante.',
+      'Ante signos o daños detectados en tus instalaciones.',
+      'Si tu instalación recibe mercancía de forma constante.',
       'Necesitas un control continuo y documentado para cumplir la normativa sanitaria vigente.',
       'Previo a actividades de descarpe (movimientos de tierra).',
-      'Tratamientos predemolición (visado por la SEREMI de Salud).',
+      'Antes de una demolición, con tratamiento predemolición visado por la SEREMI de Salud.',
     ],
     includes: [
       'Inspección de perímetro, accesos y zonas de almacenamiento.',
@@ -156,22 +155,22 @@ const serviceList: Service[] = [
     shortName: 'Control de insectos',
     icon: 'insect',
     photo: 'insectos-oficina-aplicacion',
-    photo2: 'insectos-cocina-aplicacion',
-    closingPhoto: 'monitoreo-trampas-uv',
+    photo2: 'insectos-cocina-desague',
+    closingPhoto: 'insectos-trampa-uv',
     summary:
       'Control de insectos rastreros y voladores en cocinas, zonas de proceso y áreas comunes.',
     headline: 'Control de insectos para empresas de alimentos y comercio',
     intro:
       'Siendo los insectos un riesgo directo para la inocuidad y la imagen de cualquier negocio, el control se ajusta según la especie detectada en la evaluación inicial.',
     whenNeeded: [
-      'Necesitas cumplir exigencias sanitarias establecidas por el MINSAL.',
-      'Presentas zonas sensibles que requieren un control periódico.',
-      'Tienes una aparición activa que requiere respuesta y seguimiento.',
+      'Necesitas cumplir exigencias sanitarias establecidas por la SEREMI de Salud.',
+      'Tu instalación tiene zonas sensibles que requieren un control periódico.',
+      'Ante una aparición activa que requiere respuesta y seguimiento.',
     ],
     includes: [
       'Inspección e identificación de focos.',
       'Tratamiento según el tipo de insecto y la zona.',
-      'Seguimiento periódico para evitar reinfestaciones.',
+      'Controles periódicos para evitar reinfestaciones.',
       'Monitoreo de insectos a través del uso de trampas ultravioleta.',
       'Emisión de certificación del servicio.',
     ],
@@ -194,7 +193,7 @@ const serviceList: Service[] = [
     icon: 'sanitize',
     photo: 'sanitizacion-banos',
     photo2: 'sanitizacion-lavamanos',
-    closingPhoto: 'sanitizacion-vitrina',
+    closingPhoto: 'sanitizacion-vitrinas-local',
     summary:
       'Control de microorganismos en superficies y ambientes de trabajo, como servicio puntual o periódico.',
     headline: 'Sanitización de instalaciones para empresas',
@@ -202,9 +201,10 @@ const serviceList: Service[] = [
       'La sanitización reduce la carga de microorganismos a un nivel seguro en superficies y ambientes. Complementa el control de plagas en instalaciones donde la higiene es parte del estándar de operación.',
     whenNeeded: [
       'Para controlar brotes de cargas infecciosas en el lugar de trabajo.',
-      'Por cumplimiento de la normativa sanitaria.',
+      'Necesitas cumplir con la normativa sanitaria.',
       'Quieres incorporar la sanitización a tu programa preventivo.',
-      'Al momento de habilitar el uso de un estanque de agua potable.',
+      'Al habilitar el uso de un estanque de agua potable.',
+      'Sanitización de contenedores.',
     ],
     includes: [
       'Evaluación de zonas y superficies a tratar.',
@@ -238,7 +238,7 @@ const serviceList: Service[] = [
     intro:
       'Las aves dañinas ocasionan daño a la mercancía y a las instalaciones. El control combina monitoreo, captura viva, retiro de nidos y disposición final, con certificación del servicio.',
     whenNeeded: [
-      'Ante la presencia de aves dañinas que ocasionan daño a la mercancía y a las instalaciones.',
+      'Ante la presencia de aves que dañan la mercancía y las instalaciones.',
     ],
     includes: [
       'Control y monitoreo por impacto.',
@@ -265,12 +265,12 @@ const serviceList: Service[] = [
     featured: true,
     summary:
       'Programas para granos almacenados, con análisis del grado de infestación, para proteger el valor del producto.',
-    headline: 'Fumigación y programas para granos almacenados',
+    headline: 'Programas de fumigación para granos almacenados',
     intro:
-      'Los insectos de granos almacenados deterioran el producto y su valor comercial. Plagastop trabaja programas específicos para granos almacenados, con análisis interno del grado de infestación.',
+      'Los insectos deterioran el producto y su valor comercial. Plagastop trabaja programas específicos para granos almacenados, con análisis interno del grado de infestación.',
     whenNeeded: [
-      'Almacenas granos en silos o bodegas por períodos prolongados.',
-      'Detectaste insectos o deterioro en el producto almacenado.',
+      'Si almacenas granos en silos o bodegas por períodos prolongados.',
+      'Ante insectos o deterioro detectados en el producto almacenado.',
       'Necesitas proteger la calidad del grano antes de su venta o despacho.',
     ],
     includes: [
@@ -302,7 +302,7 @@ const serviceList: Service[] = [
     intro:
       'Las astillas de madera de exportación se tratan en su planta de origen o en las bodegas del buque. Plagastop realiza el pulverizado de la carga en ambos puntos.',
     whenNeeded: [
-      'Exportas astillas de madera a mercados que lo requieren.',
+      'Si exportas astillas de madera a mercados que requieren este tratamiento.',
     ],
     includes: [
       'Pulverizado de astillas de madera en bodegas de buques.',
@@ -331,7 +331,7 @@ const serviceList: Service[] = [
       'Los productos que cruzan fronteras deben cumplir exigencias fitosanitarias oficiales. Plagastop está autorizada por el Servicio Agrícola y Ganadero para ejecutarlas, y trabaja en los pasos fronterizos a lo largo del país hace más de 25 años.',
     whenNeeded: [
       'Tu mercancía requiere tratamiento fitosanitario oficial de importación o exportación.',
-      'Necesitas un profesional del área específica autorizado por el SAG.',
+      'Necesitas profesionales del área específica autorizados por el SAG.',
     ],
     includes: [
       'Tratamientos fitosanitarios oficiales de exportación, importación y tránsito.',
@@ -368,7 +368,7 @@ const serviceList: Service[] = [
     intro:
       'Plagastop aplica ácido propiónico en harinas industriales a granel para el control de salmonela y otros agentes microbianos, y certifica cada aplicación.',
     whenNeeded: [
-      'Para inspecciones fitosanitarias realizadas por el SAG y la detección de salmonela y otros agentes microbianos.',
+      'Ante inspecciones fitosanitarias realizadas por el SAG y la detección de salmonela y otros agentes microbianos.',
     ],
     includes: [
       'Aplicación de ácido propiónico (propanoico) en harinas a granel.',
@@ -397,9 +397,9 @@ const serviceList: Service[] = [
     intro:
       'Un contenedor o una bodega de nave fumigada puede conservar gases residuales. La medición Gas Free verifica las condiciones antes de que las personas ingresen o manipulen la carga.',
     whenNeeded: [
-      'Recibes contenedores o carga que fue fumigada en origen.',
+      'Si recibes contenedores o carga fumigada en origen.',
       'Tu operación portuaria necesita verificar condiciones antes de la descarga.',
-      'Debes resguardar la seguridad de quienes abren y manipulan la carga.',
+      'Para resguardar la seguridad de quienes abren y manipulan la carga.',
     ],
     includes: [
       'Medición de gases residuales en contenedores.',
@@ -429,8 +429,8 @@ const serviceList: Service[] = [
     intro:
       'Puertos y naves concentran carga, tránsito y exigencias sanitarias internacionales. Plagastop trabaja tratamientos en instalaciones portuarias y en buques.',
     whenNeeded: [
-      'Administras bodegas, patios o instalaciones dentro de un recinto portuario.',
-      'Una nave requiere tratamiento antes de su estadía en puerto.',
+      'Si estás a cargo de bodegas, patios o instalaciones dentro de un recinto portuario.',
+      'Cuando una nave requiere tratamiento antes de su estadía en puerto.',
       'Necesitas un proveedor con experiencia en operación portuaria.',
     ],
     includes: [
@@ -459,8 +459,8 @@ const serviceList: Service[] = [
     intro:
       'Aunque trabajamos principalmente con empresas, también atendemos hogares y condominios con el mismo estándar técnico.',
     whenNeeded: [
-      'Detectaste roedores o insectos en tu casa o departamento.',
-      'Administras un condominio y necesitas control en espacios comunes.',
+      'Ante la presencia de roedores o insectos en tu casa o departamento.',
+      'Si administras un condominio y necesitas control en espacios comunes.',
     ],
     includes: [
       'Inspección y diagnóstico.',
