@@ -325,6 +325,19 @@
   color: var(--ps-lime);
 }
 
+/* Referencia breve a la gestión digital (solo servicios con registros periódicos) */
+.digital {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  max-width: 62ch;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.82);
+}
+
 /* Dónde lo aplicamos: solo texto */
 .where {
   display: flex;

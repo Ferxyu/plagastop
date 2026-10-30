@@ -25,6 +25,11 @@ const meta = {
   'fdw-monitoreo-barco': { alt: 'Técnico monitorea gas fosfina en la bodega de un barco', ratio: 4 / 3 },
   'fdw-patio-contenedores': { alt: 'Preparación de contenedores para fumigación', ratio: 4 / 3 },
   'fdw-camiones': { alt: 'Ventilación de camiones fumigados con fosfina', ratio: 4 / 3 },
+  'motonave-pulverizado-cubierta': {
+    alt: 'Técnico con traje de protección pulveriza la cubierta de una motonave en puerto',
+    ratio: 1448 / 1086,
+    focus: '50% 55%',
+  },
   'fdw-cubierta-barco': { alt: 'Aspersión en la cubierta de un barco por polilla gitana', ratio: 4 / 3 },
   'portada-home': {
     alt: 'Técnico de Plagastop entrega un informe de control de plagas a una cliente',
@@ -107,6 +112,8 @@ const meta = {
   'medicion-fosfina-graneles': {
     alt: 'Técnico mide gas fosfina residual sobre la carga de graneles de una nave',
     ratio: 4 / 3,
+    // El técnico está a la derecha; en el marco vertical del cierre quedaba fuera
+    focus: '92% 50%',
   },
   'fumigacion-placas-degesch': {
     alt: 'Fumigación con placas Degesch y generador de fosfina',
@@ -172,6 +179,10 @@ const meta = {
     alt: 'Técnico con máscara junto al tambor de ácido propiónico en un galpón',
     ratio: 3 / 4,
     focus: '50% 55%',
+  },
+  'aves-palomas-techo': {
+    alt: 'Palomas posadas sobre el borde de la techumbre de una instalación industrial',
+    ratio: 1672 / 941,
   },
   'aves-bandada': { alt: 'Bandada de palomas en vuelo sobre el cielo azul', ratio: 1672 / 941, focus: '50% 45%' },
   'mip-monitoreo-exterior': {

@@ -59,6 +59,8 @@ export interface Service {
   industries: string[]
   faqs?: ServiceFaq[]
   featured?: boolean
+  /** Muestra la referencia a la gestión digital (iGEO) en servicios con registros periódicos. */
+  digitalNote?: boolean
   /** Servicios secundarios no aparecen en el menú principal. */
   secondary?: boolean
   seo: { title: string; description: string }
@@ -67,6 +69,7 @@ export interface Service {
 const serviceList: Service[] = [
   {
     slug: 'manejo-integrado-de-plagas',
+    digitalNote: true,
     name: 'Manejo Integrado de Plagas (MIP)',
     shortName: 'Manejo Integrado de Plagas',
     icon: 'mip',
@@ -111,6 +114,7 @@ const serviceList: Service[] = [
   },
   {
     slug: 'control-de-roedores',
+    digitalNote: true,
     name: 'Control de roedores',
     shortName: 'Control de roedores',
     icon: 'rodent',
@@ -124,7 +128,7 @@ const serviceList: Service[] = [
       'Los roedores, siendo vectores de enfermedades, contaminan las instalaciones y ponen en riesgo la salud de las personas.',
     whenNeeded: [
       'Ante signos o daños detectados en tus instalaciones.',
-      'Si tu instalación recibe mercancía de forma constante.',
+      'Si recibes mercancía de forma constante.',
       'Necesitas un control continuo y documentado para cumplir la normativa sanitaria vigente.',
       'Previo a actividades de descarpe (movimientos de tierra).',
       'Antes de una demolición, con tratamiento predemolición visado por la SEREMI de Salud.',
@@ -151,6 +155,7 @@ const serviceList: Service[] = [
   },
   {
     slug: 'control-de-insectos',
+    digitalNote: true,
     name: 'Control de insectos',
     shortName: 'Control de insectos',
     icon: 'insect',
@@ -230,7 +235,7 @@ const serviceList: Service[] = [
     name: 'Control de aves',
     shortName: 'Control de aves',
     icon: 'bird',
-    photo: 'aves-bandada',
+    photo: 'aves-palomas-techo',
     photo2: 'aves-paloma-malla',
     closingPhoto: 'aves-paloma-pasto',
     summary: 'Control y monitoreo de aves que dañan la mercancía y las instalaciones.',
@@ -431,7 +436,7 @@ const serviceList: Service[] = [
     whenNeeded: [
       'Si estás a cargo de bodegas, patios o instalaciones dentro de un recinto portuario.',
       'Cuando una nave requiere tratamiento antes de su estadía en puerto.',
-      'Necesitas un proveedor con experiencia en operación portuaria.',
+      'Necesitas profesionales con experiencia en operación portuaria.',
     ],
     includes: [
       'Tratamientos en instalaciones portuarias.',

@@ -9,6 +9,7 @@ import { SplitWords } from '~/components/motion/SplitWords'
 import { Photo } from '~/components/ui/Photo'
 import { HeroVideo } from '~/components/sections/HeroVideo'
 import { FineBand } from '~/components/sections/FineBand'
+import { DigitalTrace } from '~/components/sections/DigitalTrace'
 import { ServiceTiles } from '~/components/sections/ServiceTiles'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { Faq } from '~/components/sections/Faq'
@@ -62,8 +63,11 @@ export default function Home() {
       <FineBand />
       <MoleculePortal />
 
-      {/* 3. Soluciones para cada operación */}
-      <section className={`section ${styles.services}`} aria-labelledby="servicios-title">
+      {/* 3. Gestión digital (iGEO): el portal de la molécula se abre sobre esta sección */}
+      <DigitalTrace />
+
+      {/* 4. Soluciones para cada operación */}
+      <section className={`section ${styles.services}`} aria-labelledby="servicios-title" data-scroll-card>
         <div className="container" data-scroll-flow>
           <header className={styles.centerHead}>
             <p className={`eyebrow ${styles.eyebrowForest}`} data-reveal>
@@ -83,7 +87,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Sede: maqueta 3D a la izquierda, texto a la derecha */}
+      {/* 5. Sede: maqueta 3D a la izquierda, texto a la derecha */}
       <section className={`${styles.sede} on-dark`} aria-labelledby="sede-title" data-scroll-card>
         <MoleculeField />
         <div className={styles.sedeMedia} data-reveal="1" data-reveal-style="scale">
@@ -127,7 +131,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Cobertura: línea con paradas que se dibuja hacia abajo */}
+      {/* 6. Cobertura: línea con paradas que se dibuja hacia abajo */}
       <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title" data-scroll-card>
         <div className="container" data-scroll-flow>
           <header className={styles.centerHead}>
@@ -148,7 +152,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
+      {/* 7. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
       <section className="section" aria-labelledby="faq-title">
         <div className={`container ${styles.faqGrid}`} data-scroll-flow>
           <div className={styles.faqList}>
@@ -174,7 +178,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Cierre */}
+      {/* 8. Cierre */}
       <section className={`on-dark ${styles.closing}`} aria-labelledby="cierre-title" data-scroll-card>
         <div className={`container ${styles.closingInner}`} data-scroll-flow>
           <span className={styles.closingPulse} aria-hidden />

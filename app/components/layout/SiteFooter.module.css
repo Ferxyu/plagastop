@@ -113,6 +113,12 @@
   font-size: 0.875rem;
 }
 
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+}
+
 @media (min-width: 960px) {
   /* Que los botones flotantes no tapen el contenido de la derecha */
   .top,

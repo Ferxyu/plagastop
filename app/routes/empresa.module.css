@@ -137,3 +137,253 @@
   font-size: var(--text-lead);
   color: rgb(255 255 255 / 0.86);
 }
+
+/* Misión y visión: un solo panel sobrio, ambas con el mismo tratamiento y separadas por una línea */
+.mvTitle {
+  margin-bottom: var(--s-7);
+  text-align: center;
+}
+
+@media (min-width: 1000px) {
+  /* El panel toma más ancho que la foto para que el texto respire; ambos con la misma altura */
+  .mvGrid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s-7);
+    align-items: stretch;
+  }
+
+  /* La foto llena el alto del panel en vez de imponer su proporción */
+  .mvMedia {
+    aspect-ratio: auto;
+    min-height: 360px;
+  }
+}
+
+.mvPanel {
+  display: grid;
+  align-content: center;
+  width: 100%;
+  padding: var(--s-2) var(--s-6);
+  border: 1px solid rgb(11 43 104 / 0.1);
+  border-radius: var(--radius-lg);
+  background: rgb(255 255 255 / 0.72);
+  box-shadow: 0 18px 40px -28px rgb(4 28 68 / 0.35);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+@media (min-width: 1000px) {
+  .mvPanel {
+    padding: var(--s-4) var(--s-8);
+  }
+}
+
+.mvItem {
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-6) 0;
+  text-align: center;
+}
+
+.mvItem + .mvItem {
+  border-top: 1px solid var(--ps-line-strong);
+}
+
+.mvLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ps-blue);
+}
+
+/* Rótulo centrado entre dos trazos lima */
+.mvLabel::before,
+.mvLabel::after {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--ps-lime);
+}
+
+.mvStatement {
+  font-size: clamp(1.125rem, 1.02rem + 0.4vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ps-blue);
+}
+
+
+/* Gestión digital (iGEO): texto sobre blanco y, al lado, un panel azul con los cuatro beneficios unidos por
+   una cruz de líneas (registros conectados). Complementa la sección del home sin repetirla. */
+.digital {
+  background: var(--ps-white);
+}
+
+.digitalGrid {
+  display: grid;
+  gap: var(--s-8);
+}
+
+@media (min-width: 1000px) {
+  .digitalGrid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--s-9);
+    align-items: center;
+  }
+}
+
+.digitalCopy {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+}
+
+.digitalCopy h2 {
+  max-width: 16ch;
+}
+
+.digitalCopy > p:not(.digitalEyebrow) {
+  max-width: 56ch;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #3d4650;
+}
+
+.digitalEyebrow {
+  color: var(--ps-blue);
+}
+
+.digitalCopy > .digitalNote {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+  padding: var(--s-4) var(--s-5);
+  border-left: 3px solid var(--ps-lime);
+  border-radius: 0 12px 12px 0;
+  background: var(--ps-blue-soft);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ps-blue);
+}
+
+.digitalNote svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.digitalPanel {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  display: grid;
+  gap: var(--s-5);
+  padding: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: var(--ps-white);
+}
+
+@media (min-width: 700px) {
+  .digitalPanel {
+    padding: var(--s-7);
+  }
+}
+
+.digitalBenefits {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  padding: 0;
+  list-style: none;
+}
+
+.digitalBenefits li {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding: var(--s-5) 0;
+}
+
+.digitalBenefits li + li {
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+}
+
+/* Desde tablet: dos por dos, con una cruz de líneas que conecta los cuatro registros */
+@media (min-width: 700px) {
+  .digitalBenefits {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .digitalBenefits li {
+    padding: var(--s-5);
+  }
+
+  .digitalBenefits li + li {
+    border-top: 0;
+  }
+
+  .digitalBenefits li:nth-child(odd) {
+    border-right: 1px solid rgb(255 255 255 / 0.16);
+  }
+
+  .digitalBenefits li:nth-child(-n + 2) {
+    border-bottom: 1px solid rgb(255 255 255 / 0.16);
+  }
+
+  /* Nodo lima en el cruce */
+  .digitalBenefits::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 50%;
+    background: var(--ps-lime);
+    box-shadow: 0 0 0 5px rgb(204 231 11 / 0.2);
+  }
+}
+
+.digitalIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--s-2);
+  border-radius: 50%;
+  background: var(--ps-lime);
+  color: var(--ps-navy);
+}
+
+.digitalBenefits h3 {
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.digitalBenefits p {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.digitalTech {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--s-4);
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+  font-size: 0.875rem;
+  color: rgb(255 255 255 / 0.72);
+}
+
+.digitalTech strong {
+  color: var(--ps-lime);
+}

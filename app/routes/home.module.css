@@ -64,7 +64,7 @@
   color: var(--ps-blue);
 }
 
-/* 3. Servicios */
+/* 4. Servicios: se monta sobre la gestión digital (data-scroll-card), como las demás secciones de color */
 .services {
   background: var(--ps-white);
 }

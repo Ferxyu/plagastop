@@ -24,7 +24,9 @@ export const company = {
   founder: 'Cecilia Otero',
   tagline: 'Prevención y control de plagas para empresas e industrias',
   mission:
-    'Entregamos a nuestros clientes un servicio de óptima calidad, personalizado y garantizado.',
+    'Entregar a sus clientes un servicio de óptima calidad, personalizado y garantizado, mediante sistemas de última generación para la solución integral de problemas en control de plagas.',
+  vision:
+    'Ser la empresa de control de plagas más confiable y elegida por las industrias y organizaciones de la región y sur de Chile.',
   address: {
     street: 'Camino Los Carros 1826',
     area: 'Parque Industrial Ejército',

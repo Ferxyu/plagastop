@@ -10,7 +10,7 @@ const FROM: Record<(typeof ISO_ATOMS)[number]['id'], [number, number]> = {
 }
 
 /**
- * Portal entre la banda de multas y los servicios (se usa una sola vez): al bajar, las tres moléculas
+ * Portal entre la banda de multas y la gestión digital (se usa una sola vez): al bajar, las tres moléculas
  * se reúnen en el isotipo, nace un pulso lima y la cámara atraviesa la molécula superior, que crece
  * hasta llenar la pantalla y se abre sobre la sección siguiente. Todo va ligado al scroll con CSS
  * (animation-timeline), sin JavaScript. Decorativo: sin soporte o con movimiento reducido no ocupa espacio.

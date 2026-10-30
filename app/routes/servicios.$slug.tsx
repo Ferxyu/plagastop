@@ -4,6 +4,8 @@ import type { Route } from './+types/servicios.$slug'
 import { credentials } from '~/content/credentials'
 import { getIndustry } from '~/content/industries'
 import { getService, primaryServices } from '~/content/services'
+import { DIGITAL_HREF, digitalServiceNote } from '~/content/digital'
+import { TextLink } from '~/components/ui/Button'
 import { breadcrumbLd, buildMeta, faqLd, serviceLd } from '~/lib/seo'
 import { Photo } from '~/components/ui/Photo'
 import { ServiceIcon } from '~/components/ui/ServiceIcon'
@@ -154,6 +156,12 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
                 </span>
               ))}
             </p>
+          )}
+          {service.digitalNote && (
+            <div className={s.digital} data-reveal>
+              <p>{digitalServiceNote}</p>
+              <TextLink to={DIGITAL_HREF}>Conoce nuestra gestión digital</TextLink>
+            </div>
           )}
           {where.length > 0 && (
             <div className={s.where} data-reveal>

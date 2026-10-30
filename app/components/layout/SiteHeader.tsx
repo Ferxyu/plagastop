@@ -191,7 +191,7 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
             {primaryServices.map((s) => (
               <li key={s.slug}>
                 <Link to={`/servicios/${s.slug}`} className={styles.megaLink} prefetch="intent">
-                  <span className={styles.megaIcon} data-featured={s.featured || undefined}>
+                  <span className={styles.megaIcon}>
                     <ServiceIcon name={s.icon} />
                   </span>
                   <span>
