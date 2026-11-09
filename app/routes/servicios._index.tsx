@@ -1,7 +1,7 @@
 import type { Route } from './+types/servicios._index'
 import { primaryServices, getService } from '~/content/services'
 import { breadcrumbLd, buildMeta } from '~/lib/seo'
-import { ButtonLink, TextLink } from '~/components/ui/Button'
+import { TextLink } from '~/components/ui/Button'
 import { PageHero } from '~/components/sections/PageHero'
 import { ServiceCards } from '~/components/sections/ServiceCards'
 import { Steps } from '~/components/sections/Steps'
@@ -17,7 +17,7 @@ export const meta: Route.MetaFunction = () =>
   buildMeta({
     title: 'Servicios de control de plagas para empresas',
     description:
-      'Manejo integrado de plagas, control de roedores e insectos, sanitización, fumigación de granos, tratamientos SAG y medición Gas Free. Plagastop, desde 1985.',
+      'Manejo integrado de plagas, control de roedores e insectos, sanitización, fumigación de granos, tratamientos SAG y medición Gas Free. Plagastop, más de 25 años de experiencia.',
     path: '/servicios',
     jsonLd: [breadcrumbLd(crumbs)],
   })
@@ -31,11 +31,6 @@ export default function Services() {
         image="fdw-bodega"
         title="Servicios de control de plagas para empresas"
         lead="Programas preventivos, tratamientos específicos y servicios oficiales para comercio exterior. Si no sabes cuál necesitas, partimos con una evaluación en terreno."
-        actions={
-          <ButtonLink to="/cotizar?servicio=evaluacion" size="lg" arrow>
-            Solicitar una evaluación
-          </ButtonLink>
-        }
       />
       <section className="section section--sage">
         <div className="container">

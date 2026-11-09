@@ -1,29 +1,30 @@
-import { Award, DraftingCompass, MapPin, Phone, Ruler } from 'lucide-react'
+import { Award, DraftingCompass, MapPin, Ruler } from 'lucide-react'
 import type { Route } from './+types/home'
 import type { RouteHandle } from '~/root'
-import { company, salesArea } from '~/content/company'
+import { company } from '~/content/company'
 import { generalFaqs } from '~/content/faqs'
 import { primaryServices } from '~/content/services'
 import { buildMeta, faqLd, organizationLd } from '~/lib/seo'
-import { formatPhone, telHref } from '~/lib/contact'
-import { track } from '~/lib/analytics'
 import { SplitWords } from '~/components/motion/SplitWords'
-import { ButtonLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
 import { HeroVideo } from '~/components/sections/HeroVideo'
 import { FineBand } from '~/components/sections/FineBand'
+import { DigitalTrace } from '~/components/sections/DigitalTrace'
 import { ServiceTiles } from '~/components/sections/ServiceTiles'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { Faq } from '~/components/sections/Faq'
 import { SedeModel } from '~/components/sections/SedeModel'
+import { IsotypeAssembly } from '~/components/brand/IsotypeAssembly'
+import { MoleculePortal } from '~/components/brand/MoleculePortal'
+import { MoleculeField } from '~/components/brand/MoleculeField'
 import styles from './home.module.css'
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
-    title: 'Plagastop · Control de plagas para empresas e industrias desde 1985',
+    title: 'Plagastop · Control de plagas para empresas e industrias, más de 25 años',
     rawTitle: true,
     description:
-      'Prevención, control y seguimiento de plagas para plantas, bodegas, silos y puertos. Autorizados por el SAG. Desde Ñuble hasta Los Lagos.',
+      'Prevención, control y seguimiento de plagas para plantas, bodegas, silos y puertos. Autorizados por el SAG. Desde Concepción, llegamos de Ñuble a Los Lagos.',
     path: '/',
     jsonLd: [organizationLd, faqLd(generalFaqs)],
   })
@@ -60,10 +61,14 @@ export default function Home() {
 
       {/* 2. Riesgo: multas del Código Sanitario, centrado sobre turquesa */}
       <FineBand />
+      <MoleculePortal />
 
-      {/* 3. Soluciones para cada operación */}
-      <section className={`section ${styles.services}`} aria-labelledby="servicios-title">
-        <div className="container">
+      {/* 3. Gestión digital (iGEO): el portal de la molécula se abre sobre esta sección */}
+      <DigitalTrace />
+
+      {/* 4. Soluciones para cada operación */}
+      <section className={`section ${styles.services}`} aria-labelledby="servicios-title" data-scroll-card>
+        <div className="container" data-scroll-flow>
           <header className={styles.centerHead}>
             <p className={`eyebrow ${styles.eyebrowForest}`} data-reveal>
               Servicios
@@ -82,8 +87,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Sede: maqueta 3D a la izquierda, texto a la derecha */}
-      <section className={`${styles.sede} on-dark`} aria-labelledby="sede-title">
+      {/* 5. Sede: maqueta 3D a la izquierda, texto a la derecha */}
+      <section className={`${styles.sede} on-dark`} aria-labelledby="sede-title" data-scroll-card>
+        <MoleculeField />
         <div className={styles.sedeMedia} data-reveal="1" data-reveal-style="scale">
           <SedeModel />
         </div>
@@ -102,10 +108,6 @@ export default function Home() {
               Nuestra sede en Concepción es una expresión de la identidad y trayectoria de Plagastop. Un espacio que
               acompaña nuestro desarrollo como empresa y refleja la importancia que damos al profesionalismo, la
               confianza y las relaciones de largo plazo.
-            </p>
-            <p>
-              Su arquitectura corporativa representa esa misma visión: una empresa que busca proyectar solidez,
-              mantener un vínculo cercano con sus clientes y seguir fortaleciendo su presencia en el sector industrial.
             </p>
           </div>
           {/* Ficha del edificio: mismo formato compacto en dos columnas que la lista de distinciones */}
@@ -126,19 +128,14 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <div data-reveal={4}>
-            <ButtonLink to="/contacto" variant="inverse">
-              Agenda una reunión en nuestra sede
-            </ButtonLink>
-          </div>
         </div>
       </section>
 
-      {/* 5. Cobertura: línea con paradas que se dibuja hacia abajo */}
-      <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title">
-        <div className="container">
+      {/* 6. Cobertura: línea con paradas que se dibuja hacia abajo */}
+      <section className={`section ${styles.coverage}`} aria-labelledby="cobertura-title" data-scroll-card>
+        <div className="container" data-scroll-flow>
           <header className={styles.centerHead}>
-            <p className={`eyebrow ${styles.eyebrowBlue}`} data-reveal>
+            <p className={`eyebrow ${styles.eyebrowBlue} ${styles.coverageEyebrow}`} data-reveal>
               Cobertura
             </p>
             <h2 id="cobertura-title" className={styles.bigTitle} data-reveal={1}>
@@ -148,16 +145,16 @@ export default function Home() {
               </span>
             </h2>
             <p className={styles.centerLead} data-reveal={2}>
-              Salimos desde Concepción a plantas, bodegas y puertos de cuatro regiones, desde Ñuble hasta Los Lagos.
+              Desde Concepción, llegamos de Ñuble a Los Lagos: plantas, bodegas y puertos de cuatro regiones.
             </p>
           </header>
           <CoverageLine centered />
         </div>
       </section>
 
-      {/* 6. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
+      {/* 7. Resolvemos tus dudas: preguntas a la izquierda, título y foto a la derecha */}
       <section className="section" aria-labelledby="faq-title">
-        <div className={`container ${styles.faqGrid}`}>
+        <div className={`container ${styles.faqGrid}`} data-scroll-flow>
           <div className={styles.faqList}>
             <Faq items={generalFaqs} />
           </div>
@@ -172,17 +169,8 @@ export default function Home() {
               </span>
             </h2>
             <p className="lead" data-reveal={2}>
-              Si tu pregunta no está aquí, el Área Comercial te responde en horario de atención.
+              Si tu pregunta no está aquí, escríbenos por WhatsApp y el Área Comercial te responde en horario de atención.
             </p>
-            <a
-              href={telHref(salesArea.phone)}
-              className={styles.phone}
-              onClick={() => track('tel_click', { location: 'faq' })}
-              data-reveal={3}
-            >
-              <Phone size={18} strokeWidth={2} aria-hidden />
-              <span className="tabular">{formatPhone(salesArea.phone)}</span>
-            </a>
             <div className={styles.faqPhoto} data-reveal="3" data-reveal-style="clip">
               <Photo id="fdw-monitoreo-barco" sizes="(min-width: 1000px) 34vw, 100vw" />
             </div>
@@ -190,32 +178,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Cierre */}
-      <section className={`on-dark ${styles.closing}`} aria-labelledby="cierre-title">
-        <div className={`container ${styles.closingInner}`}>
+      {/* 8. Cierre */}
+      <section className={`on-dark ${styles.closing}`} aria-labelledby="cierre-title" data-scroll-card>
+        <div className={`container ${styles.closingInner}`} data-scroll-flow>
+          <span className={styles.closingPulse} aria-hidden />
+          <IsotypeAssembly className={styles.closingIso} />
           <h2 id="cierre-title" className={styles.bigTitle} data-reveal>
-            <SplitWords text="¿Tu operación necesita control de" />{' '}
+            <SplitWords text="¿Tu necesidad de control de plagas está resuelta?" />{' '}
             <span className={styles.lime}>
-              <SplitWords text="plagas?" start={5} />
+              <SplitWords text="Nosotros la resolvemos." start={8} />
             </span>
           </h2>
           <p className={styles.centerLead} data-reveal={1}>
             Te visitamos, evaluamos en terreno y te proponemos un plan a la medida.
           </p>
-          <div className={styles.closingActions} data-reveal={2}>
-            <ButtonLink to="/cotizar" size="lg" arrow onClick={() => track('cta_click', { location: 'closing' })}>
-              Solicitar cotización
-            </ButtonLink>
-            <ButtonLink
-              to={telHref(salesArea.phone)}
-              variant="secondary"
-              size="lg"
-              icon={<Phone size={18} strokeWidth={2} aria-hidden />}
-              onClick={() => track('tel_click', { location: 'closing' })}
-            >
-              {formatPhone(salesArea.phone)}
-            </ButtonLink>
-          </div>
         </div>
       </section>
     </>

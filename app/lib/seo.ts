@@ -88,7 +88,7 @@ export const organizationLd = {
     closes: company.hours.closes,
   },
   areaServed: areaServed.map((name) => ({ '@type': 'Place', name })),
-  sameAs: [company.social.facebook, company.social.instagram],
+  sameAs: [company.social.facebook, company.social.instagram, company.social.linkedin],
   contactPoint: contactAreas.map((a) => ({
     '@type': 'ContactPoint',
     contactType: a.name,

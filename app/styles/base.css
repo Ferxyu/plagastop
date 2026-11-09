@@ -273,6 +273,102 @@ mark {
   scale: 0.92;
 }
 
+/* ---------- Transiciones entre secciones, ligadas al scroll ----------
+   Animaciones de CSS con animation-timeline: view() (sin JavaScript): avanzan y retroceden con el scroll.
+   - [data-scroll-out]: el contenido del hero sube y se desvanece al bajar; [data-scroll-zoom]: su fondo se acerca.
+   - [data-scroll-flow]: el contenido de una sección sube y aparece al entrar, y retrocede (se achica y atenúa)
+     al salir, para que el paso entre secciones se sienta como pasar de capa.
+   - [data-scroll-card]: una sección de color se monta sobre la anterior con las esquinas superiores
+     redondeadas, que se aplanan a medida que entra.
+   Sin soporte del navegador o con movimiento reducido, todo queda estático (la tarjeta conserva su forma final). */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-scroll-out] {
+      animation: scroll-out linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+
+    [data-scroll-zoom] {
+      animation: scroll-zoom linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+
+    [data-scroll-flow] {
+      animation: scroll-flow linear both;
+      animation-timeline: view();
+    }
+
+    /* Se monta sobre la sección anterior: el borde superior queda por encima de su final */
+    [data-scroll-card] {
+      position: relative;
+      z-index: 1;
+      margin-top: calc(var(--card-overlap) * -1);
+      border-radius: var(--card-radius) var(--card-radius) 0 0;
+      animation: scroll-card linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+
+:root {
+  --card-overlap: 28px;
+  --card-radius: 28px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --card-overlap: 56px;
+    --card-radius: 56px;
+  }
+}
+
+@keyframes scroll-out {
+  to {
+    opacity: 0;
+    translate: 0 -90px;
+    scale: 0.96;
+  }
+}
+
+@keyframes scroll-zoom {
+  to {
+    scale: 1.12;
+  }
+}
+
+@keyframes scroll-flow {
+  entry 0% {
+    opacity: 0;
+    translate: 0 90px;
+    scale: 0.97;
+  }
+  entry 80% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  exit 25% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  exit 100% {
+    opacity: 0.15;
+    translate: 0 -60px;
+    scale: 0.93;
+  }
+}
+
+@keyframes scroll-card {
+  to {
+    border-radius: 0;
+  }
+}
+
 /* El marcador lima se dibuja de izquierda a derecha al aparecer su bloque */
 [data-reveal-state='pending'] mark {
   background-size: 0% 100%;
@@ -321,6 +417,30 @@ img[data-parallax] {
 
   img[data-parallax] {
     scale: none;
+  }
+}
+
+/* Onda al pulsar un botón (la crea usePointerFx en el punto de contacto) */
+.ripple {
+  position: absolute;
+  z-index: -1;
+  width: var(--r);
+  aspect-ratio: 1;
+  margin: calc(var(--r) / -2) 0 0 calc(var(--r) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.55), rgb(204 231 11 / 0.25) 60%, transparent 72%);
+  pointer-events: none;
+  animation: ripple 650ms var(--ease-out) forwards;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 1;
+    scale: 0;
+  }
+  to {
+    opacity: 0;
+    scale: 2.2;
   }
 }
 

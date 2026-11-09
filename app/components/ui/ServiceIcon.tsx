@@ -75,6 +75,20 @@ const paths: Record<ServiceIconName, ReactNode> = {
       <path d="M12 3.5v3.75" />
     </>
   ),
+  // Tambor de producto
+  acid: (
+    <>
+      <ellipse cx="12" cy="5" rx="6" ry="2" />
+      <path d="M6 5v14c0 1.1 2.7 2 6 2s6-.9 6-2V5M6 10c0 1.1 2.7 2 6 2s6-.9 6-2M6 15c0 1.1 2.7 2 6 2s6-.9 6-2" />
+    </>
+  ),
+  // Jaula de captura viva
+  bird: (
+    <>
+      <path d="M5 20V11a7 7 0 0 1 14 0v9" />
+      <path d="M3.5 20h17M12 4v16M8.5 5.5V20M15.5 5.5V20M5 12h14" />
+    </>
+  ),
   home: (
     <>
       <path d="M4 11l8-6.5 8 6.5" />

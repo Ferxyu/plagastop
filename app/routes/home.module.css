@@ -64,13 +64,16 @@
   color: var(--ps-blue);
 }
 
-/* 3. Servicios */
+/* 4. Servicios: se monta sobre la gestión digital (data-scroll-card), como las demás secciones de color */
 .services {
   background: var(--ps-white);
 }
 
 /* 4. Sede: foto a sangre a la izquierda, texto a la derecha */
 .sede {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   background: var(--gradient-blue-slate);
   color: var(--ps-white);
@@ -79,6 +82,7 @@
 /* Maqueta 3D de la sede, centrada en su columna */
 .sedeMedia {
   position: relative;
+  z-index: 1;
   display: grid;
   place-items: center;
   min-height: 300px;
@@ -86,10 +90,13 @@
 }
 
 .sedeCopy {
+  position: relative;
+  z-index: 1;
   display: grid;
   justify-items: start;
   gap: var(--s-5);
-  padding: var(--s-4) var(--gutter) var(--s-9);
+  /* Abajo suma lo que la sección de cobertura monta encima (data-scroll-card): el azul respira tras el texto */
+  padding: var(--s-4) var(--gutter) calc(var(--s-8) + var(--card-overlap));
 }
 
 .sedeText {
@@ -121,11 +128,11 @@
 @media (min-width: 1000px) {
   .sede {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    min-height: 720px;
+    align-items: center;
   }
 
   .sedeMedia {
-    padding: var(--s-8) 0 var(--s-8) var(--gutter);
+    padding: var(--s-7) 0 var(--s-7) var(--gutter);
   }
 
   .sedeMedia > * {
@@ -136,7 +143,7 @@
     align-content: center;
     gap: var(--s-6);
     max-width: 780px;
-    padding: var(--s-9) var(--gutter) var(--s-9) var(--s-8);
+    padding: var(--s-9) var(--gutter) calc(var(--s-9) + var(--card-overlap)) var(--s-8);
   }
 
   .sedeText {
@@ -146,8 +153,22 @@
 
 /* Sección luminosa: degradado de gris azulado a gris verdoso, texto azul */
 .coverage {
+  padding-top: clamp(48px, 2rem + 3vw, 88px);
   background: var(--gradient-light);
   color: var(--ps-navy);
+}
+
+.coverage .centerHead {
+  gap: var(--s-4);
+}
+
+/* "Cobertura" en grande, como antetítulo de impacto */
+.coverageEyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
 }
 
 .coverage .centerLead {
@@ -214,6 +235,8 @@
 
 /* 7. Cierre: degradado de marca, centrado */
 .closing {
+  /* Las moléculas del isotipo llegan desde fuera de la sección */
+  overflow: clip;
   padding-block: clamp(72px, 4rem + 4vw, 120px);
   background: var(--gradient-brand);
   color: var(--ps-white);
@@ -221,9 +244,58 @@
 }
 
 .closingInner {
+  position: relative;
   display: grid;
   justify-items: center;
   gap: var(--s-5);
+}
+
+/* El pulso de protección baja desde el borde de la sección hasta el isotipo, que lo recibe al armarse */
+.closingPulse {
+  display: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .closingPulse {
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% - var(--s-2));
+      width: 3px;
+      height: clamp(72px, 4rem + 4vw, 120px);
+      margin-left: -1.5px;
+      border-radius: 3px;
+      background: linear-gradient(180deg, rgb(204 231 11 / 0), var(--ps-lime));
+      box-shadow: 0 0 14px rgb(204 231 11 / 0.7);
+      transform-origin: 50% 0;
+      pointer-events: none;
+      animation: closing-pulse linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+}
+
+@keyframes closing-pulse {
+  0% {
+    scale: 1 0;
+    opacity: 1;
+  }
+  60% {
+    scale: 1 1;
+    opacity: 1;
+  }
+  100% {
+    scale: 1 1;
+    opacity: 0;
+  }
+}
+
+/* Isotipo que se arma al llegar al cierre */
+.closingIso {
+  width: clamp(72px, 7vw, 104px);
+  margin-bottom: var(--s-3);
 }
 
 .closingInner .bigTitle {

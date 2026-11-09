@@ -25,6 +25,11 @@ const meta = {
   'fdw-monitoreo-barco': { alt: 'Técnico monitorea gas fosfina en la bodega de un barco', ratio: 4 / 3 },
   'fdw-patio-contenedores': { alt: 'Preparación de contenedores para fumigación', ratio: 4 / 3 },
   'fdw-camiones': { alt: 'Ventilación de camiones fumigados con fosfina', ratio: 4 / 3 },
+  'motonave-pulverizado-cubierta': {
+    alt: 'Técnico con traje de protección pulveriza la cubierta de una motonave en puerto',
+    ratio: 1448 / 1086,
+    focus: '50% 55%',
+  },
   'fdw-cubierta-barco': { alt: 'Aspersión en la cubierta de un barco por polilla gitana', ratio: 4 / 3 },
   'portada-home': {
     alt: 'Técnico de Plagastop entrega un informe de control de plagas a una cliente',
@@ -51,7 +56,12 @@ const meta = {
   'nube-termonebulizacion': { alt: 'Nube de termonebulización avanzando por una bodega de graneles', ratio: 3 / 4 },
   'pasillo-nave': { alt: 'Técnico de Plagastop recorriendo el pasillo de cubierta de una nave', ratio: 3 / 4 },
   'silo-motobomba': { alt: 'Aspersión con motobomba en el exterior de un silo', ratio: 3 / 4 },
-  'medidor-fumisense': { alt: 'Medición de gas con un detector FumiSense junto a un contenedor', ratio: 3 / 4 },
+  'medidor-fumisense': {
+    alt: 'Medición de gas con un detector FumiSense junto a un contenedor',
+    ratio: 3 / 4,
+    // El equipo está en la mitad inferior: en un recorte horizontal se encuadra ahí
+    focus: '50% 72%',
+  },
   'pallets-bajo-cobertor': { alt: 'Pallets de mercadería bajo cobertor en una bodega', ratio: 3 / 4 },
   'galpon-tecnico': { alt: 'Técnico de Plagastop trabajando dentro de un galpón de graneles', ratio: 3 / 4 },
   'sede-concepcion': {
@@ -64,6 +74,7 @@ const meta = {
     ratio: 4 / 3,
   },
   'equipo-en-nave': { alt: 'Equipo de técnicos de Plagastop a bordo de una nave', ratio: 4 / 3 },
+  'equipo-plagastop': { alt: 'Equipo de Plagastop en el jardín de su sede en Concepción', ratio: 3 / 2 },
   'monitoreo-trampas-uv': {
     alt: 'Técnico revisa y cuenta insectos en la lámina de una trampa de luz ultravioleta',
     ratio: 3 / 4,
@@ -101,6 +112,8 @@ const meta = {
   'medicion-fosfina-graneles': {
     alt: 'Técnico mide gas fosfina residual sobre la carga de graneles de una nave',
     ratio: 4 / 3,
+    // El técnico está a la derecha; en el marco vertical del cierre quedaba fuera
+    focus: '92% 50%',
   },
   'fumigacion-placas-degesch': {
     alt: 'Fumigación con placas Degesch y generador de fosfina',
@@ -111,6 +124,105 @@ const meta = {
     alt: 'Traslado de máquinas y materiales a bordo de un barco',
     ratio: 3 / 4,
   },
+  // Medición de GAS FREE (carpeta "imágenes plagastop")
+  'gas-free-cubierta-nave': {
+    alt: 'Técnico de Plagastop mide gases residuales en la cubierta de una nave',
+    ratio: 4 / 3,
+    focus: '60% 6%',
+  },
+  'gas-free-fosfina-granel': {
+    alt: 'Detector de fosfina sobre la carga a granel de una nave, al atardecer',
+    ratio: 3 / 4,
+  },
+  'gas-free-escotilla-nave': { alt: 'Detector de fosfina en la escotilla de la bodega de una nave', ratio: 3 / 4 },
+  'gas-free-detector-granos': {
+    alt: 'Medición de gases con un detector Dräger X-am 7000 sobre una bodega de granos',
+    ratio: 3 / 4,
+  },
+  // Portadas y fotos de servicio (carpeta "imágenes plagastop", octubre 2026)
+  'mip-perimetro-planta': {
+    alt: 'Técnico revisa el perímetro exterior de una planta industrial',
+    ratio: 1672 / 941,
+    focus: '50% 50%',
+  },
+  'roedores-estacion-perimetro': {
+    alt: 'Técnico revisa una estación de control de roedores junto al muro de una bodega',
+    ratio: 1672 / 941,
+    focus: '65% 45%',
+  },
+  'insectos-oficina-aplicacion': {
+    alt: 'Técnico con traje de protección aplica un tratamiento contra insectos en una oficina',
+    ratio: 1672 / 941,
+    focus: '62% 45%',
+  },
+  'sanitizacion-lavamanos': {
+    alt: 'Técnico sanitiza los lavamanos de un baño con bomba de espalda',
+    ratio: 4 / 3,
+    focus: '55% 40%',
+  },
+  'sanitizacion-vitrina': {
+    alt: 'Técnico sanitiza las vitrinas refrigeradas de un local de alimentos',
+    ratio: 4 / 3,
+    focus: '50% 35%',
+  },
+  'acido-propionico-galpon': {
+    alt: 'Técnico aplica ácido propiónico sobre harina a granel que descarga una retroexcavadora en un galpón',
+    ratio: 1672 / 941,
+    focus: '70% 55%',
+  },
+  'acido-propionico-aplicacion': {
+    alt: 'Aplicación de ácido propiónico en harina a granel, con el tambor del producto en primer plano',
+    ratio: 3 / 4,
+    focus: '50% 62%',
+  },
+  'acido-propionico-tambor': {
+    alt: 'Técnico con máscara junto al tambor de ácido propiónico en un galpón',
+    ratio: 3 / 4,
+    focus: '50% 55%',
+  },
+  'aves-palomas-techo': {
+    alt: 'Palomas posadas sobre el borde de la techumbre de una instalación industrial',
+    ratio: 1672 / 941,
+  },
+  'aves-bandada': { alt: 'Bandada de palomas en vuelo sobre el cielo azul', ratio: 1672 / 941, focus: '50% 45%' },
+  'mip-monitoreo-exterior': {
+    alt: 'Técnico de Plagastop revisa el monitoreo junto a un contenedor en el exterior de una planta',
+    // Recortada arriba de la marca de agua del original
+    ratio: 2560 / 1594,
+    focus: '68% 50%',
+  },
+  'insectos-cocina-aplicacion': {
+    alt: 'Técnico con traje de protección aplica un tratamiento contra insectos en una cocina industrial',
+    ratio: 1672 / 941,
+    focus: '75% 50%',
+  },
+  'roedores-estacion-cebadera': {
+    alt: 'Técnico revisa una estación de control de roedores junto a un muro de ladrillo',
+    ratio: 1942 / 809,
+    focus: '32% 55%',
+  },
+  'roedores-rejilla-desague': {
+    alt: 'Dos ratas junto a la rejilla de un desagüe',
+    ratio: 1534 / 1025,
+    focus: '62% 55%',
+  },
+  'insectos-cocina-desague': {
+    alt: 'Técnico con traje de protección aplica un tratamiento contra insectos en el desagüe de una cocina industrial',
+    ratio: 1916 / 821,
+    focus: '32% 55%',
+  },
+  'sanitizacion-vitrinas-local': {
+    alt: 'Técnico con traje de protección sanitiza las vitrinas refrigeradas de un local de alimentos',
+    ratio: 1,
+    focus: '50% 22%',
+  },
+  'insectos-trampa-uv': {
+    alt: 'Trampa de luz ultravioleta para insectos voladores instalada bajo un alero',
+    ratio: 1,
+    focus: '55% 40%',
+  },
+  'aves-paloma-malla': { alt: 'Paloma posada detrás de una malla metálica', ratio: 1624 / 968, focus: '55% 45%' },
+  'aves-paloma-pasto': { alt: 'Paloma en un área verde junto a un estacionamiento', ratio: 4 / 3, focus: '60% 50%' },
   // Edificio de la sede (carpeta "imágenes edificio plagastop")
   'edificio-frente': { alt: 'Fachada verde de la sede de Plagastop vista desde la calle', ratio: 3 / 2 },
   'edificio-frente-costado': { alt: 'Frente de la sede de Plagastop entre árboles, desde un costado', ratio: 3 / 2 },

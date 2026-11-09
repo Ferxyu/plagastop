@@ -2,7 +2,6 @@ import { ShieldCheck } from 'lucide-react'
 import type { Route } from './+types/acreditaciones'
 import { credentials, milestones } from '~/content/credentials'
 import { breadcrumbLd, buildMeta } from '~/lib/seo'
-import { ButtonLink } from '~/components/ui/Button'
 import { PageHero } from '~/components/sections/PageHero'
 import { ClosingCta } from '~/components/sections/ClosingCta'
 import styles from './page.module.css'
@@ -28,14 +27,9 @@ export default function Credentials() {
     <>
       <PageHero
         crumbs={crumbs}
-        image="fdw-cubierta-barco"
+        image="motonave-pulverizado-cubierta"
         title="Acreditaciones y autorizaciones"
         lead="La información que piden las áreas de calidad, prevención y compras antes de contratar un proveedor de control de plagas."
-        actions={
-          <ButtonLink to="/contacto" size="lg" arrow>
-            Solicitar documentación
-          </ButtonLink>
-        }
       />
 
       <section className="section">

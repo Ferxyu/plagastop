@@ -5,7 +5,9 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: max(680px, 100svh);
-  overflow: hidden;
+  /* clip y no hidden: hidden lo volvería contenedor de scroll y las animaciones ligadas al scroll
+     de su contenido (data-scroll-out, data-scroll-zoom) no seguirían el scroll de la página */
+  overflow: clip;
   background: var(--ps-blue-deep);
   color: var(--ps-white);
 }
@@ -139,6 +141,30 @@
 
 .cred:hover::before {
   border-color: rgb(204 231 11 / 0.45);
+}
+
+/* Al pasar el mouse, el anillo punteado gira como un timbre y el sello se ilumina */
+.cred {
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out),
+    box-shadow 600ms var(--ease-out);
+}
+
+.cred:hover {
+  box-shadow: 0 0 0 6px rgb(204 231 11 / 0.08), 0 0 28px rgb(204 231 11 / 0.25);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cred:hover::before {
+    animation: stamp-spin 9s linear infinite;
+  }
+}
+
+@keyframes stamp-spin {
+  to {
+    rotate: 360deg;
+  }
 }
 
 @media (min-width: 768px) {
@@ -321,4 +347,43 @@
   100% {
     opacity: 0;
   }
+}
+
+/* Botón de sonido: flotante, solo ícono, centrado sobre el botón de WhatsApp */
+.sound {
+  --size: 44px;
+  position: fixed;
+  right: calc(var(--fab-right) + (var(--fab-size) - var(--size)) / 2);
+  bottom: calc(var(--fab-bottom) + var(--fab-size) + 12px);
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  border-radius: 50%;
+  background: rgb(4 28 68 / 0.82);
+  backdrop-filter: blur(6px);
+  color: var(--ps-white);
+  box-shadow: 0 12px 28px -10px rgb(10 11 11 / 0.45);
+  cursor: pointer;
+  transition:
+    transform var(--dur) var(--ease-expo),
+    border-color var(--dur) var(--ease-out),
+    bottom var(--dur) var(--ease-out);
+}
+
+.sound:hover {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--ps-lime);
+}
+
+.sound[data-on] {
+  border-color: var(--ps-lime);
+  color: var(--ps-lime);
+}
+
+.sound:focus-visible {
+  outline: 3px solid var(--ps-lime);
+  outline-offset: 3px;
 }

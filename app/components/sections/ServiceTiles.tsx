@@ -3,8 +3,6 @@ import { Link } from 'react-router'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { industries } from '~/content/industries'
 import type { Service } from '~/content/services'
-import { track } from '~/lib/analytics'
-import { ButtonLink } from '~/components/ui/Button'
 import { Photo } from '~/components/ui/Photo'
 import styles from './ServiceTiles.module.css'
 
@@ -112,6 +110,7 @@ export function ServiceTiles({ services }: { services: Service[] }) {
                     <Link
                       to={`/servicios/${s.slug}`}
                       className={styles.tile}
+                      data-glow
                       prefetch="intent"
                       tabIndex={hidden ? -1 : undefined}
                     >
@@ -131,6 +130,7 @@ export function ServiceTiles({ services }: { services: Service[] }) {
               }),
             )}
           </ul>
+          <span className={styles.pulse} aria-hidden />
         </div>
         <button type="button" className={`${styles.arrow} ${styles.prev}`} onClick={() => move(-1)} aria-label="Servicio anterior">
           <ArrowLeft size={22} strokeWidth={2.25} aria-hidden />
@@ -144,21 +144,9 @@ export function ServiceTiles({ services }: { services: Service[] }) {
         <p className="eyebrow">Soluciones por industria</p>
         <ul>
           {industries.map((ind) => (
-            <li key={ind.slug}>
-              <Link to={`/industrias/${ind.slug}`} prefetch="intent">
-                {ind.label}
-              </Link>
-            </li>
+            <li key={ind.slug}>{ind.label}</li>
           ))}
         </ul>
-        <ButtonLink
-          to="/cotizar?servicio=evaluacion"
-          variant="secondary"
-          arrow
-          onClick={() => track('cta_click', { location: 'services' })}
-        >
-          Solicitar una evaluación
-        </ButtonLink>
       </div>
     </>
   )

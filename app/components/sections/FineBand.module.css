@@ -1,9 +1,21 @@
 /* Banda de alerta: degradado azul a gris verdoso, texto blanco y la cifra en amarillo */
 .band {
+  /* Las moléculas de los bordes (MoleculeField) quedan detrás del contenido; la gráfica del quiebre
+     se recorta aquí (clip, no hidden: no rompe las animaciones de scroll) */
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
   padding-block: clamp(64px, 3rem + 5vw, 112px) clamp(64px, 3rem + 5vw, 104px);
   background: var(--gradient-alert);
   color: var(--ps-white);
   text-align: center;
+}
+
+.head,
+.facts,
+.close {
+  position: relative;
+  z-index: 1;
 }
 
 .head {
@@ -18,7 +30,10 @@
   line-height: 1.04;
 }
 
+/* La cifra es el escenario del quiebre: la gráfica va detrás del texto */
 .figure {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +41,13 @@
   margin-block: var(--s-2) var(--s-1);
   font-family: var(--font-display);
   font-weight: 400;
+}
+
+.until,
+.amount,
+.unit {
+  position: relative;
+  z-index: 1;
 }
 
 .until {
@@ -199,4 +221,24 @@
 .text,
 .facts li > span:last-child {
   color: rgb(255 255 255 / 0.84);
+}
+
+/* ---------- Punto de quiebre (fases en data-break, ver BreakingPoint.tsx) ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Tensión mientras sube: la cifra crece y se ilumina; al llegar a 1.000 se asienta */
+  .amount {
+    transition:
+      scale 1100ms cubic-bezier(0.33, 1, 0.68, 1),
+      text-shadow 1100ms var(--ease-out);
+  }
+
+  .band[data-break='armed'] .amount {
+    scale: 0.9;
+  }
+
+  .band[data-break='count'] .amount {
+    scale: 1.04;
+    text-shadow: 0 0 48px rgb(252 196 28 / 0.55);
+  }
 }

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router'
-import { Award, FileCheck2, ShieldCheck } from 'lucide-react'
+import { Award, FileCheck2, ShieldCheck, Volume2, VolumeX } from 'lucide-react'
 import posterWide from '~/assets/media/hero-poster-1600.webp'
 import posterTall from '~/assets/media/hero-poster-720.webp'
 import { credentials } from '~/content/credentials'
-import { track } from '~/lib/analytics'
 import { ButtonLink } from '~/components/ui/Button'
+import { mutedByUser, SOUND_ATTR, useHeroSound } from './useHeroSound'
 import styles from './HeroVideo.module.css'
 
 const VIDEO_WIDE = `${import.meta.env.BASE_URL}media/hero-1080.mp4`
@@ -19,11 +20,14 @@ const verbs = ['importando', 'produciendo', 'vendiendo', 'creciendo']
 /**
  * Hero del home: video real de terreno (cinco escenas), titular con verbo rotativo y credenciales bajo el logo.
  * El póster carga primero; el video se pide recién cuando la página terminó de cargar, y nunca con
- * movimiento reducido o ahorro de datos: en esos casos queda el póster fijo.
+ * movimiento reducido o ahorro de datos: en esos casos queda el póster fijo. El video va en bucle
+ * con su audio activo; un botón flotante lo silencia o lo vuelve a activar (ver useHeroSound.ts).
  */
 export function HeroVideo() {
+  const sectionRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
+  const { ready, on, toggle } = useHeroSound(sectionRef, videoRef)
 
   useEffect(() => {
     const video = videoRef.current
@@ -35,8 +39,14 @@ export function HeroVideo() {
     const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
     if (reduced || saveData) return
 
+    // Intenta arrancar con sonido; si el navegador aún no lo permite, sigue sin sonido y
+    // useHeroSound lo activa con el primer gesto del visitante.
     const start = () => {
-      video.play().catch(() => setPlaying(false))
+      video.muted = mutedByUser()
+      video.play().catch(() => {
+        video.muted = true
+        video.play().catch(() => setPlaying(false))
+      })
     }
     if (document.readyState === 'complete') start()
     else window.addEventListener('load', start, { once: true })
@@ -44,8 +54,8 @@ export function HeroVideo() {
   }, [])
 
   return (
-    <section className={`${styles.hero} on-dark`} aria-labelledby="hero-title">
-      <div className={styles.media} aria-hidden>
+    <section ref={sectionRef} className={`${styles.hero} on-dark`} aria-labelledby="hero-title">
+      <div className={styles.media} aria-hidden data-scroll-zoom>
         <picture>
           <source media="(max-width: 767px)" srcSet={posterTall} />
           <img className={styles.poster} src={posterWide} alt="" fetchPriority="high" decoding="async" />
@@ -82,7 +92,7 @@ export function HeroVideo() {
         </ul>
       </div>
 
-      <div className={`container ${styles.content}`}>
+      <div className={`container ${styles.content}`} data-scroll-out>
         <p className={`eyebrow ${styles.eyebrow}`}>Control de plagas para empresas e industrias</p>
         <h1 id="hero-title" className={styles.title}>
           <span className="visually-hidden">
@@ -104,14 +114,28 @@ export function HeroVideo() {
           Prevención, control y seguimiento profesional de plagas para plantas, bodegas, puertos y agroindustrias.
         </p>
         <div className={styles.actions}>
-          <ButtonLink to="/cotizar" size="lg" arrow onClick={() => track('cta_click', { location: 'hero' })}>
-            Solicitar cotización
-          </ButtonLink>
-          <ButtonLink to="/servicios" size="lg" variant="inverse">
+          <ButtonLink to="/servicios" size="lg" arrow>
             Conoce nuestros servicios
           </ButtonLink>
         </div>
       </div>
+
+      {/* Botón de sonido: flotante sobre el de WhatsApp, a mano mientras se recorre la página */}
+      {ready &&
+        createPortal(
+          <button
+            type="button"
+            className={styles.sound}
+            onClick={toggle}
+            data-on={on || undefined}
+            aria-label={on ? 'Silenciar el audio del video' : 'Activar el audio del video'}
+            title={on ? 'Silenciar' : 'Activar sonido'}
+            {...{ [SOUND_ATTR]: '' }}
+          >
+            {on ? <Volume2 size={20} strokeWidth={2} aria-hidden /> : <VolumeX size={20} strokeWidth={2} aria-hidden />}
+          </button>,
+          document.body,
+        )}
     </section>
   )
 }

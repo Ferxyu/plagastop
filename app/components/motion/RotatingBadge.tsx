@@ -2,7 +2,7 @@ import { useId } from 'react'
 import styles from './RotatingBadge.module.css'
 
 /** Sello circular con texto que gira lentamente alrededor del símbolo de Plagastop. */
-export function RotatingBadge({ text = 'Desde 1985 · Control de plagas · Concepción · ' }: { text?: string }) {
+export function RotatingBadge({ text = 'Más de 25 años · Control de plagas · Concepción · ' }: { text?: string }) {
   const id = `badge-${useId().replace(/[^a-zA-Z0-9]/g, '')}`
   return (
     <div className={styles.badge} aria-hidden>

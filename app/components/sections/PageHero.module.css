@@ -3,8 +3,13 @@
   isolation: isolate;
   overflow: hidden;
   padding-block: clamp(var(--s-8), 7vw, var(--s-9) + var(--s-6));
-  background: var(--ps-graphite);
+  background: var(--ps-blue-deep);
   color: var(--ps-white);
+}
+
+/* Moléculas entre la foto y el texto */
+.hero .molecules {
+  z-index: -1;
 }
 
 .bg {
@@ -25,7 +30,7 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgb(10 11 11 / 0.9) 0%, rgb(10 11 11 / 0.72) 45%, rgb(10 11 11 / 0.35) 100%);
+    linear-gradient(90deg, rgb(4 28 68 / 0.92) 0%, rgb(6 32 87 / 0.74) 45%, rgb(11 43 104 / 0.3) 100%);
 }
 
 .copy {

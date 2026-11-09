@@ -1,0 +1,118 @@
+/*
+ * Gráfica del «punto de quiebre» (ver BreakingPoint.tsx), montada detrás del texto de la cifra. Solo
+ * opacity y stroke-dashoffset. Sin JavaScript o con movimiento reducido (data-phase="static") no se ve.
+ */
+
+.fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ---------- Gráfica ---------- */
+
+.chart {
+  position: absolute;
+  z-index: 0;
+  left: -18%;
+  right: -18%;
+  top: -6%;
+  bottom: -14%;
+  width: 136%;
+  height: 120%;
+  overflow: visible;
+  opacity: 0;
+  transition: opacity 1s var(--ease-out);
+}
+
+.rise,
+.crash,
+.trail {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.rise {
+  stroke: var(--ps-lime);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px rgb(204 231 11 / 0.7));
+}
+
+.area {
+  opacity: 0;
+}
+
+.crash {
+  stroke: var(--ps-yellow);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 10px rgb(252 196 28 / 0.8));
+}
+
+/* Estela de la caída: más ancha, difusa y algo retrasada */
+.trail {
+  stroke: var(--ps-yellow);
+  stroke-width: 16;
+  opacity: 0.28;
+  filter: blur(6px);
+}
+
+/* ---------- Fases ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* count: la gráfica sube al ritmo del contador */
+  .fx:is([data-phase='count'], [data-phase='crash']) .chart {
+    opacity: 1;
+  }
+
+  .fx:is([data-phase='count'], [data-phase='crash'], [data-phase='settled']) .rise {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1100ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .fx:is([data-phase='count'], [data-phase='crash'], [data-phase='settled']) .area {
+    opacity: 1;
+    transition: opacity 1100ms var(--ease-out);
+  }
+
+  /* crash: la gráfica se desploma (acelera al caer) y deja estela */
+  .fx:is([data-phase='crash'], [data-phase='settled']) .crash {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 600ms cubic-bezier(0.55, 0, 0.85, 0.45);
+  }
+
+  .fx:is([data-phase='crash'], [data-phase='settled']) .trail {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 680ms cubic-bezier(0.55, 0, 0.85, 0.45) 60ms;
+  }
+
+  .fx:is([data-phase='crash'], [data-phase='settled']) .rise {
+    opacity: 0.55;
+    transition:
+      stroke-dashoffset 1100ms cubic-bezier(0.33, 1, 0.68, 1),
+      opacity 500ms var(--ease-out);
+  }
+
+  /* settled: la gráfica queda tenue detrás de la cifra */
+  .fx[data-phase='settled'] .chart {
+    opacity: 0.22;
+    transition: opacity 900ms var(--ease-out);
+  }
+
+  /* La caída se retira para que no se lea sobre el último cero */
+  .fx[data-phase='settled'] :is(.crash, .trail) {
+    opacity: 0;
+    transition: opacity 800ms var(--ease-out);
+  }
+}
+
+@media (max-width: 899px) {
+  .chart {
+    left: -8%;
+    right: -8%;
+    width: 116%;
+  }
+}

@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react'
 import type { Route } from './+types/cotizar'
-import { company, salesArea } from '~/content/company'
+import { COMMERCIAL_HOURS, SERVICE_HOURS, salesArea } from '~/content/company'
 import { formatPhone, mailHref, telHref } from '~/lib/contact'
 import { breadcrumbLd, buildMeta } from '~/lib/seo'
 import { PageHero } from '~/components/sections/PageHero'
@@ -19,7 +19,7 @@ export const meta: Route.MetaFunction = () =>
   buildMeta({
     title: 'Solicitar cotización',
     description:
-      'Cotiza control de plagas para tu empresa en dos pasos. Plantas, bodegas, restaurantes, puertos y agroindustria, desde Ñuble hasta Los Lagos.',
+      'Cotiza control de plagas para tu empresa en dos pasos. Plantas, bodegas, restaurantes, puertos y agroindustria. Desde Concepción, llegamos de Ñuble a Los Lagos.',
     path: '/cotizar',
     jsonLd: [breadcrumbLd(crumbs)],
   })
@@ -50,16 +50,19 @@ export default function Quote() {
             </p>
             <ul className={styles.facts}>
               <li>
-                <Check strokeWidth={2.5} aria-hidden /> Atención de {company.hours.label}
+                <Check strokeWidth={2.5} aria-hidden /> {COMMERCIAL_HOURS}
               </li>
               <li>
-                <Check strokeWidth={2.5} aria-hidden /> Desde {company.foundingYear} en Concepción
+                <Check strokeWidth={2.5} aria-hidden /> {SERVICE_HOURS}
+              </li>
+              <li>
+                <Check strokeWidth={2.5} aria-hidden /> Más de 25 años en Concepción
               </li>
               <li>
                 <Check strokeWidth={2.5} aria-hidden /> Autorizados por el SAG (Res. 3273/2025)
               </li>
               <li>
-                <Check strokeWidth={2.5} aria-hidden /> Desde Ñuble hasta Los Lagos
+                <Check strokeWidth={2.5} aria-hidden /> Desde Concepción, llegamos de Ñuble a Los Lagos
               </li>
             </ul>
           </aside>

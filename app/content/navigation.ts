@@ -1,4 +1,3 @@
-import { industries } from './industries'
 import { primaryServices } from './services'
 
 export interface NavLink {
@@ -22,11 +21,6 @@ export const mainNav: NavGroup[] = [
       href: `/servicios/${s.slug}`,
       description: s.summary,
     })),
-  },
-  {
-    label: 'Industrias',
-    href: '/industrias',
-    children: industries.map((i) => ({ label: i.name, href: `/industrias/${i.slug}` })),
   },
   { label: 'Empresa', href: '/empresa' },
   { label: 'Acreditaciones', href: '/acreditaciones' },

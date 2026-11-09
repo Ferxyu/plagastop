@@ -22,7 +22,7 @@ export default function Thanks() {
       <div className={`container ${styles.empty}`}>
         <h1>Recibimos tu solicitud</h1>
         <p className="lead">
-          El Área Comercial revisará tu información y te contactará dentro del horario de atención (
+          El Área Comercial revisará tu información y te contactará dentro del horario de atención comercial (
           {company.hours.label}).
         </p>
         <p>

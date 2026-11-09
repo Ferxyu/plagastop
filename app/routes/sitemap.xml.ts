@@ -1,5 +1,4 @@
 import { SITE_URL } from '~/content/company'
-import { industries } from '~/content/industries'
 import { services } from '~/content/services'
 import { blog } from '~/lib/cms'
 
@@ -11,8 +10,6 @@ export async function loader() {
     '/',
     '/servicios',
     ...services.map((s) => `/servicios/${s.slug}`),
-    '/industrias',
-    ...industries.map((i) => `/industrias/${i.slug}`),
     '/empresa',
     '/acreditaciones',
     '/contacto',
