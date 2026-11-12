@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { COMMERCIAL_HOURS, company, officeArea, salesArea, SERVICE_HOURS } from '~/content/company'
 import { DIGITAL_HREF } from '~/content/digital'
+import { cookies, privacy, terms } from '~/content/legal'
 import { formatPhone, mailHref, telHref } from '~/lib/contact'
 import { Logo } from '~/components/ui/Logo'
 import styles from './SiteFooter.module.css'
@@ -86,7 +87,9 @@ export function SiteFooter({ variant = 'full' }: { variant?: 'full' | 'landing' 
         </p>
         <nav className={styles.legal} aria-label="Enlaces corporativos">
           <Link to={DIGITAL_HREF}>Gestión digital</Link>
-          <Link to="/privacidad">Privacidad</Link>
+          <Link to={terms.path}>Términos y condiciones</Link>
+          <Link to={privacy.path}>Privacidad</Link>
+          <Link to={cookies.path}>Cookies</Link>
         </nav>
       </div>
     </footer>

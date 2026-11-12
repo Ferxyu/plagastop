@@ -1,35 +1,45 @@
 import { useRef, useState, type FormEvent } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router'
+import { useNavigate, useSearchParams } from 'react-router'
 import { salesArea } from '~/content/company'
 import { facilityOptions, needOptions, serviceOptions, urgencyOptions } from '~/content/quote'
 import { formatPhone, mailHref, telHref } from '~/lib/contact'
 import { track } from '~/lib/analytics'
 import {
+  FORM_METHOD,
   FormConfigError,
+  FormSubmitError,
   describedBy,
   required,
-  submitLead,
+  useLeadSubmit,
+  validateConsent,
   validateEmail,
   validatePhone,
   type FieldErrors,
 } from '~/lib/forms'
 import { useHydrated } from '~/lib/hydrated'
+import { quoteMessage, useWhatsAppLauncher, whatsappFormUrl } from '~/lib/whatsapp'
 import { Button } from '~/components/ui/Button'
-import { Field, Input, Select, Textarea } from './Field'
+import { WhatsAppIcon } from '~/components/brand/WhatsAppIcon'
+import { Field, Honeypot, Input, Select, Textarea } from './Field'
+import { ConsentChecks } from './Consent'
+import { WhatsAppHint, WhatsAppOpened } from './WhatsAppNotice'
 import styles from './forms.module.css'
 
 type Step1 = 'instalacion' | 'servicio' | 'comuna' | 'urgencia'
-type Step2 = 'nombre' | 'empresa' | 'cargo' | 'correo' | 'telefono' | 'mensaje' | 'consentimiento'
+type Step2 = 'nombre' | 'empresa' | 'cargo' | 'correo' | 'telefono' | 'mensaje' | 'terminos' | 'privacidad'
 type Values = Record<Step1 | Step2, string>
 
 const has = (options: { value: string }[], value: string | null) =>
   value && options.some((o) => o.value === value) ? value : ''
 
-function initialValues(params: URLSearchParams): Values {
+const STEP1: (keyof Values)[] = ['instalacion', 'servicio', 'comuna', 'urgencia']
+
+function initialValues(params: URLSearchParams, defaultService?: string): Values {
   const need = needOptions.find((n) => n.value === params.get('necesidad'))
   return {
     instalacion: has(facilityOptions, params.get('instalacion')),
-    servicio: has(serviceOptions, params.get('servicio')) || need?.service || '',
+    servicio:
+      has(serviceOptions, params.get('servicio')) || need?.service || has(serviceOptions, defaultService ?? null),
     comuna: '',
     urgencia: need?.value === 'problema-activo' ? 'problema-activo' : '',
     nombre: '',
@@ -38,31 +48,38 @@ function initialValues(params: URLSearchParams): Values {
     correo: '',
     telefono: '',
     mensaje: '',
-    consentimiento: '',
+    terminos: '',
+    privacidad: '',
   }
 }
 
 /**
  * El HTML prerenderizado no conoce los parámetros de la URL. Tras hidratar, el formulario
  * se vuelve a montar con la precarga (?instalacion, ?necesidad, ?servicio).
+ * `defaultService` precarga el servicio de una landing cuando la URL no trae uno.
  */
-export function QuoteForm() {
+export function QuoteForm({ defaultService }: { defaultService?: string }) {
   const hydrated = useHydrated()
   const [params] = useSearchParams()
   return (
     <QuoteFormInner
       key={hydrated ? params.toString() : 'prerender'}
       params={hydrated ? params : new URLSearchParams()}
+      defaultService={defaultService}
     />
   )
 }
 
-function QuoteFormInner({ params }: { params: URLSearchParams }) {
+function QuoteFormInner({ params, defaultService }: { params: URLSearchParams; defaultService?: string }) {
   const navigate = useNavigate()
+  const submitLead = useLeadSubmit('cotizacion')
+  const whatsapp = useWhatsAppLauncher()
+  const viaWhatsApp = FORM_METHOD === 'whatsapp'
   const [step, setStep] = useState<1 | 2>(1)
-  const [values, setValues] = useState<Values>(() => initialValues(params))
+  const [values, setValues] = useState<Values>(() => initialValues(params, defaultService))
   const [errors, setErrors] = useState<FieldErrors<keyof Values>>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'error' | 'config'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
 
   const set = (key: keyof Values) => (e: { target: { value: string } }) =>
@@ -88,13 +105,14 @@ function QuoteFormInner({ params }: { params: URLSearchParams }) {
       empresa: required(values.empresa, 'Ingresa el nombre de la empresa (o "Particular").'),
       correo: validateEmail(values.correo),
       telefono: validatePhone(values.telefono),
-      consentimiento: values.consentimiento ? undefined : 'Necesitamos tu autorización para responderte.',
+      ...validateConsent(values),
     }
     return Object.fromEntries(Object.entries(errs).filter(([, v]) => v)) as FieldErrors<keyof Values>
   }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
+    if (status === 'sending') return
     if (step === 1) {
       const errs = validateStep1()
       setErrors(errs)
@@ -108,13 +126,34 @@ function QuoteFormInner({ params }: { params: URLSearchParams }) {
     setErrors(errs)
     if (Object.keys(errs).length) return focusFirstError(errs)
 
+    if (viaWhatsApp) {
+      // Sin await antes de abrir: debe ocurrir dentro del clic para que el navegador no lo bloquee.
+      // Abrir WhatsApp no confirma nada: el evento solo registra la intención de continuar (sin datos personales).
+      if (whatsapp.launch(whatsappFormUrl(quoteMessage(values)))) {
+        track('quote_whatsapp_click', { service: values.servicio, facility: values.instalacion })
+      }
+      return
+    }
+
     setStatus('sending')
     try {
-      await submitLead('cotizacion', values)
+      await submitLead(values, formRef.current)
+      // Solo tras la confirmación real del servidor ({ ok: true }).
       track('quote_submit', { service: values.servicio, facility: values.instalacion })
       navigate('/cotizar/gracias')
     } catch (err) {
-      track('quote_error', { reason: err instanceof Error ? err.message : 'unknown' })
+      if (err instanceof FormSubmitError && err.code === 'in_flight') return
+      track('quote_error', { reason: err instanceof FormSubmitError ? err.code : 'config' })
+      if (err instanceof FormSubmitError && Object.keys(err.fields).length) {
+        // El servidor rechazó algún campo: se marca y, si es del primer paso, se vuelve a él.
+        const fields = err.fields as FieldErrors<keyof Values>
+        setErrors(fields)
+        setStatus('idle')
+        if (Object.keys(fields).some((k) => STEP1.includes(k as keyof Values))) setStep(1)
+        requestAnimationFrame(() => focusFirstError(fields))
+        return
+      }
+      setErrorMessage(err instanceof FormSubmitError ? err.message : '')
       setStatus(err instanceof FormConfigError ? 'config' : 'error')
     }
   }
@@ -275,33 +314,21 @@ function QuoteFormInner({ params }: { params: URLSearchParams }) {
               aria-describedby="mensaje-hint"
             />
           </Field>
-          <div>
-            <label className={styles.consent}>
-              <input
-                type="checkbox"
-                name="consentimiento"
-                checked={!!values.consentimiento}
-                onChange={(e) => setValues((v) => ({ ...v, consentimiento: e.target.checked ? 'si' : '' }))}
-                aria-invalid={!!err('consentimiento')}
-                aria-describedby={describedBy('consentimiento', err('consentimiento'))}
-              />
-              <span>
-                Autorizo a Plagastop a usar estos datos para responder mi solicitud, según su{' '}
-                <Link to="/privacidad">política de privacidad</Link>.
-              </span>
-            </label>
-            {err('consentimiento') && (
-              <p id="consentimiento-error" className={styles.error} role="alert">
-                {err('consentimiento')}
-              </p>
-            )}
-          </div>
+          <ConsentChecks
+            values={values}
+            errors={{ terminos: err('terminos'), privacidad: err('privacidad') }}
+            onChange={(key, value) => setValues((v) => ({ ...v, [key]: value }))}
+            purpose="solicitud"
+            viaWhatsApp={viaWhatsApp}
+          />
+
+          {!viaWhatsApp && <Honeypot />}
 
           {(status === 'error' || status === 'config') && (
             <div className={styles.alert} role="alert">
               <strong>No pudimos enviar tu solicitud.</strong>
               {status === 'error'
-                ? 'Revisa tu conexión e inténtalo de nuevo. '
+                ? `${errorMessage || 'Inténtalo de nuevo en unos minutos.'} `
                 : 'El formulario aún no está disponible. '}
               También puedes llamar al Área Comercial al{' '}
               <a href={telHref(salesArea.phone)}>{formatPhone(salesArea.phone)}</a> o escribir a{' '}
@@ -310,13 +337,26 @@ function QuoteFormInner({ params }: { params: URLSearchParams }) {
           )}
 
           <div className={styles.actions}>
-            <Button type="submit" size="lg" arrow loading={status === 'sending'}>
-              Enviar solicitud
+            <Button
+              type="submit"
+              size="lg"
+              arrow={!viaWhatsApp}
+              icon={viaWhatsApp ? <WhatsAppIcon /> : undefined}
+              loading={status === 'sending'}
+              disabled={whatsapp.cooling}
+            >
+              {viaWhatsApp ? 'Solicitar por WhatsApp' : 'Enviar solicitud'}
             </Button>
-            <Button type="button" variant="outline" size="lg" onClick={() => setStep(1)}>
+            <Button type="button" variant="outline" size="lg" onClick={() => setStep(1)} disabled={status === 'sending'}>
               Volver
             </Button>
           </div>
+          {viaWhatsApp && (
+            <>
+              <WhatsAppHint />
+              <WhatsAppOpened url={whatsapp.lastUrl} />
+            </>
+          )}
         </>
       )}
     </form>

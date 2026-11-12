@@ -18,7 +18,11 @@ export default [
   ...(hasPosts ? [route('blog/:slug', 'routes/blog.$slug.tsx')] : []),
   route('lp/:slug', 'routes/lp.$slug.tsx'),
   route('privacidad', 'routes/privacidad.tsx'),
+  route('terminos', 'routes/terminos.tsx'),
+  route('cookies', 'routes/cookies.tsx'),
   route('sitemap.xml', 'routes/sitemap.xml.ts'),
   route('robots.txt', 'routes/robots.txt.ts'),
+  // Catálogo de opciones para el endpoint PHP de formularios (archivo estático, no es una página)
+  route('api/lib/form-options.json', 'routes/form-options.json.ts'),
   route('*', 'routes/not-found.tsx'),
 ] satisfies RouteConfig

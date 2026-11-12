@@ -68,8 +68,8 @@ export const salesArea = contactAreas[0]
 /** Línea fija de la Secretaría: es el número al que llama el botón de teléfono del encabezado. */
 export const officeArea = contactAreas[1]
 
-/** Formulario de la página de Contacto: destino del botón "Solicitar cotización". */
-export const QUOTE_HREF = '/contacto#formulario'
+/** Formulario de cotización en dos pasos: destino de los botones "Solicitar cotización" (encabezado, menú y barra móvil). */
+export const QUOTE_HREF = '/cotizar'
 
 /** Horarios tal como se publican: la atención comercial tiene horario; la prestación del servicio es 24/7. */
 export const COMMERCIAL_HOURS = `Atención comercial de ${company.hours.label}`

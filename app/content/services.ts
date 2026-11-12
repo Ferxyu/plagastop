@@ -363,7 +363,7 @@ const serviceList: Service[] = [
     // Servicio indicado por Plagastop (octubre 2026). [Validar redacción con Plagastop]
     slug: 'tratamiento-acido-propionico',
     name: 'Tratamiento con ácido propiónico para control de salmonela',
-    shortName: 'Ácido propiónico',
+    shortName: 'Control de salmonela y enterobacterias',
     icon: 'acid',
     photo: 'acido-propionico-galpon',
     photo2: 'acido-propionico-aplicacion',

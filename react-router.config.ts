@@ -31,7 +31,10 @@ export default {
     ...(await blog.getPosts()).map((p) => `/blog/${p.slug}`),
     ...landings.map((l) => `/lp/${l.slug}`),
     '/privacidad',
+    '/terminos',
+    '/cookies',
     '/sitemap.xml',
     '/robots.txt',
+    '/api/lib/form-options.json',
   ],
 } satisfies Config

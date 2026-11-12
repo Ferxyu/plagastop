@@ -55,7 +55,7 @@ export default function Landing({ loaderData }: Route.ComponentProps) {
           </div>
           <div className={styles.formPanel} id="cotizar">
             <h2>Solicita tu cotización</h2>
-            <QuoteForm />
+            <QuoteForm defaultService={landing.service} />
           </div>
         </div>
       </section>

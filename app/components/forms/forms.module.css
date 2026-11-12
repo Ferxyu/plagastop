@@ -279,6 +279,20 @@
   accent-color: var(--ps-ink);
 }
 
+/* Términos y privacidad: dos casillas separadas, cada una con su error */
+.consentGroup {
+  display: grid;
+  gap: var(--s-3);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.consent a {
+  font-weight: 600;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -355,6 +369,35 @@
 }
 
 .alert a {
+  font-weight: 600;
+}
+
+/* Formularios por WhatsApp: aclaración bajo el botón y aviso tras abrir la aplicación */
+.waHint {
+  margin-top: calc(-1 * var(--s-2));
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--ps-steel);
+}
+
+.waNotice {
+  padding: var(--s-4) var(--s-5);
+  border-left: 3px solid var(--ps-lime);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--ps-blue-soft);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ps-blue);
+}
+
+/* Vacío sigue en el árbol de accesibilidad (región en vivo) pero no ocupa una fila del formulario */
+.waNotice:empty {
+  position: absolute;
+  padding: 0;
+  border: 0;
+}
+
+.waNotice a {
   font-weight: 600;
 }
 
