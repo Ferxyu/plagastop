@@ -36,108 +36,130 @@ export function SedeModel() {
     const canvas = canvasRef.current
     const stage = stageRef.current
     if (!canvas || !stage) return
-    let renderer: ReturnType<typeof createRenderer>
-    try {
-      renderer = createRenderer(canvas, faces, `${BASE}logo.png`)
-    } catch {
-      // Sin WebGL: se cambia a la foto fuera del cuerpo del efecto.
-      queueMicrotask(() => setFailed(true))
-      return
-    }
+    // WebGL (contexto + shaders) bloquea el hilo principal unos cientos de ms: se crea recién cuando la
+    // maqueta se acerca a la pantalla, no al hidratar la página (está muy abajo en el home).
+    const mount = (): (() => void) | undefined => {
+      let renderer: ReturnType<typeof createRenderer>
+      try {
+        renderer = createRenderer(canvas, faces, `${BASE}logo.png`)
+      } catch {
+        // Sin WebGL: se cambia a la foto fuera del cuerpo del efecto.
+        queueMicrotask(() => setFailed(true))
+        return undefined
+      }
 
-    const render = () => {
-      const { angle, tilt } = view.current
-      renderer.draw(angle, tilt)
-      const el = dotRef.current
-      if (el) {
-        const [left, top] = project(ROOF, angle, tilt)
-        el.style.left = `${left}%`
-        el.style.top = `${top}%`
+      const render = () => {
+        const { angle, tilt } = view.current
+        renderer.draw(angle, tilt)
+        const el = dotRef.current
+        if (el) {
+          const [left, top] = project(ROOF, angle, tilt)
+          el.style.left = `${left}%`
+          el.style.top = `${top}%`
+        }
+      }
+      render()
+
+      // Giro automático: solo a la vista, sin movimiento reducido y en pausa mientras se interactúa.
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      let frame = 0
+      let prev = 0
+      let inView = false
+      let resumeAt = 0
+      const tick = (now: number) => {
+        frame = requestAnimationFrame(tick)
+        const dt = prev ? Math.min(0.05, (now - prev) / 1000) : 0
+        prev = now
+        if (hold.current > 0 || now < resumeAt) return
+        view.current.angle += SPEED * dt
+        render()
+      }
+      const start = () => {
+        if (reduced || frame) return
+        prev = 0
+        frame = requestAnimationFrame(tick)
+      }
+      const stop = () => {
+        cancelAnimationFrame(frame)
+        frame = 0
+      }
+      const io = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting
+        // La órbita (CSS, stroke-dashoffset con blur) se pausa fuera de pantalla: no gasta cuadros sin verse
+        stage.dataset.offscreen = inView ? 'false' : 'true'
+        if (inView) start()
+        else stop()
+      })
+      io.observe(stage)
+
+      // Arrastre con mouse o dedo.
+      let drag: { x: number; y: number; id: number } | null = null
+      const onDown = (e: PointerEvent) => {
+        if (e.button !== 0) return
+        canvas.setPointerCapture(e.pointerId)
+        drag = { x: e.clientX, y: e.clientY, id: e.pointerId }
+        hold.current++
+      }
+      const onMove = (e: PointerEvent) => {
+        if (!drag || drag.id !== e.pointerId) return
+        view.current.angle += (e.clientX - drag.x) * 0.009
+        view.current.tilt = Math.max(0.15, Math.min(0.9, view.current.tilt + (e.clientY - drag.y) * 0.005))
+        drag = { x: e.clientX, y: e.clientY, id: e.pointerId }
+        render()
+      }
+      const onUp = () => {
+        if (!drag) return
+        drag = null
+        hold.current = Math.max(0, hold.current - 1)
+        resumeAt = performance.now() + RESUME_MS
+      }
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+        e.preventDefault()
+        view.current.angle += e.key === 'ArrowLeft' ? -0.15 : 0.15
+        resumeAt = performance.now() + RESUME_MS
+        render()
+      }
+      const onLost = (e: Event) => {
+        e.preventDefault()
+        setFailed(true)
+      }
+      canvas.addEventListener('pointerdown', onDown)
+      canvas.addEventListener('pointermove', onMove)
+      canvas.addEventListener('pointerup', onUp)
+      canvas.addEventListener('pointercancel', onUp)
+      canvas.addEventListener('lostpointercapture', onUp)
+      canvas.addEventListener('keydown', onKey)
+      canvas.addEventListener('webglcontextlost', onLost)
+
+      return () => {
+        stop()
+        io.disconnect()
+        canvas.removeEventListener('pointerdown', onDown)
+        canvas.removeEventListener('pointermove', onMove)
+        canvas.removeEventListener('pointerup', onUp)
+        canvas.removeEventListener('pointercancel', onUp)
+        canvas.removeEventListener('lostpointercapture', onUp)
+        canvas.removeEventListener('keydown', onKey)
+        canvas.removeEventListener('webglcontextlost', onLost)
+        renderer.dispose()
       }
     }
-    render()
 
-    // Giro automático: solo a la vista, sin movimiento reducido y en pausa mientras se interactúa.
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let frame = 0
-    let prev = 0
-    let inView = false
-    let resumeAt = 0
-    const tick = (now: number) => {
-      frame = requestAnimationFrame(tick)
-      const dt = prev ? Math.min(0.05, (now - prev) / 1000) : 0
-      prev = now
-      if (hold.current > 0 || now < resumeAt) return
-      view.current.angle += SPEED * dt
-      render()
-    }
-    const start = () => {
-      if (reduced || frame) return
-      prev = 0
-      frame = requestAnimationFrame(tick)
-    }
-    const stop = () => {
-      cancelAnimationFrame(frame)
-      frame = 0
-    }
-    const io = new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting
-      if (inView) start()
-      else stop()
-    })
-    io.observe(stage)
-
-    // Arrastre con mouse o dedo.
-    let drag: { x: number; y: number; id: number } | null = null
-    const onDown = (e: PointerEvent) => {
-      if (e.button !== 0) return
-      canvas.setPointerCapture(e.pointerId)
-      drag = { x: e.clientX, y: e.clientY, id: e.pointerId }
-      hold.current++
-    }
-    const onMove = (e: PointerEvent) => {
-      if (!drag || drag.id !== e.pointerId) return
-      view.current.angle += (e.clientX - drag.x) * 0.009
-      view.current.tilt = Math.max(0.15, Math.min(0.9, view.current.tilt + (e.clientY - drag.y) * 0.005))
-      drag = { x: e.clientX, y: e.clientY, id: e.pointerId }
-      render()
-    }
-    const onUp = () => {
-      if (!drag) return
-      drag = null
-      hold.current = Math.max(0, hold.current - 1)
-      resumeAt = performance.now() + RESUME_MS
-    }
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
-      e.preventDefault()
-      view.current.angle += e.key === 'ArrowLeft' ? -0.15 : 0.15
-      resumeAt = performance.now() + RESUME_MS
-      render()
-    }
-    const onLost = (e: Event) => {
-      e.preventDefault()
-      setFailed(true)
-    }
-    canvas.addEventListener('pointerdown', onDown)
-    canvas.addEventListener('pointermove', onMove)
-    canvas.addEventListener('pointerup', onUp)
-    canvas.addEventListener('pointercancel', onUp)
-    canvas.addEventListener('lostpointercapture', onUp)
-    canvas.addEventListener('keydown', onKey)
-    canvas.addEventListener('webglcontextlost', onLost)
-
+    stage.dataset.offscreen = 'true'
+    let unmount: (() => void) | undefined
+    const near = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return
+        near.disconnect()
+        unmount = mount()
+      },
+      { rootMargin: '600px 0px' },
+    )
+    near.observe(stage)
     return () => {
-      stop()
-      io.disconnect()
-      canvas.removeEventListener('pointerdown', onDown)
-      canvas.removeEventListener('pointermove', onMove)
-      canvas.removeEventListener('pointerup', onUp)
-      canvas.removeEventListener('pointercancel', onUp)
-      canvas.removeEventListener('lostpointercapture', onUp)
-      canvas.removeEventListener('keydown', onKey)
-      canvas.removeEventListener('webglcontextlost', onLost)
-      renderer.dispose()
+      near.disconnect()
+      unmount?.()
     }
   }, [])
 

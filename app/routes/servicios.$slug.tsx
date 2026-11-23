@@ -137,12 +137,15 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
                   <p>{item}</p>
                 ) : (
                   <div className={s.includesGroup}>
-                    <p>{item.title}</p>
-                    <ul>
-                      {item.items.map((option) => (
-                        <li key={option}>{option}</li>
-                      ))}
-                    </ul>
+                    <p className={item.text ? s.includesTitle : undefined}>{item.title}</p>
+                    {item.text && <p className={s.includesText}>{item.text}</p>}
+                    {item.items && (
+                      <ul>
+                        {item.items.map((option) => (
+                          <li key={option}>{option}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 )}
               </li>

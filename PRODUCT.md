@@ -37,13 +37,14 @@ Empresa de prevención y control de plagas fundada en 1985 en Concepción, con a
 ## Operating Context
 
 - Sede: Camino Los Carros 1826, Parque Industrial Ejército, Concepción, Región del Biobío, Chile. Una sola ubicación conocida.
-- Cobertura (confirmada 2026-10-06): Gran Concepción (Concepción, Hualpén, Talcahuano, Coronel, San Pedro de la Paz, Lota, Chiguayante, Hualqui, Penco, Lirquén, Tomé), Los Ángeles, Chillán y toda la Región de Ñuble, Región de Los Ríos y Región de Los Lagos. Resumen: "desde Ñuble hasta Los Lagos".
-- Horario de atención: 9:00 a 18:00 h (días por confirmar).
-- **No usan WhatsApp**: los canales son teléfono, correo y formulario.
+- Cobertura (actualizada 2026-11-23, suma La Araucanía): Ñuble, Biobío, La Araucanía, Los Ríos y Los Lagos. Texto corto: "Desde Concepción, llegamos de Ñuble a Los Lagos." Texto completo en app/content/coverage.ts (coverageDescription).
+- Atención comercial: lunes a viernes, 09:00 a 18:00 h. Prestación de servicios: 24/7 (no presentar la atención administrativa como 24 h).
+- Canales: WhatsApp del Área Comercial (+56 9 7793 7824), teléfono fijo, correo y formularios (que se envían por WhatsApp).
 - Contacto (confirmado 2026-10-12, reemplaza los datos anteriores por área):
   - Área Comercial: +56 9 7793 7824 · areacomercial@plagastop.cl
   - Secretaría: (41) 210 4508 (fijo) · secretaria@plagastop.cl
-- Redes: facebook.com/plagastop · instagram.com/plagastop_ltda
+- Eslogan: "Profesionales en Control de Plagas". Experiencia: "más de 25 años".
+- Redes: instagram.com/plagastop.cl · cl.linkedin.com/company/plagastop-ltda (Facebook retirado en noviembre de 2026)
 - El cliente B2B trabaja con documentación: certificados de servicio, registros MIP, informes, cumplimiento ante autoridad sanitaria y auditorías de clientes.
 
 ## Capabilities and Constraints

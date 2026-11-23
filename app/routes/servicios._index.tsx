@@ -1,6 +1,6 @@
 import type { Route } from './+types/servicios._index'
 import { primaryServices, getService } from '~/content/services'
-import { breadcrumbLd, buildMeta } from '~/lib/seo'
+import { breadcrumbLd, buildMeta, serviceListLd } from '~/lib/seo'
 import { TextLink } from '~/components/ui/Button'
 import { PageHero } from '~/components/sections/PageHero'
 import { ServiceCards } from '~/components/sections/ServiceCards'
@@ -15,11 +15,12 @@ const crumbs = [
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
-    title: 'Servicios de control de plagas para empresas',
+    title: 'Servicios de Control de Plagas y Fumigación | Plagastop',
+    rawTitle: true,
     description:
-      'Manejo integrado de plagas, control de roedores e insectos, sanitización, fumigación de granos, tratamientos SAG y medición Gas Free. Plagastop, más de 25 años de experiencia.',
+      'Manejo integrado de plagas, control de roedores e insectos, fumigación de granos almacenados, tratamientos fitosanitarios SAG y medición de gases residuales.',
     path: '/servicios',
-    jsonLd: [breadcrumbLd(crumbs)],
+    jsonLd: [breadcrumbLd(crumbs), serviceListLd()],
   })
 
 export default function Services() {

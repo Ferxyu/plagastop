@@ -3,6 +3,7 @@ import { SITE_URL } from '~/content/company'
 export function loader() {
   const body = `User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `

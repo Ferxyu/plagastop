@@ -83,6 +83,14 @@ const paths: Record<ServiceIconName, ReactNode> = {
     </>
   ),
   // Jaula de captura viva
+  // Brotes de maleza sobre la línea del suelo
+  weed: (
+    <>
+      <path d="M3.5 20.5h17" />
+      <path d="M12 20.5V9M12 13c-1-2.5-3-4-5.5-4.5M12 11c1.2-2.5 3.2-3.8 5.5-4" />
+      <path d="M6.5 20.5c0-2.5-.8-4.5-2.5-6M17.5 20.5c0-2.2 1-4.2 2.5-5.5" />
+    </>
+  ),
   bird: (
     <>
       <path d="M5 20V11a7 7 0 0 1 14 0v9" />

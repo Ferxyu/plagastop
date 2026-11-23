@@ -279,6 +279,17 @@
   gap: var(--s-3);
 }
 
+/* Recuadro con título y descripción (p. ej. control de malezas) */
+.includesGroup .includesTitle {
+  font-weight: 600;
+  color: var(--ps-white);
+}
+
+.includesGroup .includesText {
+  font-size: 0.9375rem;
+  color: rgb(255 255 255 / 0.8);
+}
+
 /* La lista queda centrada en el recuadro, con el texto alineado a la izquierda */
 .includesGrid .includesGroup ul {
   display: grid;

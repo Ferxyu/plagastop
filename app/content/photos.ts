@@ -74,7 +74,12 @@ const meta = {
     ratio: 4 / 3,
   },
   'equipo-en-nave': { alt: 'Equipo de técnicos de Plagastop a bordo de una nave', ratio: 4 / 3 },
-  'equipo-plagastop': { alt: 'Equipo de Plagastop en el jardín de su sede en Concepción', ratio: 3 / 2 },
+  'equipo-plagastop': {
+    alt: 'Equipo de Plagastop con uniforme corporativo en el jardín de su sede en Concepción',
+    ratio: 1448 / 1086,
+    // Nueva foto corporativa (noviembre 2026): el grupo ocupa el centro; se encuadra un poco bajo el cielo
+    focus: '50% 55%',
+  },
   'monitoreo-trampas-uv': {
     alt: 'Técnico revisa y cuenta insectos en la lámina de una trampa de luz ultravioleta',
     ratio: 3 / 4,
@@ -223,6 +228,22 @@ const meta = {
   },
   'aves-paloma-malla': { alt: 'Paloma posada detrás de una malla metálica', ratio: 1624 / 968, focus: '55% 45%' },
   'aves-paloma-pasto': { alt: 'Paloma en un área verde junto a un estacionamiento', ratio: 4 / 3, focus: '60% 50%' },
+  // Control de malezas (carpeta "imágenes plagastop", noviembre 2026)
+  'malezas-desbrozadora': {
+    alt: 'Técnico de Plagastop corta maleza alta con desbrozadora en un terreno junto a una bodega industrial',
+    ratio: 3 / 4,
+    focus: '35% 60%',
+  },
+  'malezas-retiro-residuos': {
+    alt: 'Técnico de Plagastop recoge con rastrillo los residuos vegetales del desmalezado junto a un galpón',
+    ratio: 3 / 4,
+    focus: '35% 55%',
+  },
+  'malezas-terreno': {
+    alt: 'Terreno industrial cubierto de maleza y pasto alto junto a una bodega',
+    ratio: 3 / 4,
+    focus: '50% 60%',
+  },
   // Edificio de la sede (carpeta "imágenes edificio plagastop")
   'edificio-frente': { alt: 'Fachada verde de la sede de Plagastop vista desde la calle', ratio: 3 / 2 },
   'edificio-frente-costado': { alt: 'Frente de la sede de Plagastop entre árboles, desde un costado', ratio: 3 / 2 },
@@ -251,6 +272,9 @@ export type PhotoId = keyof typeof meta
 export interface Photo extends PhotoMeta {
   src: string
   srcSet: string
+  /** Dimensiones intrínsecas de la variante mayor (atributos width/height: reservan el espacio y evitan CLS). */
+  width: number
+  height: number
 }
 
 export function photo(id: PhotoId): Photo {
@@ -266,5 +290,7 @@ export function photo(id: PhotoId): Photo {
     ...meta[id],
     src: largest.url,
     srcSet: variants.map((v) => `${v.url} ${v.width}w`).join(', '),
+    width: largest.width,
+    height: Math.round(largest.width / meta[id].ratio),
   }
 }

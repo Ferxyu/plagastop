@@ -295,6 +295,12 @@
   }
 }
 
+/* Fuera de pantalla la órbita se detiene (SedeModel marca data-offscreen con su IntersectionObserver) */
+.stage[data-offscreen='true'] .orbitTail,
+.stage[data-offscreen='true'] .orbitHead {
+  animation-play-state: paused;
+}
+
 @keyframes orbit {
   from {
     stroke-dashoffset: calc(1 + var(--o));

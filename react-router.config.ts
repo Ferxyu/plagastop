@@ -1,7 +1,6 @@
 
 import type { Config } from '@react-router/dev/config'
 import { services } from './app/content/services'
-import { industries } from './app/content/industries'
 import { landings } from './app/content/landings'
 import { blog } from './app/lib/cms'
 
@@ -20,8 +19,6 @@ export default {
     '/',
     '/servicios',
     ...services.map((s) => `/servicios/${s.slug}`),
-    '/industrias',
-    ...industries.map((i) => `/industrias/${i.slug}`),
     '/empresa',
     '/acreditaciones',
     '/contacto',
