@@ -286,34 +286,10 @@
 }
 
 /* ---------- Entrada cinematográfica, ligada al scroll ----------
-   El carrusel llega inclinado en perspectiva y se endereza; luego el pulso de protección lo recorre de
-   izquierda a derecha encendiendo los bordes de las tarjetas. Sin soporte o con movimiento reducido, quieto. */
-/* El haz (::before, 22 % del ancho) se desplaza con translate, que el navegador compone sin repintar;
-   antes se movía con background-position y repintaba todo el carrusel, con su drop-shadow, en cada cuadro */
-.pulse {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0;
-  filter: drop-shadow(0 0 8px rgb(204 231 11 / 0.8));
-  mix-blend-mode: screen;
-}
-
-.pulse::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 22%;
-  background:
-    linear-gradient(90deg, transparent, rgb(204 231 11 / 0.95), transparent) 0 0 / 100% 2px no-repeat,
-    linear-gradient(90deg, transparent, rgb(204 231 11 / 0.95), transparent) 0 100% / 100% 2px no-repeat,
-    linear-gradient(90deg, transparent, rgb(204 231 11 / 0.08), transparent) 0 0 / 100% 100% no-repeat;
-  /* Equivale a background-position -30 %: el haz parte fuera, a la izquierda */
-  translate: -106.4% 0;
-}
-
+   El carrusel llega inclinado en perspectiva y se endereza. Sin soporte o con movimiento reducido, quieto.
+   (Hasta noviembre de 2026 había además un «pulso» lima que recorría el carrusel. Iba fijo sobre la ventana
+   del carrusel y su opacidad dependía del scroll de la página: al detenerse a media pantalla quedaba congelado
+   mientras las tarjetas pasaban por debajo y dejaba franjas lima en los espacios entre ellas. Se retiró.) */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .carousel {
@@ -321,19 +297,6 @@
       animation: carousel-in linear both;
       animation-timeline: view();
       animation-range: entry 0% cover 42%;
-    }
-
-    .pulse {
-      view-timeline-name: --pulse;
-      animation: carousel-pulse linear both;
-      animation-timeline: --pulse;
-      animation-range: cover 30% cover 62%;
-    }
-
-    .pulse::before {
-      animation: carousel-pulse-move linear both;
-      animation-timeline: --pulse;
-      animation-range: cover 30% cover 62%;
     }
   }
 }
@@ -346,28 +309,5 @@
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-@keyframes carousel-pulse {
-  0% {
-    opacity: 0;
-  }
-  12%,
-  85% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* background-position -30 % → 130 % de una capa del 22 % = desplazamiento de -106,4 % → 460,9 % de su ancho */
-@keyframes carousel-pulse-move {
-  from {
-    translate: -106.4% 0;
-  }
-  to {
-    translate: 460.9% 0;
   }
 }

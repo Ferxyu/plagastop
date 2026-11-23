@@ -456,15 +456,15 @@ const serviceList: Service[] = [
     // Servicio confirmado por Plagastop (noviembre 2026): corte con maquinaria, retiro de residuos
     // vegetales y herbicidas solo como opción, a pedido del cliente y sujeta a evaluación técnica.
     slug: 'control-de-malezas',
-    name: 'Control de malezas',
-    shortName: 'Control de malezas',
+    name: 'Control de Malezas',
+    shortName: 'Control de Malezas',
     icon: 'weed',
     photo: 'malezas-desbrozadora',
     photo2: 'malezas-retiro-residuos',
     closingPhoto: 'malezas-terreno',
     closingLead: 'Cuéntanos dónde está el terreno o la propiedad y qué superficie necesitas despejar.',
     summary:
-      'Desmalezado con maquinaria profesional, retiro de residuos vegetales y aplicación opcional de herbicidas.',
+      'Desmalezado profesional, retiro de residuos vegetales y aplicación opcional de herbicidas para viviendas, terrenos e instalaciones.',
     headline: 'Control de Malezas',
     intro:
       'Servicio profesional de control de malezas para viviendas, terrenos, parcelas e instalaciones industriales. Realizamos desmalezado con maquinaria especializada, retiro de residuos vegetales y, según las necesidades del cliente, aplicación de tratamientos herbicidas para controlar la vegetación no deseada y su rebrote.',

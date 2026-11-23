@@ -197,6 +197,11 @@
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   box-shadow: var(--shadow-float);
   animation: drop var(--dur) var(--ease-out);
+  /* El header es sticky: lo que pasara del borde inferior no se alcanzaría con el scroll de la página.
+     En pantallas bajas (notebooks de 720-768 px) el menú se recorre por dentro; en las altas no cambia nada. */
+  max-height: calc(100dvh - var(--header-h));
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .mega[hidden] {
