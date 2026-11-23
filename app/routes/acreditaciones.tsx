@@ -13,7 +13,8 @@ const crumbs = [
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
-    title: 'Acreditaciones y autorizaciones',
+    title: 'Acreditaciones y Autorizaciones | Plagastop',
+    rawTitle: true,
     description:
       'Resolución SAG 3273/2025 para tratamientos fitosanitarios oficiales, resolución SNS 36365/2013 y Programa de Empresas Certificadas Degesch.',
     path: '/acreditaciones',

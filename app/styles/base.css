@@ -46,6 +46,12 @@ svg {
   max-width: 100%;
 }
 
+/* Con width/height en el HTML (reservan el espacio antes de cargar), el alto sigue a la proporción
+   salvo que el componente fije otro */
+img {
+  height: auto;
+}
+
 input,
 button,
 textarea,

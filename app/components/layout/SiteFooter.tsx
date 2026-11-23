@@ -2,17 +2,14 @@ import { Link } from 'react-router'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { COMMERCIAL_HOURS, company, officeArea, salesArea, SERVICE_HOURS } from '~/content/company'
 import { DIGITAL_HREF } from '~/content/digital'
+import { cookies, privacy, terms } from '~/content/legal'
 import { formatPhone, mailHref, telHref } from '~/lib/contact'
 import { Logo } from '~/components/ui/Logo'
 import styles from './SiteFooter.module.css'
 
 // lucide no trae logos de marcas: se dibujan aquí, a 24px y con el color del texto.
+// Redes oficiales: solo Instagram y LinkedIn (Facebook se retiró en noviembre de 2026).
 const socials = [
-  {
-    label: 'Facebook',
-    href: company.social.facebook,
-    path: 'M14 8.5V6.6c0-.8.5-1.1 1-1.1h2V2h-2.8C11.1 2 10.5 4.3 10.5 5.9v2.6H8V12h2.5v10H14V12h2.7l.4-3.5H14Z',
-  },
   {
     label: 'Instagram',
     href: company.social.instagram,
@@ -58,7 +55,9 @@ export function SiteFooter({ variant = 'full' }: { variant?: 'full' | 'landing' 
               </a>
             </li>
             <li className={styles.hours}>
-              {COMMERCIAL_HOURS} · {SERVICE_HOURS}
+              {COMMERCIAL_HOURS}
+              <br />
+              {SERVICE_HOURS}
             </li>
           </ul>
 
@@ -86,7 +85,9 @@ export function SiteFooter({ variant = 'full' }: { variant?: 'full' | 'landing' 
         </p>
         <nav className={styles.legal} aria-label="Enlaces corporativos">
           <Link to={DIGITAL_HREF}>Gestión digital</Link>
-          <Link to="/privacidad">Privacidad</Link>
+          <Link to={terms.path}>Términos y condiciones</Link>
+          <Link to={privacy.path}>Privacidad</Link>
+          <Link to={cookies.path}>Cookies</Link>
         </nav>
       </div>
     </footer>

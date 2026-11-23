@@ -1,5 +1,5 @@
 import { company, salesArea } from './company'
-import { coverageSummary } from './coverage'
+import { coverageDescription } from './coverage'
 import { formatPhone } from '~/lib/contact'
 
 /**
@@ -17,7 +17,7 @@ export const generalFaqs = [
   },
   {
     q: '¿Cuál es el horario de atención?',
-    a: `La atención comercial es de ${company.hours.label} y la prestación del servicio es 24/7.`,
+    a: `La atención comercial es de ${company.hours.label}. La prestación de los servicios es 24/7.`,
   },
   {
     q: '¿Desde cuándo operan?',
@@ -25,7 +25,7 @@ export const generalFaqs = [
   },
   {
     q: '¿En qué zonas trabajan?',
-    a: `${coverageSummary}. Atendemos todo el Gran Concepción (Concepción, Talcahuano, Hualpén, San Pedro de la Paz, Chiguayante, Hualqui, Penco, Lirquén, Tomé, Coronel y Lota), Los Ángeles, Chillán y toda la Región de Ñuble, además de las regiones de Los Ríos y Los Lagos.`,
+    a: coverageDescription,
   },
   {
     q: '¿Atienden hogares?',

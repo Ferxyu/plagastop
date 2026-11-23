@@ -20,11 +20,13 @@ export type ServiceIconName =
   | 'home'
   | 'acid'
   | 'bird'
+  | 'weed'
 
-/** Punto de "Qué incluye" con varias opciones listadas en un mismo recuadro. */
+/** Punto de "Qué incluye" con título y, debajo, una descripción y/o varias opciones listadas. */
 export interface ServiceIncludeGroup {
   title: string
-  items: string[]
+  text?: string
+  items?: string[]
 }
 
 export interface ServiceFaq {
@@ -363,7 +365,7 @@ const serviceList: Service[] = [
     // Servicio indicado por Plagastop (octubre 2026). [Validar redacción con Plagastop]
     slug: 'tratamiento-acido-propionico',
     name: 'Tratamiento con ácido propiónico para control de salmonela',
-    shortName: 'Ácido propiónico',
+    shortName: 'Control de salmonela y enterobacterias',
     icon: 'acid',
     photo: 'acido-propionico-galpon',
     photo2: 'acido-propionico-aplicacion',
@@ -448,6 +450,64 @@ const serviceList: Service[] = [
       title: 'Control de plagas en puertos y buques',
       description:
         'Tratamientos de control de plagas en instalaciones portuarias y naves en los puertos del Biobío y el sur de Chile. Plagastop, más de 25 años de experiencia.',
+    },
+  },
+  {
+    // Servicio confirmado por Plagastop (noviembre 2026): corte con maquinaria, retiro de residuos
+    // vegetales y herbicidas solo como opción, a pedido del cliente y sujeta a evaluación técnica.
+    slug: 'control-de-malezas',
+    name: 'Control de malezas',
+    shortName: 'Control de malezas',
+    icon: 'weed',
+    photo: 'malezas-desbrozadora',
+    photo2: 'malezas-retiro-residuos',
+    closingPhoto: 'malezas-terreno',
+    closingLead: 'Cuéntanos dónde está el terreno o la propiedad y qué superficie necesitas despejar.',
+    summary:
+      'Desmalezado con maquinaria profesional, retiro de residuos vegetales y aplicación opcional de herbicidas.',
+    headline: 'Control de Malezas',
+    intro:
+      'Servicio profesional de control de malezas para viviendas, terrenos, parcelas e instalaciones industriales. Realizamos desmalezado con maquinaria especializada, retiro de residuos vegetales y, según las necesidades del cliente, aplicación de tratamientos herbicidas para controlar la vegetación no deseada y su rebrote.',
+    whenNeeded: [
+      'Cuando la maleza crece excesivamente y dificulta el uso o mantenimiento de patios, terrenos y áreas exteriores.',
+      'Cuando la vegetación abundante genera espacios que pueden servir de refugio para roedores, insectos y otras plagas.',
+      'Cuando necesitas despejar accesos, caminos, perímetros o zonas de trabajo.',
+      'Cuando se acumula vegetación seca que puede aumentar la cantidad de material combustible en tu propiedad.',
+      'Cuando necesitas recuperar espacios exteriores cubiertos por malezas.',
+      'Cuando buscas controlar el crecimiento y rebrote de vegetación no deseada mediante tratamientos específicos.',
+      'Cuando requieres mantenimiento preventivo de áreas verdes, terrenos o instalaciones.',
+    ],
+    includes: [
+      {
+        title: 'Evaluación del terreno',
+        text: 'Revisión de las características del espacio, extensión de la vegetación y necesidades específicas de intervención.',
+      },
+      {
+        title: 'Desmalezado con maquinaria profesional',
+        text: 'Corte y eliminación mecánica de maleza alta y vegetación no deseada mediante equipos especializados.',
+      },
+      {
+        title: 'Despeje de espacios exteriores',
+        text: 'Intervención de patios, terrenos, accesos, perímetros y otras áreas que requieran control de vegetación.',
+      },
+      {
+        title: 'Recolección y retiro de residuos vegetales',
+        text: 'Retiro de los restos de maleza generados durante el trabajo, para entregar los espacios despejados y en mejores condiciones.',
+      },
+      {
+        title: 'Aplicación opcional de herbicidas',
+        text: 'Cuando el cliente lo solicita y las condiciones del lugar lo permiten, se pueden aplicar productos herbicidas autorizados para controlar la vegetación no deseada y reducir su rebrote, según la evaluación técnica correspondiente.',
+      },
+      {
+        title: 'Orientación para el mantenimiento',
+        text: 'Recomendaciones generales para conservar los espacios exteriores en buenas condiciones y determinar futuras necesidades de control.',
+      },
+    ],
+    industries: ['plantas-industriales', 'bodegas-y-centros-logisticos', 'agroindustria-y-granos'],
+    seo: {
+      title: 'Control de Malezas y Desmalezado en Concepción',
+      description:
+        'Control de malezas con maquinaria profesional, retiro de residuos vegetales y aplicación opcional de herbicidas. Servicio para viviendas y empresas. Cotiza en Plagastop.',
     },
   },
   {

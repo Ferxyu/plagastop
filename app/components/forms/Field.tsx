@@ -1,6 +1,22 @@
 import { useEffect, useId, useRef, useState, type ComponentProps, type KeyboardEvent, type ReactNode } from 'react'
 import { Check, ChevronDown } from 'lucide-react'
+import { HONEYPOT_NAME } from '~/lib/forms'
 import styles from './forms.module.css'
+
+/**
+ * Campo trampa contra envíos automáticos: fuera de la vista, del orden de tabulación y de los lectores de
+ * pantalla. Una persona no lo completa; un bot que llena todos los campos sí, y el servidor lo rechaza.
+ */
+export function Honeypot() {
+  return (
+    <div className="visually-hidden" aria-hidden="true">
+      <label>
+        Sitio web (no completar)
+        <input type="text" name={HONEYPOT_NAME} tabIndex={-1} autoComplete="off" defaultValue="" />
+      </label>
+    </div>
+  )
+}
 
 interface FieldProps {
   id: string

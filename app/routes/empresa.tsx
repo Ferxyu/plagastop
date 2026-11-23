@@ -23,9 +23,10 @@ const crumbs = [
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
-    title: 'Empresa: control de plagas en Concepción, más de 25 años',
+    title: 'Conoce Plagastop | Experiencia en Control de Plagas',
+    rawTitle: true,
     description:
-      'Plagastop nació en Concepción en 1985. Primera empresa de control de plagas en Chile con certificación ISO 9001 (2006). Autorizada por el SAG.',
+      'Más de 25 años en control de plagas para empresas e industrias. Sede en Concepción, autorización del SAG y primera empresa del rubro en Chile con ISO 9001.',
     path: '/empresa',
     jsonLd: [breadcrumbLd(crumbs)],
   })

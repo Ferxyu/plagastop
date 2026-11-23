@@ -22,6 +22,8 @@ export function Photo({
       srcSet={p.srcSet}
       sizes={sizes}
       alt={p.alt}
+      width={p.width}
+      height={p.height}
       className={className}
       style={p.focus ? { objectPosition: p.focus } : undefined}
       loading={priority ? 'eager' : 'lazy'}

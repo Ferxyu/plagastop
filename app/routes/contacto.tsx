@@ -6,7 +6,7 @@ import { PageHero } from '~/components/sections/PageHero'
 import { ContactDirectory } from '~/components/sections/ContactDirectory'
 import { CoverageLine } from '~/components/sections/CoverageLine'
 import { ContactForm } from '~/components/forms/ContactForm'
-import { coverageSummary } from '~/content/coverage'
+import { coverageDescription } from '~/content/coverage'
 import { MoleculeField } from '~/components/brand/MoleculeField'
 import styles from './page.module.css'
 import e from './empresa.module.css'
@@ -18,9 +18,10 @@ const crumbs = [
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
-    title: 'Contacto',
+    title: 'Contacto y Cotizaciones de Control de Plagas | Plagastop',
+    rawTitle: true,
     description:
-      'Teléfonos y correos por área, dirección y horario de Plagastop. Camino Los Carros 1826, Parque Industrial Ejército, Concepción.',
+      'Cotiza control de plagas: WhatsApp +56 9 7793 7824, teléfono (41) 210 4508, Camino Los Carros 1826, Concepción. Atención comercial de lunes a viernes, 09:00 a 18:00.',
     path: '/contacto',
     jsonLd: [breadcrumbLd(crumbs)],
   })
@@ -71,7 +72,7 @@ export default function Contact() {
             <h2 id="cobertura-title" data-reveal>
               Zonas de <span className={e.lime}>cobertura</span>
             </h2>
-            <p data-reveal={1}>{coverageSummary}.</p>
+            <p data-reveal={1}>{coverageDescription}</p>
           </div>
           <CoverageLine />
         </div>

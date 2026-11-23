@@ -4,7 +4,7 @@ import type { RouteHandle } from '~/root'
 import { company } from '~/content/company'
 import { generalFaqs } from '~/content/faqs'
 import { primaryServices } from '~/content/services'
-import { buildMeta, faqLd, organizationLd } from '~/lib/seo'
+import { buildMeta, faqLd, organizationLd, websiteLd } from '~/lib/seo'
 import { SplitWords } from '~/components/motion/SplitWords'
 import { Photo } from '~/components/ui/Photo'
 import { HeroVideo } from '~/components/sections/HeroVideo'
@@ -21,12 +21,17 @@ import styles from './home.module.css'
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
-    title: 'Plagastop · Control de plagas para empresas e industrias, más de 25 años',
+    title: 'Control de Plagas para Empresas e Industrias | Plagastop',
     rawTitle: true,
     description:
-      'Prevención, control y seguimiento de plagas para plantas, bodegas, silos y puertos. Autorizados por el SAG. Desde Concepción, llegamos de Ñuble a Los Lagos.',
+      'Control de plagas para empresas e industrias en Concepción y el sur de Chile. Fumigaciones, manejo integrado de plagas y tratamientos fitosanitarios.',
     path: '/',
-    jsonLd: [organizationLd, faqLd(generalFaqs)],
+    social: {
+      title: 'Plagastop | Profesionales en Control de Plagas',
+      description:
+        'Protegemos empresas e industrias mediante soluciones de prevención y control de plagas. Conoce nuestros servicios y cobertura.',
+    },
+    jsonLd: [organizationLd, websiteLd, faqLd(generalFaqs)],
   })
 
 export const handle: RouteHandle = { overlayHeader: true }
@@ -145,7 +150,7 @@ export default function Home() {
               </span>
             </h2>
             <p className={styles.centerLead} data-reveal={2}>
-              Desde Concepción, llegamos de Ñuble a Los Lagos: plantas, bodegas y puertos de cuatro regiones.
+              Desde Concepción, llegamos de Ñuble a Los Lagos: plantas, bodegas y puertos de cinco regiones.
             </p>
           </header>
           <CoverageLine centered />

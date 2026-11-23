@@ -10,12 +10,17 @@ import {
 } from 'react-router'
 import displayFontUrl from '@fontsource/anton/files/anton-latin-400-normal.woff2?url'
 import textFontUrl from '@fontsource/fira-sans/files/fira-sans-latin-400-normal.woff2?url'
-import '@fontsource/anton/400.css'
-import '@fontsource/fira-sans/400.css'
-import '@fontsource/fira-sans/500.css'
-import '@fontsource/fira-sans/600.css'
-import '@fontsource/fira-sans-condensed/500.css'
-import '@fontsource/fira-sans-condensed/600.css'
+import textBoldFontUrl from '@fontsource/fira-sans/files/fira-sans-latin-600-normal.woff2?url'
+import labelFontUrl from '@fontsource/fira-sans-condensed/files/fira-sans-condensed-latin-600-normal.woff2?url'
+// Solo el subconjunto latino: cubre todo el español (á, ñ, ü, ¿, ¡, comillas, guiones). Los archivos
+// completos traían además @font-face de cirílico, griego, vietnamita y latin-ext que el sitio no usa.
+// Pesos en uso: Anton 400; Fira Sans 400/500/600; Fira Sans Condensed 500/600 (etiquetas y eyebrows).
+import '@fontsource/anton/latin-400.css'
+import '@fontsource/fira-sans/latin-400.css'
+import '@fontsource/fira-sans/latin-500.css'
+import '@fontsource/fira-sans/latin-600.css'
+import '@fontsource/fira-sans-condensed/latin-500.css'
+import '@fontsource/fira-sans-condensed/latin-600.css'
 import './styles/tokens.css'
 import './styles/base.css'
 import type { Route } from './+types/root'
@@ -30,9 +35,13 @@ import { ButtonLink } from '~/components/ui/Button'
 import { captureAttribution } from '~/lib/forms'
 import { initAnalytics } from '~/lib/analytics'
 
+// Fuentes de la primera pantalla (titular Anton, texto 400, botones 600 y eyebrows Condensed 600): se piden junto al HTML en vez de esperar
+// al CSS, y así no se recoloca el texto del hero al llegar (CLS). El resto de los pesos carga bajo demanda.
 export const links: Route.LinksFunction = () => [
   { rel: 'preload', href: displayFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
   { rel: 'preload', href: textFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+  { rel: 'preload', href: textBoldFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+  { rel: 'preload', href: labelFontUrl, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
   { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.svg`, type: 'image/svg+xml' },
   { rel: 'apple-touch-icon', href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
 ]

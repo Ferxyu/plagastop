@@ -33,6 +33,11 @@ export const coverage: CoverageZone[] = [
     base: true,
   },
   {
+    region: 'Región de La Araucanía',
+    scope: 'Toda la región',
+    places: [],
+  },
+  {
     region: 'Región de Los Ríos',
     scope: 'Toda la región',
     places: [],
@@ -45,6 +50,19 @@ export const coverage: CoverageZone[] = [
 ]
 
 export const coverageSummary = 'Desde Concepción, llegamos de Ñuble a Los Lagos'
+
+/** Descripción completa oficial de la cobertura (Plagastop, noviembre 2026). */
+export const coverageDescription =
+  'Desde Concepción, llegamos de Ñuble a Los Lagos. Atendemos todo el Gran Concepción (Concepción, Talcahuano, Hualpén, San Pedro de la Paz, Chiguayante, Hualqui, Penco, Lirquén, Tomé, Coronel y Lota), Los Ángeles, Chillán y toda la Región de Ñuble, además de las regiones de La Araucanía, Los Ríos y Los Lagos.'
+
+/** Regiones atendidas, de norte a sur (schema.org areaServed como AdministrativeArea). */
+export const servedRegions = [
+  'Región de Ñuble',
+  'Región del Biobío',
+  'Región de La Araucanía',
+  'Región de Los Ríos',
+  'Región de Los Lagos',
+]
 
 /** Valores para schema.org areaServed */
 export const areaServed = [
@@ -60,6 +78,7 @@ export const areaServed = [
   'Coronel',
   'Lota',
   'Los Ángeles',
+  'Región de La Araucanía',
   'Región de Los Ríos',
   'Región de Los Lagos',
 ]

@@ -14,12 +14,13 @@ import styles from './SiteHeader.module.css'
 /**
  * Slogan bajo el logo, del mismo ancho que el logo: es texto SVG con textLength, así ocupa exactamente
  * el ancho disponible (el del logo) en cualquier tamaño. El enlace ya tiene su nombre accesible.
+ * A 21 px el texto mide ~293 de ancho natural: textLength apenas lo estira (antes 23 px, cuando el slogan era más corto).
  */
 function Slogan() {
   return (
-    <svg className={styles.slogan} viewBox="0 0 300 27" aria-hidden focusable="false">
-      <text x="0" y="22" textLength="300" lengthAdjust="spacingAndGlyphs">
-        Control profesional de plagas
+    <svg className={styles.slogan} viewBox="0 0 300 25" aria-hidden focusable="false">
+      <text x="0" y="20" textLength="300" lengthAdjust="spacingAndGlyphs">
+        Profesionales en Control de Plagas
       </text>
     </svg>
   )
@@ -81,7 +82,7 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
       <header className={styles.header}>
         <div className={`container ${styles.bar}`}>
           <Link to="/" className={styles.logo} aria-label="Plagastop, ir al inicio">
-            <Logo />
+            <Logo priority />
             <Slogan />
           </Link>
           <a
@@ -110,14 +111,14 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
           {overlay ? (
             <>
               <span className={styles.logoOnDark}>
-                <Logo negative />
+                <Logo negative priority />
               </span>
               <span className={styles.logoOnLight}>
-                <Logo />
+                <Logo lazy />
               </span>
             </>
           ) : (
-            <Logo />
+            <Logo priority />
           )}
           <Slogan />
         </Link>
@@ -257,7 +258,9 @@ export function SiteHeader({ variant = 'full', overlay }: { variant?: 'full' | '
             </li>
           </ul>
           <p className={styles.drawerHours}>
-            {COMMERCIAL_HOURS} · {SERVICE_HOURS}
+            {COMMERCIAL_HOURS}
+            <br />
+            {SERVICE_HOURS}
           </p>
         </div>
       </div>

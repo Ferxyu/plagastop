@@ -23,6 +23,7 @@ export const company = {
   foundingYear: 1985,
   founder: 'Cecilia Otero',
   tagline: 'Prevención y control de plagas para empresas e industrias',
+  slogan: 'Profesionales en Control de Plagas',
   mission:
     'Entregar a sus clientes un servicio de óptima calidad, personalizado y garantizado, mediante sistemas de última generación para la solución integral de problemas en control de plagas.',
   vision:
@@ -36,10 +37,15 @@ export const company = {
     mapsUrl:
       'https://www.google.com/maps/search/?api=1&query=Camino+Los+Carros+1826%2C+Concepci%C3%B3n%2C+Chile',
   },
-  // Días por confirmar: Plagastop informó el rango horario, no los días.
-  hours: { label: '9:00 a 18:00 h', opens: '09:00', closes: '18:00' },
+  // Atención comercial confirmada por Plagastop (noviembre 2026). La prestación del servicio es 24/7
+  // (SERVICE_HOURS): no presentar la atención administrativa como disponible las 24 horas.
+  hours: {
+    label: 'lunes a viernes, de 09:00 a 18:00 h',
+    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '18:00',
+  },
   social: {
-    facebook: 'https://www.facebook.com/plagastop/',
     instagram: 'https://www.instagram.com/plagastop.cl/',
     linkedin: 'https://cl.linkedin.com/company/plagastop-ltda',
   },
@@ -68,9 +74,9 @@ export const salesArea = contactAreas[0]
 /** Línea fija de la Secretaría: es el número al que llama el botón de teléfono del encabezado. */
 export const officeArea = contactAreas[1]
 
-/** Formulario de la página de Contacto: destino del botón "Solicitar cotización". */
-export const QUOTE_HREF = '/contacto#formulario'
+/** Formulario de cotización en dos pasos: destino de los botones "Solicitar cotización" (encabezado, menú y barra móvil). */
+export const QUOTE_HREF = '/cotizar'
 
 /** Horarios tal como se publican: la atención comercial tiene horario; la prestación del servicio es 24/7. */
-export const COMMERCIAL_HOURS = `Atención comercial de ${company.hours.label}`
+export const COMMERCIAL_HOURS = `Atención comercial: ${company.hours.label}`
 export const SERVICE_HOURS = 'Prestación del servicio 24/7'
