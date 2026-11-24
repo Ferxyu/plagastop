@@ -6,6 +6,7 @@
  */
 
 import type { PhotoId } from './photos'
+import type { PestIconName } from '~/components/ui/PestIcon'
 
 export type ServiceIconName =
   | 'mip'
@@ -27,6 +28,15 @@ export interface ServiceIncludeGroup {
   title: string
   text?: string
   items?: string[]
+}
+
+/** Plaga específica que se atiende dentro de un servicio (tarjeta de «Plagas que podemos ayudarte a controlar»). */
+export interface ServicePest {
+  name: string
+  icon: PestIconName
+  text: string
+  /** Arañas y garrapatas no son insectos: la tarjeta lo indica para no afirmar lo contrario. */
+  arachnid?: boolean
 }
 
 export interface ServiceFaq {
@@ -58,6 +68,8 @@ export interface Service {
   /** Alcance del servicio. */
   includes: (string | ServiceIncludeGroup)[]
   credentialIds?: string[]
+  /** Plagas específicas, en tarjetas entre «Qué incluye» y «Servicios relacionados». */
+  pests?: ServicePest[]
   industries: string[]
   faqs?: ServiceFaq[]
   featured?: boolean
@@ -180,6 +192,67 @@ const serviceList: Service[] = [
       'Controles periódicos para evitar reinfestaciones.',
       'Monitoreo de insectos a través del uso de trampas ultravioleta.',
       'Emisión de certificación del servicio.',
+    ],
+    // Textos entregados por Plagastop (noviembre de 2026). Termitas queda como evaluación de indicios: el
+    // tratamiento especializado de termitas no está confirmado como servicio (ver docs/propuesta-arquitectura.md).
+    pests: [
+      {
+        name: 'Cucarachas',
+        icon: 'cockroach',
+        text: 'Control de cucarachas y baratas en cocinas, baños, bodegas y espacios donde pueden esconderse y reproducirse.',
+      },
+      {
+        name: 'Hormigas',
+        icon: 'ant',
+        text: 'Control de hormigas en viviendas, jardines e instalaciones, identificando sus rutas de ingreso y posibles colonias.',
+      },
+      {
+        name: 'Pulgas',
+        icon: 'flea',
+        text: 'Tratamientos para controlar infestaciones de pulgas en hogares, patios y espacios frecuentados por mascotas.',
+      },
+      {
+        name: 'Chinches de cama',
+        icon: 'bedbug',
+        text: 'Control de chinches de cama que se ocultan en colchones, muebles y grietas, dificultando su detección y eliminación.',
+      },
+      {
+        name: 'Moscas',
+        icon: 'fly',
+        text: 'Control de moscas en viviendas, comercios y áreas de preparación de alimentos, atendiendo los factores que favorecen su presencia.',
+      },
+      {
+        name: 'Zancudos y mosquitos',
+        icon: 'mosquito',
+        text: 'Control de zancudos y mosquitos en patios, jardines y espacios exteriores, considerando sus zonas de reproducción.',
+      },
+      {
+        name: 'Polillas',
+        icon: 'moth',
+        text: 'Control de polillas que pueden afectar prendas, textiles o alimentos almacenados, según la especie presente.',
+      },
+      {
+        name: 'Arañas',
+        icon: 'spider',
+        text: 'Control de arañas en hogares, bodegas y rincones de difícil acceso, incluyendo la evaluación de presencia de arañas de rincón.',
+        arachnid: true,
+      },
+      {
+        name: 'Garrapatas',
+        icon: 'tick',
+        text: 'Control de garrapatas en patios y ambientes frecuentados por animales, mediante una evaluación de los focos de infestación.',
+        arachnid: true,
+      },
+      {
+        name: 'Termitas',
+        icon: 'termite',
+        text: 'Evaluación de indicios de termitas en madera y estructuras, para determinar las medidas de control apropiadas.',
+      },
+      {
+        name: 'Avispas',
+        icon: 'wasp',
+        text: 'Control de avispas y evaluación de nidos en techumbres, jardines y exteriores, mediante procedimientos adecuados a cada situación.',
+      },
     ],
     industries: [
       'restaurantes-y-food-service',

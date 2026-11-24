@@ -9,6 +9,7 @@ import { TextLink } from '~/components/ui/Button'
 import { breadcrumbLd, buildMeta, faqLd, serviceLd } from '~/lib/seo'
 import { Photo } from '~/components/ui/Photo'
 import { ServiceIcon } from '~/components/ui/ServiceIcon'
+import { PestIcon } from '~/components/ui/PestIcon'
 import { PageHero } from '~/components/sections/PageHero'
 import { ServiceCards } from '~/components/sections/ServiceCards'
 import { SectionHeader } from '~/components/ui/SectionHeader'
@@ -178,6 +179,49 @@ export default function ServicePage({ loaderData }: Route.ComponentProps) {
           )}
         </div>
       </section>
+
+      {/* Plagas específicas: HTML real (H2 + H3 por plaga) para búsquedas por nombre de la plaga */}
+      {service.pests && service.pests.length > 0 && (
+        <section className={`section section--paper ${s.pests}`} aria-labelledby="plagas-title">
+          <div className="container">
+            <header className={s.pestsHead}>
+              <p className={`eyebrow ${s.pestsEyebrow}`} data-reveal>
+                Por tipo de plaga
+              </p>
+              <h2 id="plagas-title" data-reveal={1}>
+                Plagas que <span className={s.blue}>podemos ayudarte a controlar</span>
+              </h2>
+              <p className={s.pestsLead} data-reveal={2}>
+                Cada plaga presenta características y hábitos diferentes. En Plagastop evaluamos las condiciones de cada
+                espacio para determinar las medidas de control más adecuadas, tanto en viviendas como en instalaciones
+                comerciales e industriales.
+              </p>
+            </header>
+            <ul className={s.pestsGrid}>
+              {service.pests.map((pest, i) => (
+                <li key={pest.name} className={s.pest} data-reveal={(i % 4) + 1}>
+                  <div className={s.pestTop}>
+                    <span className={s.pestIcon}>
+                      <PestIcon name={pest.icon} />
+                    </span>
+                    <h3>{pest.name}</h3>
+                    {pest.arachnid && <span className={s.pestTag}>Arácnido</span>}
+                  </div>
+                  <p>{pest.text}</p>
+                </li>
+              ))}
+              {/* Cierra la cuadrícula en 12 (4×3, 3×4, 2×6) y aclara el alcance sin prometer servicios nuevos */}
+              <li className={`${s.pest} ${s.pestNote}`} data-reveal={(service.pests.length % 4) + 1}>
+                <p className={s.pestNoteTitle}>¿No ves la plaga que te preocupa?</p>
+                <p>
+                  Cuéntanos qué observaste y dónde. Arañas y garrapatas son arácnidos, no insectos; las incluimos por ser
+                  plagas habituales en viviendas e instalaciones.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+      )}
 
       {faqs.length > 0 && (
         <section className="section">

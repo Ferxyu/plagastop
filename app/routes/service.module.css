@@ -382,6 +382,214 @@
   font-weight: 500;
 }
 
+/* Plagas que podemos ayudarte a controlar: tarjetas tipográficas sobre verde bosque claro.
+   Sin fotos: no hay imágenes reales de cada especie y una genérica confundiría plagas distintas.
+   Once plagas + una nota = 12 tarjetas, que llenan 1, 2, 3 o 4 columnas sin huecos. */
+.pestsHead {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  max-width: 760px;
+  margin: 0 auto var(--s-7);
+  text-align: center;
+  color: var(--ps-navy);
+}
+
+.pestsEyebrow {
+  color: var(--ps-forest);
+}
+
+.pestsLead {
+  max-width: 62ch;
+  font-size: var(--text-lead);
+  line-height: 1.6;
+  color: #3d4650;
+}
+
+.pestsGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-3);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 600px) {
+  .pestsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-4);
+  }
+}
+
+@media (min-width: 960px) {
+  .pestsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1240px) {
+  .pestsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.pest {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-radius: 20px;
+  background: var(--ps-white);
+  box-shadow: 0 0 0 1px rgb(47 91 87 / 0.12), 0 18px 36px -30px rgb(4 28 68 / 0.45);
+  color: var(--ps-navy);
+  transition:
+    translate 400ms var(--ease-expo),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+/* Acento lima: una línea que crece en el borde superior al pasar el mouse */
+.pest::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--s-5);
+  right: var(--s-5);
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--ps-lime);
+  scale: 0.18 1;
+  transform-origin: left;
+  transition: scale 500ms var(--ease-expo);
+}
+
+.pest:hover {
+  translate: 0 -4px;
+  box-shadow: 0 0 0 1px rgb(47 91 87 / 0.18), 0 24px 40px -26px rgb(4 28 68 / 0.5);
+}
+
+.pest:hover::before {
+  scale: 1 1;
+}
+
+/* Ícono, nombre y (si corresponde) la etiqueta «Arácnido» en una sola línea */
+.pestTop {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+/* Ícono de la plaga: círculo azul profundo con el trazo en lima, como los números de «Situaciones» */
+.pestIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: var(--ps-lime);
+  transition: scale 400ms var(--ease-expo);
+}
+
+.pestIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.pest:hover .pestIcon {
+  scale: 1.08;
+}
+
+.pestTag {
+  flex: none;
+  align-self: center;
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: var(--pill);
+  background: var(--ps-forest-soft);
+  color: var(--ps-forest);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pest h3 {
+  min-width: 0;
+  font-size: clamp(1.375rem, 1.2rem + 0.5vw, 1.625rem);
+  color: var(--ps-blue);
+}
+
+.pest p {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #3d4650;
+}
+
+/* Nota final en azul profundo: cierra la cuadrícula y aclara que arañas y garrapatas son arácnidos */
+.pestNote {
+  background: var(--gradient-brand);
+  box-shadow: 0 18px 36px -26px rgb(4 28 68 / 0.6);
+}
+
+.pestNote::before {
+  scale: 1 1;
+}
+
+.pestNote .pestNoteTitle {
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ps-lime);
+}
+
+.pestNote p {
+  color: rgb(255 255 255 / 0.86);
+}
+
+/* Móvil: tarjetas más compactas para que la sección no se alargue de más */
+@media (max-width: 599px) {
+  .pestsHead {
+    margin-bottom: var(--s-6);
+  }
+
+  .pest {
+    gap: 6px;
+    padding: var(--s-4);
+    border-radius: 16px;
+  }
+
+  .pest h3 {
+    font-size: 1.3125rem;
+  }
+
+  .pestIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .pestIcon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .pest p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pest,
+  .pest::before,
+  .pestIcon {
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .needList li,
   .includesGrid li {
